@@ -18,8 +18,13 @@ export default async function Suburbs() {
 
     return (
         <div>
-            <h1>All suburbs</h1>
-            {abbotsfordData.People}
+            <h1 className="text-3xl">All suburbs</h1>
+            <p className="text-base font-bold">Abbotsford</p>
+            <ul className="text-xs">
+                <li>People: {abbotsfordData.People} </li>
+                <li>Male: {abbotsfordData.Male}</li>
+                <li>Female: {abbotsfordData.Female}</li>
+            </ul>
         </div>
     );
 }
