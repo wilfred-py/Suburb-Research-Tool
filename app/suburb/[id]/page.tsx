@@ -9,3 +9,11 @@ interface Props {
 export async function generateMetaData({ params }: Props): Promise<Metadata> {
     return { title: "" };
 }
+
+export default async function SuburbData({ params }: Props) {
+    return (
+        <div>
+            <h1>Suburb A</h1>
+        </div>
+    );
+}
