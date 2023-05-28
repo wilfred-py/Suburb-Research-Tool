@@ -1,36 +1,35 @@
 import Link from "next/link";
-import styles from "./Suburbs.module.css";
 
 export default async function Suburbs() {
     return (
         <div>
             <h1>Which state are you looking to find more about?</h1>
-            <div className="flex flex-wrap flex-auto m-4">
-                <ul className={styles.links}>
-                    <li>
+            <div>
+                <ul className="flex-row flex-auto justify-center">
+                    <li className="w-40 border border-black border-solid m-10 hover:bg-hoverYellow text-center">
                         <Link href="/ACT">ACT</Link>
                     </li>
-                    <li>
+                    <li className="w-40 border border-black border-solid m-10 hover:bg-hoverYellow text-center">
                         <Link href="/NSW">NSW</Link>
                     </li>
-                    <li>
+                    <li className="w-40 border border-black border-solid m-10 hover:bg-hoverYellow text-center">
                         <Link href="/NT">NT</Link>
                     </li>
-                    <li>
+                    <li className="w-40 border border-black border-solid m-10 hover:bg-hoverYellow text-center">
                         <Link href="/QLD">QLD</Link>
                     </li>
                 </ul>
-                <ul className={styles.links}>
-                    <li>
+                <ul className="flex-row flex-auto justify-center">
+                    <li className="w-40 border border-black border-solid m-10 hover:bg-hoverYellow text-center">
                         <Link href="/SA">SA</Link>
                     </li>
-                    <li>
+                    <li className="w-40 border border-black border-solid m-10 hover:bg-hoverYellow text-center">
                         <Link href="/TAS">TAS</Link>
                     </li>
-                    <li>
+                    <li className="w-40 border border-black border-solid m-10 hover:bg-hoverYellow text-center">
                         <Link href="/VIC">VIC</Link>
                     </li>
-                    <li>
+                    <li className="w-40 border border-black border-solid m-10 hover:bg-hoverYellow text-center">
                         <Link href="/WA">WA</Link>
                     </li>
                 </ul>

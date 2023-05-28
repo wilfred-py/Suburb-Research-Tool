@@ -7,11 +7,14 @@ module.exports = {
     ],
     theme: {
         extend: {
-            colors: { customYellow: "#f5c347" },
+            colors: { customYellow: "#f5c347", hoverYellow: "#fad884" },
             backgroundImage: {
                 "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
                 "gradient-conic":
                     "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
+            },
+            spacing: {
+                112: "28rem",
             },
         },
     },
