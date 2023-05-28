@@ -1,20 +1,32 @@
 import SuburbsInState from "@/components/SuburbsInState";
-import { initializeApp } from "firebase/app";
-import { getDatabase } from "firebase/database";
 
-// TODO: Replace the following with your app's Firebase project configuration
-// See: https://firebase.google.com/docs/web/learn-more#config-object
+import { initializeApp } from "firebase/app";
+import { getAnalytics } from "firebase/analytics";
+import { getFirestore } from "firebase/firestore";
+
 const firebaseConfig = {
-    // ...
-    // The value of `databaseURL` depends on the location of the database
-    databaseURL: "https://DATABASE_NAME.firebaseio.com",
+    apiKey: process.env.API_KEY,
+    authDomain: process.env.AUTH_DOMAIN,
+    projectId: process.env.PROJECT_ID,
+    storageBucket: process.env.STORAGE_BUCKET,
+    messagingSenderId: process.env.MESSAGING_SENDER_ID,
+    appId: process.env.APP_ID,
+    measurementId: process.env.MEASUREMENT_ID,
 };
 
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
+let analytics;
+let firestore;
+if (firebaseConfig?.projectId) {
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
 
-// Initialize Realtime Database and get a reference to the service
-const database = getDatabase(app);
+    if (app.name && typeof window !== "undefined") {
+        analytics = getAnalytics(app);
+    }
+
+    // Access Firebase services using shorthand notation.
+    firestore = getFirestore();
+}
 
 export default function StateSuburbs() {
     return (
