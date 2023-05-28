@@ -38,6 +38,7 @@ export default async function SuburbData({ params }: Props) {
                 <li>Female: {abbotsfordData.Female}</li>
                 <h1>TESTESTEST</h1>
                 <h1>Second Test</h1>
+                <h1>Updated GitHub branch settings</h1>
             </ul>
         </div>
     );
