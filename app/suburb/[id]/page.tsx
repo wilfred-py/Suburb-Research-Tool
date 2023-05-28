@@ -37,6 +37,7 @@ export default async function SuburbData({ params }: Props) {
                 <li>Male: {abbotsfordData.Male}</li>
                 <li>Female: {abbotsfordData.Female}</li>
                 <h1>TESTESTEST</h1>
+                <h1>Second Test</h1>
             </ul>
         </div>
     );
