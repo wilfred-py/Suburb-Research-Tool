@@ -7,19 +7,19 @@ export default function NavMenu() {
             <Link href={"/"}></Link>
             <ul className={styles.links}>
                 <li>
-                    <Link href={"About"}>About</Link>
+                    <Link href="About">About</Link>
                 </li>
                 <li>
-                    <Link href={"/suburb/"}>Suburbs</Link>
+                    <Link href="/suburb/">Suburbs</Link>
                 </li>
                 <li>
-                    <Link href={"How to use"}>How to use</Link>
+                    <Link href="How to use">How to use</Link>
                 </li>
                 <li>
-                    <Link href={"FAQs"}>FAQs</Link>
+                    <Link href="FAQs">FAQs</Link>
                 </li>
                 <li>
-                    <Link href={"Sign in"}>Sign in</Link>
+                    <Link href="Sign in">Sign in</Link>
                 </li>
             </ul>
         </nav>

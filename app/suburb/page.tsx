@@ -1,30 +1,40 @@
-export default async function Suburbs() {
-    const abbotsfordData = {
-        People: "9,088",
-        Male: "51.0%",
-        Female: "49.0%",
-        "Median age": "33",
-        Families: "2,127",
-        "Average number of children per family": "null",
-        "for families with children": "1.5",
-        "for all households (a)": "0.2",
-        "All private dwellings": "5,673",
-        "Average number of people per household": "1.9",
-        "Median weekly household income": "$2,197",
-        "Median monthly mortgage repayments": "$2,167",
-        "Median weekly rent (b)": "$425",
-        "Average number of motor vehicles per dwelling": "1.1",
-    };
+import Link from "next/link";
+import styles from "./Suburbs.module.css";
 
+export default async function Suburbs() {
     return (
         <div>
-            <h1 className="text-3xl">All suburbs</h1>
-            <p className="text-base font-bold">Abbotsford</p>
-            <ul className="text-xs">
-                <li>People: {abbotsfordData.People} </li>
-                <li>Male: {abbotsfordData.Male}</li>
-                <li>Female: {abbotsfordData.Female}</li>
-            </ul>
+            <h1>Which state are you looking to find more about?</h1>
+            <div className="flex flex-wrap flex-auto m-4">
+                <ul className={styles.links}>
+                    <li>
+                        <Link href="/ACT">ACT</Link>
+                    </li>
+                    <li>
+                        <Link href="/NSW">NSW</Link>
+                    </li>
+                    <li>
+                        <Link href="/NT">NT</Link>
+                    </li>
+                    <li>
+                        <Link href="/QLD">QLD</Link>
+                    </li>
+                </ul>
+                <ul className={styles.links}>
+                    <li>
+                        <Link href="/SA">SA</Link>
+                    </li>
+                    <li>
+                        <Link href="/TAS">TAS</Link>
+                    </li>
+                    <li>
+                        <Link href="/VIC">VIC</Link>
+                    </li>
+                    <li>
+                        <Link href="/WA">WA</Link>
+                    </li>
+                </ul>
+            </div>
         </div>
     );
 }
