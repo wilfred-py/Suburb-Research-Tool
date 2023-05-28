@@ -1,0 +1,9 @@
+.links li {
+    width: 200px;
+    border: 1px solid black;
+    margin: 1rem;
+}
+
+.links li:hover {
+    background-color: grey;
+}
