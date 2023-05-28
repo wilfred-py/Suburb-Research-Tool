@@ -7,30 +7,30 @@ export default async function Suburbs() {
             <div>
                 <ul className="flex-row flex-auto justify-center">
                     <li className="w-40 border border-black border-solid m-10 hover:bg-hoverYellow text-center">
-                        <Link href="/ACT">ACT</Link>
+                        <Link href="/suburb/ACT">ACT</Link>
                     </li>
                     <li className="w-40 border border-black border-solid m-10 hover:bg-hoverYellow text-center">
-                        <Link href="/NSW">NSW</Link>
+                        <Link href="/suburb/NSW">NSW</Link>
                     </li>
                     <li className="w-40 border border-black border-solid m-10 hover:bg-hoverYellow text-center">
-                        <Link href="/NT">NT</Link>
+                        <Link href="/suburb/NT">NT</Link>
                     </li>
                     <li className="w-40 border border-black border-solid m-10 hover:bg-hoverYellow text-center">
-                        <Link href="/QLD">QLD</Link>
+                        <Link href="/suburb/QLD">QLD</Link>
                     </li>
                 </ul>
                 <ul className="flex-row flex-auto justify-center">
                     <li className="w-40 border border-black border-solid m-10 hover:bg-hoverYellow text-center">
-                        <Link href="/SA">SA</Link>
+                        <Link href="/suburb/SA">SA</Link>
                     </li>
                     <li className="w-40 border border-black border-solid m-10 hover:bg-hoverYellow text-center">
-                        <Link href="/TAS">TAS</Link>
+                        <Link href="/suburb/TAS">TAS</Link>
                     </li>
                     <li className="w-40 border border-black border-solid m-10 hover:bg-hoverYellow text-center">
-                        <Link href="/VIC">VIC</Link>
+                        <Link href="/suburb/VIC">VIC</Link>
                     </li>
                     <li className="w-40 border border-black border-solid m-10 hover:bg-hoverYellow text-center">
-                        <Link href="/WA">WA</Link>
+                        <Link href="/suburb/WA">WA</Link>
                     </li>
                 </ul>
             </div>
