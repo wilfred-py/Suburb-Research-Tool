@@ -4,7 +4,15 @@ import styles from "./NavMenu.module.css";
 export default function NavMenu() {
     return (
         <nav className={styles.nav}>
-            <Link href={"/"}></Link>
+            <Link href={"/"}>Logo</Link>
+            <form>
+                <input
+                    className="pl-4 py-1"
+                    type="text"
+                    placeholder="Suburb or Postcode..."
+                />
+                <button>Search</button>
+            </form>
             <ul className={styles.links}>
                 <li>
                     <Link href="About">About</Link>
