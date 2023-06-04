@@ -1,31 +1,26 @@
+import main_data_Abbotsford from "../../../data/main_data/main_data_Abbotsford.json";
+import summary_data_Abbotsford from "../../../data/summary_data/summary_data_Abbotsford.json";
+
 export default async function SuburbData() {
-    const abbotsfordData = {
-        People: "9,088",
-        Male: "51.0%",
-        Female: "49.0%",
-        "Median age": "33",
-        Families: "2,127",
-        "Average number of children per family": "null",
-        "for families with children": "1.5",
-        "for all households (a)": "0.2",
-        "All private dwellings": "5,673",
-        "Average number of people per household": "1.9",
-        "Median weekly household income": "$2,197",
-        "Median monthly mortgage repayments": "$2,167",
-        "Median weekly rent (b)": "$425",
-        "Average number of motor vehicles per dwelling": "1.1",
-    };
+    const mainData = main_data_Abbotsford;
+    const summaryData = summary_data_Abbotsford;
     return (
         <div>
-            <h1>Suburb A</h1>
-            <h1 className="text-3xl">All suburbs</h1>
-            <p className="text-base font-bold">Abbotsford</p>
-            <ul className="text-xs">
-                <li>People: {abbotsfordData.People} </li>
-                <li>Male: {abbotsfordData.Male}</li>
-                <li>Female: {abbotsfordData.Female}</li>
-                <h1>Updated GitHub branch settings</h1>
-            </ul>
+            <section id="people">
+                <p className="text-base font-bold">Abbotsford</p>
+                <ul className="text-xs">
+                    <li>
+                        People in "SUBURB": {summaryData.Abbotsford.People}{" "}
+                    </li>
+                    <li>Average people per suburb in "STATE": {} </li>
+                </ul>
+            </section>
+
+            <section id="income-and-work">
+                <ul>
+                    <li>In the labor force</li>
+                </ul>
+            </section>
         </div>
     );
 }
