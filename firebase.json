@@ -1,10 +1,13 @@
 {
     "hosting": {
-        "source": ".",
+        "public": "app",
         "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
-        "frameworksBackend": {
-            "region": "asia-east1"
-        }
+        "rewrites": [
+            {
+                "source": "**",
+                "destination": "/app/page.tsx"
+            }
+        ]
     },
     "database": {
         "rules": "database.rules.json"
