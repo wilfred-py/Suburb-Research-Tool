@@ -1,5 +1,6 @@
 import main_data_Abbotsford from "../../../data/main_data/main_data_Abbotsford.json";
 import summary_data_Abbotsford from "../../../data/summary_data/summary_data_Abbotsford.json";
+import EmploymentBarChart from "@/components/EmploymentBarChart";
 
 export default async function SuburbData() {
     const mainData = main_data_Abbotsford;
@@ -17,9 +18,8 @@ export default async function SuburbData() {
             </section>
 
             <section id="income-and-work">
-                <ul>
-                    <li>In the labor force</li>
-                </ul>
+                <p>In the labor force</p>
+                <EmploymentBarChart />
             </section>
         </div>
     );
