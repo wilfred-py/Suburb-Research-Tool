@@ -1,16 +1,4 @@
-import { Metadata } from "next";
-
-interface Props {
-    params: {
-        id: string;
-    };
-}
-
-export async function generateMetaData({ params }: Props): Promise<Metadata> {
-    return { title: "" };
-}
-
-export default async function SuburbData({ params }: Props) {
+export default async function SuburbData() {
     const abbotsfordData = {
         People: "9,088",
         Male: "51.0%",
