@@ -1,6 +1,7 @@
 import main_data_Abbotsford from "../../../data/main_data/main_data_Abbotsford.json";
 import summary_data_Abbotsford from "../../../data/summary_data/summary_data_Abbotsford.json";
 import Employment from "@/components/Employment";
+import Income from "@/components/Income";
 
 export default async function SuburbData() {
     const mainData = main_data_Abbotsford;
@@ -20,6 +21,7 @@ export default async function SuburbData() {
             <section id="income-and-work">
                 <h1>Income and Work</h1>
                 <Employment />
+                <Income />
             </section>
             <section id="education"></section>
         </div>

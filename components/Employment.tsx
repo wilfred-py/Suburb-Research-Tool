@@ -1,5 +1,7 @@
+import { Bar } from "react-chartjs-2";
 import main_data_Abbotsford from "../data/main_data/main_data_Abbotsford.json";
 import summary_data_Abbotsford from "../data/summary_data/summary_data_Abbotsford.json";
+import BarChart from "./BarChart";
 
 export default function Employment() {
     const summaryData = summary_data_Abbotsford;
@@ -55,12 +57,6 @@ export default function Employment() {
                         <span>{stateParticipationRate}%</span>
                     </div>
                 </div>
-            </div>
-            <div>
-                <h1 className="text-xl">Median weekly incomes</h1>
-                {/* Bar Chart */}
-                <p>Personal</p>
-                <p>Household</p>
             </div>
         </div>
     );
