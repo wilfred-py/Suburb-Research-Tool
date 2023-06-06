@@ -1,7 +1,5 @@
-import { Bar } from "react-chartjs-2";
 import main_data_Abbotsford from "../data/main_data/main_data_Abbotsford.json";
 import summary_data_Abbotsford from "../data/summary_data/summary_data_Abbotsford.json";
-import BarChart from "./BarChart";
 
 export default function Employment() {
     const summaryData = summary_data_Abbotsford;
