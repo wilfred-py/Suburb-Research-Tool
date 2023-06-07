@@ -130,7 +130,7 @@ export default function Income() {
     };
 
     return (
-        <div className="">
+        <div className="m-4">
             <Bar
                 options={personalMedianIncomeOptions}
                 data={personalMedianIncomeData}
