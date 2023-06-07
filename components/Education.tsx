@@ -12,50 +12,58 @@ export default function Education() {
     const stateName = keys[2];
 
     // Bachelor
-    const bachelorInSuburb =
+    const bachelorInSuburb = parseFloat(
         mainData["Level of highest educational attainment"][
             "Bachelor Degree level and above"
-        ]["% of suburb"];
+        ]["% of suburb"]
+    );
 
-    const bachelorInState =
+    const bachelorInState = parseFloat(
         mainData["Level of highest educational attainment"][
             "Bachelor Degree level and above"
-        ]["% of state"];
+        ]["% of state"]
+    );
 
     // Diploma
-    const diplomaInSuburb =
+    const diplomaInSuburb = parseFloat(
         mainData["Level of highest educational attainment"][
             "Advanced Diploma and Diploma level"
-        ]["% of suburb"];
+        ]["% of suburb"]
+    );
 
-    const diplomaInState =
+    const diplomaInState = parseFloat(
         mainData["Level of highest educational attainment"][
             "Advanced Diploma and Diploma level"
-        ]["% of suburb"];
+        ]["% of suburb"]
+    );
 
     // Certificate
-    const certificateOneInSuburb =
+    const certificateOneInSuburb = parseFloat(
         mainData["Level of highest educational attainment"][
             "Certificate level I"
-        ]["% of suburb"];
-    const certificateTwoInSuburb =
+        ]["% of suburb"]
+    );
+    const certificateTwoInSuburb = parseFloat(
         mainData["Level of highest educational attainment"][
             "Certificate level II"
-        ]["% of suburb"];
-    const certificateThreeInSuburb =
+        ]["% of suburb"]
+    );
+    const certificateThreeInSuburb = parseFloat(
         mainData["Level of highest educational attainment"][
             "Certificate level III"
-        ]["% of suburb"];
-    const certificateFourInSuburb =
+        ]["% of suburb"]
+    );
+    const certificateFourInSuburb = parseFloat(
         mainData["Level of highest educational attainment"][
             "Certificate level IV"
-        ]["% of suburb"];
+        ]["% of suburb"]
+    );
 
     const certificatesInSuburb =
-        parseFloat(certificateOneInSuburb) +
-        parseFloat(certificateTwoInSuburb) +
-        parseFloat(certificateThreeInSuburb) +
-        parseFloat(certificateFourInSuburb);
+        certificateOneInSuburb +
+        certificateTwoInSuburb +
+        certificateThreeInSuburb +
+        certificateFourInSuburb;
 
     const roundedCertificatesInSubrub = certificatesInSuburb.toFixed(1);
 
