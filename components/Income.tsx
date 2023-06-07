@@ -47,27 +47,69 @@ export default function Income() {
 
     // Chart.js
 
-    const options = {
+    const labels = [2016, 2021];
+
+    const personalMedianIncomeOptions = {
         responsive: true,
         plugins: {
             legend: {
-                position: "top" as const,
+                position: "bottom" as const,
             },
             title: {
                 display: true,
-                text: "Chart.js Bar Chart",
+                text: "Personal Median Weekly Income",
             },
         },
     };
 
-    const labels = [2016, 2021];
+    const householdMedianIncomeOptions = {
+        responsive: true,
+        plugins: {
+            legend: {
+                position: "bottom" as const,
+            },
+            title: {
+                display: true,
+                text: "Household Median Weekly Income",
+            },
+        },
+    };
 
-    const data = {
+    const personalMedianIncomeData = {
         labels,
         datasets: [
             {
                 label: suburbName,
-                data: Number(personalIncome),
+                data: labels.map(() =>
+                    faker.datatype.number({ min: 0, max: 3500 })
+                ),
+                backgroundColor: "rgba(245, 195, 71, 0.5)",
+            },
+            {
+                label: stateName,
+                data: labels.map(() =>
+                    faker.datatype.number({ min: 0, max: 3500 })
+                ),
+                backgroundColor: "rgba(0, 203, 165, 0.5)",
+            },
+            {
+                label: "Australia",
+                data: labels.map(() =>
+                    faker.datatype.number({ min: 0, max: 3500 })
+                ),
+                backgroundColor: "rgba(53, 162, 235, 0.5)",
+            },
+        ],
+    };
+
+    const householdMedianIncomeData = {
+        labels,
+        datasets: [
+            {
+                label: suburbName,
+                data: labels.map(() =>
+                    faker.datatype.number({ min: 0, max: 3500 })
+                ),
                 backgroundColor: "rgba(245, 195, 71, 0.5)",
             },
             {
@@ -88,21 +130,17 @@ export default function Income() {
     };
 
     return (
-        <div className="">
-            <h1 className="text-xl">Median weekly incomes</h1>
-            <p className="text-xs">Personal</p>
-            <div className="bg-gray-200 w-52 rounded">
-                <div>
-                    <span>{personalIncome}</span>
-                </div>
-            </div>
-            <div className="bg-gray-200 w-52 rounded">
-                <div>
-                    <span></span>
-                </div>
-            </div>
-            <p className="text-xs">Household</p>
-            <Bar options={options} data={data} />
+        <div className="m-4">
+            <Bar
+                options={personalMedianIncomeOptions}
+                data={personalMedianIncomeData}
+                className="max-w-lg max-h-[360px]"
+            />
+            <Bar
+                options={householdMedianIncomeOptions}
+                data={householdMedianIncomeData}
+                className="max-w-lg max-h-[360px]"
+            />
         </div>
     );
 }

@@ -1,7 +1,5 @@
-import { Bar } from "react-chartjs-2";
 import main_data_Abbotsford from "../data/main_data/main_data_Abbotsford.json";
 import summary_data_Abbotsford from "../data/summary_data/summary_data_Abbotsford.json";
-import BarChart from "./BarChart";
 
 export default function Employment() {
     const summaryData = summary_data_Abbotsford;
@@ -34,12 +32,10 @@ export default function Employment() {
     const stateWidth = Math.floor((stateParticipationRate / 100) * 208);
 
     return (
-        <div
-            className="rounded
-        border border-black w-112"
-        >
+        <div className="rounded border border-black w-112 m-4">
+            <h1>Income and Work</h1>
             <div className="mb-4">
-                <h1 className="text-xl">Participation Rate</h1>
+                <p className="text-xl">Participation Rate</p>
                 <p className="text-xs">% of {suburbName} in the labour force</p>
                 <div className="bg-gray-200 w-52 rounded">
                     <div
