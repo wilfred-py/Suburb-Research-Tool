@@ -87,6 +87,7 @@ export default function Demographic() {
         <div className="rounded border border-black">
             <div>Median Age: {medianAge}</div>
             <Doughnut data={data} />
+            <p>Based off 2021 data</p>
         </div>
     );
 }
