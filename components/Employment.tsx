@@ -14,22 +14,18 @@ export default function Employment() {
 
     // Labour participation rate within the suburb
     const suburbParticipationRate = parseFloat(
-        mainData["Participation in the labour force"]["In the labour force"][
-            "% of suburb"
-        ]
+        mainData["Participation in the labour force"]["In the labour force"]["% of suburb"]
     );
 
     // Labour participation rate within the state
     const stateParticipationRate = parseFloat(
-        mainData["Participation in the labour force"]["In the labour force"][
-            "% of state"
-        ]
+        mainData["Participation in the labour force"]["In the labour force"]["% of state"]
     );
 
     // width of div in pixels (w-52 = 208px)
-    const suburbWidth = Math.floor((suburbParticipationRate / 100) * 208);
+    const suburbWidth = Math.round(Math.floor(((suburbParticipationRate / 100) * 208) / 4) / 4) * 4;
 
-    const stateWidth = Math.floor((stateParticipationRate / 100) * 208);
+    const stateWidth = Math.round(Math.floor(((stateParticipationRate / 100) * 208) / 4) / 4) * 4;
 
     return (
         <div className="rounded border border-black w-112 m-4">
@@ -37,22 +33,33 @@ export default function Employment() {
             <div className="mb-4">
                 <p className="text-xl">Participation Rate</p>
                 <p className="text-xs">% of {suburbName} in the labour force</p>
-                <div className="bg-gray-200 w-52 rounded">
+                <div className="bg-gray-200 w-52 rounded relative h-6 mb-2">
                     <div
-                        className={`bg-customYellow w-[${suburbWidth}px] rounded`}
+                        className={`bg-customYellow rounded w-${
+                            suburbWidth == 0 ? 1.5 : suburbWidth
+                        } absolute top-0 left-0 h-6`}
                     >
-                        <span>{suburbParticipationRate}%</span>
+                        <span className="">{suburbParticipationRate}%</span>
                     </div>
+                    <div
+                        className={`border border-dotted bg-black w-0.5 h-6 absolute rounded left-${stateWidth}`}
+                    ></div>
+                </div>
+                <div className="text-xs flex">
+                    <p className="mr-2">vs. {stateName}</p>
+                    <p className="">({stateParticipationRate}%)</p>
                 </div>
 
-                <p className="text-xs">% of {stateName} in the labour force</p>
-                <div className="bg-gray-200 w-52 rounded">
+                {/* <p className="text-xs">% of {stateName} in the labour force</p>
+                <div className="bg-gray-200 w-52 rounded relative h-6 mb-2">
                     <div
-                        className={`bg-customYellow w-[${stateWidth}px] rounded`}
+                        className={`bg-customYellow rounded w-${
+                            stateWidth == 0 ? 1.5 : stateWidth
+                        } absolute top-0 left-0 h-6`}
                     >
                         <span>{stateParticipationRate}%</span>
                     </div>
-                </div>
+                </div> */}
             </div>
         </div>
     );
