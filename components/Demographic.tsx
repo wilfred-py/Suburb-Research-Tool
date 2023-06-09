@@ -86,7 +86,13 @@ export default function Demographic() {
     return (
         <div className="rounded border border-black">
             <div>Median Age: {medianAge}</div>
-            <Doughnut data={data} />
+            <div className="max-w-md max-h-96">
+                <Doughnut
+                    data={data}
+                    redraw={false}
+                    fallbackContent={`Not enough data in this ${suburbName} to populate demographic data.`}
+                />
+            </div>
             <p>Based off 2021 data</p>
         </div>
     );
