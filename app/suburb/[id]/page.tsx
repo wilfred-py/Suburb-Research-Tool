@@ -7,6 +7,8 @@ import Education from "@/components/Education";
 import Demographic from "@/components/Demographic";
 import Family from "@/components/FamilyComposition";
 import Dwellings from "@/components/Dwellings";
+import Ancestry from "@/components/Ancestry";
+import Religion from "@/components/Religion";
 
 export default async function SuburbData() {
     const suburb = main_data_Abbotsford;
@@ -43,6 +45,16 @@ export default async function SuburbData() {
 
                         <section id="demographic" className="rounded border border-black m-4 p-4">
                             <Demographic />
+
+                            <div className="">
+                                <p className="text-xl">Ancestry of people living in {suburbName}</p>
+                                <Ancestry />
+                            </div>
+
+                            <div className="">
+                                <p className="text-xl">Religious Affiliation of people living in {suburbName}</p>
+                                <Religion />
+                            </div>
                         </section>
 
                         <section id="family" className="rounded border border-black m-4 p-4">

@@ -5,8 +5,6 @@ import summary_data_Abbotsford from "../data/summary_data/summary_data_Abbotsfor
 import React from "react";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import { Doughnut } from "react-chartjs-2";
-import Ancestry from "./Ancestry";
-import Religion from "./Religion";
 
 const summaryData = summary_data_Abbotsford;
 const mainData = main_data_Abbotsford;
@@ -95,16 +93,6 @@ export default function Demographic() {
                     />
                     <p className="mb-4">Based off 2021 data</p>
                 </div>
-            </div>
-
-            <div className="">
-                <p className="text-xl">Ancestry of people living in {suburbName}</p>
-                <Ancestry />
-            </div>
-
-            <div className="">
-                <p className="text-xl">Religious Affiliation of people living in {suburbName}</p>
-                <Religion />
             </div>
         </div>
     );
