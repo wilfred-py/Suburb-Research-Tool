@@ -49,17 +49,6 @@ export default function Employment() {
                     <p className="mr-2">vs. {stateName}</p>
                     <p className="">({stateParticipationRate}%)</p>
                 </div>
-
-                {/* <p className="text-xs">% of {stateName} in the labour force</p>
-                <div className="bg-gray-200 w-52 rounded relative h-6 mb-2">
-                    <div
-                        className={`bg-customYellow rounded w-${
-                            stateWidth == 0 ? 1.5 : stateWidth
-                        } absolute top-0 left-0 h-6`}
-                    >
-                        <span>{stateParticipationRate}%</span>
-                    </div>
-                </div> */}
             </div>
         </div>
     );

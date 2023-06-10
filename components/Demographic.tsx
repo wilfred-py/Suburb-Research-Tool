@@ -5,6 +5,7 @@ import summary_data_Abbotsford from "../data/summary_data/summary_data_Abbotsfor
 import React from "react";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import { Doughnut } from "react-chartjs-2";
+import Ancestry from "./Ancestry";
 
 const summaryData = summary_data_Abbotsford;
 const mainData = main_data_Abbotsford;
@@ -16,7 +17,7 @@ const suburbName = keys[0];
 // Name of State
 const stateName = keys[2];
 
-// Labour participation rate within the suburb
+// Median Age
 const medianAge = Math.floor(
     parseFloat(mainData["Age"]["Median age"][suburbName as keyof (typeof mainData)["Age"]["Median age"]])
 );
@@ -85,9 +86,22 @@ export const data = {
 export default function Demographic() {
     return (
         <div className="rounded border border-black">
-            <div>Median Age: {medianAge}</div>
-            <Doughnut data={data} />
-            <p>Based off 2021 data</p>
+            <div className="mb-4">
+                <p>Median Age: {medianAge}</p>
+                <div className="max-w-md max-h-96">
+                    <Doughnut
+                        data={data}
+                        redraw={false}
+                        fallbackContent={`Not enough data in this ${suburbName} to populate demographic data.`}
+                    />
+                    <p className="mb-4">Based off 2021 data</p>
+                </div>
+            </div>
+
+            <div className="">
+                <p className="text-xl">Ancestry of people living in {suburbName}</p>
+                <Ancestry />
+            </div>
         </div>
     );
 }
