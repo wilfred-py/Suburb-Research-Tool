@@ -32,7 +32,7 @@ const Family = () => {
                 return (
                     <FamilyElement
                         key={index}
-                        ancestryKey={key}
+                        familyKey={key}
                         suburbFamilyValue={suburbFamilyValue}
                         suburbFamilyWidth={suburbFamilyWidth}
                         stateFamilyValue={stateFamilyValue}
@@ -46,14 +46,14 @@ const Family = () => {
 
 const FamilyElement = ({
     key,
-    ancestryKey,
+    familyKey,
     suburbFamilyValue,
     suburbFamilyWidth,
     stateFamilyValue,
     stateFamilyWidth,
 }: {
     key: number;
-    ancestryKey: string;
+    familyKey: string;
     suburbFamilyValue: string;
     suburbFamilyWidth: number;
     stateFamilyValue: string;
@@ -61,7 +61,7 @@ const FamilyElement = ({
 }) => {
     return (
         <div>
-            <span className="text-xs">{ancestryKey}</span>
+            <span className="text-xs">{familyKey}</span>
             <div className="bg-gray-200 w-52 rounded relative h-6 mb-2">
                 <div className={`bg-customYellow rounded w-${suburbFamilyWidth == 0 ? 1.5 : suburbFamilyWidth} absolute left-0 h-6`}>
                     <span className="">{suburbFamilyValue}%</span>
@@ -70,6 +70,14 @@ const FamilyElement = ({
                     {stateFamilyWidth}
                 </div>
             </div>
+            {familyKey == "Other family" ? (
+                <p className="text-xs">
+                    Other family is defined as a group of related individuals residing in the same household, who cannot be categorised as
+                    belonging to a couple or one parent family.
+                </p>
+            ) : (
+                ""
+            )}
         </div>
     );
 };
