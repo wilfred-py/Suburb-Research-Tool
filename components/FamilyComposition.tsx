@@ -71,7 +71,7 @@ const FamilyElement = ({
                 </div>
             </div>
             {familyKey == "Other family" ? (
-                <p className="text-xs">
+                <p className="text-xs max-w-sm">
                     Other family is defined as a group of related individuals residing in the same household, who cannot be categorised as
                     belonging to a couple or one parent family.
                 </p>

@@ -84,7 +84,7 @@ export const data = {
 
 export default function Demographic() {
     return (
-        <div className="rounded border border-black">
+        <div>
             <div className="mb-10">
                 <p>Median Age: {medianAge}</p>
                 <div className="max-w-md max-h-96">
