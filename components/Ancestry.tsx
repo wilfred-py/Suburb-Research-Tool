@@ -16,15 +16,13 @@ const stateName = keys[2];
 const ancestryKeys = Object.keys(mainData["Ancestry, top responses"]);
 const suburbAncestry = [];
 
-for (let i = 0; i < ancestryKeys.length; i++) {
-    console.log(ancestryKeys[i]);
-    const ancestryKey = ancestryKeys[i] as keyof (typeof mainData)["Ancestry, top responses"];
-    suburbAncestry.push({
-        [ancestryKeys[i]]: mainData["Ancestry, top responses"][ancestryKey]["% of suburb"],
-    });
-}
-
-console.log(suburbAncestry);
+// for (let i = 0; i < ancestryKeys.length; i++) {
+//     console.log(ancestryKeys[i]);
+//     const ancestryKey = ancestryKeys[i] as keyof (typeof mainData)["Ancestry, top responses"];
+//     suburbAncestry.push({
+//         [ancestryKeys[i]]: mainData["Ancestry, top responses"][ancestryKey]["% of suburb"],
+//     });
+// }
 
 // ['32.1', '22.7', '15.3', '11.3', '9.2']
 // (5) [{…}, {…}, {…}, {…}, {…}]
@@ -34,11 +32,26 @@ const Ancestry = () => {
     return (
         <div>
             {ancestryKeys.map((key, index) => {
-                const value =
-                    mainData["Ancestry, top responses"][key as keyof (typeof mainData)["Ancestry, top responses"]][
-                        "% of suburb"
-                    ];
-                return <AncestryElement key={index} ancestryKey={key} ancestryValue={value} />;
+                // suburb and state %'s
+                const suburbAncestryValue =
+                    mainData["Ancestry, top responses"][key as keyof (typeof mainData)["Ancestry, top responses"]]["% of suburb"];
+                const stateAncestryValue =
+                    mainData["Ancestry, top responses"][key as keyof (typeof mainData)["Ancestry, top responses"]]["% of state"];
+
+                // suburb and state width values for Tailwind CSS
+                const suburbAncestryWidth = Math.round(Math.floor(((parseInt(suburbAncestryValue) / 100) * 208) / 4) / 4) * 4;
+                const stateAncestryWidth = Math.round(Math.floor(((parseInt(stateAncestryValue) / 100) * 208) / 4) / 4) * 4;
+
+                return (
+                    <AncestryElement
+                        key={index}
+                        ancestryKey={key}
+                        suburbAncestryValue={suburbAncestryValue}
+                        suburbAncestryWidth={suburbAncestryWidth}
+                        stateAncestryValue={stateAncestryValue}
+                        stateAncestryWidth={stateAncestryWidth}
+                    />
+                );
             })}
         </div>
     );
@@ -47,20 +60,28 @@ const Ancestry = () => {
 const AncestryElement = ({
     ancestryKey,
     key,
-    ancestryValue,
+    suburbAncestryValue,
+    suburbAncestryWidth,
+    stateAncestryValue,
+    stateAncestryWidth,
 }: {
     ancestryKey: string;
     key: number;
-    ancestryValue: string;
+    suburbAncestryValue: string;
+    suburbAncestryWidth: number;
+    stateAncestryValue: string;
+    stateAncestryWidth: number;
 }) => {
     return (
         <div>
-            <span>{ancestryKey}</span>
+            <span className="text-xs">{ancestryKey}</span>
             <div className="bg-gray-200 w-52 rounded relative h-6 mb-2">
-                <div className={`bg-customYellow rounded w absolute h-6`}>
-                    <span className="">{ancestryValue}</span>
+                <div className={`bg-customYellow rounded w-${suburbAncestryWidth == 0 ? 1.5 : suburbAncestryWidth} absolute left-0 h-6`}>
+                    <span className="">{suburbAncestryValue}%</span>
                 </div>
-                <div className={`border border-dotted bg-black w-0.5 h-6 absolute rounded`}></div>
+                <div className={`border border-dotted bg-black w-0.5 h-6 absolute rounded left-${stateAncestryWidth}`}>
+                    {stateAncestryWidth}
+                </div>
             </div>
         </div>
     );

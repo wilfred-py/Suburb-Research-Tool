@@ -13,14 +13,10 @@ export default function Employment() {
     const stateName = keys[2];
 
     // Labour participation rate within the suburb
-    const suburbParticipationRate = parseFloat(
-        mainData["Participation in the labour force"]["In the labour force"]["% of suburb"]
-    );
+    const suburbParticipationRate = parseFloat(mainData["Participation in the labour force"]["In the labour force"]["% of suburb"]);
 
     // Labour participation rate within the state
-    const stateParticipationRate = parseFloat(
-        mainData["Participation in the labour force"]["In the labour force"]["% of state"]
-    );
+    const stateParticipationRate = parseFloat(mainData["Participation in the labour force"]["In the labour force"]["% of state"]);
 
     // width of div in pixels (w-52 = 208px)
     const suburbWidth = Math.round(Math.floor(((suburbParticipationRate / 100) * 208) / 4) / 4) * 4;
@@ -34,16 +30,10 @@ export default function Employment() {
                 <p className="text-xl">Participation Rate</p>
                 <p className="text-xs">% of {suburbName} in the labour force</p>
                 <div className="bg-gray-200 w-52 rounded relative h-6 mb-2">
-                    <div
-                        className={`bg-customYellow rounded w-${
-                            suburbWidth == 0 ? 1.5 : suburbWidth
-                        } absolute top-0 left-0 h-6`}
-                    >
+                    <div className={`bg-customYellow rounded w-${suburbWidth == 0 ? 1.5 : suburbWidth} absolute top-0 left-0 h-6`}>
                         <span className="">{suburbParticipationRate}%</span>
                     </div>
-                    <div
-                        className={`border border-dotted bg-black w-0.5 h-6 absolute rounded left-${stateWidth}`}
-                    ></div>
+                    <div className={`border border-dotted bg-black w-0.5 h-6 absolute rounded left-${stateWidth}`}>{stateWidth}</div>
                 </div>
                 <div className="text-xs flex">
                     <p className="mr-2">vs. {stateName}</p>
