@@ -6,9 +6,10 @@ import AddSuburbButton from "@/components/AddSuburbButton";
 import Education from "@/components/Education";
 import Demographic from "@/components/Demographic";
 import Family from "@/components/FamilyComposition";
-import Dwellings from "@/components/Dwellings";
 import Ancestry from "@/components/Ancestry";
 import Religion from "@/components/Religion";
+import Dwellings from "@/components/Dwellings";
+import Bedrooms from "@/components/Bedrooms";
 
 export default async function SuburbData() {
     const suburb = main_data_Abbotsford;
@@ -63,8 +64,14 @@ export default async function SuburbData() {
                         </section>
 
                         <section id="family" className="rounded border border-black m-4 p-4">
-                            <p className="text-xl">Housing in {suburbName}</p>
-                            <Dwellings />
+                            <div>
+                                <p className="text-xl">Housing in {suburbName}</p>
+                                <Dwellings />
+                            </div>
+                            <div>
+                                <p className="text-xl">Number of bedrooms in {suburbName} housing</p>
+                                <Bedrooms />
+                            </div>
                         </section>
                     </div>
                 </section>
