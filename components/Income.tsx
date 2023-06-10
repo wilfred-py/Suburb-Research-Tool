@@ -1,28 +1,13 @@
 "use client";
 
 import React from "react";
-import {
-    Chart as ChartJS,
-    CategoryScale,
-    LinearScale,
-    BarElement,
-    Title,
-    Tooltip,
-    Legend,
-} from "chart.js";
+import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend } from "chart.js";
 import { Bar } from "react-chartjs-2";
 import { faker } from "@faker-js/faker";
 import main_data_Abbotsford from "../data/main_data/main_data_Abbotsford.json";
 import summary_data_Abbotsford from "../data/summary_data/summary_data_Abbotsford.json";
 
-ChartJS.register(
-    CategoryScale,
-    LinearScale,
-    BarElement,
-    Title,
-    Tooltip,
-    Legend
-);
+ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 
 const summaryData = summary_data_Abbotsford;
 const mainData = main_data_Abbotsford;
@@ -45,7 +30,6 @@ const statePersonalIncome =
     ];
 
 // Chart.js
-
 const labels = [2016, 2021];
 
 const personalMedianIncomeOptions = {
@@ -79,23 +63,17 @@ const personalMedianIncomeData = {
     datasets: [
         {
             label: suburbName,
-            data: labels.map(() =>
-                faker.datatype.number({ min: 0, max: 3500 })
-            ),
+            data: labels.map(() => faker.datatype.number({ min: 0, max: 3500 })),
             backgroundColor: "rgba(245, 195, 71, 0.5)",
         },
         {
             label: stateName,
-            data: labels.map(() =>
-                faker.datatype.number({ min: 0, max: 3500 })
-            ),
+            data: labels.map(() => faker.datatype.number({ min: 0, max: 3500 })),
             backgroundColor: "rgba(0, 203, 165, 0.5)",
         },
         {
             label: "Australia",
-            data: labels.map(() =>
-                faker.datatype.number({ min: 0, max: 3500 })
-            ),
+            data: labels.map(() => faker.datatype.number({ min: 0, max: 3500 })),
             backgroundColor: "rgba(53, 162, 235, 0.5)",
         },
     ],
@@ -106,23 +84,17 @@ const householdMedianIncomeData = {
     datasets: [
         {
             label: suburbName,
-            data: labels.map(() =>
-                faker.datatype.number({ min: 0, max: 3500 })
-            ),
+            data: labels.map(() => faker.datatype.number({ min: 0, max: 3500 })),
             backgroundColor: "rgba(245, 195, 71, 0.5)",
         },
         {
             label: stateName,
-            data: labels.map(() =>
-                faker.datatype.number({ min: 0, max: 3500 })
-            ),
+            data: labels.map(() => faker.datatype.number({ min: 0, max: 3500 })),
             backgroundColor: "rgba(0, 203, 165, 0.5)",
         },
         {
             label: "Australia",
-            data: labels.map(() =>
-                faker.datatype.number({ min: 0, max: 3500 })
-            ),
+            data: labels.map(() => faker.datatype.number({ min: 0, max: 3500 })),
             backgroundColor: "rgba(53, 162, 235, 0.5)",
         },
     ],
