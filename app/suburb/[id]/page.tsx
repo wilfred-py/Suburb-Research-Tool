@@ -8,43 +8,47 @@ import Demographic from "@/components/Demographic";
 import Family from "@/components/FamilyComposition";
 
 export default async function SuburbData() {
-    const mainData = main_data_Abbotsford;
-    const summaryData = summary_data_Abbotsford;
+    const suburb = main_data_Abbotsford;
+    const suburbSummaryData = summary_data_Abbotsford;
 
-    const keys = Object.keys(mainData["People"]["Male"]);
+    const suburbKeys = Object.keys(suburb["People"]["Male"]);
 
     // Name of Suburb
-    const suburbName = keys[0].toString();
+    const suburbName = suburbKeys[0].toString();
 
     // Name of State
-    const stateName = keys[2];
+    const stateName = suburbKeys[2];
 
     return (
         <div>
             <AddSuburbButton />
-            <p className="text-base font-bold">{suburbName}</p>
-            <ul className="text-xs">
-                <li>
-                    People in {suburbName}: {summaryData.Abbotsford.People}{" "}
-                </li>
-            </ul>
             <div className="flex flex-wrap">
-                <section id="education">
-                    <Education />
-                </section>
+                <section className="rounded border border-black m-4 p-4 max-w-xl">
+                    <p className="text-base font-bold">{suburbName}</p>
+                    <ul className="text-xs">
+                        <li>
+                            People in {suburbName}: {suburbSummaryData.Abbotsford.People}{" "}
+                        </li>
+                    </ul>
+                    <div className="flex flex-wrap flex-col">
+                        <section id="education">
+                            <Education />
+                        </section>
 
-                <section id="income-and-work">
-                    <Employment />
-                    <Income />
-                </section>
+                        <section id="income-and-work">
+                            <Employment />
+                            <Income />
+                        </section>
 
-                <section id="demographic" className="rounded border border-black m-4 p-4">
-                    <Demographic />
-                </section>
+                        <section id="demographic" className="rounded border border-black m-4 p-4">
+                            <Demographic />
+                        </section>
 
-                <section id="family" className="rounded border border-black m-4 p-4">
-                    <p className="text-xl">Family composition of households in {suburbName}</p>
-                    <Family />
+                        <section id="family" className="rounded border border-black m-4 p-4">
+                            <p className="text-xl">Family composition of households in {suburbName}</p>
+                            <Family />
+                        </section>
+                    </div>
                 </section>
             </div>
         </div>
