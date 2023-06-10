@@ -61,16 +61,26 @@ const BedroomsElements = ({
 }) => {
     return (
         <div>
-            <span className="text-xs">{bedroomsKey}</span>
+            {suburbBedroomsValue === "N/A" || suburbBedroomsValue === "" ? (
+                ""
+            ) : (
+                <div>
+                    <span className="text-xs">{bedroomsKey}</span>
 
-            <div className="bg-gray-200 w-52 rounded relative h-6 mb-2">
-                <div className={`bg-customYellow rounded w-${suburbBedroomsWidth == 0 ? 1.5 : suburbBedroomsWidth} absolute left-0 h-6`}>
-                    <span className="">{suburbBedroomsValue}%</span>
+                    <div className="bg-gray-200 w-52 rounded relative h-6 mb-2">
+                        <div
+                            className={`bg-customYellow rounded w-${
+                                suburbBedroomsWidth == 0 ? 1.5 : suburbBedroomsWidth
+                            } absolute left-0 h-6`}
+                        >
+                            <span className="">{suburbBedroomsValue}%</span>
+                        </div>
+                        <div className={`border border-dotted bg-black w-0.5 h-6 absolute rounded left-${stateBedroomsWidth}`}>
+                            {stateBedroomsWidth}
+                        </div>
+                    </div>
                 </div>
-                <div className={`border border-dotted bg-black w-0.5 h-6 absolute rounded left-${stateBedroomsWidth}`}>
-                    {stateBedroomsWidth}
-                </div>
-            </div>
+            )}
         </div>
     );
 };
