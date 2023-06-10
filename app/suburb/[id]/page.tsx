@@ -22,31 +22,29 @@ export default async function SuburbData() {
     return (
         <div>
             <AddSuburbButton />
-            <section id="people">
-                <p className="text-base font-bold">{suburbName}</p>
-                <ul className="text-xs">
-                    <li>
-                        People in {suburbName}: {summaryData.Abbotsford.People}{" "}
-                    </li>
-                </ul>
-            </section>
+            <div className="flex flex-wrap">
+                <section id="people">
+                    <p className="text-base font-bold">{suburbName}</p>
+                    <ul className="text-xs">
+                        <li>
+                            People in {suburbName}: {summaryData.Abbotsford.People}{" "}
+                        </li>
+                    </ul>
+                </section>
 
-            <section id="education">
-                <Education />
-            </section>
+                <section id="education">
+                    <Education />
+                </section>
 
-            <section id="income-and-work">
-                <Employment />
-                <Income />
-            </section>
+                <section id="income-and-work">
+                    <Employment />
+                    <Income />
+                </section>
 
-            <section id="demographic">
-                <Demographic />
-            </section>
-
-            <section id="religion">
-                <Religion />
-            </section>
+                <section id="demographic">
+                    <Demographic />
+                </section>
+            </div>
         </div>
     );
 }
