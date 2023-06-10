@@ -58,8 +58,8 @@ const Ancestry = () => {
 };
 
 const AncestryElement = ({
-    ancestryKey,
     key,
+    ancestryKey,
     suburbAncestryValue,
     suburbAncestryWidth,
     stateAncestryValue,

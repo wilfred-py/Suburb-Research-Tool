@@ -5,6 +5,7 @@ import Income from "@/components/Income";
 import AddSuburbButton from "@/components/AddSuburbButton";
 import Education from "@/components/Education";
 import Demographic from "@/components/Demographic";
+import Religion from "@/components/Religion";
 
 export default async function SuburbData() {
     const mainData = main_data_Abbotsford;
@@ -41,6 +42,10 @@ export default async function SuburbData() {
 
             <section id="demographic">
                 <Demographic />
+            </section>
+
+            <section id="religion">
+                <Religion />
             </section>
         </div>
     );
