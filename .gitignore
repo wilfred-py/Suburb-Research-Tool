@@ -39,9 +39,3 @@ next-env.d.ts
 
 # data 
 /data
-
-.gitignore
-.firebaserc
-.database.rules.json
-.firebase.json
-.next.config.js
