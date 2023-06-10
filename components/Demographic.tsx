@@ -101,6 +101,7 @@ export default function Demographic() {
                 <p className="text-xl">Ancestry of people living in {suburbName}</p>
                 <Ancestry />
             </div>
+
             <div className="">
                 <p className="text-xl">Religious Affiliation of people living in {suburbName}</p>
                 <Religion />
