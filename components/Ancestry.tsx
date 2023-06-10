@@ -1,7 +1,7 @@
 import main_data_Abbotsford from "../data/main_data/main_data_Abbotsford.json";
 import summary_data_Abbotsford from "../data/summary_data/summary_data_Abbotsford.json";
 
-// Keys of mainData["Ancestry, top responses"]
+// Keys of Suburb Data
 const summaryData = summary_data_Abbotsford;
 const mainData = main_data_Abbotsford;
 const keys = Object.keys(mainData["People"]["Male"]);
@@ -12,7 +12,7 @@ const suburbName = keys[0];
 // Name of State
 const stateName = keys[2];
 
-// Ancestry Data
+// Keys of mainData["Ancestry, top responses"]
 const ancestryKeys = Object.keys(mainData["Ancestry, top responses"]);
 const suburbAncestry = [];
 
@@ -58,15 +58,15 @@ const Ancestry = () => {
 };
 
 const AncestryElement = ({
-    ancestryKey,
     key,
+    ancestryKey,
     suburbAncestryValue,
     suburbAncestryWidth,
     stateAncestryValue,
     stateAncestryWidth,
 }: {
-    ancestryKey: string;
     key: number;
+    ancestryKey: string;
     suburbAncestryValue: string;
     suburbAncestryWidth: number;
     stateAncestryValue: string;

@@ -18,9 +18,7 @@ const suburbName = keys[0];
 const stateName = keys[2];
 
 // Median Age
-const medianAge = Math.floor(
-    parseFloat(mainData["Age"]["Median age"][suburbName as keyof (typeof mainData)["Age"]["Median age"]])
-);
+const medianAge = Math.floor(parseFloat(mainData["Age"]["Median age"][suburbName as keyof (typeof mainData)["Age"]["Median age"]]));
 
 // 0 - 9 years
 const underNine =
@@ -86,7 +84,7 @@ export const data = {
 export default function Demographic() {
     return (
         <div className="rounded border border-black">
-            <div className="mb-4">
+            <div className="mb-10">
                 <p>Median Age: {medianAge}</p>
                 <div className="max-w-md max-h-96">
                     <Doughnut
