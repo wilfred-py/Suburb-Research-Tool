@@ -36,7 +36,7 @@ const personalMedianIncomeOptions = {
     responsive: true,
     plugins: {
         legend: {
-            position: "bottom" as const,
+            position: "right" as const,
         },
         title: {
             display: true,
@@ -49,7 +49,7 @@ const householdMedianIncomeOptions = {
     responsive: true,
     plugins: {
         legend: {
-            position: "bottom" as const,
+            position: "right" as const,
         },
         title: {
             display: true,
@@ -103,16 +103,8 @@ const householdMedianIncomeData = {
 export default function Income() {
     return (
         <div className="m-4">
-            <Bar
-                options={personalMedianIncomeOptions}
-                data={personalMedianIncomeData}
-                className="max-w-lg max-h-[360px]"
-            />
-            <Bar
-                options={householdMedianIncomeOptions}
-                data={householdMedianIncomeData}
-                className="max-w-lg max-h-[360px]"
-            />
+            <Bar options={personalMedianIncomeOptions} data={personalMedianIncomeData} className="max-w-lg max-h-[360px]" />
+            <Bar options={householdMedianIncomeOptions} data={householdMedianIncomeData} className="max-w-lg max-h-[360px]" />
         </div>
     );
 }
