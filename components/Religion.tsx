@@ -65,13 +65,15 @@ const ReligionElements = ({
 }) => {
     return (
         <div>
-            {stateReligionWidth}
             <span className="text-xs">{religionKey}</span>
+
             <div className="bg-gray-200 w-52 rounded relative h-6 mb-2">
                 <div className={`bg-customYellow rounded w-${suburbReligionWidth == 0 ? 1.5 : suburbReligionWidth} absolute left-0 h-6`}>
                     <span className="">{suburbReligionValue}%</span>
                 </div>
-                <div className={`border border-dotted bg-black w-0.5 h-6 absolute rounded left-${stateReligionWidth}`}></div>
+                <div className={`border border-dotted bg-black w-0.5 h-6 absolute rounded left-${stateReligionWidth}`}>
+                    {stateReligionWidth}
+                </div>
             </div>
         </div>
     );
