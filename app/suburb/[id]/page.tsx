@@ -5,7 +5,7 @@ import Income from "@/components/Income";
 import AddSuburbButton from "@/components/AddSuburbButton";
 import Education from "@/components/Education";
 import Demographic from "@/components/Demographic";
-import Religion from "@/components/Religion";
+import Family from "@/components/FamilyComposition";
 
 export default async function SuburbData() {
     const mainData = main_data_Abbotsford;
@@ -22,16 +22,13 @@ export default async function SuburbData() {
     return (
         <div>
             <AddSuburbButton />
+            <p className="text-base font-bold">{suburbName}</p>
+            <ul className="text-xs">
+                <li>
+                    People in {suburbName}: {summaryData.Abbotsford.People}{" "}
+                </li>
+            </ul>
             <div className="flex flex-wrap">
-                <section id="people">
-                    <p className="text-base font-bold">{suburbName}</p>
-                    <ul className="text-xs">
-                        <li>
-                            People in {suburbName}: {summaryData.Abbotsford.People}{" "}
-                        </li>
-                    </ul>
-                </section>
-
                 <section id="education">
                     <Education />
                 </section>
@@ -41,8 +38,13 @@ export default async function SuburbData() {
                     <Income />
                 </section>
 
-                <section id="demographic">
+                <section id="demographic" className="rounded border border-black m-4 p-4">
                     <Demographic />
+                </section>
+
+                <section id="family" className="rounded border border-black m-4 p-4">
+                    <p className="text-xl">Family composition of households in {suburbName}</p>
+                    <Family />
                 </section>
             </div>
         </div>
