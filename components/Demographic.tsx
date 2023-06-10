@@ -6,6 +6,7 @@ import React from "react";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import { Doughnut } from "react-chartjs-2";
 import Ancestry from "./Ancestry";
+import Religion from "./Religion";
 
 const summaryData = summary_data_Abbotsford;
 const mainData = main_data_Abbotsford;
@@ -99,6 +100,10 @@ export default function Demographic() {
             <div className="">
                 <p className="text-xl">Ancestry of people living in {suburbName}</p>
                 <Ancestry />
+            </div>
+            <div className="">
+                <p className="text-xl">Religious Affiliation of people living in {suburbName}</p>
+                <Religion />
             </div>
         </div>
     );
