@@ -24,7 +24,7 @@ export default function Employment() {
     const stateWidth = Math.round(Math.floor(((stateParticipationRate / 100) * 208) / 4) / 4) * 4;
 
     return (
-        <div className="rounded border border-black w-112 m-4">
+        <div className="">
             <h1>Income and Work</h1>
             <div className="mb-4">
                 <p className="text-xl">Participation Rate</p>

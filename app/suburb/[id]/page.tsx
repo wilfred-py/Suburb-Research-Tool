@@ -26,55 +26,49 @@ export default async function SuburbData() {
     return (
         <div>
             <AddSuburbButton />
-            <div className="flex flex-wrap">
-                <section className="rounded border border-black m-4 p-4 max-w-xl">
+            <div className="flex flex-wrap justify-center h-screen w-screen">
+                <div className="max-w-xl h-screen w-screen">
                     <p className="text-base font-bold">{suburbName}</p>
                     <ul className="text-xs">
                         <li>
                             People in {suburbName}: {suburbSummaryData.Abbotsford.People}{" "}
                         </li>
                     </ul>
-                    <div className="flex flex-wrap flex-col">
-                        <section id="education">
-                            <Education />
-                        </section>
 
-                        <section id="income-and-work">
-                            <Employment />
-                            <Income />
-                        </section>
+                    <section id="education" className="rounded border border-black m-4 p-4">
+                        <Education />
+                    </section>
 
-                        <section id="demographic" className="rounded border border-black m-4 p-4">
-                            <Demographic />
+                    <section id="income-and-work" className="rounded border border-black m-4 p-4">
+                        <Employment />
+                        <Income />
+                    </section>
 
-                            <div className="">
-                                <p className="text-xl">Ancestry of people living in {suburbName}</p>
-                                <Ancestry />
-                            </div>
+                    <section id="demographic" className="rounded border border-black m-4 p-4">
+                        <Demographic />
 
-                            <div className="">
-                                <p className="text-xl">Religious Affiliation of people living in {suburbName}</p>
-                                <Religion />
-                            </div>
-                        </section>
+                        <div className="">
+                            <p className="text-xl">Religious Affiliation of people living in {suburbName}</p>
+                            <Religion />
+                        </div>
+                    </section>
 
-                        <section id="family" className="rounded border border-black m-4 p-4">
-                            <p className="text-xl">Family composition of households in {suburbName}</p>
-                            <Family />
-                        </section>
+                    <section id="family" className="rounded border border-black m-4 p-4">
+                        <p className="text-xl">Family composition of households in {suburbName}</p>
+                        <Family />
+                    </section>
 
-                        <section id="family" className="rounded border border-black m-4 p-4">
-                            <div>
-                                <p className="text-xl">Housing in {suburbName}</p>
-                                <Dwellings />
-                            </div>
-                            <div>
-                                <p className="text-xl">Number of bedrooms in {suburbName} housing</p>
-                                <Bedrooms />
-                            </div>
-                        </section>
-                    </div>
-                </section>
+                    <section id="family" className="rounded border border-black m-4 p-4">
+                        <div>
+                            <p className="text-xl">Housing in {suburbName}</p>
+                            <Dwellings />
+                        </div>
+                        <div>
+                            <p className="text-xl">Number of bedrooms in {suburbName} housing</p>
+                            <Bedrooms />
+                        </div>
+                    </section>
+                </div>
             </div>
         </div>
     );
