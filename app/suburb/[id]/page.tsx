@@ -48,8 +48,13 @@ export default async function SuburbData() {
                         <Demographic />
 
                         <div className="">
-                            <p className="text-xl">Religious Affiliation of people living in {suburbName}</p>
+                            <p className="text-xl">Religious affiliation of people living in {suburbName}</p>
                             <Religion />
+                        </div>
+
+                        <div className="">
+                            <p className="text-xl">Ancestry of people living in {suburbName}</p>
+                            <Ancestry />
                         </div>
                     </section>
 
