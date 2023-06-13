@@ -1,16 +1,16 @@
 migrate((db) => {
   const collection = new Collection({
-    "id": "ca4odtvcl8nh833",
-    "created": "2023-06-11 08:22:04.557Z",
-    "updated": "2023-06-11 08:22:04.557Z",
-    "name": "summary_data",
+    "id": "oz01z6tfhvg49td",
+    "created": "2023-06-13 03:58:50.797Z",
+    "updated": "2023-06-13 03:58:50.797Z",
+    "name": "test",
     "type": "base",
     "system": false,
     "schema": [
       {
         "system": false,
-        "id": "3ecrcujm",
-        "name": "field",
+        "id": "oalepjfq",
+        "name": "Suburb",
         "type": "json",
         "required": false,
         "unique": false,
@@ -29,7 +29,7 @@ migrate((db) => {
   return Dao(db).saveCollection(collection);
 }, (db) => {
   const dao = new Dao(db);
-  const collection = dao.findCollectionByNameOrId("ca4odtvcl8nh833");
+  const collection = dao.findCollectionByNameOrId("oz01z6tfhvg49td");
 
   return dao.deleteCollection(collection);
 })
