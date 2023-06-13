@@ -10,6 +10,18 @@ import Ancestry from "@/components/Ancestry";
 import Religion from "@/components/Religion";
 import Dwellings from "@/components/Dwellings";
 import Bedrooms from "@/components/Bedrooms";
+import PocketBase from "pocketbase";
+
+// PocketBase
+async function getData() {
+    const pb = new PocketBase("http://127.0.0.1:8090");
+
+    const res = await fetch("http://127.0.0.1:8090/api/collections/summary_data/records/46cr67yhghc2eq0", {
+        next: { revalidate: 10 },
+    });
+
+    const data = await res.json();
+}
 
 export default async function SuburbData() {
     const suburb = main_data_Abbotsford;
@@ -26,13 +38,12 @@ export default async function SuburbData() {
     return (
         <div>
             <AddSuburbButton />
+
             <div className="flex flex-wrap justify-center h-screen w-screen">
                 <div className="max-w-xl h-screen w-screen">
                     <p className="text-base font-bold">{suburbName}</p>
                     <ul className="text-xs">
-                        <li>
-                            People in {suburbName}: {suburbSummaryData.Abbotsford.People}{" "}
-                        </li>
+                        <li>{/* People in {suburbName}: {suburbSummaryData.Abbotsford.People} */}</li>
                     </ul>
 
                     <section id="education" className="rounded border border-black m-4 p-4">
