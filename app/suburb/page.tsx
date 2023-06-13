@@ -1,5 +1,6 @@
 import Link from "next/link";
 import PocketBase from "pocketbase";
+import { ReactNode } from "react";
 
 // PocketBase
 async function getSuburbs() {
@@ -7,7 +8,7 @@ async function getSuburbs() {
     const records = await pb.collection("summary_data").getFullList({
         sort: "-created",
     });
-    const res = await fetch("http://127.0.0.1:8090/api/collections/summary_data/records?page=1&perPage=30", {
+    const res = await fetch("http://127.0.0.1:8090/api/collections/test2/records?page=1&perPage=30", {
         cache: "no-store",
     });
 
@@ -30,46 +31,21 @@ export default async function Suburbs() {
 }
 
 function Suburb({ suburb }: any) {
-    const { id, suburb_name, people, Male, Female } = suburb || {};
+    const { id, summary_data } = suburb || {};
+    const suburbName = Object.keys(summary_data)[0]; // Get the suburb name dynamically
+    const suburbDetails = summary_data[suburbName]; // Access the nested object
+
     return (
         <Link href={`/suburb/${id}`}>
             <div>
-                <h1>{suburb_name}</h1>
-                <h2>{people}</h2>
-                <h2>{Male}</h2>
-                <h2>{Female}</h2>
+                <h1>{suburbName}</h1>
+                {/* Render all key-value pairs dynamically */}
+                {Object.entries(suburbDetails).map(([key, value]) => (
+                    <p key={key}>
+                        {key}: {value as ReactNode}
+                    </p>
+                ))}
             </div>
         </Link>
     );
-}
-
-{
-    /* <ul className="flex-row flex-auto justify-center">
-    <li className="w-40 border border-black border-solid m-10 hover:bg-hoverYellow text-center">
-        <Link href={`./state/$state_name`}>ACT</Link>
-    </li>
-    <li className="w-40 border border-black border-solid m-10 hover:bg-hoverYellow text-center">
-        <Link href={`./state/$state_name`}>NSW</Link>
-    </li>
-    <li className="w-40 border border-black border-solid m-10 hover:bg-hoverYellow text-center">
-        <Link href={`./state/$state_name`}>NT</Link>
-    </li>
-    <li className="w-40 border border-black border-solid m-10 hover:bg-hoverYellow text-center">
-        <Link href={`./state/$state_name`}>QLD</Link>
-    </li>
-</ul>
-<ul className="flex-row flex-auto justify-center">
-    <li className="w-40 border border-black border-solid m-10 hover:bg-hoverYellow text-center">
-        <Link href={`./state/$state_name`}>SA</Link>
-    </li>
-    <li className="w-40 border border-black border-solid m-10 hover:bg-hoverYellow text-center">
-        <Link href={`./state/$state_name`}>TAS</Link>
-    </li>
-    <li className="w-40 border border-black border-solid m-10 hover:bg-hoverYellow text-center">
-        <Link href={`./state/$state_name`}>VIC</Link>
-    </li>
-    <li className="w-40 border border-black border-solid m-10 hover:bg-hoverYellow text-center">
-        <Link href={`./state/$state_name`}>WA</Link>
-    </li>
-</ul> */
 }

@@ -10,6 +10,12 @@ export default function NavMenu() {
 
             <ul className={styles.links}>
                 <li>
+                    <Link href="/">Home</Link>
+                </li>
+                <li>
+                    <Link href="/load">Load</Link>
+                </li>
+                <li>
                     <Link href="About">About</Link>
                 </li>
                 <li>
