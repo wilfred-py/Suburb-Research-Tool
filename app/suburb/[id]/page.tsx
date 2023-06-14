@@ -10,18 +10,6 @@ import Ancestry from "@/components/Ancestry";
 import Religion from "@/components/Religion";
 import Dwellings from "@/components/Dwellings";
 import Bedrooms from "@/components/Bedrooms";
-import PocketBase from "pocketbase";
-
-// PocketBase
-async function getData() {
-    const pb = new PocketBase("http://127.0.0.1:8090");
-
-    const res = await fetch("http://127.0.0.1:8090/api/collections/summary_data/records/46cr67yhghc2eq0", {
-        next: { revalidate: 10 },
-    });
-
-    const data = await res.json();
-}
 
 export default async function SuburbData() {
     const suburb = main_data_Abbotsford;
