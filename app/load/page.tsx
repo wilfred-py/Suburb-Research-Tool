@@ -1,42 +1,62 @@
 "use client";
 
-import React, { useEffect } from "react";
-import { useRouter } from "next/navigation";
+import React from "react";
 import PocketBase from "pocketbase";
+import summary_data from "../../data/summary_data.json";
 
-export default function upload() {
-    const router = useRouter();
-    const upload = async () => {
-        const pb = new PocketBase("http://127.0.0.1:8090");
+// interface SuburbData {
+//     suburb_name: string;
+//     summary_data: {
+//         People: string;
+//         Male: string;
+//         Female: string;
+//         "Median age": string;
+//         Families: string;
+//         "Average number of children per family": string;
+//         "for families with children": string;
+//         "for all households (a)": string;
+//         "All private dwellings": string;
+//         "Average number of people per household": string;
+//         "Median weekly household income": string;
+//         "Median monthly mortgage repayments": string;
+//         "Median weekly rent (b)": string;
+//         "Average number of motor vehicles per dwelling": string;
+//     };
+// }
 
-        const data = {
-            summary_data: {
-                Abbotsford: {
-                    People: "9,088",
-                    Male: "51.0%",
-                    Female: "49.0%",
-                    "Median age": "33",
-                    Families: "2,127",
-                    "Average number of children per family": "null",
-                    "for families with children": "1.5",
-                    "for all households (a)": "0.2",
-                    "All private dwellings": "5,673",
-                    "Average number of people per household": "1.9",
-                    "Median weekly household income": "$2,197",
-                    "Median monthly mortgage repayments": "$2,167",
-                    "Median weekly rent (b)": "$425",
-                    "Average number of motor vehicles per dwelling": "1.1",
-                },
-            },
-        };
+interface SuburbData {
+    suburb_name: string;
+    summary_data: { [key: string]: string };
+}
 
-        const record = await pb.collection("test2").create(data);
+async function uploadData() {
+    const pb = new PocketBase("http://127.0.0.1:8090");
 
-        router.refresh();
+    const suburbData: SuburbData[] = Object.entries(summary_data).map(([suburbName, summaryData]) => ({
+        suburb_name: suburbName,
+        summary_data: summaryData,
+    }));
+
+    for (const data of suburbData) {
+        const record = await pb.collection("summary_data").create(data);
+    }
+}
+
+export default function Load() {
+    const handleUpload = async () => {
+        try {
+            await uploadData();
+            console.log("Data loaded successfully.");
+            // Redirect or perform any other action after successful data upload
+        } catch (error) {
+            console.error("Error loading data:", error);
+            // Handle error state or display an error message
+        }
     };
+
     return (
         <div>
-            <button onClick={upload} type="submit">
+            <button onClick={handleUpload} type="submit">
                 Upload Data
             </button>
         </div>
