@@ -44,8 +44,6 @@ export default async function Suburbs() {
 
 function Suburb({ suburb }: any) {
     const { id, suburb_name, summary_data, created } = suburb || {};
-    const suburbName = Object.keys(summary_data)[0]; // Get the suburb name dynamically
-    const suburbDetails = summary_data[suburbName]; // Access the nested object
 
     return (
         <Link href={`/suburb/${id}`}>
