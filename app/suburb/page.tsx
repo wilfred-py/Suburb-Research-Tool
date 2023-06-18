@@ -1,6 +1,9 @@
+"use client";
+
 import Link from "next/link";
 import PocketBase from "pocketbase";
-import { ReactNode } from "react";
+import { useState, ReactNode } from "react";
+import { useSearchParams } from "next/navigation";
 
 // PocketBase
 async function getSuburbs() {
@@ -8,7 +11,7 @@ async function getSuburbs() {
     const result = await pb.collection("summary_data").getFullList({
         sort: "-created",
     });
-    const res = await fetch("http://127.0.0.1:8090/api/collections/summary_data/records?page=1&perPage=30", {
+    const res = await fetch("http://127.0.0.1:8090/api/collections/summary_data/records", {
         cache: "no-store",
     });
 
@@ -24,13 +27,17 @@ async function getSuburbs() {
 }
 
 export default async function Suburbs() {
+    const searchParams = useSearchParams();
+    const search = searchParams.get("q");
     try {
         const suburbs = await getSuburbs();
+        const filteredSuburbs = suburbs.filter((suburb) => {
+            return suburb.suburb_name.toLowerCase().includes(search?.toLowerCase() || "");
+        });
         return (
             <div>
-                <h1>All Suburbs</h1>
                 <div>
-                    {suburbs?.map((suburb) => {
+                    {filteredSuburbs?.map((suburb) => {
                         return <Suburb key={suburb.id} suburb={suburb} />;
                     })}
                 </div>
@@ -49,12 +56,6 @@ function Suburb({ suburb }: any) {
         <Link href={`/suburb/${id}`}>
             <div>
                 <h1>{suburb_name}</h1>
-                {/* <h1>{suburbName}</h1>
-                {Object.entries(suburbDetails).map(([key, value]) => (
-                    <p key={key}>
-                        {key}: {value as ReactNode}
-                    </p>
-                ))} */}
             </div>
         </Link>
     );
