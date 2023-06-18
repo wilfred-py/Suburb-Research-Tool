@@ -25,7 +25,14 @@ export default function SearchBar() {
     };
 
     // state to manage drop down list of matching results
+    // initialise with all suburb names
     const [searchResults, setSearchResults] = useState<string[]>(suburbNames);
+
+    // Filter search results based on searchQuery state
+    useEffect(() => {
+        const filteredResults = suburbNames.filter((suburb) => suburb.toLowerCase().includes(searchQuery.toLowerCase()));
+        setSearchResults(filteredResults);
+    }, [searchQuery]);
 
     return (
         <div>
