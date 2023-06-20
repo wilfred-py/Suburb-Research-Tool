@@ -10,7 +10,6 @@ import Link from "next/link";
 export default function SearchBar() {
     // state to manage search query
     const [searchQuery, setSearchQuery] = useState("");
-
     const router = useRouter();
 
     // handle search query
@@ -18,11 +17,17 @@ export default function SearchBar() {
         // prevent refresh on submit
         event?.preventDefault();
 
-        // encode search (spaces become "%20")
-        const encodedSearchQuery = encodeURI(searchQuery);
+        // encode search (spaces become "-" as "%20" is not supported in NextJS 13 routing)
+        // const encodedSearchQuery = encodeURI(searchQuery);
+
+        // if searchQuery has no spaces, return searchQuery as is
+        // if searchQuery has spaces, replace spaces with "-"
+
+        const dashedSearchQuery = searchQuery.replace(/\s+/g, "&");
+        const updatedSearchQuery = dashedSearchQuery.toLowerCase();
 
         // push encoded string to our URL
-        router.push(`/suburb?q=${encodedSearchQuery}`);
+        router.push(`/suburb?q=${updatedSearchQuery}`);
     };
 
     // state to manage dropdown show/hidden
@@ -62,7 +67,8 @@ export default function SearchBar() {
                         {showResults ? (
                             <div className="flex flex-col first-line:absolute mt-1 w-full p-2 bg-white shadow-lg rounded-bl rounded-br max-h-36 overflow-y-auto">
                                 {searchResults.map((suburb) => {
-                                    const lowerCaseSuburb = suburb.toLowerCase();
+                                    const dashedSuburb = suburb.replace(/\s+/g, "&");
+                                    const lowerCaseSuburb = dashedSuburb.toLowerCase();
                                     return (
                                         <Link href={`/suburb/${lowerCaseSuburb}`}>
                                             <div className="hover:bg-hoverYellow">{suburb}</div>
