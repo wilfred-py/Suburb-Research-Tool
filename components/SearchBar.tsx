@@ -20,6 +20,7 @@ export default function SearchBar() {
 
         // encode search (spaces become "%20")
         const encodedSearchQuery = encodeURI(searchQuery);
+
         // push encoded string to our URL
         router.push(`/suburb?q=${encodedSearchQuery}`);
     };
@@ -61,8 +62,9 @@ export default function SearchBar() {
                         {showResults ? (
                             <div className="flex flex-col first-line:absolute mt-1 w-full p-2 bg-white shadow-lg rounded-bl rounded-br max-h-36 overflow-y-auto">
                                 {searchResults.map((suburb) => {
+                                    const lowerCaseSuburb = suburb.toLowerCase();
                                     return (
-                                        <Link href={`/suburb/${suburb}`}>
+                                        <Link href={`/suburb/${lowerCaseSuburb}`}>
                                             <div className="hover:bg-hoverYellow">{suburb}</div>
                                         </Link>
                                     );

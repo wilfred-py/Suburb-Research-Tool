@@ -14,8 +14,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 <div>
                     <NavMenu />
                 </div>
-                {children}
                 <SearchBar />
+                {children}
             </body>
         </html>
     );
