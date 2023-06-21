@@ -24,7 +24,7 @@ export default function SearchBar() {
         // if searchQuery has spaces, replace spaces with "-"
 
         const dashedSearchQuery = searchQuery.replace(/\s+/g, "&");
-        const updatedSearchQuery = dashedSearchQuery.toLowerCase();
+        const updatedSearchQuery = dashedSearchQuery;
 
         // push encoded string to our URL
         router.push(`/suburb?q=${updatedSearchQuery}`);
@@ -41,7 +41,7 @@ export default function SearchBar() {
 
     // Filter search results based on searchQuery state
     useEffect(() => {
-        const filteredResults = suburbNames.filter((suburb) => suburb.toLowerCase().includes(searchQuery.toLowerCase()));
+        const filteredResults = suburbNames.filter((suburb) => suburb.includes(searchQuery));
         setSearchResults(filteredResults);
         setShowResults(true);
     }, [searchQuery]);
@@ -68,7 +68,7 @@ export default function SearchBar() {
                             <div className="flex flex-col first-line:absolute mt-1 w-full p-2 bg-white shadow-lg rounded-bl rounded-br max-h-36 overflow-y-auto">
                                 {searchResults.map((suburb) => {
                                     const dashedSuburb = suburb.replace(/\s+/g, "&");
-                                    const lowerCaseSuburb = dashedSuburb.toLowerCase();
+                                    const lowerCaseSuburb = dashedSuburb;
                                     return (
                                         <Link href={`/suburb/${lowerCaseSuburb}`}>
                                             <div className="hover:bg-hoverYellow">{suburb}</div>

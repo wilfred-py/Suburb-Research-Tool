@@ -13,29 +13,27 @@ import Religion from "@/components/Religion";
 import Dwellings from "@/components/Dwellings";
 import Bedrooms from "@/components/Bedrooms";
 import PocketBase from "pocketbase";
-import { useSearchParams } from "next/navigation";
 import { useState, useEffect } from "react";
 
 // Function to get suburb name from URL
+// If suburb is more than one word, spaces are replaced with "&" between words.
+// Retrieve string in URL after /suburb/ and then replace "&" with " "
 function getSuburbNameFromURL() {
     const url = new URL(window.location.href);
     const pathname = url.pathname;
-    const suburbInURL = pathname.replace("/suburb/", "");
+    const stringInURL = pathname.replace("/suburb/", "");
+    const suburbInURL = stringInURL.replace(/&/g, " ");
     return suburbInURL;
 }
 
 // Pocketbase GET request; async function to look up suburb data based on suburb name in searchQuery
-async function getData() {
-    const suburbName = getSuburbNameFromURL();
+async function getSuburbName() {
+    const suburbInURL = getSuburbNameFromURL();
     const pb = new PocketBase("http://127.0.0.1:8090");
-    console.log(`Suburb Name = ${suburbName}`);
-    // This works
-    // const res = await pb.collection("summary_data").getFirstListItem('id="6tgx1fzczopbyjy"', {
-    //     expand: "relField1,relField2.subRelField",
-    // });
+    console.log(`Suburb Name = ${suburbInURL}`);
 
-    // This also works
-    const res = await pb.collection("summary_data").getFirstListItem('suburb_name="Abbotsford"', {
+    // GET request using suburbInURL
+    const res = await pb.collection("summary_data").getFirstListItem(`suburb_name="${suburbInURL}"`, {
         expand: "relField1,relField2.subRelField",
     });
 
@@ -43,14 +41,33 @@ async function getData() {
     return res?.suburb_name;
 }
 
+async function getSuburbData() {
+    const suburbInURL = getSuburbNameFromURL();
+    const pb = new PocketBase("http://127.0.0.1:8090");
+    console.log(`Suburb Name = ${suburbInURL}`);
+
+    // GET request using suburbInURL
+    const res = await pb.collection("summary_data").getFirstListItem(`suburb_name="${suburbInURL}"`, {
+        expand: "relField1,relField2.subRelField",
+    });
+
+    console.log(res);
+    return res?.summary_data;
+}
+
 export default function SuburbData() {
     const [suburbName, setSuburbName] = useState("");
+    const [suburbData, setSuburbData] = useState([]);
 
     useEffect(() => {
         async function fetchSuburbData() {
             try {
-                const data = await getData();
-                setSuburbName(data);
+                const suburb = await getSuburbName();
+                const data = await getSuburbData();
+                setSuburbName(suburb);
+                console.log("Successfully fetched data");
+                setSuburbData(data);
+                console.log("Successfully fetched data");
             } catch (error) {
                 console.error("Failed to fetch suburb data:", error);
             }
@@ -58,7 +75,21 @@ export default function SuburbData() {
         fetchSuburbData();
     }, []);
 
-    return <div>Suburb name: {suburbName}</div>;
+    return (
+        <div>
+            <div>Suburb name: {suburbName}</div>
+            <div>
+                Suburb Data:
+                <ul>
+                    {Object.entries(suburbData).map(([key, value]) => (
+                        <li key={key}>
+                            {key}: {value}
+                        </li>
+                    ))}
+                </ul>
+            </div>
+        </div>
+    );
 }
 
 // export default async function SuburbData() {
