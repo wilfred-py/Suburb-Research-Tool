@@ -12,22 +12,39 @@ export default function SearchBar() {
     const [searchQuery, setSearchQuery] = useState("");
     const router = useRouter();
 
+    // capitalise first letter of every word in search query
+    function capitaliseAndReplace(str: any) {
+        // split string into an array of words
+        const words = str.split("&");
+
+        // capitalise first letter of every word
+        const capitalisedWords = words.map((word: any) => {
+            const firstLetter = word.charAt(0).toUpperCase();
+            const restOfWord = word.slice(1);
+            return firstLetter + restOfWord;
+        });
+
+        // Join the capitalised words back into a string
+        const result = capitalisedWords.join("&");
+
+        return result;
+    }
+
     // handle search query
     const onSearch = (event: React.FormEvent) => {
         // prevent refresh on submit
         event?.preventDefault();
 
-        // encode search (spaces become "-" as "%20" is not supported in NextJS 13 routing)
-        // const encodedSearchQuery = encodeURI(searchQuery);
+        // encode search (spaces become "&" as "%20" is not supported in NextJS 13 routing)
 
         // if searchQuery has no spaces, return searchQuery as is
-        // if searchQuery has spaces, replace spaces with "-"
+        // if searchQuery has spaces, replace spaces with "&"
 
-        const dashedSearchQuery = searchQuery.replace(/\s+/g, "&");
-        const updatedSearchQuery = dashedSearchQuery;
+        const modifiedSearchQuery = searchQuery.replace(/\s+/g, "&");
+        capitaliseAndReplace(modifiedSearchQuery);
 
         // push encoded string to our URL
-        router.push(`/suburb?q=${updatedSearchQuery}`);
+        router.push(`/suburb?q=${capitaliseAndReplace(modifiedSearchQuery)}`);
     };
 
     // state to manage dropdown show/hidden
@@ -41,7 +58,7 @@ export default function SearchBar() {
 
     // Filter search results based on searchQuery state
     useEffect(() => {
-        const filteredResults = suburbNames.filter((suburb) => suburb.includes(searchQuery));
+        const filteredResults = suburbNames.filter((suburb) => suburb.toLowerCase().includes(searchQuery));
         setSearchResults(filteredResults);
         setShowResults(true);
     }, [searchQuery]);
@@ -56,7 +73,7 @@ export default function SearchBar() {
                     <form className="items-center space-x-2 rounded-full" onSubmit={onSearch}>
                         <input
                             value={searchQuery}
-                            onChange={(event) => setSearchQuery(event.target.value)}
+                            onChange={(event) => setSearchQuery(event.target.value.toLowerCase())}
                             onClick={() => setShowResults(false)}
                             type="search"
                             placeholder="Suburb or Postcode..."
@@ -68,9 +85,8 @@ export default function SearchBar() {
                             <div className="flex flex-col first-line:absolute mt-1 w-full p-2 bg-white shadow-lg rounded-bl rounded-br max-h-36 overflow-y-auto">
                                 {searchResults.map((suburb) => {
                                     const dashedSuburb = suburb.replace(/\s+/g, "&");
-                                    const lowerCaseSuburb = dashedSuburb;
                                     return (
-                                        <Link href={`/suburb/${lowerCaseSuburb}`}>
+                                        <Link href={`/suburb/${dashedSuburb}`}>
                                             <div className="hover:bg-hoverYellow">{suburb}</div>
                                         </Link>
                                     );
