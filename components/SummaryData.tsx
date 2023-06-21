@@ -44,9 +44,8 @@ async function getSuburbData() {
 }
 
 export default function SummaryData() {
-    console.log("HELLO WORKING");
     const [suburbName, setSuburbName] = useState("");
-    const [suburbData, setSuburbData] = useState([]);
+    const [suburbData, setSuburbData] = useState<{ [key: string]: any }>([]);
 
     useEffect(() => {
         async function fetchSuburbData() {
@@ -66,16 +65,25 @@ export default function SummaryData() {
 
     return (
         <div>
-            <div>Suburb name: {suburbName}</div>
-            <div>
-                Suburb Data:
-                <ul>
-                    {Object.entries(suburbData).map(([key, value]) => (
-                        <li key={key}>
-                            {key}: {value}
-                        </li>
-                    ))}
-                </ul>
+            <div className="flex flex-col items-center border border-black rounded max-w-xl h-screen w-screen m-4">
+                <div className="bg-hoverYellow w-full text-center">
+                    <p className="text-4xl font-bold mb-4 bg-hoverYellow">{suburbName}</p>
+                </div>
+                <section id="people">
+                    <div className="flex flex-row">
+                        <p className="font-bold mr-2">Population: </p>
+                        {suburbData["People"]} people live in {suburbName}
+                    </div>
+                    <div className="flex flex-row">
+                        <p className="font-bold mr-2">Male: </p> {suburbData["Male"]}
+                    </div>
+                    <div className="flex flex-row">
+                        <p className="font-bold mr-2">Female: </p> {suburbData["Female"]}
+                    </div>
+                    <div className="flex flex-row">
+                        <p className="font-bold mr-2">Median age: </p> {suburbData["Median age"]}
+                    </div>
+                </section>
             </div>
         </div>
     );

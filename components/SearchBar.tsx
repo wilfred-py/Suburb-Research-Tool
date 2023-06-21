@@ -2,8 +2,7 @@
 
 import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 import { useRouter } from "next/navigation";
-import { encode } from "punycode";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { suburbNames } from "../data/suburbNames";
 import Link from "next/link";
 
