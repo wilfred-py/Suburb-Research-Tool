@@ -17,7 +17,7 @@ import SummaryData from "@/components/SummaryData";
 export default async function Suburb() {
     return (
         <div>
-            <SummaryData />;
+            <SummaryData />
         </div>
     );
 }
