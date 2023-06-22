@@ -75,15 +75,19 @@ export default function SummaryData() {
                         {suburbData["People"]} people live in {suburbName}
                     </div>
                     <div className="flex flex-row">
+                        <p className="font-bold mr-2">Median age: </p> {suburbData["Median age"]}
+                    </div>
+                    <div className="flex flex-row">
                         <p className="font-bold mr-2">Male: </p> {suburbData["Male"]}
                     </div>
                     <div className="flex flex-row">
                         <p className="font-bold mr-2">Female: </p> {suburbData["Female"]}
                     </div>
-                    <div className="flex flex-row">
-                        <p className="font-bold mr-2">Median age: </p> {suburbData["Median age"]}
-                    </div>
                 </section>
+                <section id="owners">
+                    <div></div>
+                </section>
+                <section id="rent"></section>
             </div>
         </div>
     );
