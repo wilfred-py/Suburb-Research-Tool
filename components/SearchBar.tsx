@@ -65,10 +65,10 @@ export default function SearchBar() {
     return (
         <div>
             <div className="flex m-4 items-center justify-center">
-                <div>
-                    <MagnifyingGlassIcon className="h-4 w-4 m-5 opacity-50" />
-                </div>
                 <div className="relative">
+                    <div>
+                        <MagnifyingGlassIcon className="h-4 w-4 opacity-50" />
+                    </div>
                     <form className="items-center space-x-2 rounded-full" onSubmit={onSearch}>
                         <input
                             value={searchQuery}
@@ -76,7 +76,7 @@ export default function SearchBar() {
                             onClick={() => setShowResults(false)}
                             type="search"
                             placeholder="Suburb or Postcode..."
-                            className="w-[600px] m-10 px-5 py-3 text-lg rounded-full border-2 border-gray-500 focus:border-gray-700 outline-none transition"
+                            className="w-[600px] m-10 px-5 py-3 text-lg rounded-full border-2 border-gray-500 focus:border-gray-700 outline-none hover:bg-hoverYellow"
                         />
 
                         {/* Search results container */}
