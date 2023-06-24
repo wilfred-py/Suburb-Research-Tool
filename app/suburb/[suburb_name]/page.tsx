@@ -13,11 +13,17 @@ import Bedrooms from "@/components/Bedrooms";
 import PocketBase from "pocketbase";
 import { useState, useEffect } from "react";
 import SummaryData from "@/components/SummaryData";
+import FreemiumData from "@/components/FreemiumData";
 
 export default async function Suburb() {
     return (
         <div>
-            <SummaryData />
+            <div>
+                <SummaryData />
+            </div>
+            <div>
+                <FreemiumData />
+            </div>
         </div>
     );
 }

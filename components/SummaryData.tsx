@@ -14,7 +14,7 @@ function getSuburbNameFromURL() {
     return suburbInURL;
 }
 
-// Pocketbase GET request; async function to look up suburb data based on suburb name in searchQuery
+// Async function to complete send GET request to PB to check if suburbInURL exists in PB
 async function getSuburbName() {
     const suburbInURL = getSuburbNameFromURL();
     const pb = new PocketBase("http://127.0.0.1:8090");
@@ -53,11 +53,11 @@ export default function SummaryData() {
                 const suburb = await getSuburbName();
                 const data = await getSuburbData();
                 setSuburbName(suburb);
-                console.log("Successfully fetched data");
+                console.log("Successfully fetched summary_data name");
                 setSuburbData(data);
-                console.log("Successfully fetched data");
+                console.log("Successfully fetched summary_data");
             } catch (error) {
-                console.error("Failed to fetch suburb data:", error);
+                console.error("Failed to fetch summary_data:", error);
             }
         }
         fetchSuburbData();
@@ -65,7 +65,7 @@ export default function SummaryData() {
 
     return (
         <div>
-            <div className="flex flex-col items-center border border-black rounded max-w-xl h-screen w-screen m-4">
+            <div className="flex flex-col items-center border border-black rounded max-w-xl h-96 w-screen m-4">
                 <div className="bg-hoverYellow w-full text-center">
                     <p className="text-4xl font-bold mb-4 bg-hoverYellow">{suburbName}</p>
                 </div>
