@@ -65,7 +65,7 @@ export default function SummaryData() {
 
     return (
         <div>
-            <div className="flex flex-col items-center border border-black rounded max-w-xl h-96 w-screen m-4">
+            <div className="flex flex-col items-center border border-black rounded max-w-xl h-48 w-screen m-4">
                 <div className="bg-hoverYellow w-full text-center">
                     <p className="text-4xl font-bold mb-4 bg-hoverYellow">{suburbName}</p>
                 </div>
