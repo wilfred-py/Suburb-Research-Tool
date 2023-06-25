@@ -167,7 +167,6 @@ export default function Demographic() {
 
                 setRetireesInSuburb(retireesInSuburb);
                 setRetireesInState(retireesInState);
-                console.log(`Reitrees in Suburb: ${retireesInSuburb}`);
 
                 console.log("successfully fetched suburb data");
             } catch (error) {
