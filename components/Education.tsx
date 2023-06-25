@@ -14,14 +14,12 @@ function getSuburbNameFromURL() {
 async function getSuburbName() {
     const suburbInURL = getSuburbNameFromURL();
     const pb = new PocketBase("http://127.0.0.1:8090");
-    console.log(`Suburb Name = ${suburbInURL}`);
 
     // GET request using suburbInURL
     const res = await pb.collection("main_data").getFirstListItem(`suburb_name="${suburbInURL}"`, {
         expand: "relField1,relField2.subRelField",
     });
 
-    console.log(res);
     return res?.suburb_name;
 }
 
@@ -29,14 +27,12 @@ async function getSuburbName() {
 async function getSuburbData() {
     const suburbInURL = getSuburbNameFromURL();
     const pb = new PocketBase("http://127.0.0.1:8090");
-    console.log(`Suburb Name = ${suburbInURL}`);
 
     // GET request using suburbInURL
     const res = await pb.collection("main_data").getFirstListItem(`suburb_name="${suburbInURL}"`, {
         expand: "relField1,relField2.subRelField",
     });
 
-    console.log(res);
     return res?.main_data;
 }
 
@@ -87,7 +83,7 @@ export default function Education() {
                 const data = await getSuburbData();
                 setSuburbName(suburb);
                 setSuburbData(data);
-                console.log(data);
+
                 // Bachelor
                 setBachelorInSuburb(data["Level of highest educational attainment"]["Bachelor Degree level and above"]["% of suburb"]);
                 setBachelorInState(data["Level of highest educational attainment"]["Bachelor Degree level and above"]["% of state"]);
@@ -103,7 +99,14 @@ export default function Education() {
                     parseFloat(data["Level of highest educational attainment"]["Certificate level II"]["% of suburb"]) +
                     parseFloat(data["Level of highest educational attainment"]["Certificate level I"]["% of suburb"])
                 ).toFixed(1);
+                const certificatesInState = (
+                    parseFloat(data["Level of highest educational attainment"]["Certificate level IV"]["% of state"]) +
+                    parseFloat(data["Level of highest educational attainment"]["Certificate level III"]["% of state"]) +
+                    parseFloat(data["Level of highest educational attainment"]["Certificate level II"]["% of state"]) +
+                    parseFloat(data["Level of highest educational attainment"]["Certificate level I"]["% of state"])
+                ).toFixed(1);
                 setCertificatesInSuburb(certificatesInSuburb);
+                setCertificatesInSuburb(certificatesInState);
 
                 // Highschool
                 setHighschoolInSuburb(data["Level of highest educational attainment"]["Year 12"]["% of suburb"]);
