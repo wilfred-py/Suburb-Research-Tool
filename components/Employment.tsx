@@ -58,7 +58,7 @@ export default function Employment() {
                 setParticipationInSuburb(data["Participation in the labour force"]["In the labour force"]["% of suburb"]);
                 setParticipationInState(data["Participation in the labour force"]["In the labour force"]["% of suburb"]);
 
-                console.log("successfully fetched suburb data");
+                console.log("successfully fetched employment data");
             } catch (error) {
                 console.error("Failed to fetch main_data:", error);
             }
