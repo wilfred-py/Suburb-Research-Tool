@@ -120,7 +120,7 @@ export default function Education() {
                 setNotStatedInSuburb(data["Level of highest educational attainment"]["Not stated"]["% of suburb"]);
                 setNotStatedInState(data["Level of highest educational attainment"]["Not stated"]["% of state"]);
 
-                console.log("successfully fetched suburb data");
+                console.log("successfully fetched education data");
             } catch (error) {
                 console.error("Failed to fetch main_data:", error);
             }

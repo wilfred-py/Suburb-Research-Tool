@@ -19,12 +19,14 @@ function getSuburbNameFromURL() {
 async function getSuburbName() {
     const suburbInURL = getSuburbNameFromURL();
     const pb = new PocketBase("http://127.0.0.1:8090");
+    console.log(`Suburb Name = ${suburbInURL}`);
 
     // GET request using suburbInURL
-    const res = await pb.collection("main_data").getFirstListItem(`suburb_name="${suburbInURL}"`, {
+    const res = await pb.collection("summary_data").getFirstListItem(`suburb_name="${suburbInURL}"`, {
         expand: "relField1,relField2.subRelField",
     });
 
+    console.log(res);
     return res?.suburb_name;
 }
 
@@ -47,10 +49,20 @@ export default function Income() {
     const [suburbData, setSuburbData] = useState<{ [key: string]: { [key: string]: { [key: string]: string } } }>({});
 
     // Personal Income
-    const [personalIncomeInSuburb, setPersonalincomeInSuburb] = useState("");
-    const [personalIncomeInState, setPersonalIncomeInState] = useState("");
-    const personalIncomeSuburbWidth = Math.round(Math.floor(((parseFloat(personalIncomeInSuburb) / 100) * 208) / 4) / 4) * 4;
-    const personalIncomeStateWidth = Math.round(Math.floor(((parseFloat(personalIncomeInState) / 100) * 208) / 4) / 4) * 4;
+    const [personalIncomeInSuburb, setPersonalIncomeInSuburb] = useState(0);
+    const [personalIncomeInState, setPersonalIncomeInState] = useState(0);
+    const [personalIncomeInAustralia, setPersonalIncomeInAustralia] = useState(0);
+    const personalIncomeSuburbWidth = Math.round(Math.floor(((personalIncomeInSuburb / 100) * 208) / 4) / 4) * 4;
+    const personalIncomeStateWidth = Math.round(Math.floor(((personalIncomeInState / 100) * 208) / 4) / 4) * 4;
+    const personalIncomeAustraliaWidth = Math.round(Math.floor(((personalIncomeInAustralia / 100) * 208) / 4) / 4) * 4;
+
+    // Household Income
+    const [householdIncomeInSuburb, sethouseholdIncomeInSuburb] = useState(0);
+    const [householdIncomeInState, sethouseholdIncomeInState] = useState(0);
+    const [householdIncomeInAustralia, sethouseholdIncomeInAustralia] = useState(0);
+    const householdIncomeSuburbWidth = Math.round(Math.floor(((householdIncomeInSuburb / 100) * 208) / 4) / 4) * 4;
+    const householdIncomeStateWidth = Math.round(Math.floor(((householdIncomeInState / 100) * 208) / 4) / 4) * 4;
+    const householdIncomeAustraliaWidth = Math.round(Math.floor(((householdIncomeInAustralia / 100) * 208) / 4) / 4) * 4;
 
     useEffect(() => {
         async function fetchSuburbData() {
@@ -66,11 +78,25 @@ export default function Income() {
                 const stateName = keys[keys.length - 1];
                 setStateName(stateName);
 
-                // Participation Rate
-                setPersonalincomeInSuburb(data["Median weekly incomes (a)"]["Personal (b)"]);
-                setPersonalIncomeInState(data["Participation in the labour force"]["In the labour force"]["% of suburb"]);
+                console.log("successfully fetched income data");
+                console.log(suburb);
+                console.log(stateName);
 
-                console.log("successfully fetched suburb data");
+                // Can't parse income data because value has $ sign
+
+                // Personal Income
+                setPersonalIncomeInSuburb(parseFloat(data["Median weekly incomes (a)"]["Personal (b)"][suburb].replace(/[$,]/g, "")));
+                setPersonalIncomeInState(parseFloat(data["Median weekly incomes (a)"]["Personal (b)"][stateName].replace(/[$,]/g, "")));
+                setPersonalIncomeInAustralia(
+                    parseFloat(data["Median weekly incomes (a)"]["Personal (b)"]["Australia"].replace(/[$,]/g, ""))
+                );
+
+                // Household Income
+                sethouseholdIncomeInSuburb(parseFloat(data["Median weekly incomes (a)"]["Household (d)"][suburb].replace(/[$,]/g, "")));
+                sethouseholdIncomeInState(parseFloat(data["Median weekly incomes (a)"]["Household (d)"][stateName].replace(/[$,]/g, "")));
+                sethouseholdIncomeInAustralia(
+                    parseFloat(data["Median weekly incomes (a)"]["Household (d)"]["Australia"].replace(/[$,]/g, ""))
+                );
             } catch (error) {
                 console.error("Failed to fetch main_data:", error);
             }
@@ -80,6 +106,48 @@ export default function Income() {
 
     // Chart.js
     const labels = [2016, 2021];
+
+    const personalMedianIncomeData = {
+        labels,
+        datasets: [
+            {
+                label: suburbName,
+                data: labels.map(() => personalIncomeInSuburb),
+                backgroundColor: "rgba(245, 195, 71, 0.5)",
+            },
+            {
+                label: stateName,
+                data: labels.map(() => personalIncomeInState),
+                backgroundColor: "rgba(0, 203, 165, 0.5)",
+            },
+            {
+                label: "Australia",
+                data: labels.map(() => personalIncomeInAustralia),
+                backgroundColor: "rgba(53, 162, 235, 0.5)",
+            },
+        ],
+    };
+
+    const householdMedianIncomeData = {
+        labels,
+        datasets: [
+            {
+                label: suburbName,
+                data: labels.map(() => householdIncomeInSuburb),
+                backgroundColor: "rgba(245, 195, 71, 0.5)",
+            },
+            {
+                label: stateName,
+                data: labels.map(() => householdIncomeInState),
+                backgroundColor: "rgba(0, 203, 165, 0.5)",
+            },
+            {
+                label: "Australia",
+                data: labels.map(() => householdIncomeInAustralia),
+                backgroundColor: "rgba(53, 162, 235, 0.5)",
+            },
+        ],
+    };
 
     const personalMedianIncomeOptions = {
         responsive: true,
@@ -107,51 +175,8 @@ export default function Income() {
         },
     };
 
-    const personalMedianIncomeData = {
-        labels,
-        datasets: [
-            {
-                label: suburbName,
-                data: labels.map(() => faker.number.int({ min: 0, max: 3500 })),
-                backgroundColor: "rgba(245, 195, 71, 0.5)",
-            },
-            {
-                label: stateName,
-                data: labels.map(() => faker.number.int({ min: 0, max: 3500 })),
-                backgroundColor: "rgba(0, 203, 165, 0.5)",
-            },
-            {
-                label: "Australia",
-                data: labels.map(() => faker.number.int({ min: 0, max: 3500 })),
-                backgroundColor: "rgba(53, 162, 235, 0.5)",
-            },
-        ],
-    };
-
-    const householdMedianIncomeData = {
-        labels,
-        datasets: [
-            {
-                label: suburbName,
-                data: labels.map(() => faker.number.int({ min: 0, max: 3500 })),
-                backgroundColor: "rgba(245, 195, 71, 0.5)",
-            },
-            {
-                label: stateName,
-                data: labels.map(() => faker.number.int({ min: 0, max: 3500 })),
-                backgroundColor: "rgba(0, 203, 165, 0.5)",
-            },
-            {
-                label: "Australia",
-                data: labels.map(() => faker.number.int({ min: 0, max: 3500 })),
-                backgroundColor: "rgba(53, 162, 235, 0.5)",
-            },
-        ],
-    };
-
     return (
         <div>
-            <h1>{stateName}</h1>
             <div className="m-4">
                 <Bar options={personalMedianIncomeOptions} data={personalMedianIncomeData} className="max-w-lg max-h-[360px]" />
                 <Bar options={householdMedianIncomeOptions} data={householdMedianIncomeData} className="max-w-lg max-h-[360px]" />

@@ -168,7 +168,7 @@ export default function Demographic() {
                 setRetireesInSuburb(retireesInSuburb);
                 setRetireesInState(retireesInState);
 
-                console.log("successfully fetched suburb data");
+                console.log("successfully fetched age data");
             } catch (error) {
                 console.error("Failed to fetch main_data:", error);
             }
