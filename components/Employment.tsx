@@ -1,43 +1,86 @@
-import main_data_Abbotsford from "../data/main_data/main_data_Abbotsford.json";
-import summary_data_Abbotsford from "../data/summary_data/summary_data_Abbotsford.json";
+import PocketBase from "pocketbase";
+import { useState, useEffect } from "react";
+
+// Function to get suburb name from URL
+function getSuburbNameFromURL() {
+    const url = new URL(window.location.href);
+    const pathname = url.pathname;
+    const stringInURL = pathname.replace("/suburb/", "");
+    const suburbInURL = stringInURL.replace(/&/g, " ");
+    return suburbInURL;
+}
+
+// Async function to complete send GET request to PB to check if suburbInURL exists in PB
+async function getSuburbName() {
+    const suburbInURL = getSuburbNameFromURL();
+    const pb = new PocketBase("http://127.0.0.1:8090");
+
+    // GET request using suburbInURL
+    const res = await pb.collection("main_data").getFirstListItem(`suburb_name="${suburbInURL}"`, {
+        expand: "relField1,relField2.subRelField",
+    });
+
+    return res?.suburb_name;
+}
+
+// Async function to get suburb data from PB
+async function getSuburbData() {
+    const suburbInURL = getSuburbNameFromURL();
+    const pb = new PocketBase("http://127.0.0.1:8090");
+
+    // GET request using suburbInURL
+    const res = await pb.collection("main_data").getFirstListItem(`suburb_name="${suburbInURL}"`, {
+        expand: "relField1,relField2.subRelField",
+    });
+
+    return res?.main_data;
+}
 
 export default function Employment() {
-    const summaryData = summary_data_Abbotsford;
-    const mainData = main_data_Abbotsford;
-    const keys = Object.keys(mainData["People"]["Male"]);
+    const [suburbName, setSuburbName] = useState("");
+    const [suburbData, setSuburbData] = useState<{ [key: string]: { [key: string]: { [key: string]: string } } }>({});
 
-    // Name of Suburb
-    const suburbName = keys[0];
+    // Participation Rate
+    const [participationInSuburb, setParticipationInSuburb] = useState("");
+    const [participationInState, setParticipationInState] = useState("");
+    const participationSuburbWidth = Math.round(Math.floor(((parseFloat(participationInSuburb) / 100) * 208) / 4) / 4) * 4;
+    const participationStateWidth = Math.round(Math.floor(((parseFloat(participationInState) / 100) * 208) / 4) / 4) * 4;
 
-    // Name of State
-    const stateName = keys[2];
+    useEffect(() => {
+        async function fetchSuburbData() {
+            try {
+                const suburb = await getSuburbName();
+                const data = await getSuburbData();
+                setSuburbName(suburb);
+                setSuburbData(data);
 
-    // Labour participation rate within the suburb
-    const suburbParticipationRate = parseFloat(mainData["Participation in the labour force"]["In the labour force"]["% of suburb"]);
+                // Participation Rate
+                setParticipationInSuburb(data["Participation in the labour force"]["In the labour force"]["% of suburb"]);
+                setParticipationInState(data["Participation in the labour force"]["In the labour force"]["% of suburb"]);
 
-    // Labour participation rate within the state
-    const stateParticipationRate = parseFloat(mainData["Participation in the labour force"]["In the labour force"]["% of state"]);
-
-    // width of div in pixels (w-52 = 208px)
-    const suburbWidth = Math.round(Math.floor(((suburbParticipationRate / 100) * 208) / 4) / 4) * 4;
-
-    const stateWidth = Math.round(Math.floor(((stateParticipationRate / 100) * 208) / 4) / 4) * 4;
+                console.log("successfully fetched suburb data");
+            } catch (error) {
+                console.error("Failed to fetch main_data:", error);
+            }
+        }
+        fetchSuburbData();
+    }, []);
 
     return (
-        <div className="">
-            <h1>Income and Work</h1>
-            <div className="mb-4">
-                <p className="text-xl">Participation Rate</p>
+        <div>
+            <div className="flex flex-col items-center border border-black rounded max-w-xl h-96 w-screen m-4 p-4">
+                <h1 className="font-bold">Participation Rate</h1>
                 <p className="text-xs">% of {suburbName} in the labour force</p>
+                <p>{participationSuburbWidth}</p>
                 <div className="bg-gray-200 w-52 rounded relative h-6 mb-2">
-                    <div className={`bg-customYellow rounded w-${suburbWidth == 0 ? 1.5 : suburbWidth} absolute top-0 left-0 h-6`}>
-                        <span className="">{suburbParticipationRate}%</span>
+                    <div
+                        className={`bg-customYellow rounded w-${
+                            participationSuburbWidth == 0 ? 1 : participationSuburbWidth
+                        } absolute top-0 h-6`}
+                    >
+                        {participationInSuburb}%
                     </div>
-                    <div className={`border border-dotted bg-black w-0.5 h-6 absolute rounded left-${stateWidth}`}>{stateWidth}</div>
-                </div>
-                <div className="text-xs flex">
-                    <p className="mr-2">vs. {stateName}</p>
-                    <p className="">({stateParticipationRate}%)</p>
+                    <div className={`border border-dotted bg-black w-0.5 h-6 relative rounded left-${participationStateWidth}`}></div>
                 </div>
             </div>
         </div>
