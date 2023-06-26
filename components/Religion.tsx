@@ -87,6 +87,7 @@ export default function Religion() {
                         <div key={index}>
                             <span className="text-xs">{key}</span>
 
+                            <p>Religion Width {suburbReligionWidth}</p>
                             <div className="bg-gray-200 w-52 rounded relative h-6 mb-2">
                                 <div
                                     className={`bg-customYellow rounded w-${
