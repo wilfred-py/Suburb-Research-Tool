@@ -16,6 +16,8 @@ export default function SearchBar() {
     // state to manage drop down list of matching results; initialise with all suburb names
     const [searchResults, setSearchResults] = useState<string[]>(suburbNames);
 
+    const [focusedIndex, setFocusedIndex] = useState<number>(-1);
+
     const resultsRef = useRef(null);
     const inputRef = useRef(null);
 
@@ -67,6 +69,7 @@ export default function SearchBar() {
         }
     }, [searchQuery]);
 
+    // Handle mouse clicks outside search bar and hide search results
     useEffect(() => {
         const handleOutsideClick = (event) => {
             if (resultsRef.current && !resultsRef.current.contains(event.target) && inputRef.current !== event.target) {
