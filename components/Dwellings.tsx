@@ -1,78 +1,109 @@
-import main_data_Abbotsford from "../data/main_data/main_data_Abbotsford.json";
-import summary_data_Abbotsford from "../data/summary_data/summary_data_Abbotsford.json";
+import PocketBase from "pocketbase";
+import { useState, useEffect } from "react";
 
-// Keys of Suburb Data
-const summaryData = summary_data_Abbotsford;
-const mainData = main_data_Abbotsford;
-const keys = Object.keys(mainData["People"]["Male"]);
+// Function to get suburb name from URL
+function getSuburbNameFromURL() {
+    const url = new URL(window.location.href);
+    const pathname = url.pathname;
+    const stringInURL = pathname.replace("/suburb/", "");
+    const suburbInURL = stringInURL.replace(/&/g, " ");
+    return suburbInURL;
+}
 
-// Name of Suburb
-const suburbName = keys[0];
+// Async function to complete send GET request to PB to check if suburbInURL exists in PB
+async function getSuburbName() {
+    const suburbInURL = getSuburbNameFromURL();
+    const pb = new PocketBase("http://127.0.0.1:8090");
 
-// Name of State
-const stateName = keys[2];
+    // GET request using suburbInURL
+    const res = await pb.collection("main_data").getFirstListItem(`suburb_name="${suburbInURL}"`, {
+        expand: "relField1,relField2.subRelField",
+    });
 
-// Keys of mainData["Dwelling structure"]
-const dwellingKeys = Object.keys(mainData["Dwelling structure"]);
+    return res?.suburb_name;
+}
 
-const Dwellings = () => {
+// Async function to get suburb data from PB
+async function getSuburbData() {
+    const suburbInURL = getSuburbNameFromURL();
+    const pb = new PocketBase("http://127.0.0.1:8090");
+
+    // GET request using suburbInURL
+    const res = await pb.collection("main_data").getFirstListItem(`suburb_name="${suburbInURL}"`, {
+        expand: "relField1,relField2.subRelField",
+    });
+
+    return res?.main_data;
+}
+
+export default function Dwellings() {
+    const [suburbName, setSuburbName] = useState("");
+    const [suburbData, setSuburbData] = useState<{ [key: string]: { [key: string]: { [key: string]: string } } }>({});
+    const [stateName, setStateName] = useState("");
+    const [dwellingKeys, setDwellingKeys] = useState<string[]>([]);
+    const [dwellingData, setDwellingData] = useState();
+
+    useEffect(() => {
+        async function fetchSuburbData() {
+            try {
+                // Get suburb name and suburb data
+                const suburb = await getSuburbName();
+                const data = await getSuburbData();
+                setSuburbName(suburb);
+                setSuburbData(data);
+
+                // State Name
+                const firstObject = data["Age"]["0-4 years"];
+                const keys = Object.keys(firstObject);
+                const stateName = keys[keys.length - 1];
+                setStateName(stateName);
+
+                // Keys of ["Dwelling structure"]
+                const dwellingKeys = Object.keys(data["Dwelling structure"]);
+                setDwellingKeys(dwellingKeys);
+                console.log("successfully fetched dwelling data");
+            } catch (error) {
+                console.error("Failed to fetch main_data:", error);
+            }
+        }
+        fetchSuburbData();
+    }, []);
+
     return (
-        <div>
+        <div className="flex flex-col items-center border border-black rounded max-w-xl h-112 w-screen m-4 p-4">
             {dwellingKeys.map((key, index) => {
                 // suburb and state %'s
-                const suburbDwellingValue =
-                    mainData["Dwelling structure"][key as keyof (typeof mainData)["Dwelling structure"]]["% of suburb"];
-                const stateDwellingValue =
-                    mainData["Dwelling structure"][key as keyof (typeof mainData)["Dwelling structure"]]["% of state"];
+                const suburbDwellingValue = suburbData["Dwelling structure"][key]["% of suburb"];
+                const stateDwellingValue = suburbData["Dwelling structure"][key]["% of state"];
 
                 // suburb and state width values for Tailwind CSS
                 const suburbDwellingWidth = Math.round(Math.floor(((parseInt(suburbDwellingValue) / 100) * 208) / 4) / 4) * 4;
                 const stateDwellingWidth = Math.round(Math.floor(((parseInt(stateDwellingValue) / 100) * 208) / 4) / 4) * 4;
 
                 return (
-                    <DwellingElements
-                        key={index}
-                        dwellingKey={key}
-                        suburbDwellingValue={suburbDwellingValue}
-                        suburbDwellingWidth={suburbDwellingWidth}
-                        stateDwellingValue={stateDwellingValue}
-                        stateDwellingWidth={stateDwellingWidth}
-                    />
+                    <div>
+                        <div key={index}>
+                            <span className="text-xs truncate">{key}</span>
+
+                            <p>Dwelling Width {suburbDwellingWidth}</p>
+                            <div className="bg-gray-200 w-52 rounded relative h-6 mb-2">
+                                <div
+                                    className={`bg-customYellow rounded w-${
+                                        suburbDwellingWidth == 0 ? 1.5 : suburbDwellingWidth
+                                    } absolute left-0 h-6`}
+                                >
+                                    <span className="">{suburbDwellingValue}%</span>
+                                </div>
+                                {/* <div
+                                            className={`border border-dotted bg-black w-0.5 h-6 absolute rounded left-${stateDwellingWidth}`}
+                                        >
+                                            {stateDwellingWidth}
+                                        </div> */}
+                            </div>
+                        </div>
+                    </div>
                 );
             })}
         </div>
     );
-};
-
-const DwellingElements = ({
-    key,
-    dwellingKey,
-    suburbDwellingValue,
-    suburbDwellingWidth,
-    stateDwellingValue,
-    stateDwellingWidth,
-}: {
-    key: number;
-    dwellingKey: string;
-    suburbDwellingValue: string;
-    suburbDwellingWidth: number;
-    stateDwellingValue: string;
-    stateDwellingWidth: number;
-}) => {
-    return (
-        <div>
-            <span className="text-xs">{dwellingKey}</span>
-
-            <div className="bg-gray-200 w-52 rounded relative h-6 mb-2">
-                <div className={`bg-customYellow rounded w-${suburbDwellingWidth == 0 ? 1.5 : suburbDwellingWidth} absolute left-0 h-6`}>
-                    <span className="">{suburbDwellingValue}%</span>
-                </div>
-                <div className={`border border-dotted bg-black w-0.5 h-6 absolute rounded left-${stateDwellingWidth}`}>
-                    {stateDwellingWidth}
-                </div>
-            </div>
-        </div>
-    );
-};
-
-export default Dwellings;
+}
