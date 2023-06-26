@@ -72,7 +72,7 @@ export default function Religion() {
     }, []);
 
     return (
-        <div>
+        <div className="flex flex-col items-center border border-black rounded max-w-xl h-112 w-screen m-4 p-4">
             {religionKeys.map((key, index) => {
                 // suburb and state %'s
                 const suburbReligionValue = suburbData["Religious affiliation, top responses"][key]["% of suburb"];
