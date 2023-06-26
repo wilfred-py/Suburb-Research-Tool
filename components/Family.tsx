@@ -61,8 +61,6 @@ export default function Family() {
                 // Keys of ["Family composition"]
                 const familyKeys = Object.keys(data["Family composition"]);
                 setFamilyKeys(familyKeys);
-                console.log(familyKeys);
-                // (5) ['Anglican', 'Buddhism', 'Catholic', 'No Family, so described', 'Not stated']
                 console.log("successfully fetched family data");
             } catch (error) {
                 console.error("Failed to fetch main_data:", error);
@@ -72,7 +70,7 @@ export default function Family() {
     }, []);
 
     return (
-        <div className="flex flex-col items-center border border-black rounded max-w-xl h-112 w-screen m-4 p-4">
+        <div className="flex flex-col items-center border border-black rounded max-w-xl h-full w-screen m-4 p-4">
             {familyKeys.map((key, index) => {
                 // suburb and state %'s
                 const suburbFamilyValue = suburbData["Family composition"][key]["% of suburb"];

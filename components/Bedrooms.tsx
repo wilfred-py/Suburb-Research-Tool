@@ -1,88 +1,113 @@
-import main_data_Abbotsford from "../data/main_data/main_data_Abbotsford.json";
-import summary_data_Abbotsford from "../data/summary_data/summary_data_Abbotsford.json";
+import PocketBase from "pocketbase";
+import { useState, useEffect } from "react";
 
-// Keys of Suburb Data
-const summaryData = summary_data_Abbotsford;
-const mainData = main_data_Abbotsford;
-const keys = Object.keys(mainData["People"]["Male"]);
+// Function to get suburb name from URL
+function getSuburbNameFromURL() {
+    const url = new URL(window.location.href);
+    const pathname = url.pathname;
+    const stringInURL = pathname.replace("/suburb/", "");
+    const suburbInURL = stringInURL.replace(/&/g, " ");
+    return suburbInURL;
+}
 
-// Name of Suburb
-const suburbName = keys[0];
+// Async function to complete send GET request to PB to check if suburbInURL exists in PB
+async function getSuburbName() {
+    const suburbInURL = getSuburbNameFromURL();
+    const pb = new PocketBase("http://127.0.0.1:8090");
 
-// Name of State
-const stateName = keys[2];
+    // GET request using suburbInURL
+    const res = await pb.collection("main_data").getFirstListItem(`suburb_name="${suburbInURL}"`, {
+        expand: "relField1,relField2.subRelField",
+    });
 
-// Keys of mainData["Number of bedrooms"]
-const bedroomKeys = Object.keys(mainData["Number of bedrooms"]);
+    return res?.suburb_name;
+}
 
-const Bedrooms = () => {
+// Async function to get suburb data from PB
+async function getSuburbData() {
+    const suburbInURL = getSuburbNameFromURL();
+    const pb = new PocketBase("http://127.0.0.1:8090");
+
+    // GET request using suburbInURL
+    const res = await pb.collection("main_data").getFirstListItem(`suburb_name="${suburbInURL}"`, {
+        expand: "relField1,relField2.subRelField",
+    });
+
+    return res?.main_data;
+}
+
+export default function Bedrooms() {
+    const [suburbName, setSuburbName] = useState("");
+    const [suburbData, setSuburbData] = useState<{ [key: string]: { [key: string]: { [key: string]: string } } }>({});
+    const [stateName, setStateName] = useState("");
+    const [bedroomKeys, setBedroomKeys] = useState<string[]>([]);
+    const [bedroomData, setBedroomData] = useState();
+
+    useEffect(() => {
+        async function fetchSuburbData() {
+            try {
+                // Get suburb name and suburb data
+                const suburb = await getSuburbName();
+                const data = await getSuburbData();
+                setSuburbName(suburb);
+                setSuburbData(data);
+
+                // State Name
+                const firstObject = data["Age"]["0-4 years"];
+                const keys = Object.keys(firstObject);
+                const stateName = keys[keys.length - 1];
+                setStateName(stateName);
+
+                // Keys of ["Number of bedrooms"]
+                const bedroomKeys = Object.keys(data["Number of bedrooms"]);
+                setBedroomKeys(bedroomKeys);
+                console.log("successfully fetched bedroom data");
+            } catch (error) {
+                console.error("Failed to fetch main_data:", error);
+            }
+        }
+        fetchSuburbData();
+    }, []);
+
     return (
-        <div>
+        <div className="flex flex-col items-center border border-black rounded max-w-xl h-full w-screen m-4 p-4">
             {bedroomKeys.map((key, index) => {
                 // suburb and state %'s
-                const suburbBedroomsValue =
-                    mainData["Number of bedrooms"][key as keyof (typeof mainData)["Number of bedrooms"]]["% of suburb"];
-                const stateBedroomsValue =
-                    mainData["Number of bedrooms"][key as keyof (typeof mainData)["Number of bedrooms"]]["% of state"];
+                const suburbBedroomValue = suburbData["Number of bedrooms"][key]["% of suburb"];
+                const stateBedroomValue = suburbData["Number of bedrooms"][key]["% of state"];
 
                 // suburb and state width values for Tailwind CSS
-                const suburbBedroomsWidth = Math.round(Math.floor(((parseInt(suburbBedroomsValue) / 100) * 208) / 4) / 4) * 4;
-                const stateBedroomsWidth = Math.round(Math.floor(((parseInt(stateBedroomsValue) / 100) * 208) / 4) / 4) * 4;
+                const suburbBedroomWidth = Math.round(Math.floor(((parseInt(suburbBedroomValue) / 100) * 208) / 4) / 4) * 4;
+                const stateBedroomWidth = Math.round(Math.floor(((parseInt(stateBedroomValue) / 100) * 208) / 4) / 4) * 4;
 
                 return (
-                    <BedroomsElements
-                        key={index}
-                        bedroomsKey={key}
-                        suburbBedroomsValue={suburbBedroomsValue}
-                        suburbBedroomsWidth={suburbBedroomsWidth}
-                        stateBedroomsValue={stateBedroomsValue}
-                        stateBedroomsWidth={stateBedroomsWidth}
-                    />
+                    <div>
+                        {suburbBedroomValue === "N/A" || suburbBedroomValue === "" ? (
+                            ""
+                        ) : (
+                            <div key={index}>
+                                <span className="text-xs truncate">{key}</span>
+
+                                <p>Bedroom Width {suburbBedroomWidth}</p>
+                                <div className="bg-gray-200 w-52 rounded relative h-6 mb-2">
+                                    <div
+                                        className={`bg-customYellow rounded w-${
+                                            suburbBedroomWidth == 0 ? 1.5 : suburbBedroomWidth
+                                        } absolute left-0 h-6`}
+                                    >
+                                        <span className="">{suburbBedroomValue}%</span>
+                                    </div>
+                                    {/* <div
+                                            className={`border border-dotted bg-black w-0.5 h-6 absolute rounded left-${stateBedroomWidth}`}
+                                        >
+                                            {stateBedroomWidth}
+                                        </div> */}
+                                </div>
+                            </div>
+                        )}
+                    </div>
                 );
             })}
         </div>
     );
-};
-
-const BedroomsElements = ({
-    key,
-    bedroomsKey,
-    suburbBedroomsValue,
-    suburbBedroomsWidth,
-    stateBedroomsValue,
-    stateBedroomsWidth,
-}: {
-    key: number;
-    bedroomsKey: string;
-    suburbBedroomsValue: string;
-    suburbBedroomsWidth: number;
-    stateBedroomsValue: string;
-    stateBedroomsWidth: number;
-}) => {
-    return (
-        <div>
-            {suburbBedroomsValue === "N/A" || suburbBedroomsValue === "" ? (
-                ""
-            ) : (
-                <div>
-                    <span className="text-xs">{bedroomsKey}</span>
-
-                    <div className="bg-gray-200 w-52 rounded relative h-6 mb-2">
-                        <div
-                            className={`bg-customYellow rounded w-${
-                                suburbBedroomsWidth == 0 ? 1.5 : suburbBedroomsWidth
-                            } absolute left-0 h-6`}
-                        >
-                            <span className="">{suburbBedroomsValue}%</span>
-                        </div>
-                        <div className={`border border-dotted bg-black w-0.5 h-6 absolute rounded left-${stateBedroomsWidth}`}>
-                            {stateBedroomsWidth}
-                        </div>
-                    </div>
-                </div>
-            )}
-        </div>
-    );
-};
-
-export default Bedrooms;
+}

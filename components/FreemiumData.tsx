@@ -8,6 +8,7 @@ import Religion from "./Religion";
 import Ancestry from "./Ancestry";
 import Family from "./Family";
 import Dwellings from "./Dwellings";
+import Bedrooms from "./Bedrooms";
 
 export default function FreemiumData() {
     return (
@@ -35,6 +36,9 @@ export default function FreemiumData() {
             </div>
             <div>
                 <Dwellings />
+            </div>
+            <div>
+                <Bedrooms />
             </div>
         </div>
     );
