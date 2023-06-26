@@ -46,6 +46,7 @@ export default function Religion() {
     useEffect(() => {
         async function fetchSuburbData() {
             try {
+                // Get suburb name and suburb data
                 const suburb = await getSuburbName();
                 const data = await getSuburbData();
                 setSuburbName(suburb);
@@ -61,7 +62,7 @@ export default function Religion() {
                 const religionKeys = Object.keys(data["Religious affiliation, top responses"]);
                 setReligionKeys(religionKeys);
                 console.log(religionKeys);
-
+                // (5) ['Anglican', 'Buddhism', 'Catholic', 'No Religion, so described', 'Not stated']
                 console.log("successfully fetched religion data");
             } catch (error) {
                 console.error("Failed to fetch main_data:", error);
@@ -70,31 +71,52 @@ export default function Religion() {
         fetchSuburbData();
     }, []);
 
-    const Religion = () => {
-        return (
-            <div>
-                {religionKeys.map((key, index) => {
-                    // suburb and state %'s
-                    const suburbReligionValue = data["Religious affiliation, top responses"]["Anglican"]["% of suburb"];
+    return (
+        <div>
+            {religionKeys.map((key, index) => {
+                // suburb and state %'s
+                const suburbReligionValue = suburbData["Religious affiliation, top responses"][key]["% of suburb"];
+                const stateReligionValue = suburbData["Religious affiliation, top responses"][key]["% of state"];
 
-                    // suburb and state width values for Tailwind CSS
-                    const suburbReligionWidth = Math.round(Math.floor(((parseInt(suburbReligionValue) / 100) * 208) / 4) / 4) * 4;
-                    const stateReligionWidth = Math.round(Math.floor(((parseInt(stateReligionValue) / 100) * 208) / 4) / 4) * 4;
+                // suburb and state width values for Tailwind CSS
+                const suburbReligionWidth = Math.round(Math.floor(((parseInt(suburbReligionValue) / 100) * 208) / 4) / 4) * 4;
+                const stateReligionWidth = Math.round(Math.floor(((parseInt(stateReligionValue) / 100) * 208) / 4) / 4) * 4;
 
-                    return (
-                        <ReligionElements
-                            key={index}
-                            religionKey={key}
-                            suburbReligionValue={suburbReligionValue}
-                            suburbReligionWidth={suburbReligionWidth}
-                            stateReligionValue={stateReligionValue}
-                            stateReligionWidth={stateReligionWidth}
-                        />
-                    );
-                })}
-            </div>
-        );
-    };
+                return (
+                    <div>
+                        {religionKeys.map((key, index) => {
+                            // suburb and state %'s
+                            const suburbReligionValue = suburbData["Religious affiliation, top responses"][key]["% of suburb"];
+                            const stateReligionValue = suburbData["Religious affiliation, top responses"][key]["% of state"];
 
-    return <div>Hello</div>;
+                            // suburb and state width values for Tailwind CSS
+                            const suburbReligionWidth = Math.round(Math.floor(((parseInt(suburbReligionValue) / 100) * 208) / 4) / 4) * 4;
+                            const stateReligionWidth = Math.round(Math.floor(((parseInt(stateReligionValue) / 100) * 208) / 4) / 4) * 4;
+
+                            return (
+                                <div key={index}>
+                                    <span className="text-xs">{key}</span>
+
+                                    <div className="bg-gray-200 w-52 rounded relative h-6 mb-2">
+                                        <div
+                                            className={`bg-customYellow rounded w-${
+                                                suburbReligionWidth == 0 ? 1.5 : suburbReligionWidth
+                                            } absolute left-0 h-6`}
+                                        >
+                                            <span className="">{suburbReligionValue}%</span>
+                                        </div>
+                                        {/* <div
+                                            className={`border border-dotted bg-black w-0.5 h-6 absolute rounded left-${stateReligionWidth}`}
+                                        >
+                                            {stateReligionWidth}
+                                        </div> */}
+                                    </div>
+                                </div>
+                            );
+                        })}
+                    </div>
+                );
+            })}
+        </div>
+    );
 }
