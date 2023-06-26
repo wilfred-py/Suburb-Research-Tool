@@ -1,13 +1,13 @@
 "use client";
 
-import PocketBase from "pocketbase";
-import { useState, useEffect } from "react";
 import Education from "./Education";
 import Employment from "./Employment";
 import Demographic from "./Demographic";
 import Income from "./Income";
 import Religion from "./Religion";
 import Ancestry from "./Ancestry";
+import Family from "./Family";
+import Dwellings from "./Dwellings";
 
 export default function FreemiumData() {
     return (
@@ -29,6 +29,12 @@ export default function FreemiumData() {
             </div>
             <div>
                 <Ancestry />
+            </div>
+            <div>
+                <Family />
+            </div>
+            <div>
+                <Dwellings />
             </div>
         </div>
     );

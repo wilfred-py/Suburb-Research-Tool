@@ -61,8 +61,6 @@ export default function Religion() {
                 // Keys of ["Religion, top responses"]
                 const religionKeys = Object.keys(data["Religious affiliation, top responses"]);
                 setReligionKeys(religionKeys);
-                console.log(religionKeys);
-                // (5) ['Anglican', 'Buddhism', 'Catholic', 'No Religion, so described', 'Not stated']
                 console.log("successfully fetched religion data");
             } catch (error) {
                 console.error("Failed to fetch main_data:", error);
