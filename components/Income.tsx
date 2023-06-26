@@ -79,8 +79,6 @@ export default function Income() {
                 setStateName(stateName);
 
                 console.log("successfully fetched income data");
-                console.log(suburb);
-                console.log(stateName);
 
                 // Can't parse income data because value has $ sign
 
