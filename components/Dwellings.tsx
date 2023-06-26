@@ -70,7 +70,7 @@ export default function Dwellings() {
     }, []);
 
     return (
-        <div className="flex flex-col items-center border border-black rounded max-w-xl h-112 w-screen m-4 p-4">
+        <div className="flex flex-col items-center border border-black rounded max-w-xl h-full w-screen m-4 p-4">
             {dwellingKeys.map((key, index) => {
                 // suburb and state %'s
                 const suburbDwellingValue = suburbData["Dwelling structure"][key]["% of suburb"];

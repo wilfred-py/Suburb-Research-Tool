@@ -130,7 +130,7 @@ export default function Education() {
 
     return (
         <div>
-            <div className="flex flex-col items-center border border-black rounded max-w-xl h-96 w-screen m-4 p-4">
+            <div className="flex flex-col items-center border border-black rounded max-w-xl h-full w-screen m-4 p-4">
                 <h1 className="font-bold">Highest level of education attained</h1>
                 <p className="text-xs">Bachelor Degree or Higher</p>
                 <div className="bg-gray-200 w-52 rounded relative h-6 mb-2">

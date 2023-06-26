@@ -68,7 +68,7 @@ export default function Employment() {
 
     return (
         <div>
-            <div className="flex flex-col items-center border border-black rounded max-w-xl h-96 w-screen m-4 p-4">
+            <div className="flex flex-col items-center border border-black rounded max-w-xl h-full w-screen m-4 p-4">
                 <h1 className="font-bold">Participation Rate</h1>
                 <p className="text-xs">% of {suburbName} in the labour force</p>
                 <p>{participationSuburbWidth}</p>
