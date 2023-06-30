@@ -1,9 +1,10 @@
 .nav {
-    background-color: #f5c347;
+    background-color: #181823;
     justify-content: space-between;
     align-items: center;
     border-bottom: 1px solid black;
     width: 100vw;
+    height: 4rem;
 }
 
 .links {
@@ -12,10 +13,7 @@
     flex-wrap: wrap;
     justify-content: flex-end;
     list-style: none;
-    color: black;
+    color: white;
     margin-right: 2rem;
-}
-
-.links li {
-    padding: 0.5rem;
+    font-weight: 500;
 }

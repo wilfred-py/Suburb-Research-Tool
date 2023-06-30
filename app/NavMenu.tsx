@@ -5,32 +5,25 @@ import styles from "./NavMenu.module.css";
 
 export default function NavMenu() {
     return (
-        <nav className={styles.nav}>
-            <Link href={"/"}>Logo</Link>
-
-            <ul className={styles.links}>
-                <li>
-                    <Link href="/">Home</Link>
-                </li>
-                <li>
-                    <Link href="/load">Load</Link>
-                </li>
-                <li>
-                    <Link href="About">About</Link>
-                </li>
-                <li>
-                    <Link href="/suburb/">Suburbs</Link>
-                </li>
-                <li>
-                    <Link href="How to use">How to use</Link>
-                </li>
-                <li>
-                    <Link href="FAQs">FAQs</Link>
-                </li>
-                <li>
-                    <Link href="Sign in">Sign in</Link>
-                </li>
-            </ul>
+        <nav className="bg-deepDarkBlue w-screen h-24 flex flex-row">
+            <div className="ml-6 mr-auto my-auto">
+                <Link className="text-white text-2xl m-2" href={"/"}>
+                    Suburbly
+                </Link>
+            </div>
+            <div className="my-auto mr-6">
+                <ul className="flex flex-row text-white space-x-5">
+                    <li>
+                        <Link href="/load">Load</Link>
+                    </li>
+                    <li>
+                        <Link href="About">About</Link>
+                    </li>
+                    <li className="border border-transparent rounded-lg bg-blue-700">
+                        <Link href="Sign in">Sign in</Link>
+                    </li>
+                </ul>
+            </div>
         </nav>
     );
 }
