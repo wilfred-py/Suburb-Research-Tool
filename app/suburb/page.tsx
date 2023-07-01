@@ -53,7 +53,7 @@ function Suburb({ suburb }: any) {
     const { id, suburb_name, summary_data, created } = suburb || {};
 
     return (
-        <Link href={`/suburb/${id}`}>
+        <Link href={`/suburb/${suburb_name}`}>
             <div>
                 <h1>{suburb_name}</h1>
             </div>
