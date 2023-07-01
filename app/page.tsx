@@ -1,12 +1,13 @@
+import SearchBar from "@/components/SearchBar";
 import Image from "next/image";
 
 export default function Home() {
     return (
         <main>
-            <section id="About" className="landing-page">
-                <div className="bg-customYellow text-4xl">
-                    <h1>Suburb Research Tool</h1>
-                    <p className="text-xs">Find out important details about a suburb before you buy.</p>
+            <section id="About" className="flex flex-col flex-wrap items-center">
+                <h1 className="mt-10 text-2xl">Find out more about the suburb you want to buy or rent in</h1>
+                <div>
+                    <SearchBar />
                 </div>
             </section>
         </main>
