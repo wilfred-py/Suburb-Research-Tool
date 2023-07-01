@@ -84,42 +84,53 @@ export default function SearchBar() {
 
     return (
         <div>
-            <div className="flex m-4 items-center justify-center">
-                <div className="relative">
-                    <div>
-                        <MagnifyingGlassIcon className="h-4 w-4 opacity-50" />
-                    </div>
-                    <form className="items-center space-x-2 rounded-full" onSubmit={onSearch}>
+            <div className="relative m-10">
+                <div className="absolute inset-y-0 mt-1.5 left-0 flex items-center pl-3 max-h-10 pointer-events-none">
+                    <MagnifyingGlassIcon className="h-5 w-5 opacity-50" />
+                </div>
+
+                <form className="" onSubmit={onSearch}>
+                    <div className="relative flex items-center w-112">
                         <input
+                            id="landing-page-searchbar"
+                            type="search"
                             ref={inputRef}
                             value={searchQuery}
                             onChange={(event) => setSearchQuery(event.target.value.toLowerCase())}
                             onClick={() => setShowResults(false)}
-                            type="search"
                             placeholder="Suburb or Postcode..."
-                            className="w-[600px] m-10 px-5 py-3 text-lg rounded-full border-2 border-gray-500 focus:border-gray-700 outline-none hover:bg-hoverYellow"
+                            // className="w-[600px] m-10 px-5 py-3 text-lg rounded-lg border-2 border-gray-500 focus:border-gray-700 outline-none hover:bg-hoverYellow"
+                            className="block w-full p-4 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 
+                            focus:border-mainBlue"
+                            required
                         />
+                        <button
+                            type="submit"
+                            className="rounded-md text-white absolute right-2.5 bg-mainBlue hover:bg-deepDarkBlue focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                        >
+                            Search
+                        </button>
+                    </div>
 
-                        {/* Search results container */}
-                        {showResults ? (
-                            <div
-                                ref={resultsRef}
-                                className="flex flex-col first-line:absolute mt-1 w-full p-2 bg-white shadow-lg rounded-bl rounded-br max-h-36 overflow-y-auto"
-                            >
-                                {searchResults.map((suburb) => {
-                                    const dashedSuburb = suburb.replace(/\s+/g, "&");
-                                    return (
-                                        <Link href={`/suburb/${dashedSuburb}`} onClick={() => setShowResults(false)}>
-                                            <div className="hover:bg-hoverYellow">{suburb}</div>
-                                        </Link>
-                                    );
-                                })}
-                            </div>
-                        ) : (
-                            ""
-                        )}
-                    </form>
-                </div>
+                    {/* Search results container */}
+                    {showResults ? (
+                        <div
+                            ref={resultsRef}
+                            className="flex flex-col first-line:absolute mt-1 w-full p-2 bg-white shadow-lg rounded-bl rounded-br max-h-36 overflow-y-auto"
+                        >
+                            {searchResults.map((suburb) => {
+                                const dashedSuburb = suburb.replace(/\s+/g, "&");
+                                return (
+                                    <Link href={`/suburb/${dashedSuburb}`} onClick={() => setShowResults(false)}>
+                                        <div className="hover:bg-hoverYellow">{suburb}</div>
+                                    </Link>
+                                );
+                            })}
+                        </div>
+                    ) : (
+                        ""
+                    )}
+                </form>
             </div>
         </div>
     );

@@ -1,15 +1,17 @@
-import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
-
 import Link from "next/link";
-import styles from "./NavMenu.module.css";
+import SmallerSearchBar from "./SmallerSearchBar";
 
-export default function NavMenu() {
+export default function SecondaryNavMenu() {
     return (
         <nav className="bg-deepDarkBlue w-screen h-20 flex flex-row">
             <div className="ml-6 mr-auto my-auto">
                 <Link className="text-white text-2xl font-bold m-2" href={"/"}>
                     Suburbly
                 </Link>
+            </div>
+
+            <div>
+                <SmallerSearchBar />
             </div>
 
             <div className="my-auto mr-6">

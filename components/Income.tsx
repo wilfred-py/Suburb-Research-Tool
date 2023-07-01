@@ -103,7 +103,7 @@ export default function Income() {
     }, []);
 
     // Chart.js
-    const labels = [2016, 2021];
+    const labels = [2021];
 
     const personalMedianIncomeData = {
         labels,
