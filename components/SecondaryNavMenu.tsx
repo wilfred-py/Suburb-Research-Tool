@@ -3,14 +3,14 @@ import SmallerSearchBar from "./SmallerSearchBar";
 
 export default function SecondaryNavMenu() {
     return (
-        <nav className="bg-deepDarkBlue w-screen h-20 flex flex-row">
+        <nav className="bg-deepDarkBlue w-screen h-20 flex flex-row align-items">
             <div className="ml-6 mr-auto my-auto">
                 <Link className="text-white text-2xl font-bold m-2" href={"/"}>
                     Suburbly
                 </Link>
             </div>
 
-            <div>
+            <div className="my-auto">
                 <SmallerSearchBar />
             </div>
 
@@ -24,6 +24,7 @@ export default function SecondaryNavMenu() {
                     </li>
                 </ul>
             </div>
+
             <div className="my-auto mr-7">
                 <ul>
                     <li className="border border-transparent rounded text-white bg-mainBlue p-2 font-semibold">

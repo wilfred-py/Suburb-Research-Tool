@@ -99,7 +99,6 @@ export default function SearchBar() {
                             onChange={(event) => setSearchQuery(event.target.value.toLowerCase())}
                             onClick={() => setShowResults(false)}
                             placeholder="Suburb or Postcode..."
-                            // className="w-[600px] m-10 px-5 py-3 text-lg rounded-lg border-2 border-gray-500 focus:border-gray-700 outline-none hover:bg-hoverYellow"
                             className="block w-full p-4 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 
                             focus:border-mainBlue"
                             required
