@@ -114,18 +114,21 @@ export default function SearchBar() {
 
                     {/* Search results container */}
                     {showResults ? (
-                        <div
-                            ref={resultsRef}
-                            className="flex flex-col first-line:absolute mt-1 w-full p-2 bg-white shadow-lg rounded-bl rounded-br max-h-36 overflow-y-auto"
-                        >
-                            {searchResults.map((suburb) => {
-                                const dashedSuburb = suburb.replace(/\s+/g, "&");
-                                return (
-                                    <Link href={`/suburb/${dashedSuburb}`} onClick={() => setShowResults(false)}>
-                                        <div className="hover:bg-hoverYellow">{suburb}</div>
-                                    </Link>
-                                );
-                            })}
+                        <div>
+                            <span>Suggestd Locations</span>
+                            <div
+                                ref={resultsRef}
+                                className="flex flex-col first-line:absolute mt-1 w-full p-2 bg-white shadow-lg rounded-bl rounded-br max-h-36 overflow-y-auto"
+                            >
+                                {searchResults.map((suburb) => {
+                                    const dashedSuburb = suburb.replace(/\s+/g, "&");
+                                    return (
+                                        <Link href={`/suburb/${dashedSuburb}`} onClick={() => setShowResults(false)}>
+                                            <div className="hover:bg-hoverYellow">{suburb}</div>
+                                        </Link>
+                                    );
+                                })}
+                            </div>
                         </div>
                     ) : (
                         ""
