@@ -38,8 +38,8 @@ yarn-error.log*
 next-env.d.ts
 
 # data 
-/data
+/data/
 
 # Pocketbase
-/pb_data
-/pb_migrations
+/pb_data/
+/pb_migrations/
