@@ -10,7 +10,7 @@ export default function SecondaryNavMenu() {
                 </Link>
             </div>
 
-            <div className="my-auto">
+            <div className="mt-[13px] mb-[13px]">
                 <SmallerSearchBar />
             </div>
 
