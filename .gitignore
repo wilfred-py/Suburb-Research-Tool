@@ -41,5 +41,9 @@ next-env.d.ts
 /data/
 
 # Pocketbase
-/pb_data*/
-/pb_migrations*/
+pb_data/
+pb_migrations/
+
+# Firebase
+/.firebase/
+
