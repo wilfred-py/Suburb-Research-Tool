@@ -1,7 +1,6 @@
 import SearchBar from "@/components/SearchBar";
-import Image from "next/image";
 
-export default function Home() {
+export default async function Home() {
     return (
         <main>
             <section id="About" className="flex flex-col flex-wrap items-center">

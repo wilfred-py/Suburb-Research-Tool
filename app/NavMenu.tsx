@@ -25,7 +25,7 @@ export default function NavMenu() {
             <div className="my-auto mr-7">
                 <ul>
                     <li className="border border-transparent rounded text-white bg-mainBlue p-2 font-semibold">
-                        <Link href="Sign in">Sign in</Link>
+                        <Link href="/login">Sign in</Link>
                     </li>
                 </ul>
             </div>
