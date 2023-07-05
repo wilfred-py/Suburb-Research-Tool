@@ -99,10 +99,10 @@ export default function SearchBar() {
                             onChange={(event) => setSearchQuery(event.target.value.toLowerCase())}
                             onClick={() => setShowResults(false)}
                             placeholder="Suburb or Postcode..."
-                            // className="w-[600px] m-10 px-5 py-3 text-lg rounded-lg border-2 border-gray-500 focus:border-gray-700 outline-none hover:bg-hoverYellow"
                             className="block w-full p-4 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 
                             focus:border-mainBlue"
                             required
+                            autoComplete="off"
                         />
                         <button
                             type="submit"
@@ -114,18 +114,21 @@ export default function SearchBar() {
 
                     {/* Search results container */}
                     {showResults ? (
-                        <div
-                            ref={resultsRef}
-                            className="flex flex-col first-line:absolute mt-1 w-full p-2 bg-white shadow-lg rounded-bl rounded-br max-h-36 overflow-y-auto"
-                        >
-                            {searchResults.map((suburb) => {
-                                const dashedSuburb = suburb.replace(/\s+/g, "&");
-                                return (
-                                    <Link href={`/suburb/${dashedSuburb}`} onClick={() => setShowResults(false)}>
-                                        <div className="hover:bg-hoverYellow">{suburb}</div>
-                                    </Link>
-                                );
-                            })}
+                        <div>
+                            <span>Suggestd Locations</span>
+                            <div
+                                ref={resultsRef}
+                                className="flex flex-col first-line:absolute mt-1 w-full p-2 bg-white shadow-lg rounded-bl rounded-br max-h-36 overflow-y-auto"
+                            >
+                                {searchResults.map((suburb) => {
+                                    const dashedSuburb = suburb.replace(/\s+/g, "&");
+                                    return (
+                                        <Link href={`/suburb/${dashedSuburb}`} onClick={() => setShowResults(false)}>
+                                            <div className="hover:bg-hoverYellow">{suburb}</div>
+                                        </Link>
+                                    );
+                                })}
+                            </div>
                         </div>
                     ) : (
                         ""
