@@ -2,6 +2,7 @@ import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 
 import Link from "next/link";
 import styles from "./NavMenu.module.css";
+import { SignInButton } from "@/components/SignInButton";
 
 export default function NavMenu() {
     return (
@@ -23,11 +24,12 @@ export default function NavMenu() {
                 </ul>
             </div>
             <div className="my-auto mr-7">
-                <ul>
-                    <li className="border border-transparent rounded text-white bg-mainBlue p-2 font-semibold">
+                {/* <li className="border border-transparent rounded text-white bg-mainBlue p-2 font-semibold">
                         <Link href="/api/auth/signin">Sign in</Link>
-                    </li>
-                </ul>
+                    </li> */}
+                <li>
+                    <SignInButton />
+                </li>
             </div>
         </nav>
     );
