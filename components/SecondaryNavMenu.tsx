@@ -28,7 +28,7 @@ export default function SecondaryNavMenu() {
             <div className="my-auto mr-7">
                 <ul>
                     <li className="border border-transparent rounded text-white bg-mainBlue p-2 font-semibold">
-                        <Link href="Sign in">Sign in</Link>
+                        <Link href="/api/auth/signin">Sign in</Link>
                     </li>
                 </ul>
             </div>
