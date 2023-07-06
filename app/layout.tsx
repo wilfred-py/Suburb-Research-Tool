@@ -2,6 +2,7 @@ import "./globals.css";
 import NavMenu from "./NavMenu";
 import SearchBar from "@/components/SearchBar";
 import NextAuthSessionProvider from "./providers/sessionProvider";
+import AuthProvider from "./AuthProvider";
 
 export const metadata = {
     title: "Create Next App",
@@ -10,11 +11,13 @@ export const metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
     return (
-        <html lang="en">
-            <body>
-                <NavMenu />
-                <NextAuthSessionProvider>{children}</NextAuthSessionProvider>
-            </body>
-        </html>
+        <AuthProvider>
+            <html lang="en">
+                <body>
+                    <NavMenu />
+                    {children}
+                </body>
+            </html>
+        </AuthProvider>
     );
 }
