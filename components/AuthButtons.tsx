@@ -22,7 +22,7 @@ export function SignInButton() {
         );
     }
 
-    return <button onClick={() => signIn()}></button>;
+    return <button onClick={() => signIn()}>Sign In</button>;
 }
 export function SignOutButton() {
     return <button onClick={() => signOut()}>Sign Out</button>;

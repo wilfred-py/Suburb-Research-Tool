@@ -1,8 +1,8 @@
 import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 
 import Link from "next/link";
-import styles from "./NavMenu.module.css";
-import { SignInButton } from "@/components/SignInButton";
+import { SignInButton, SignOutButton } from "@/components/AuthButtons";
+import AuthCheck from "@/components/AuthCheck";
 
 export default function NavMenu() {
     return (
@@ -27,9 +27,16 @@ export default function NavMenu() {
                 {/* <li className="border border-transparent rounded text-white bg-mainBlue p-2 font-semibold">
                         <Link href="/api/auth/signin">Sign in</Link>
                     </li> */}
-                <li>
-                    <SignInButton />
-                </li>
+                <ul className="text-white font-semibold mr-7 list-none">
+                    <li>
+                        <SignInButton />
+                    </li>
+                    <li>
+                        <AuthCheck>
+                            <SignOutButton />
+                        </AuthCheck>
+                    </li>
+                </ul>
             </div>
         </nav>
     );

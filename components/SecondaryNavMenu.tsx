@@ -1,5 +1,7 @@
 import Link from "next/link";
 import SmallerSearchBar from "./SmallerSearchBar";
+import { SignInButton, SignOutButton } from "./AuthButtons";
+import AuthCheck from "./AuthCheck";
 
 export default function SecondaryNavMenu() {
     return (
@@ -26,11 +28,19 @@ export default function SecondaryNavMenu() {
             </div>
 
             <div className="my-auto mr-7">
-                <ul>
+                {/* <ul>
                     <li className="border border-transparent rounded text-white bg-mainBlue p-2 font-semibold">
                         <Link href="/api/auth/signin">Sign in</Link>
                     </li>
-                </ul>
+                </ul> */}
+                <li>
+                    <SignInButton />
+                </li>
+                <li>
+                    <AuthCheck>
+                        <SignOutButton />
+                    </AuthCheck>
+                </li>
             </div>
         </nav>
     );
