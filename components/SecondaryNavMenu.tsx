@@ -33,14 +33,16 @@ export default function SecondaryNavMenu() {
                         <Link href="/api/auth/signin">Sign in</Link>
                     </li>
                 </ul> */}
-                <li>
-                    <SignInButton />
-                </li>
-                <li>
-                    <AuthCheck>
-                        <SignOutButton />
-                    </AuthCheck>
-                </li>
+                <ul className="flex flex-row space-x-7 place-items-center text-white font-semibold mr-7 list-none">
+                    <li>
+                        <SignInButton />
+                    </li>
+                    <li>
+                        <AuthCheck>
+                            <SignOutButton />
+                        </AuthCheck>
+                    </li>
+                </ul>
             </div>
         </nav>
     );
