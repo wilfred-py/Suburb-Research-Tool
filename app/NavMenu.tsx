@@ -27,7 +27,7 @@ export default function NavMenu() {
                 {/* <li className="border border-transparent rounded text-white bg-mainBlue p-2 font-semibold">
                         <Link href="/api/auth/signin">Sign in</Link>
                     </li> */}
-                <ul className="text-white font-semibold mr-7 list-none">
+                <ul className="flex flex-row space-x-7 place-items-center text-white font-semibold mr-7 list-none">
                     <li>
                         <SignInButton />
                     </li>
