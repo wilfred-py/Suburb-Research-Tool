@@ -1,5 +1,7 @@
 // Verify if there is an authenticated Supabase user
+
 // Validate if the user is authenticated and currently on the sign-in page, redirecting them to the account page
+
 // Verify if the user is not authenticated and currently on the account page, redirecting them to the sign-in page.
 
 import { createMiddlewareClient } from "@supabase/auth-helpers-nextjs";
@@ -14,6 +16,8 @@ export async function middleware(req: NextRequest) {
     const {
         data: { user },
     } = await supabase.auth.getUser();
+
+    console.log(req, res);
 
     // if user is signed in and the current path is / redirect the user to /account
     if (user && req.nextUrl.pathname === "/") {
