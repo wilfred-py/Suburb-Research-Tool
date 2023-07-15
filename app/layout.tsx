@@ -2,6 +2,7 @@ import "./globals.css";
 import NavMenu from "./NavMenu";
 import SearchBar from "@/components/SearchBar";
 import NextAuthSessionProvider from "./providers/sessionProvider";
+import { createClient } from "@supabase/supabase-js";
 import AuthProvider from "./AuthProvider";
 
 export const metadata = {
