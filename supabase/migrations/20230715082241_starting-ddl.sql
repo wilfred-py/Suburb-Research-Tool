@@ -1,6 +1,28 @@
 -- Data type for hierarchical tree-like structures
 create extension ltree;
 
+create table summary_data (
+  id uuid primary key default uuid_generate_v4() not null,
+  suburb_name text not null,
+  state_name text not null,
+  post_code numeric not null,
+  people INT not null,
+  male REAL not null,
+  female REAL not null,
+  median_age INT not null,
+  families INT not null,
+  average_number_of_children_per_family text null,
+  for_families_with_children REAL not null,
+  for_all_households REAL not null,
+  all_private_dwellings INT not null,
+  average_number_of_people_per_household REAL not null,
+  median_weekly_household_income INT not null,
+  median_monthly_mortgage_repayments INT not null,
+  median_weekly_rent_b INT not null,
+  average_number_of_motor_vehicles_per_dwelling REAL not null
+);
+
+
 create table user_profiles (
   user_id uuid primary key references auth.users (id) not null,
   username text unique not null
