@@ -90,7 +90,7 @@ export default function SearchBar() {
                 </div> */}
 
                 <form className="" onSubmit={onSearch}>
-                    <div className="relative flex items-center w-112">
+                    <div className="relative flex items-center w-full">
                         <input
                             id="landing-page-searchbar"
                             type="search"
