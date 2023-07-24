@@ -1,5 +1,20 @@
 import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 
+// sm: "640px",
+// => @media (min-width: 640px) { ... }
+
+// md: "768px",
+// => @media (min-width: 768px) { ... }
+
+// lg: "1024px",
+// => @media (min-width: 1024px) { ... }
+
+// xl: "1280px",
+// => @media (min-width: 1280px) { ... }
+
+// "2xl": "1536px",
+// => @media (min-width: 1536px) { ... }
+
 import Link from "next/link";
 import { SignInButton, SignOutButton } from "@/components/AuthButtons";
 import AuthCheck from "@/components/AuthCheck";
@@ -7,7 +22,7 @@ import AuthCheck from "@/components/AuthCheck";
 export default function NavMenu() {
     return (
         <nav className="bg-deepDarkBlue w-screen h-20 flex flex-row">
-            <div className="ml-6 mr-auto my-auto">
+            <div className="xl:pl-40 xl:mr-auto lg:pl-40 lg:mr-auto md:pl-32 md:mr-auto sm:pl-32 sm:mr-auto my-auto">
                 <Link className="text-white text-2xl font-bold m-2" href={"/"}>
                     Suburbly
                 </Link>
@@ -23,7 +38,7 @@ export default function NavMenu() {
                     </li>
                 </ul>
             </div>
-            <div className="my-auto mr-7">
+            <div className="my-auto xl:pr-40 lg:pr-40 md:pr-32 sm:pr-32">
                 {/* <li className="border border-transparent rounded text-white bg-mainBlue p-2 font-semibold">
                         <Link href="/api/auth/signin">Sign in</Link>
                     </li> */}

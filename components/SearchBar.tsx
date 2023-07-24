@@ -115,7 +115,7 @@ export default function SearchBar() {
                     {/* Search results container */}
                     {showResults ? (
                         <div>
-                            <span>Suggestd Locations</span>
+                            <span>Suggested Locations</span>
                             <div
                                 ref={resultsRef}
                                 className="flex flex-col first-line:absolute mt-1 w-full p-2 bg-white shadow-lg rounded-bl rounded-br max-h-36 overflow-y-auto"
