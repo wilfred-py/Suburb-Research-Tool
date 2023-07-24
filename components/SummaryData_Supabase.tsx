@@ -33,16 +33,74 @@ export default function GetSummaryData() {
     return (
         <>
             {summaryData?.map((data) => (
-                <div>
-                    <ul className="flex flex-row mt-10">
-                        <li className="mx-4">{data.suburb_name}</li>
-                        <li className="mx-4">{data.state_name}</li>
-                        <li className="mx-4">{data.post_code}</li>
-                        <li className="mx-4">
-                            <span>Median Age: </span>
-                            {data.median_age}
-                        </li>
-                    </ul>
+                <div className="ml-2 mt-10">
+                    <div className="">
+                        <h1>
+                            Snapshot of{" "}
+                            <strong>
+                                {data.suburb_name}, {data.state_name}, {data.post_code}
+                            </strong>
+                        </h1>
+                    </div>
+                    <div className="flex flex-wrap place-content-evenly">
+                        <div>
+                            <ul className="flex flex-col mt-4">
+                                <li className="">
+                                    <strong>Population: </strong>
+                                    {data.people}
+                                </li>
+                                <li className="">
+                                    <strong>Male: </strong>
+                                    {(parseFloat(data.male) * 100).toFixed(2)}%
+                                </li>
+                                <li className="">
+                                    <strong>Female: </strong>
+                                    {(parseFloat(data.female) * 100).toFixed(2)}%
+                                </li>
+                                <li className="">
+                                    <strong>Median Age: </strong>
+                                    {data.median_age}
+                                </li>
+                            </ul>
+                        </div>
+                        <div>
+                            <ul className="flex flex-col mt-4">
+                                <li className="">
+                                    <strong>Number of Families: </strong>
+                                    {data.families}
+                                </li>
+                                <li className="">
+                                    <strong>Average number of children per family: </strong>
+                                    {parseFloat(data.for_families_with_children)}
+                                </li>
+                                <li className="">
+                                    <strong>Homes: </strong>
+                                    {data.all_private_dwellings}
+                                </li>
+                                <li className="">
+                                    <strong>Average number of people per household: </strong>
+                                    {data.average_number_of_people_per_household}
+                                </li>
+                            </ul>
+                        </div>
+                        <div>
+                            <ul className="flex flex-col mt-4">
+                                <li className="">
+                                    <strong>Median weekly household income: </strong>${data.median_weekly_household_income}
+                                </li>
+                                <li className="">
+                                    <strong>Median monthly mortgage repayments: </strong>${data.median_monthly_mortgage_repayments}
+                                </li>
+                                <li className="">
+                                    <strong>Median weekly rent: </strong>${data.median_weekly_rent_b}
+                                </li>
+                                <li className="">
+                                    <strong>Average number of mortor vehicles per home: </strong>
+                                    {data.average_number_of_motor_vehicles_per_dwelling}
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
             ))}
         </>
