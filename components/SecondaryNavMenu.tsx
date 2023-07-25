@@ -19,9 +19,6 @@ export default function SecondaryNavMenu() {
             <div className="my-auto mr-6">
                 <ul className="flex flex-row text-white space-x-7 font-semibold">
                     <li>
-                        <Link href="/load">Load</Link>
-                    </li>
-                    <li>
                         <Link href="About">About</Link>
                     </li>
                 </ul>

@@ -37,65 +37,70 @@ export default function GetSummaryData() {
                     <div className="">
                         <h1>
                             Snapshot of{" "}
-                            <strong>
+                            <span className="font-medium">
                                 {data.suburb_name}, {data.state_name}, {data.post_code}
-                            </strong>
+                            </span>
                         </h1>
                     </div>
                     <div className="flex flex-wrap place-content-evenly">
                         <div>
-                            <ul className="flex flex-col mt-4">
-                                <li className="">
-                                    <strong>Population: </strong>
+                            <ul className="flex flex-col mt-4 border-opacity-0 rounded-md hover:bg-hoverBlue p-4">
+                                <li className="text-xl font-bold">People</li>
+                                <li>
+                                    <span className="font-medium">Population: </span>
                                     {data.people}
                                 </li>
-                                <li className="">
-                                    <strong>Male: </strong>
+                                <li>
+                                    <span className="font-medium">Male: </span>
                                     {(parseFloat(data.male) * 100).toFixed(2)}%
                                 </li>
-                                <li className="">
-                                    <strong>Female: </strong>
+                                <li>
+                                    <span className="font-medium">Female: </span>
                                     {(parseFloat(data.female) * 100).toFixed(2)}%
                                 </li>
-                                <li className="">
-                                    <strong>Median Age: </strong>
+                                <li>
+                                    <span className="font-medium">Median Age: </span>
                                     {data.median_age}
                                 </li>
                             </ul>
                         </div>
                         <div>
-                            <ul className="flex flex-col mt-4">
-                                <li className="">
-                                    <strong>Number of Families: </strong>
+                            <ul className="flex flex-col mt-4 border-opacity-0 rounded-md hover:bg-hoverBlue p-4">
+                                <li className="text-xl font-bold">Families</li>
+                                <li>
+                                    <span className="font-medium">Number of Families: </span>
                                     {data.families}
                                 </li>
-                                <li className="">
-                                    <strong>Average number of children per family: </strong>
+                                <li>
+                                    <span className="font-medium">Average number of children per family: </span>
                                     {parseFloat(data.for_families_with_children)}
                                 </li>
-                                <li className="">
-                                    <strong>Homes: </strong>
+                                <li>
+                                    <span className="font-medium">Homes: </span>
                                     {data.all_private_dwellings}
                                 </li>
-                                <li className="">
-                                    <strong>Average number of people per household: </strong>
+                                <li>
+                                    <span className="font-medium">Average number of people per household: </span>
                                     {data.average_number_of_people_per_household}
                                 </li>
                             </ul>
                         </div>
                         <div>
-                            <ul className="flex flex-col mt-4">
-                                <li className="">
-                                    <strong>Median weekly household income: </strong>${data.median_weekly_household_income}
+                            <ul className="flex flex-col mt-4 border-opacity-0 rounded-md hover:bg-hoverBlue p-4">
+                                <li className="text-xl font-bold">Homes</li>
+                                <li>
+                                    <span className="font-medium">Median weekly household income: </span>$
+                                    {data.median_weekly_household_income}
                                 </li>
-                                <li className="">
-                                    <strong>Median monthly mortgage repayments: </strong>${data.median_monthly_mortgage_repayments}
+                                <li>
+                                    <span className="font-medium">Median monthly mortgage repayments: </span>$
+                                    {data.median_monthly_mortgage_repayments}
                                 </li>
-                                <li className="">
-                                    <strong>Median weekly rent: </strong>${data.median_weekly_rent_b}
+                                <li>
+                                    <span className="font-medium">Median weekly rent: </span>${data.median_weekly_rent_b}
                                 </li>
-                                <li className="">
-                                    <strong>Average number of mortor vehicles per home: </strong>
+                                <li>
+                                    <span className="font-medium">Average number of mortor vehicles per home: </span>
                                     {data.average_number_of_motor_vehicles_per_dwelling}
                                 </li>
                             </ul>
