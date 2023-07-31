@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { useEffect, useState, useRef } from "react";
 import { suburbNames } from "../data/oldSuburbNames";
 import Link from "next/link";
+import { comma } from "postcss/lib/list";
 
 const recommendedSearches = [
     "Auburn, NSW, 2144",
@@ -42,7 +43,7 @@ export default function SearchBar() {
     // capitalise first letter of every word in search query
     function capitaliseAndReplace(str: any) {
         // split string into an array of words
-        const words = str.split("&");
+        const words = str.split("+");
 
         // capitalise first letter of every word
         const capitalisedWords = words.map((word: any) => {
@@ -52,7 +53,7 @@ export default function SearchBar() {
         });
 
         // Join the capitalised words back into a string
-        const result = capitalisedWords.join("&");
+        const result = capitalisedWords.join("+");
 
         return result;
     }
@@ -62,15 +63,17 @@ export default function SearchBar() {
         // prevent refresh on submit
         event?.preventDefault();
 
-        // encode search (spaces become "&" as "%20" is not supported in NextJS 13 routing)
+        // encode search (spaces become "+" as "%20" is not supported in NextJS 13 routing)
         // if searchQuery has no spaces, return searchQuery as is
-        // if searchQuery has spaces, replace spaces with "&"
+        // if searchQuery has spaces, remove commas AND replace spaces with "&"
+        const noCommasSearchQuery = searchQuery.replace(",", "&");
+        const modifiedSearchQuery = noCommasSearchQuery.replace(/\s+/g, "+").toLowerCase();
 
-        const modifiedSearchQuery = searchQuery.replace(/\s+/g, "&").toLowerCase();
         capitaliseAndReplace(modifiedSearchQuery);
 
         // push encoded string to our URL
         router.push(`/suburb?q=${capitaliseAndReplace(modifiedSearchQuery)}`);
+        console.log(`no commas search query: ${noCommasSearchQuery}`);
     };
 
     // Filter search results based on searchQuery state
@@ -138,9 +141,10 @@ export default function SearchBar() {
                             >
                                 <span className="pb-2 font-semibold">Suggested Locations</span>
                                 {searchResults.map((suburb) => {
-                                    const dashedSuburb = suburb.replace(/\s+/g, "&");
+                                    const commasRemovedSearchQuery = suburb.replaceAll(",", "");
+                                    const searchedSuburb = commasRemovedSearchQuery.replaceAll(/\s+/g, "+");
                                     return (
-                                        <Link href={`/suburb/${dashedSuburb}`} onClick={() => setShowResults(false)}>
+                                        <Link href={`/suburb/${searchedSuburb}`} onClick={() => setShowResults(false)}>
                                             <div className="hover:bg-hoverBlue h-8 align-middle">{suburb}</div>
                                         </Link>
                                     );
