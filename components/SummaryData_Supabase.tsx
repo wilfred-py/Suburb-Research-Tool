@@ -5,26 +5,56 @@ import { supaClient } from "@/app/supa-client";
 import { useEffect, useState } from "react";
 
 // Get Suburb Name from URL
-function getSuburbNameFromURL() {
+function getSuburbDetails() {
     const url = new URL(window.location.href);
     const pathname = url.pathname;
+
+    // State Regex
+    const stateRegex = /^(.*?)(VIC|NSW|ACT|WA|SA)/;
+
+    // String in URL
     const stringInURL = pathname.replace("/suburb/", "");
-    const suburbInURL = stringInURL.replace(/&/g, " ");
-    return suburbInURL;
+
+    // ! Suburb Name
+    // Create substrings based on stateRegex
+    const suburbMatch = stringInURL.match(stateRegex);
+
+    // If it exists, return first match in suburbName
+    const suburbName = suburbMatch ? suburbMatch[1] : null;
+
+    // Replace "+" and remove leading and trailing white spaces
+    const formattedSuburbName = suburbName ? suburbName.replaceAll("+", " ").trim() : null;
+
+    // ! State Name
+    const stateName = suburbMatch ? suburbMatch[2] : null;
+
+    // ! Post Code
+    const postcode = stringInURL.slice(-4);
+
+    return {
+        suburbName: formattedSuburbName,
+        stateName,
+        postcode,
+    };
 }
 
 export default function GetSummaryData() {
     const [suburbName, setSuburbName] = useState("");
     const [summaryData, setSummaryData] = useState<GetSummarySuburbData[]>([]);
 
+    // ! Filter through Supabase using suburbName, stateName, and postcode
     useEffect(() => {
-        const searchQuery = String(getSuburbNameFromURL());
-        console.log(searchQuery);
-        setSuburbName(searchQuery);
+        const { suburbName, stateName, postcode } = getSuburbDetails();
+        const suburbNameQuery = String(suburbName);
+        const stateNameQuery = stateName;
+        console.log(`search query: ${suburbNameQuery}`);
+        setSuburbName(suburbNameQuery);
 
         supaClient
             .rpc("get_first_10_rows")
-            .eq("suburb_name", searchQuery)
+            .eq("suburb_name", suburbNameQuery)
+            .eq("state_name", stateNameQuery)
+            .eq("post_code", postcode)
             .then(({ data }) => {
                 setSummaryData(data as GetSummarySuburbData[]);
             });

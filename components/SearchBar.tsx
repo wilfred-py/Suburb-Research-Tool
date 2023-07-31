@@ -19,6 +19,7 @@ const recommendedSearches = [
     "Williamstown, VIC, 3016",
     "Tiwi, NT, 0810",
     "Ellenbrook, WA, 6069",
+    "Richmond, SA, 5033",
 ];
 
 export default function SearchBar() {
@@ -30,8 +31,6 @@ export default function SearchBar() {
 
     // state to manage drop down list of matching results; initialise with all suburb names
     const [searchResults, setSearchResults] = useState<string[]>(recommendedSearches);
-
-    console.log(`search results: ${searchResults}`);
 
     const [focusedIndex, setFocusedIndex] = useState<number>(-1);
 
@@ -73,7 +72,6 @@ export default function SearchBar() {
 
         // push encoded string to our URL
         router.push(`/suburb?q=${capitaliseAndReplace(modifiedSearchQuery)}`);
-        console.log(`no commas search query: ${noCommasSearchQuery}`);
     };
 
     // Filter search results based on searchQuery state
