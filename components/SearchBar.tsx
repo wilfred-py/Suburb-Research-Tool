@@ -3,8 +3,23 @@
 import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 import { useRouter } from "next/navigation";
 import { useEffect, useState, useRef } from "react";
-import { suburbNames } from "../data/suburbNames";
+import { suburbNames } from "../data/oldSuburbNames";
 import Link from "next/link";
+import { comma } from "postcss/lib/list";
+
+const recommendedSearches = [
+    "Auburn, NSW, 2144",
+    "Kambah, ACT, 2902",
+    "Merrylands, NSW, 2160",
+    "Paralowie, SA, 5108",
+    "Southport, QLD, 4215",
+    "Kingston, TAS, 7050",
+    "Ryde, NSW, 2133",
+    "St Kilda, VIC, 3182",
+    "Williamstown, VIC, 3016",
+    "Tiwi, NT, 0810",
+    "Ellenbrook, WA, 6069",
+];
 
 export default function SearchBar() {
     // state to manage search query
@@ -14,7 +29,9 @@ export default function SearchBar() {
     const [showResults, setShowResults] = useState(false);
 
     // state to manage drop down list of matching results; initialise with all suburb names
-    const [searchResults, setSearchResults] = useState<string[]>(suburbNames);
+    const [searchResults, setSearchResults] = useState<string[]>(recommendedSearches);
+
+    console.log(`search results: ${searchResults}`);
 
     const [focusedIndex, setFocusedIndex] = useState<number>(-1);
 
@@ -26,7 +43,7 @@ export default function SearchBar() {
     // capitalise first letter of every word in search query
     function capitaliseAndReplace(str: any) {
         // split string into an array of words
-        const words = str.split("&");
+        const words = str.split("+");
 
         // capitalise first letter of every word
         const capitalisedWords = words.map((word: any) => {
@@ -36,7 +53,7 @@ export default function SearchBar() {
         });
 
         // Join the capitalised words back into a string
-        const result = capitalisedWords.join("&");
+        const result = capitalisedWords.join("+");
 
         return result;
     }
@@ -46,24 +63,26 @@ export default function SearchBar() {
         // prevent refresh on submit
         event?.preventDefault();
 
-        // encode search (spaces become "&" as "%20" is not supported in NextJS 13 routing)
+        // encode search (spaces become "+" as "%20" is not supported in NextJS 13 routing)
         // if searchQuery has no spaces, return searchQuery as is
-        // if searchQuery has spaces, replace spaces with "&"
+        // if searchQuery has spaces, remove commas AND replace spaces with "&"
+        const noCommasSearchQuery = searchQuery.replace(",", "&");
+        const modifiedSearchQuery = noCommasSearchQuery.replace(/\s+/g, "+").toLowerCase();
 
-        const modifiedSearchQuery = searchQuery.replace(/\s+/g, "&");
         capitaliseAndReplace(modifiedSearchQuery);
 
         // push encoded string to our URL
         router.push(`/suburb?q=${capitaliseAndReplace(modifiedSearchQuery)}`);
+        console.log(`no commas search query: ${noCommasSearchQuery}`);
     };
 
     // Filter search results based on searchQuery state
     useEffect(() => {
         if (searchQuery === "") {
-            setSearchResults(suburbNames);
+            setSearchResults(recommendedSearches);
             setShowResults(false);
         } else {
-            const filteredResults = suburbNames.filter((suburb) => suburb.toLowerCase().includes(searchQuery));
+            const filteredResults = suburbNames.filter((suburb) => suburb.toLowerCase().includes(searchQuery.toLowerCase()));
             setSearchResults(filteredResults);
             setShowResults(true);
         }
@@ -96,11 +115,12 @@ export default function SearchBar() {
                             type="search"
                             ref={inputRef}
                             value={searchQuery}
-                            onChange={(event) => setSearchQuery(event.target.value.toLowerCase())}
-                            onClick={() => setShowResults(false)}
+                            onChange={(event) => setSearchQuery(event.target.value)}
+                            onClick={() => setShowResults(true)}
                             placeholder="Suburb or Postcode..."
                             className="block w-full p-4 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 
-                            focus:border-mainBlue"
+                            "
+                            // focus:border-mainBlue
                             required
                             autoComplete="off"
                         />
@@ -115,16 +135,17 @@ export default function SearchBar() {
                     {/* Search results container */}
                     {showResults ? (
                         <div>
-                            <span>Suggested Locations</span>
                             <div
                                 ref={resultsRef}
-                                className="flex flex-col first-line:absolute mt-1 w-full p-2 bg-white shadow-lg rounded-bl rounded-br max-h-36 overflow-y-auto"
+                                className="absolute flex flex-col first-line:absolute w-full mt-1 p-2 bg-gray-50 border border-gray-300 rounded-lg shadow-lg rounded-bl rounded-br overflow-y-hidden"
                             >
+                                <span className="pb-2 font-semibold">Suggested Locations</span>
                                 {searchResults.map((suburb) => {
-                                    const dashedSuburb = suburb.replace(/\s+/g, "&");
+                                    const commasRemovedSearchQuery = suburb.replaceAll(",", "");
+                                    const searchedSuburb = commasRemovedSearchQuery.replaceAll(/\s+/g, "+");
                                     return (
-                                        <Link href={`/suburb/${dashedSuburb}`} onClick={() => setShowResults(false)}>
-                                            <div className="hover:bg-hoverYellow">{suburb}</div>
+                                        <Link href={`/suburb/${searchedSuburb}`} onClick={() => setShowResults(false)}>
+                                            <div className="hover:bg-hoverBlue h-8 align-middle">{suburb}</div>
                                         </Link>
                                     );
                                 })}
