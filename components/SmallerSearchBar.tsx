@@ -3,7 +3,7 @@
 import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 import { useRouter } from "next/navigation";
 import { useEffect, useState, useRef } from "react";
-import { suburbNames } from "../data/suburbNames";
+import { suburbNames } from "../data/oldSuburbNames";
 import Link from "next/link";
 
 export default function SearchBar() {
