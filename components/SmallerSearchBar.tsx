@@ -14,7 +14,7 @@ export default function SearchBar() {
     const [showResults, setShowResults] = useState(false);
 
     // state to manage drop down list of matching results; initialise with all suburb names
-    const [searchResults, setSearchResults] = useState<string[]>(suburbNames);
+    const [searchResults, setSearchResults] = useState<string[]>([]);
 
     const [focusedIndex, setFocusedIndex] = useState<number>(-1);
 
@@ -60,7 +60,6 @@ export default function SearchBar() {
     // Filter search results based on searchQuery state
     useEffect(() => {
         if (searchQuery === "") {
-            setSearchResults(suburbNames);
             setShowResults(false);
         } else {
             const filteredResults = suburbNames.filter((suburb) => suburb.toLowerCase().includes(searchQuery));
@@ -97,7 +96,7 @@ export default function SearchBar() {
                             ref={inputRef}
                             value={searchQuery}
                             onChange={(event) => setSearchQuery(event.target.value.toLowerCase())}
-                            onClick={() => setShowResults(false)}
+                            onClick={() => setShowResults(true)}
                             placeholder="Suburb or Postcode..."
                             className="block w-full p-4 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 
                             focus:border-mainBlue"
@@ -113,18 +112,17 @@ export default function SearchBar() {
                     </div>
 
                     {/* Search results container */}
-                    {showResults ? (
+                    {showResults && searchResults.length > 1 ? (
                         <div>
-                            <span className="mt-40">Suggested Locations</span>
                             <div
                                 ref={resultsRef}
-                                className="flex flex-col first-line:absolute mt-1 w-full p-2 bg-white shadow-lg rounded-bl rounded-br max-h-36 overflow-y-auto"
+                                className="absolute flex flex-col first-line:absolute mt-1 w-full p-2 bg-gray-50 border border-gray-300 rounded-lg shadow-lg rounded-bl rounded-br overflow-y-hidden"
                             >
                                 {searchResults.map((suburb) => {
                                     const dashedSuburb = suburb.replace(/\s+/g, "&");
                                     return (
                                         <Link href={`/suburb/${dashedSuburb}`} onClick={() => setShowResults(false)}>
-                                            <div className="hover:bg-hoverYellow">{suburb}</div>
+                                            <div className="hover:bg-hoverBlue h-8 align-middle">{suburb}</div>
                                         </Link>
                                     );
                                 })}

@@ -29,6 +29,7 @@ export default function SearchBar() {
 
     // state to manage drop down list of matching results; initialise with all suburb names
     const [searchResults, setSearchResults] = useState<string[]>(recommendedSearches);
+
     console.log(`search results: ${searchResults}`);
 
     const [focusedIndex, setFocusedIndex] = useState<number>(-1);
@@ -65,7 +66,7 @@ export default function SearchBar() {
         // if searchQuery has no spaces, return searchQuery as is
         // if searchQuery has spaces, replace spaces with "&"
 
-        const modifiedSearchQuery = searchQuery.replace(/\s+/g, "&");
+        const modifiedSearchQuery = searchQuery.replace(/\s+/g, "&").toLowerCase();
         capitaliseAndReplace(modifiedSearchQuery);
 
         // push encoded string to our URL
@@ -78,7 +79,7 @@ export default function SearchBar() {
             setSearchResults(recommendedSearches);
             setShowResults(false);
         } else {
-            const filteredResults = suburbNames.filter((suburb) => suburb.toLowerCase().includes(searchQuery));
+            const filteredResults = suburbNames.filter((suburb) => suburb.toLowerCase().includes(searchQuery.toLowerCase()));
             setSearchResults(filteredResults);
             setShowResults(true);
         }
@@ -111,7 +112,7 @@ export default function SearchBar() {
                             type="search"
                             ref={inputRef}
                             value={searchQuery}
-                            onChange={(event) => setSearchQuery(event.target.value.toLowerCase())}
+                            onChange={(event) => setSearchQuery(event.target.value)}
                             onClick={() => setShowResults(true)}
                             placeholder="Suburb or Postcode..."
                             className="block w-full p-4 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 
