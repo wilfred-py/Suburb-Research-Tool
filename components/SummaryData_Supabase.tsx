@@ -72,7 +72,7 @@ export default function GetSummaryData() {
                             </span>
                         </h1>
                     </div>
-                    <div className="flex flex-wrap place-content-evenly">
+                    <div className="flex flex-wrap">
                         <div>
                             <ul className="flex flex-col mt-4 border-opacity-0 rounded-md hover:bg-hoverBlue p-4">
                                 <li className="text-xl font-bold">People</li>
