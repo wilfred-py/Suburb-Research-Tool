@@ -4,6 +4,7 @@ import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 import { useRouter } from "next/navigation";
 import { useEffect, useState, useRef } from "react";
 import { suburbNames } from "../data/oldSuburbNames";
+import { suburbs } from "@/data/suburbNames";
 import Link from "next/link";
 import { comma } from "postcss/lib/list";
 
@@ -80,8 +81,9 @@ export default function SearchBar() {
             setSearchResults(recommendedSearches);
             setShowResults(false);
         } else {
-            const filteredResults = suburbNames.filter((suburb) => suburb.toLowerCase().includes(searchQuery.toLowerCase()));
-            setSearchResults(filteredResults);
+            const filteredResults = suburbs.filter((suburb) => suburb.toLowerCase().includes(searchQuery.toLowerCase()));
+            const topResults = filteredResults.slice(0, 10);
+            setSearchResults(topResults);
             setShowResults(true);
         }
     }, [searchQuery]);
