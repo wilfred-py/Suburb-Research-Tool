@@ -7,7 +7,10 @@ import { Loader } from "@googlemaps/js-api-loader";
 
 const Map: NextPage = () => {
     const libraries = useMemo(() => ["places"], []);
-    const mapCenter = useMemo(() => ({ lat: -33.85095, lng: 151.12895 }), []);
+
+    // ! Geocode suburb, postcode, state => lat and lng
+
+    const mapCenter = useMemo(() => ({ lat: -38.3593608, lng: 144.9740524 }), []);
 
     const mapOptions = useMemo<google.maps.MapOptions>(
         () => ({
@@ -30,10 +33,10 @@ const Map: NextPage = () => {
     }
 
     return (
-        <div className="max-h-96 m-10 flex place-items-center">
+        <div className="z-0 max-h-96 m-10 flex place-items-center">
             <GoogleMap
                 options={mapOptions}
-                zoom={14}
+                zoom={13}
                 center={mapCenter}
                 mapTypeId={google.maps.MapTypeId.ROADMAP}
                 mapContainerStyle={{ width: "1000px", height: "350px" }}
