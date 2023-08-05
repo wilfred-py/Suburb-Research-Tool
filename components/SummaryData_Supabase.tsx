@@ -81,16 +81,16 @@ export default function GetSummaryData() {
                                     {data.people}
                                 </li>
                                 <li>
+                                    <span className="font-medium">Median Age: </span>
+                                    {data.median_age}
+                                </li>
+                                <li>
                                     <span className="font-medium">Male: </span>
                                     {(parseFloat(data.male) * 100).toFixed(2)}%
                                 </li>
                                 <li>
                                     <span className="font-medium">Female: </span>
                                     {(parseFloat(data.female) * 100).toFixed(2)}%
-                                </li>
-                                <li>
-                                    <span className="font-medium">Median Age: </span>
-                                    {data.median_age}
                                 </li>
                             </ul>
                         </div>
@@ -102,16 +102,16 @@ export default function GetSummaryData() {
                                     {data.families}
                                 </li>
                                 <li>
-                                    <span className="font-medium">Average number of children per family: </span>
-                                    {parseFloat(data.for_families_with_children)}
-                                </li>
-                                <li>
                                     <span className="font-medium">Homes: </span>
                                     {data.all_private_dwellings}
                                 </li>
                                 <li>
                                     <span className="font-medium">Average number of people per household: </span>
                                     {data.average_number_of_people_per_household}
+                                </li>
+                                <li>
+                                    <span className="font-medium">Average number of children per family: </span>
+                                    {parseFloat(data.for_families_with_children)}
                                 </li>
                             </ul>
                         </div>
