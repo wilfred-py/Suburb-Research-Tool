@@ -1,10 +1,10 @@
 import SearchBar from "@/components/SearchBar";
-import AuthForm from "./AuthForm";
 import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
-import { cookies } from "next/headers";
+import AuthForm from "./AuthForm";
+// import { cookies } from "next/headers";
 
 export default async function Home() {
-    const supabase = createServerComponentClient({ cookies });
+    // const supabase = createServerComponentClient({ cookies });
     return (
         <main>
             <section id="About" className="flex flex-col flex-wrap items-center">

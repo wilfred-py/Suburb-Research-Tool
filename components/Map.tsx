@@ -48,27 +48,27 @@ const Map: NextPage = () => {
     const [suburbName, setSuburbName] = useState("");
     const [geocodeFetched, setGeoCodeFetched] = useState(false);
 
-    useEffect(() => {
-        const { suburbName, stateName, postcode } = getSuburbDetails();
-        setSuburbName(suburbName || "");
-        const geocode = async () => {
-            try {
-                const response = await fetch(
-                    `https://maps.googleapis.com/maps/api/geocode/json?address=${suburbName}+${stateName}+${postcode}&region=AU&key=${process.env.NEXT_PUBLIC_GOOGLE_MAPS_KEY}`
-                );
-                const geocodeData = await response.json();
-                const location = geocodeData.results[0]?.geometry.location;
-                if (location) {
-                    setGeocodeData({ lat: location.lat, lng: location.lng });
-                }
-            } catch (error) {
-                console.error("Error with geocode request:", error);
-            } finally {
-                setGeoCodeFetched(true);
-            }
-        };
-        geocode();
-    }, [suburbName]);
+    // useEffect(() => {
+    //     const { suburbName, stateName, postcode } = getSuburbDetails();
+    //     setSuburbName(suburbName || "");
+    //     const geocode = async () => {
+    //         try {
+    //             const response = await fetch(
+    //                 `https://maps.googleapis.com/maps/api/geocode/json?address=${suburbName}+${stateName}+${postcode}&region=AU&key=${process.env.NEXT_PUBLIC_GOOGLE_MAPS_KEY}`
+    //             );
+    //             const geocodeData = await response.json();
+    //             const location = geocodeData.results[0]?.geometry.location;
+    //             if (location) {
+    //                 setGeocodeData({ lat: location.lat, lng: location.lng });
+    //             }
+    //         } catch (error) {
+    //             console.error("Error with geocode request:", error);
+    //         } finally {
+    //             setGeoCodeFetched(true);
+    //         }
+    //     };
+    //     geocode();
+    // }, [suburbName]);
 
     const mapCenter = useMemo(() => geocodeData, [geocodeData]);
 
