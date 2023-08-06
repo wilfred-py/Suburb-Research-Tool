@@ -3,6 +3,7 @@ import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 import Link from "next/link";
 import { SignInButton, SignOutButton } from "@/components/AuthButtons";
 import AuthCheck from "@/components/AuthCheck";
+import Dialog from "@/components/Dialog";
 
 export default function NavMenu() {
     return (
@@ -15,9 +16,7 @@ export default function NavMenu() {
 
             <div className="my-auto mr-6">
                 <ul className="flex flex-row text-white space-x-7 font-semibold">
-                    <li>
-                        <Link href="About">About</Link>
-                    </li>
+                    <li></li>
                 </ul>
             </div>
             <div className="my-auto xl:pr-40 lg:pr-40 md:pr-32 sm:pr-32">
@@ -32,6 +31,9 @@ export default function NavMenu() {
                         <AuthCheck>
                             <SignOutButton />
                         </AuthCheck>
+                    </li>
+                    <li>
+                        <Dialog />
                     </li>
                 </ul>
             </div>
