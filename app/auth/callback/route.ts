@@ -14,11 +14,23 @@ export async function GET(request: Request) {
     const requestUrl = new URL(request.url);
     const code = requestUrl.searchParams.get("code");
 
+    console.log("Proof Key for Code Exchange successful");
+
     if (code) {
         const supabase = createRouteHandlerClient({ cookies });
         await supabase.auth.exchangeCodeForSession(code);
+
+        console.log("signed in with oauth");
+        supabase.auth.onAuthStateChange((event, session) => {
+            if (event == "SIGNED_IN") console.log("SIGNED_IN", session);
+        });
+
+        const { data, error } = await supabase.auth.getSession();
+
+        console.log(data);
     }
 
-    // URL to redirect to after sign in process completes
-    return NextResponse.redirect(requestUrl.origin);
+    // Redirect user back to the same URL they came from after the sign-in process completes
+    // return NextResponse.redirect(requestUrl.origin);
+    return NextResponse.redirect("http://localhost:3000/suburb/Abbotsford+NSW+2046");
 }
