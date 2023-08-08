@@ -3,8 +3,7 @@ import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 import Link from "next/link";
 import { SignInButton, SignOutButton } from "@/components/AuthButtons";
 import AuthCheck from "@/components/AuthCheck";
-import Dialog from "@/components/Dialog";
-import SignOut from "@/components/SignOut";
+import { Dialog } from "@/components/ui/dialog";
 
 export default function NavMenu() {
     return (
@@ -35,9 +34,6 @@ export default function NavMenu() {
                     </li>
                     <li>
                         <Dialog />
-                    </li>
-                    <li>
-                        <SignOut />
                     </li>
                 </ul>
             </div>
