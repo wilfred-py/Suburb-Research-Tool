@@ -1,10 +1,15 @@
 import SearchBar from "@/components/SearchBar";
-import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
+import { createClientComponentClient, Session } from "@supabase/auth-helpers-nextjs";
 import AuthForm from "./AuthForm";
-// import { cookies } from "next/headers";
+import { Database } from "./database.types";
 
-export default async function Home() {
-    // const supabase = createServerComponentClient({ cookies });
+export default async function Home({ session }: { session: Session | null }) {
+    if (session) {
+        console.log("User is logged in:", session.user);
+    } else {
+        console.log("User is not logged in.");
+    }
+
     return (
         <main>
             <section id="About" className="flex flex-col flex-wrap items-center">
