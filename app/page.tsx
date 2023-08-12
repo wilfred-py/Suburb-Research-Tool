@@ -1,14 +1,40 @@
 import SearchBar from "@/components/SearchBar";
-import { createClientComponentClient, Session } from "@supabase/auth-helpers-nextjs";
+import { createClientComponentClient, createServerComponentClient, Session } from "@supabase/auth-helpers-nextjs";
 import AuthForm from "./AuthForm";
 import { Database } from "./database.types";
+import Login from "./login";
+import { supabase } from "./supa-client";
+import { adminAuthClient } from "./AuthAdmin";
 
-export default async function Home({ session }: { session: Session | null }) {
-    if (session) {
-        console.log("User is logged in:", session.user);
-    } else {
-        console.log("User is not logged in.");
-    }
+export default async function Home() {
+    // // * THIS IS WORKING
+    // const {
+    //     data: { users },
+    //     error,
+    // } = await adminAuthClient.listUsers();
+
+    // console.log("users_list:", users);
+    // // * THIS IS WORKING
+
+    // * Retrieve user from current session
+    // const {
+    //     data: { user },
+    // } = await supabase.auth.getUser();
+    // console.log("****user:", user);
+    // "user: undefined"
+
+    // * Retrieve current session
+    const {
+        data: { session },
+        error,
+    } = await supabase.auth.getSession();
+    console.log(`data:${session}`, `error: ${error}`);
+    // data:null error: null
+
+    // * Retreive a new session
+    // const { data, error } = await supabase.auth.refreshSession();
+    // const { session, user } = data;
+    // console.log(data, session, user);
 
     return (
         <main>
@@ -20,6 +46,16 @@ export default async function Home({ session }: { session: Session | null }) {
                 <div className="col-6 auth-widget">
                     <AuthForm />
                 </div>
+                {/* <div>
+                    <Login />
+                </div> */}
+                {/* <h1 className="font-bold">Users:</h1>
+                {users.map((user) => (
+                    <p key={user.id}>{user.email}</p>
+                ))} */}
+
+                <h1>Hello</h1>
+                <p>{session?.user.user_metadata?.full_name}</p>
             </section>
         </main>
     );

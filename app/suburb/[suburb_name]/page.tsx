@@ -13,7 +13,6 @@ export default async function Suburb() {
             <div>
                 <GetSummaryData />
             </div>
-            <div>{/* <FreemiumData /> */}</div>
         </div>
     );
 }
