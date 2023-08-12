@@ -103,12 +103,8 @@ export default function SearchBar() {
     return (
         <div>
             <div className="relative m-10">
-                <div className="absolute inset-y-0 mt-1.5 left-0 flex items-center pl-3 max-h-10 pointer-events-none">
-                    <MagnifyingGlassIcon className="h-5 w-5 opacity-50" />
-                </div>
-
                 <form className="" onSubmit={onSearch}>
-                    <div className="relative flex items-center w-112">
+                    <div className="relative flex items-center w-[632px]">
                         <input
                             id="landing-page-searchbar"
                             type="search"

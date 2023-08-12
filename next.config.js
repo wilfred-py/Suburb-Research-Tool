@@ -3,7 +3,7 @@ const nextConfig = {
     images: {
         domains: ["avatars.githubusercontent.com", "lh3.googleusercontent.com"],
     },
-    output: "export",
+    // output: "export",
 };
 
 const withBundleAnalyzer = require("@next/bundle-analyzer")({
