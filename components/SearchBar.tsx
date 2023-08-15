@@ -1,11 +1,10 @@
 "use client";
 
-import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 import { useRouter } from "next/navigation";
 import { useEffect, useState, useRef } from "react";
 import { suburbs } from "@/data/suburbNames";
 import Link from "next/link";
-import { comma } from "postcss/lib/list";
+import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 
 const recommendedSearches = [
     "Auburn, NSW, 2144",
@@ -39,6 +38,15 @@ export default function SearchBar() {
 
     const router = useRouter();
 
+    // Check if user is signed in
+    const checkSession = async () => {
+        const supabase = createClientComponentClient();
+        const {
+            data: { session },
+        } = await supabase.auth.getSession();
+        console.log(session);
+    };
+
     // capitalise first letter of every word in search query
     function capitaliseAndReplace(str: any) {
         // split string into an array of words
@@ -57,7 +65,7 @@ export default function SearchBar() {
         return result;
     }
 
-    // handle search query
+    // *** Handle search query
     const onSearch = (event: React.FormEvent) => {
         // prevent refresh on submit
         event?.preventDefault();
@@ -74,7 +82,7 @@ export default function SearchBar() {
         router.push(`/suburb?q=${capitaliseAndReplace(modifiedSearchQuery)}`);
     };
 
-    // Filter search results based on searchQuery state
+    // *** Filter search results based on searchQuery state
     useEffect(() => {
         if (searchQuery === "") {
             setSearchResults(recommendedSearches);
@@ -87,7 +95,7 @@ export default function SearchBar() {
         }
     }, [searchQuery]);
 
-    // Handle mouse clicks outside search bar and hide search results
+    // *** Handle mouse clicks outside search bar and hide search results
     useEffect(() => {
         const handleOutsideClick = (event) => {
             if (resultsRef.current && !resultsRef.current.contains(event.target) && inputRef.current !== event.target) {

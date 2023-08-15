@@ -1,7 +1,7 @@
 import Link from "next/link";
 import SmallerSearchBar from "./SmallerSearchBar";
-import { SignInButton, SignOutButton } from "./AuthButtons";
-import AuthCheck from "./AuthCheck";
+import { SignInButton, SignOutButton } from "./FireShipAuthButtons";
+import AuthCheck from "./fireshipauthcheck";
 
 export default function SecondaryNavMenu() {
     return (
