@@ -45,25 +45,60 @@ export interface UserMetadata {
 }
 
 export function SignInButton() {
-    const supabase = createClientComponentClient();
+    const [isEmailVerified, setIsEmailVerified] = useState<boolean | null>(null);
     const [session, setSession] = useState<Session | null>(null);
+    const [userPicture, setUserPicture] = useState("");
+    const [renderSignIn, setRenderSignIn] = useState(false);
 
     useEffect(() => {
-        async function fetchSession() {
-            const {
-                data: { session },
-            } = await supabase.auth.getSession();
-            setSession(session?.user.user_metadata.isEmailVerified);
+        const supabase = createClientComponentClient();
+
+        // Set up an auth state change listener
+        supabase.auth.onAuthStateChange((event, session) => {
+            if (event === "SIGNED_OUT") {
+                setIsEmailVerified(false);
+            } else if (event === "SIGNED_IN" && session?.user?.user_metadata?.email_verified) {
+                setIsEmailVerified(true);
+            } else {
+                setIsEmailVerified(false);
+            }
+        });
+
+        // Initial check
+        checkEmailVerification();
+    }, []);
+
+    useEffect(() => {
+        if (isEmailVerified === false) {
+            const timer = setTimeout(() => {
+                setRenderSignIn(true);
+            }, 50);
+            return () => clearTimeout(timer);
         }
+    }, [isEmailVerified]);
 
-        fetchSession();
-    }, [session]);
+    // * Check if signed in user has verified their email
+    // Set session
+    async function checkEmailVerification() {
+        const supabase = createClientComponentClient();
+        const {
+            data: { session },
+        } = await supabase.auth.getSession();
+        setUserPicture(session?.user.user_metadata.picture);
+        if (session?.user?.user_metadata.email_verified) {
+            setIsEmailVerified(true);
+        } else {
+            setIsEmailVerified(false);
+        }
+    }
 
-    // if (session?.user?.user_metadata?.email_verified === true) {
-    //     return <Image src={session.user.user_metadata.picture} alt="Profile Picture" width={32} height={32} />;
-    // }
-
-    return <Link href="/dashboard/sign-in">Sign In</Link>;
+    // *If user is signed in, show their profile picture from the session's user_meta data
+    if (isEmailVerified === true) {
+        console.log("(SignInButton) Email is Verified");
+        return <Image src={`${userPicture}`} alt="Profile Picture" width={32} height={32} />;
+    }
+    // Delay rendering of Link component to allow component to check if user is signed in or not
+    return renderSignIn ? <Link href="/dashboard/sign-in">Sign In</Link> : <></>;
 }
 
 export function SignOutButton() {
@@ -73,7 +108,7 @@ export function SignOutButton() {
     async function LogOut() {
         let { error } = await supabase.auth.signOut();
         if (!error) {
-            console.log("signing out");
+            console.log("Signing Out...");
             console.log(error);
             router.push("/");
         }
