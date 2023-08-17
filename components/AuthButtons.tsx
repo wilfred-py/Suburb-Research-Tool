@@ -78,7 +78,7 @@ export function SignInButton() {
     }, [isEmailVerified]);
 
     // * Check if signed in user has verified their email
-    // Set session
+    // Set picture url to userPicture state
     async function checkEmailVerification() {
         const supabase = createClientComponentClient();
         const {
@@ -98,7 +98,27 @@ export function SignInButton() {
         return <Image src={`${userPicture}`} alt="Profile Picture" width={32} height={32} />;
     }
     // Delay rendering of Link component to allow component to check if user is signed in or not
-    return renderSignIn ? <Link href="/dashboard/sign-in">Sign In</Link> : <></>;
+    return renderSignIn ? (
+        <>
+            <div>
+                <Link
+                    href="/dashboard/sign-in"
+                    className="flex flex-row border-2 border-black rounded-md p-2 hover:bg-hoverBlue hover:shadow-xl hover:shadow-slate-300 "
+                >
+                    <div className="flex items-center space-x-2">
+                        <span className="-mr-1">Sign In</span>
+                        <div className="w-4 h-4 text-gray-600 transition-transform duration-300 transform hover:translate-x-1">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                            </svg>
+                        </div>
+                    </div>
+                </Link>
+            </div>
+        </>
+    ) : (
+        <></>
+    );
 }
 
 export function SignOutButton() {
@@ -114,5 +134,9 @@ export function SignOutButton() {
         }
     }
 
-    return <button onClick={LogOut}>Sign Out Mofo</button>;
+    return (
+        <button onClick={LogOut} className="border-0 rounded-md p-2 shadow-md hover:shadow-xl hover:shadow-slate-300">
+            Sign Out
+        </button>
+    );
 }
