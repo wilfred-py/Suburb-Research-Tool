@@ -1,11 +1,16 @@
+import About from "@/components/About";
 import NavMenu from "./NavMenu";
+import Highlights from "@/components/Highlights";
 
 export default async function Home() {
     return (
         <div>
             <main>
-                <section id="About" className="flex flex-col flex-wrap place-items-center">
-                    <h1>Landing Page Details</h1>
+                <section id="About">
+                    <About />
+                </section>
+                <section id="Suburb-Highlights">
+                    <Highlights />
                 </section>
             </main>
         </div>

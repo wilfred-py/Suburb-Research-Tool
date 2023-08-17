@@ -11,10 +11,11 @@ module.exports = {
             },
         },
         extend: {
+            fontFamily: { roboto: ["var(--font-roboto)"], inter: ["var(--font-inter)"] },
             colors: {
                 hoverBlue: "#EAF1F9",
                 deepDarkBlue: "#181823",
-                mainBlue: "#19376D",
+                mainBlue: "#2463eb",
                 border: "hsl(var(--border))",
                 input: "hsl(var(--input))",
                 ring: "hsl(var(--ring))",
