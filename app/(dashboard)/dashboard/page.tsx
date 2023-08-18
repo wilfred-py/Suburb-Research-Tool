@@ -1,7 +1,16 @@
+"use client";
+
 import SearchBar from "@/components/SearchBar";
 import SummaryData from "@/components/SummaryData";
+import { useState } from "react";
 
 export default function Dashboard() {
+    const [selectedSuburb, setSelectedSuburb] = useState<string | null>(null);
+
+    const handleSuburbClick = (suburb: string) => {
+        setSelectedSuburb(suburb);
+    };
+
     return (
         <>
             <div className="mx-28 mt-16 border border-black">

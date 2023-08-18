@@ -65,7 +65,7 @@ export default function SearchBar() {
         return result;
     }
 
-    // *** Handle search query
+    // ! Deprecated by removal of "ENTER" for completing <input> *** Handle search query
     const onSearch = (event: React.FormEvent) => {
         // prevent refresh on submit
         event?.preventDefault();
@@ -115,6 +115,13 @@ export default function SearchBar() {
         }
     };
 
+    // ** Hide searchResults and set search query
+    const handleResultsClick = (suburb: string) => {
+        setShowResults(false);
+        setSearchQuery(suburb);
+        console.log(suburb);
+    };
+
     return (
         <div>
             <div className="relative m-10">
@@ -155,9 +162,11 @@ export default function SearchBar() {
                                     const commasRemovedSearchQuery = suburb.replaceAll(",", "");
                                     const searchedSuburb = commasRemovedSearchQuery.replaceAll(/\s+/g, "+");
                                     return (
-                                        <Link href={`/dashboard/suburb/${searchedSuburb}`} onClick={() => setShowResults(false)}>
-                                            <div className="hover:bg-hoverBlue h-8 align-middle">{suburb}</div>
-                                        </Link>
+                                        // <Link href={`/dashboard/suburb/${searchedSuburb}`} onClick={() => setShowResults(false)}>
+                                        <div onClick={() => handleResultsClick(suburb)} className="hover:bg-hoverBlue h-8 align-middle">
+                                            {suburb}
+                                        </div>
+                                        // </Link>
                                     );
                                 })}
                             </div>
