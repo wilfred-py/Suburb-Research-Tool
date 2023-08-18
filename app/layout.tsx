@@ -1,7 +1,6 @@
 import "./globals.css";
-import NavMenu from "./NavMenu";
 import AuthProvider from "./AuthProvider";
-
+import NavBar from "./NavBar";
 import { Roboto, Inter } from "@next/font/google";
 
 const roboto = Roboto({
@@ -26,7 +25,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 <head></head>
 
                 <body className={`${roboto.variable}`}>
-                    <NavMenu />
+                    <NavBar />
                     {children}
                 </body>
             </html>

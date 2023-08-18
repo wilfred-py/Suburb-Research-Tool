@@ -1,5 +1,7 @@
 import About from "@/components/About";
-import NavMenu from "./NavMenu";
+import CallToAction from "@/components/CallToAction";
+import Footer from "@/components/Footer";
+
 import Highlights from "@/components/Highlights";
 
 export default async function Home() {
@@ -11,6 +13,12 @@ export default async function Home() {
                 </section>
                 <section id="Suburb-Highlights">
                     <Highlights />
+                </section>
+                <section id="Call-To-Action">
+                    <CallToAction />
+                </section>
+                <section id="Footer">
+                    <Footer />
                 </section>
             </main>
         </div>

@@ -103,13 +103,13 @@ export function SignInButton() {
             <div>
                 <Link
                     href="/dashboard/sign-in"
-                    className="flex flex-row border-2 border-black rounded-md p-2 hover:bg-hoverBlue hover:shadow-xl hover:shadow-slate-300 "
+                    className="flex flex-row border-2 border-black rounded-md p-2 hover:bg-hoverBlue hover:shadow-xl hover:shadow-slate-200 "
                 >
                     <div className="flex items-center space-x-2">
                         <span className="-mr-1">Sign In</span>
                         <div className="w-4 h-4 text-gray-600 transition-transform duration-300 transform hover:translate-x-1">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7"></path>
                             </svg>
                         </div>
                     </div>

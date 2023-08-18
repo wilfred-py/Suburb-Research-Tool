@@ -13,9 +13,11 @@ module.exports = {
         extend: {
             fontFamily: { roboto: ["var(--font-roboto)"], inter: ["var(--font-inter)"] },
             colors: {
+                landingPage: "#f8faff",
                 hoverBlue: "#EAF1F9",
                 deepDarkBlue: "#181823",
                 mainBlue: "#2463eb",
+                highlights: "#eaf2f2",
                 border: "hsl(var(--border))",
                 input: "hsl(var(--input))",
                 ring: "hsl(var(--ring))",
