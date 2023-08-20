@@ -47,7 +47,7 @@ export default function SummaryData() {
         const { suburbName, stateName, postcode } = getSuburbDetails();
         const suburbNameQuery = String(suburbName);
         const stateNameQuery = stateName;
-        console.log(`search query: ${suburbNameQuery}`);
+        // console.log(`search query: ${suburbNameQuery}`);
         setSuburbName(suburbNameQuery);
 
         supaClient

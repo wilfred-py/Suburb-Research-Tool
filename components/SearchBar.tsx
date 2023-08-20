@@ -1,10 +1,14 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { suburbs } from "@/data/suburbNames";
 import Link from "next/link";
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
+
+interface SearchBarProps {
+    setSelectedSuburb: React.Dispatch<React.SetStateAction<string | null>>;
+}
 
 const recommendedSearches = [
     "Auburn, NSW, 2144",
@@ -21,7 +25,7 @@ const recommendedSearches = [
     "Richmond, SA, 5033",
 ];
 
-export default function SearchBar() {
+export default function SearchBar(props: SearchBarProps) {
     // state to manage search query
     const [searchQuery, setSearchQuery] = useState("");
 
@@ -38,16 +42,7 @@ export default function SearchBar() {
 
     const router = useRouter();
 
-    // Check if user is signed in
-    const checkSession = async () => {
-        const supabase = createClientComponentClient();
-        const {
-            data: { session },
-        } = await supabase.auth.getSession();
-        console.log(session);
-    };
-
-    // capitalise first letter of every word in search query
+    // * Capitalise first letter of every word in search query
     function capitaliseAndReplace(str: any) {
         // split string into an array of words
         const words = str.split("+");
@@ -82,7 +77,7 @@ export default function SearchBar() {
         router.push(`/dashboard/suburb?q=${capitaliseAndReplace(modifiedSearchQuery)}`);
     };
 
-    // *** Filter search results based on searchQuery state
+    // * Filter search results based on searchQuery state
     useEffect(() => {
         if (searchQuery === "") {
             setSearchResults(recommendedSearches);
@@ -91,11 +86,11 @@ export default function SearchBar() {
             const filteredResults = suburbs.filter((suburb) => suburb.toLowerCase().includes(searchQuery.toLowerCase()));
             const topResults = filteredResults.slice(0, 10);
             setSearchResults(topResults);
-            setShowResults(true);
+            // setShowResults(true);
         }
     }, [searchQuery]);
 
-    // *** Handle mouse clicks outside search bar and hide search results
+    // * Handle mouse clicks outside search bar and hide search results
     useEffect(() => {
         const handleOutsideClick = (event) => {
             if (resultsRef.current && !resultsRef.current.contains(event.target) && inputRef.current !== event.target) {
@@ -108,19 +103,30 @@ export default function SearchBar() {
         };
     }, []);
 
-    // ** Prevent pressing of ENTER key from completing search on <input>
+    // * Prevent pressing of ENTER key from completing search on <input>
     const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
         if (event.key === "Enter") {
             event.preventDefault();
         }
     };
 
-    // ** Hide searchResults and set search query
+    // * Handle click inside <input> tag
+    const handleInputClick = () => {
+        // If value is blank, set showResults to true
+        if (searchQuery == "") {
+            setShowResults(true);
+        } else {
+            setShowResults(false); // If value exists, set showResults to false
+        }
+    };
+
+    // * Handle click event of results in results container. >> Hide searchResults and set search query
     const handleResultsClick = (suburb: string) => {
         setShowResults(false);
         setSearchQuery(suburb);
-        console.log(suburb);
     };
+
+    console.log(`Search Query: ${searchQuery}`);
 
     return (
         <div>
@@ -134,7 +140,7 @@ export default function SearchBar() {
                             value={searchQuery}
                             onChange={(event) => setSearchQuery(event.target.value)}
                             onKeyDown={handleKeyDown}
-                            onClick={() => setShowResults(true)}
+                            onClick={() => handleInputClick()}
                             placeholder="Suburb or Postcode..."
                             className="block w-full p-4 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 
                             "
@@ -150,12 +156,14 @@ export default function SearchBar() {
                         </button> */}
                     </div>
 
-                    {/* Search results container */}
+                    {/* Search results container 
+                        - Only show results container if <input> value is blank or user has clicked on <div>{suburb}</div>
+                    */}
                     {showResults ? (
                         <div>
                             <div
                                 ref={resultsRef}
-                                className="absolute flex flex-col first-line:absolute w-full mt-1 p-2 bg-gray-50 border border-gray-300 rounded-lg shadow-lg rounded-bl rounded-br overflow-y-hidden"
+                                className="absolute flex flex-col first-line:absolute w-[632px] mt-1 p-2 bg-gray-50 border border-gray-300 rounded-lg shadow-lg rounded-bl rounded-br overflow-y-hidden"
                             >
                                 <span className="pb-2 font-semibold">Suggested Locations</span>
                                 {searchResults.map((suburb) => {
