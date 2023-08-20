@@ -7,7 +7,7 @@ import Link from "next/link";
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 
 interface SearchBarProps {
-    setSelectedSuburb: React.Dispatch<React.SetStateAction<string | null>>;
+    setSelectedSuburb: (suburb: string) => void;
 }
 
 const recommendedSearches = [
@@ -122,8 +122,10 @@ export default function SearchBar(props: SearchBarProps) {
 
     // * Handle click event of results in results container. >> Hide searchResults and set search query
     const handleResultsClick = (suburb: string) => {
+        console.log("results container clicked");
         setShowResults(false);
         setSearchQuery(suburb);
+        props.setSelectedSuburb(suburb);
     };
 
     console.log(`Search Query: ${searchQuery}`);
