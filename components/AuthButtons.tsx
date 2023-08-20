@@ -94,7 +94,6 @@ export function SignInButton() {
 
     // *If user is signed in, show their profile picture from the session's user_meta data
     if (isEmailVerified === true) {
-        console.log("(SignInButton) Email is Verified");
         return <Image src={`${userPicture}`} alt="Profile Picture" width={32} height={32} />;
     }
     // Delay rendering of Link component to allow component to check if user is signed in or not
