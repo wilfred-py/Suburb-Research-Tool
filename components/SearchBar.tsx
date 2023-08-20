@@ -129,9 +129,9 @@ export default function SearchBar(props: SearchBarProps) {
 
     return (
         <div>
-            <div className="relative m-10">
+            <div className="relative">
                 <form className="" onSubmit={onSearch}>
-                    <div className="relative flex items-center w-[632px]">
+                    <div className="relative w-[632px]">
                         <input
                             id="landing-page-searchbar"
                             type="search"
