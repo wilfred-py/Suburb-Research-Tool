@@ -1,25 +1,38 @@
-import SearchBar from "@/components/SearchBar";
-import { createServerComponentClient, Session } from "@supabase/auth-helpers-nextjs";
-import AuthForm from "../AuthForm";
-import { cookies } from "next/headers";
+"use client";
 
-export default async function Dashboard() {
-    // * Retrieve current session
-    // const supabase = createServerComponentClient({ cookies });
-    // const {
-    //     data: { session },
-    //     error,
-    // } = await supabase.auth.getSession();
-    // console.log(`data:${session}`, `error: ${error}`);
+import SearchBar from "@/components/SearchBar";
+import SummaryData from "@/components/SummaryData";
+import { useEffect, useState } from "react";
+
+export default function Dashboard() {
+    const [selectedSuburb, setSelectedSuburb] = useState<string | null>(null);
+
+    // useEffect(() => {
+    //     console.log(`Selected Suburb: ${selectedSuburb}`);
+    // }, [selectedSuburb]);
+
+    const handleSuburbClick = (suburb: string) => {
+        setSelectedSuburb(suburb);
+        console.log("test");
+    };
 
     return (
-        <main>
-            <section id="About" className="flex flex-col flex-wrap items-center">
-                <h1 className="mt-10 text-2xl">Find out more about the suburb you want to buy or rent in</h1>
-                <div>
-                    <SearchBar />
+        <>
+            <div className="mx-28 mt-16 border border-black">
+                <h1 className="p-4">Dashboard</h1>
+                <span className="p-4">Selected suburb: {selectedSuburb}</span>
+                <div className="flex flex-col">
+                    <div>
+                        <SearchBar setSelectedSuburb={setSelectedSuburb} />
+                    </div>
+                    <div className="flex flex-row justify-center">
+                        <div className="h-[600px] w-8/12  border border-black">
+                            Summary Data
+                            <SummaryData />
+                        </div>
+                    </div>
                 </div>
-            </section>
-        </main>
+            </div>
+        </>
     );
 }

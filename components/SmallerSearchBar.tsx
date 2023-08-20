@@ -54,7 +54,7 @@ export default function SearchBar() {
         capitaliseAndReplace(modifiedSearchQuery);
 
         // push encoded string to our URL
-        router.push(`/suburb?q=${capitaliseAndReplace(modifiedSearchQuery)}`);
+        router.push(`/dashboard/suburb?q=${capitaliseAndReplace(modifiedSearchQuery)}`);
     };
 
     // Filter search results based on searchQuery state
@@ -82,6 +82,13 @@ export default function SearchBar() {
         };
     }, []);
 
+    // ** Prevent pressing of ENTER key from completing search on <input>
+    const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
+        if (event.key === "Enter") {
+            event.preventDefault();
+        }
+    };
+
     return (
         <div>
             <div className="relative mr-10">
@@ -97,6 +104,7 @@ export default function SearchBar() {
                             ref={inputRef}
                             value={searchQuery}
                             onChange={(event) => setSearchQuery(event.target.value)}
+                            onKeyDown={handleKeyDown}
                             onClick={() => setShowResults(true)}
                             placeholder="Suburb or Postcode..."
                             className="block w-full p-4 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 
@@ -123,7 +131,7 @@ export default function SearchBar() {
                                     const commasRemovedSearchQuery = suburb.replaceAll(",", "");
                                     const searchedSuburb = commasRemovedSearchQuery.replaceAll(/\s+/g, "+");
                                     return (
-                                        <Link href={`/suburb/${searchedSuburb}`} onClick={() => setShowResults(false)}>
+                                        <Link href={`/dashboard/suburb/${searchedSuburb}`} onClick={() => setShowResults(false)}>
                                             <div className="hover:bg-hoverBlue h-8 align-middle">{suburb}</div>
                                         </Link>
                                     );

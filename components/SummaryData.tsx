@@ -1,94 +1,143 @@
 "use client";
 
-import PocketBase from "pocketbase";
-import { useState, useEffect } from "react";
+import { GetSummarySuburbData } from "@/app/database.types";
+import { supaClient } from "@/app/supa-client";
+import { useEffect, useState } from "react";
 
-// Function to get suburb name from URL
-// If suburb is more than one word, spaces are replaced with "&" between words.
-// Retrieve string in URL after /suburb/ and then replace "&" with " "
-function getSuburbNameFromURL() {
+// Get Suburb Name from URL
+function getSuburbDetails() {
     const url = new URL(window.location.href);
     const pathname = url.pathname;
-    const stringInURL = pathname.replace("/suburb/", "");
-    const suburbInURL = stringInURL.replace(/&/g, " ");
-    return suburbInURL;
-}
 
-// Async function to complete send GET request to PB to check if suburbInURL exists in PB
-async function getSuburbName() {
-    const suburbInURL = getSuburbNameFromURL();
-    const pb = new PocketBase("http://127.0.0.1:8090");
-    console.log(`Suburb Name = ${suburbInURL}`);
+    // State Regex
+    const stateRegex = /^(.*?)(VIC|NSW|ACT|WA|SA)/;
 
-    // GET request using suburbInURL
-    const res = await pb.collection("summary_data").getFirstListItem(`suburb_name="${suburbInURL}"`, {
-        expand: "relField1,relField2.subRelField",
-    });
+    // String in URL
+    const stringInURL = pathname.replace("/dashboard/suburb/", "");
 
-    console.log(res);
-    return res?.suburb_name;
-}
+    // ! Suburb Name
+    // Create substrings based on stateRegex
+    const suburbMatch = stringInURL.match(stateRegex);
 
-async function getSuburbData() {
-    const suburbInURL = getSuburbNameFromURL();
-    const pb = new PocketBase("http://127.0.0.1:8090");
-    console.log(`Suburb Name = ${suburbInURL}`);
+    // If it exists, return first match in suburbName
+    const suburbName = suburbMatch ? suburbMatch[1] : null;
 
-    // GET request using suburbInURL
-    const res = await pb.collection("summary_data").getFirstListItem(`suburb_name="${suburbInURL}"`, {
-        expand: "relField1,relField2.subRelField",
-    });
+    // Replace "+" and remove leading and trailing white spaces
+    const formattedSuburbName = suburbName ? suburbName.replaceAll("+", " ").trim() : null;
 
-    console.log(res);
-    return res?.summary_data;
+    // ! State Name
+    const stateName = suburbMatch ? suburbMatch[2] : null;
+
+    // ! Post Code
+    const postcode = stringInURL.slice(-4);
+
+    return {
+        suburbName: formattedSuburbName,
+        stateName,
+        postcode,
+    };
 }
 
 export default function SummaryData() {
     const [suburbName, setSuburbName] = useState("");
-    const [suburbData, setSuburbData] = useState<{ [key: string]: any }>([]);
+    const [summaryData, setSummaryData] = useState<GetSummarySuburbData[]>([]);
 
+    // ! Filter through Supabase using suburbName, stateName, and postcode
     useEffect(() => {
-        async function fetchSuburbData() {
-            try {
-                const suburb = await getSuburbName();
-                const data = await getSuburbData();
-                setSuburbName(suburb);
-                console.log("Successfully fetched summary_data name");
-                setSuburbData(data);
-                console.log("Successfully fetched summary_data");
-            } catch (error) {
-                console.error("Failed to fetch summary_data:", error);
-            }
-        }
-        fetchSuburbData();
-    }, []);
+        const { suburbName, stateName, postcode } = getSuburbDetails();
+        const suburbNameQuery = String(suburbName);
+        const stateNameQuery = stateName;
+        // console.log(`search query: ${suburbNameQuery}`);
+        setSuburbName(suburbNameQuery);
+
+        supaClient
+            .rpc("get_first_10_rows")
+            .eq("suburb_name", suburbNameQuery)
+            .eq("state_name", stateNameQuery)
+            .eq("post_code", postcode)
+            .then(({ data }) => {
+                setSummaryData(data as GetSummarySuburbData[]);
+            });
+    }, [suburbName]);
 
     return (
-        <div>
-            <div className="flex flex-col items-center border border-black rounded max-w-xl h-48 w-screen m-4">
-                <div className="bg-hoverYellow w-full text-center">
-                    <p className="text-4xl font-bold mb-4 bg-hoverYellow">{suburbName}</p>
+        <>
+            {summaryData?.map((data) => (
+                <div className="ml-2 mt-10">
+                    <div className="">
+                        <h1>
+                            Snapshot of{" "}
+                            <span className="font-medium">
+                                {data.suburb_name}, {data.state_name}, {data.post_code}
+                            </span>
+                        </h1>
+                    </div>
+                    <div className="flex flex-wrap">
+                        <div>
+                            <ul className="flex flex-col mt-4 border-opacity-0 rounded-md hover:bg-hoverBlue p-4">
+                                <li className="text-xl font-bold">People</li>
+                                <li>
+                                    <span className="font-medium">Population: </span>
+                                    {data.people}
+                                </li>
+                                <li>
+                                    <span className="font-medium">Median Age: </span>
+                                    {data.median_age}
+                                </li>
+                                <li>
+                                    <span className="font-medium">Male: </span>
+                                    {(parseFloat(data.male) * 100).toFixed(2)}%
+                                </li>
+                                <li>
+                                    <span className="font-medium">Female: </span>
+                                    {(parseFloat(data.female) * 100).toFixed(2)}%
+                                </li>
+                            </ul>
+                        </div>
+                        <div>
+                            <ul className="flex flex-col mt-4 border-opacity-0 rounded-md hover:bg-hoverBlue p-4">
+                                <li className="text-xl font-bold">Families</li>
+                                <li>
+                                    <span className="font-medium">Number of Families: </span>
+                                    {data.families}
+                                </li>
+                                <li>
+                                    <span className="font-medium">Homes: </span>
+                                    {data.all_private_dwellings}
+                                </li>
+                                <li>
+                                    <span className="font-medium">Average number of people per household: </span>
+                                    {data.average_number_of_people_per_household}
+                                </li>
+                                <li>
+                                    <span className="font-medium">Average number of children per family: </span>
+                                    {parseFloat(data.for_families_with_children)}
+                                </li>
+                            </ul>
+                        </div>
+                        <div>
+                            <ul className="flex flex-col mt-4 border-opacity-0 rounded-md hover:bg-hoverBlue p-4">
+                                <li className="text-xl font-bold">Homes</li>
+                                <li>
+                                    <span className="font-medium">Median weekly household income: </span>$
+                                    {data.median_weekly_household_income}
+                                </li>
+                                <li>
+                                    <span className="font-medium">Median monthly mortgage repayments: </span>$
+                                    {data.median_monthly_mortgage_repayments}
+                                </li>
+                                <li>
+                                    <span className="font-medium">Median weekly rent: </span>${data.median_weekly_rent_b}
+                                </li>
+                                <li>
+                                    <span className="font-medium">Average number of mortor vehicles per home: </span>
+                                    {data.average_number_of_motor_vehicles_per_dwelling}
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
-                <section id="people">
-                    <div className="flex flex-row">
-                        <p className="font-bold mr-2">Population: </p>
-                        {suburbData["People"]} people live in {suburbName}
-                    </div>
-                    <div className="flex flex-row">
-                        <p className="font-bold mr-2">Median age: </p> {suburbData["Median age"]}
-                    </div>
-                    <div className="flex flex-row">
-                        <p className="font-bold mr-2">Male: </p> {suburbData["Male"]}
-                    </div>
-                    <div className="flex flex-row">
-                        <p className="font-bold mr-2">Female: </p> {suburbData["Female"]}
-                    </div>
-                </section>
-                <section id="owners">
-                    <div></div>
-                </section>
-                <section id="rent"></section>
-            </div>
-        </div>
+            ))}
+        </>
     );
 }
