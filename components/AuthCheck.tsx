@@ -36,8 +36,6 @@ export default function AuthCheck({ children }: { children: React.ReactNode }) {
         }
     }
 
-    console.log(`Email Verification Status: ${isEmailVerified}`);
-
     // Initial Check
 
     // useEffect(() => {

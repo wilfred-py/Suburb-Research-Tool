@@ -4,8 +4,12 @@ import { GetSummarySuburbData } from "@/app/database.types";
 import { supaClient } from "@/app/supa-client";
 import { useEffect, useState } from "react";
 
-// Get Suburb Name from URL
-function getSuburbDetails() {
+interface SummaryDataProps {
+    selectedSuburb: string | null;
+}
+
+// * Get Suburb Name from URL
+function getSuburbDetailsFromUrl() {
     const url = new URL(window.location.href);
     const pathname = url.pathname;
 
@@ -38,42 +42,88 @@ function getSuburbDetails() {
     };
 }
 
-export default function SummaryData() {
-    const [suburbName, setSuburbName] = useState("");
+function deconstructSuburb(suburb: string | null) {
+    // State Regex
+    const stateRegex = /^(.*?),\s*(VIC|NSW|ACT|WA|SA|TAS|NT)/;
+
+    // ! Suburb Name
+    // Create substrings based on stateRegex
+    const suburbMatch = suburb?.match(stateRegex);
+
+    // If it exists, return first match in suburbName
+    const suburbName = suburbMatch ? suburbMatch[1] : null;
+
+    // ! State Name
+    const stateName = suburbMatch ? suburbMatch[2] : null;
+
+    // ! Post Code
+    const postcode = suburb?.slice(-4);
+
+    return {
+        suburbName,
+        stateName,
+        postcode,
+    };
+}
+
+export default function SummaryData(props: SummaryDataProps) {
+    const [suburbName, setSuburbName] = useState<String | null>("");
     const [summaryData, setSummaryData] = useState<GetSummarySuburbData[]>([]);
 
-    // ! Filter through Supabase using suburbName, stateName, and postcode
+    // * Filter through Supabase using suburbName, stateName, and postcode
     useEffect(() => {
-        const { suburbName, stateName, postcode } = getSuburbDetails();
-        const suburbNameQuery = String(suburbName);
-        const stateNameQuery = stateName;
-        // console.log(`search query: ${suburbNameQuery}`);
-        setSuburbName(suburbNameQuery);
+        async function fetchSuburbData() {
+            try {
+                const { suburbName, stateName, postcode } = deconstructSuburb(props.selectedSuburb);
 
-        supaClient
-            .rpc("get_first_10_rows")
-            .eq("suburb_name", suburbNameQuery)
-            .eq("state_name", stateNameQuery)
-            .eq("post_code", postcode)
-            .then(({ data }) => {
-                setSummaryData(data as GetSummarySuburbData[]);
-            });
-    }, [suburbName]);
+                const suburbNameQuery = String(suburbName);
+                const stateNameQuery = stateName;
+
+                setSuburbName(suburbNameQuery);
+
+                console.log(suburbName, stateName, postcode);
+
+                if (suburbName) {
+                    supaClient
+                        .rpc("get_first_10_rows")
+                        .eq("suburb_name", suburbNameQuery)
+                        .eq("state_name", stateNameQuery)
+                        .eq("post_code", postcode)
+                        .then(({ data }) => {
+                            setSummaryData(data as GetSummarySuburbData[]);
+                        });
+                }
+            } catch (error) {
+                console.error("Error fetching data:", error);
+            }
+        }
+        fetchSuburbData();
+    }, [props.selectedSuburb]);
 
     return (
         <>
             {summaryData?.map((data) => (
                 <div className="ml-2 mt-10">
                     <div className="">
-                        <h1>
-                            Snapshot of{" "}
-                            <span className="font-medium">
-                                {data.suburb_name}, {data.state_name}, {data.post_code}
+                        {String(data.post_code).startsWith("8") ? (
+                            <span>
+                                Snapshot of{" "}
+                                <span>
+                                    {data.suburb_name}, {data.state_name}, 0{data.post_code}
+                                </span>
                             </span>
-                        </h1>
+                        ) : (
+                            <span>
+                                Snapshot of{" "}
+                                <span className="font-medium">
+                                    {data.suburb_name}, {data.state_name}, {data.post_code}
+                                </span>
+                            </span>
+                        )}
+                        <h1>{data.post_code[1] == 8 ? <div>postcode begins with 8</div> : ""}</h1>
                     </div>
                     <div className="flex flex-wrap">
-                        <div>
+                        <div id="people">
                             <ul className="flex flex-col mt-4 border-opacity-0 rounded-md hover:bg-hoverBlue p-4">
                                 <li className="text-xl font-bold">People</li>
                                 <li>
@@ -94,7 +144,7 @@ export default function SummaryData() {
                                 </li>
                             </ul>
                         </div>
-                        <div>
+                        <div id="families">
                             <ul className="flex flex-col mt-4 border-opacity-0 rounded-md hover:bg-hoverBlue p-4">
                                 <li className="text-xl font-bold">Families</li>
                                 <li>
@@ -115,7 +165,7 @@ export default function SummaryData() {
                                 </li>
                             </ul>
                         </div>
-                        <div>
+                        <div id="homes">
                             <ul className="flex flex-col mt-4 border-opacity-0 rounded-md hover:bg-hoverBlue p-4">
                                 <li className="text-xl font-bold">Homes</li>
                                 <li>

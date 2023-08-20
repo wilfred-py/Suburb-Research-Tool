@@ -7,15 +7,6 @@ import { useEffect, useState } from "react";
 export default function Dashboard() {
     const [selectedSuburb, setSelectedSuburb] = useState<string | null>(null);
 
-    // useEffect(() => {
-    //     console.log(`Selected Suburb: ${selectedSuburb}`);
-    // }, [selectedSuburb]);
-
-    const handleSuburbClick = (suburb: string) => {
-        setSelectedSuburb(suburb);
-        console.log("test");
-    };
-
     return (
         <>
             <div className="mx-28 mt-16 border border-black">
@@ -26,9 +17,9 @@ export default function Dashboard() {
                         <SearchBar setSelectedSuburb={setSelectedSuburb} />
                     </div>
                     <div className="flex flex-row justify-center">
-                        <div className="h-[600px] w-8/12  border border-black">
+                        <div className="h-[600px] w-full border border-black">
                             Summary Data
-                            <SummaryData />
+                            <SummaryData selectedSuburb={selectedSuburb} />
                         </div>
                     </div>
                 </div>
