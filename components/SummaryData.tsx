@@ -103,7 +103,7 @@ export default function SummaryData(props: SummaryDataProps) {
     return (
         <>
             {summaryData?.map((data) => (
-                <div className="">
+                <div className="font-inter">
                     <div className="my-4">
                         {String(data.post_code).startsWith("8") ? (
                             <span>
@@ -115,7 +115,7 @@ export default function SummaryData(props: SummaryDataProps) {
                         ) : (
                             <span>
                                 Snapshot of{" "}
-                                <span className="font-medium">
+                                <span className="font-semibold">
                                     {data.suburb_name}, {data.state_name}, {data.post_code}
                                 </span>
                             </span>
@@ -126,20 +126,22 @@ export default function SummaryData(props: SummaryDataProps) {
                             <ul className="flex flex-col border-opacity-0 rounded-md p-4">
                                 <li className="text-xl font-bold">People</li>
                                 <li>
-                                    <span className="font-medium">Population: </span>
+                                    <span className="font-semibold">Population: </span>
                                     {data.people}
                                 </li>
                                 <li>
-                                    <span className="font-medium">Median Age: </span>
+                                    <span className="font-semibold">Median Age: </span>
                                     {data.median_age}
                                 </li>
                                 <li>
-                                    <span className="font-medium">Male: </span>
-                                    {(parseFloat(data.male) * 100).toFixed(2)}%
+                                    <span className="font-semibold">Male: </span>
+                                    <span>{(parseFloat(data.male) * 100).toFixed(2)}</span>
+                                    <span className="ml-[2px]">%</span>
                                 </li>
                                 <li>
-                                    <span className="font-medium">Female: </span>
-                                    {(parseFloat(data.female) * 100).toFixed(2)}%
+                                    <span className="font-semibold">Female: </span>
+                                    <span>{(parseFloat(data.female) * 100).toFixed(2)}</span>
+                                    <span className="ml-[2px]">%</span>
                                 </li>
                             </ul>
                         </div>
@@ -147,19 +149,19 @@ export default function SummaryData(props: SummaryDataProps) {
                             <ul className="flex flex-col border-opacity-0 rounded-md p-4 shadow-lg">
                                 <li className="text-xl font-bold">Families</li>
                                 <li>
-                                    <span className="font-medium">Number of Families: </span>
+                                    <span className="font-semibold">Number of Families: </span>
                                     {data.families}
                                 </li>
                                 <li>
-                                    <span className="font-medium">Homes: </span>
+                                    <span className="font-semibold">Homes: </span>
                                     {data.all_private_dwellings}
                                 </li>
                                 <li>
-                                    <span className="font-medium">Average number of people per household: </span>
+                                    <span className="font-semibold">Average number of people per household: </span>
                                     {data.average_number_of_people_per_household}
                                 </li>
                                 <li>
-                                    <span className="font-medium">Average number of children per family: </span>
+                                    <span className="font-semibold">Average number of children per family: </span>
                                     {parseFloat(data.for_families_with_children)}
                                 </li>
                             </ul>
@@ -168,18 +170,38 @@ export default function SummaryData(props: SummaryDataProps) {
                             <ul className="flex flex-col border-opacity-0 rounded-md p-4 shadow-lg">
                                 <li className="text-xl font-bold">Homes</li>
                                 <li>
-                                    <span className="font-medium">Median weekly household income: </span>$
+                                    <span className="font-semibold">Median weekly household income: </span>$
                                     {data.median_weekly_household_income}
                                 </li>
                                 <li>
-                                    <span className="font-medium">Median monthly mortgage repayments: </span>$
+                                    <span className="font-semibold">Median monthly mortgage repayments: </span>$
                                     {data.median_monthly_mortgage_repayments}
                                 </li>
                                 <li>
-                                    <span className="font-medium">Median weekly rent: </span>${data.median_weekly_rent_b}
+                                    <span className="font-semibold">Median weekly rent: </span>${data.median_weekly_rent_b}
                                 </li>
                                 <li>
-                                    <span className="font-medium">Average number of mortor vehicles per home: </span>
+                                    <span className="font-semibold">Average number of mortor vehicles per home: </span>
+                                    {data.average_number_of_motor_vehicles_per_dwelling}
+                                </li>
+                            </ul>
+                        </div>
+                        <div id="owners-and-renters" className="border border-gray-200 rounded-md">
+                            <ul className="flex flex-col border-opacity-0 rounded-md p-4 shadow-lg">
+                                <li className="text-xl font-bold">Owners and Renters</li>
+                                <li>
+                                    <span className="font-semibold">Median weekly household income: </span>$
+                                    {data.median_weekly_household_income}
+                                </li>
+                                <li>
+                                    <span className="font-semibold">Median monthly mortgage repayments: </span>$
+                                    {data.median_monthly_mortgage_repayments}
+                                </li>
+                                <li>
+                                    <span className="font-semibold">Median weekly rent: </span>${data.median_weekly_rent_b}
+                                </li>
+                                <li>
+                                    <span className="font-semibold">Average number of mortor vehicles per home: </span>
                                     {data.average_number_of_motor_vehicles_per_dwelling}
                                 </li>
                             </ul>
