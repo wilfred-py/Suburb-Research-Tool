@@ -10,7 +10,7 @@ export default function Dashboard() {
 
     return (
         <>
-            <div className="xl:px-40 lg:pl-40 lg:mr-auto md:pl-32 md:mr-auto sm:pl-32 sm:mr-auto mt-4 border border-black">
+            <div className="xl:px-40 lg:pl-40 lg:mr-auto md:pl-32 md:mr-auto sm:pl-32 sm:mr-auto mt-4">
                 <h1 className="text-4xl font-semibold">Dashboard</h1>
                 <div className="flex flex-col">
                     <div className="mt-6">
