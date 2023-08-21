@@ -103,8 +103,8 @@ export default function SummaryData(props: SummaryDataProps) {
     return (
         <>
             {summaryData?.map((data) => (
-                <div className="ml-2 mt-10">
-                    <div className="">
+                <div className="">
+                    <div className="my-4">
                         {String(data.post_code).startsWith("8") ? (
                             <span>
                                 Snapshot of{" "}
@@ -120,11 +120,10 @@ export default function SummaryData(props: SummaryDataProps) {
                                 </span>
                             </span>
                         )}
-                        <h1>{data.post_code[1] == 8 ? <div>postcode begins with 8</div> : ""}</h1>
                     </div>
-                    <div className="flex flex-wrap">
-                        <div id="people">
-                            <ul className="flex flex-col mt-4 border-opacity-0 rounded-md hover:bg-hoverBlue p-4">
+                    <div className="flex flex-row flex-wrap space-x-6">
+                        <div id="people" className="border border-gray-200 rounded-md shadow-lg">
+                            <ul className="flex flex-col border-opacity-0 rounded-md p-4">
                                 <li className="text-xl font-bold">People</li>
                                 <li>
                                     <span className="font-medium">Population: </span>
@@ -144,8 +143,8 @@ export default function SummaryData(props: SummaryDataProps) {
                                 </li>
                             </ul>
                         </div>
-                        <div id="families">
-                            <ul className="flex flex-col mt-4 border-opacity-0 rounded-md hover:bg-hoverBlue p-4">
+                        <div id="families" className="border border-gray-200 rounded-md">
+                            <ul className="flex flex-col border-opacity-0 rounded-md p-4 shadow-lg">
                                 <li className="text-xl font-bold">Families</li>
                                 <li>
                                     <span className="font-medium">Number of Families: </span>
@@ -165,8 +164,8 @@ export default function SummaryData(props: SummaryDataProps) {
                                 </li>
                             </ul>
                         </div>
-                        <div id="homes">
-                            <ul className="flex flex-col mt-4 border-opacity-0 rounded-md hover:bg-hoverBlue p-4">
+                        <div id="homes" className="border border-gray-200 rounded-md">
+                            <ul className="flex flex-col border-opacity-0 rounded-md p-4 shadow-lg">
                                 <li className="text-xl font-bold">Homes</li>
                                 <li>
                                     <span className="font-medium">Median weekly household income: </span>$
