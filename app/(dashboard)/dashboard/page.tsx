@@ -1,5 +1,6 @@
 "use client";
 
+import NavBar from "@/app/NavBar";
 import Map from "@/components/Map";
 import SearchBar from "@/components/SearchBar";
 import SummaryData from "@/components/SummaryData";
@@ -10,6 +11,7 @@ export default function Dashboard() {
 
     return (
         <>
+            <NavBar />
             <div className="xl:px-40 lg:pl-40 lg:mr-auto md:pl-32 md:mr-auto sm:pl-32 sm:mr-auto mt-4">
                 <h1 className="text-4xl font-semibold">Dashboard</h1>
                 <div className="flex flex-col">

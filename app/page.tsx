@@ -3,11 +3,13 @@ import CallToAction from "@/components/CallToAction";
 import Footer from "@/components/Footer";
 
 import Highlights from "@/components/Highlights";
+import NavBar from "./NavBar";
 
 export default async function Home() {
     return (
         <div>
             <main>
+                <NavBar />
                 <section id="About">
                     <About />
                 </section>
