@@ -4,7 +4,7 @@ import { SignInButton, SignOutButton } from "@/components/AuthButtons";
 
 export default function NavBar() {
     return (
-        <nav className="sticky top-0 z-50 w-screen h-[92px] flex flex-row bg-Woodland text-gray-100">
+        <nav className="sticky top-0 z-50 w-screen h-[92px] flex flex-row bg-landingPage ">
             <div className="xl:pl-40 xl:mr-auto lg:pl-40 lg:mr-auto md:pl-32 md:mr-auto sm:pl-32 sm:mr-auto my-auto">
                 <ul className="flex flex-row space-x-7 place-items-center font-semibold mr-7 list-none">
                     <li>
@@ -13,12 +13,12 @@ export default function NavBar() {
                         </Link>
                     </li>
                     <li>
-                        <Link href={"/about"} className="text-gray-300">
+                        <Link href={"/about"} className="text-gray-500">
                             About
                         </Link>
                     </li>
                     <li>
-                        <Link href={"/features"} className="text-gray-300">
+                        <Link href={"/features"} className="text-gray-500">
                             Features
                         </Link>
                     </li>
@@ -29,9 +29,6 @@ export default function NavBar() {
                 <ul className="flex flex-row space-x-7 place-items-center font-semibold mr-7 list-none">
                     <li>
                         <AuthCheck>
-                            <Link href={"/search"} className="mx-3">
-                                Search
-                            </Link>
                             <Link href={"/dashboard"} className="mx-3">
                                 Dashboard
                             </Link>

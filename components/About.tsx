@@ -22,7 +22,7 @@ export default function About() {
             <div className="mt-10">
                 <Link
                     href={"/dashboard/sign-up"}
-                    className="border border-black bg-deepDarkBlue text-white font-semibold rounded-md p-2 hover:bg-gray-800 hover:shadow-2xl hover:shadow-slate-300"
+                    className="border border-black bg-Seaweed hover:bg-Woodland text-white font-semibold rounded-md p-2 hover:shadow-2xl hover:shadow-slate-300"
                 >
                     Get Started For Free
                 </Link>
