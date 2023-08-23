@@ -4,7 +4,7 @@ import { SignInButton, SignOutButton } from "@/components/AuthButtons";
 
 export default function NavBar() {
     return (
-        <nav className="sticky top-0 z-50 w-screen h-[92px] flex flex-row bg-landingPage">
+        <nav className="sticky top-0 z-50 w-screen h-[92px] flex flex-row bg-Woodland text-gray-100">
             <div className="xl:pl-40 xl:mr-auto lg:pl-40 lg:mr-auto md:pl-32 md:mr-auto sm:pl-32 sm:mr-auto my-auto">
                 <ul className="flex flex-row space-x-7 place-items-center font-semibold mr-7 list-none">
                     <li>
@@ -13,12 +13,12 @@ export default function NavBar() {
                         </Link>
                     </li>
                     <li>
-                        <Link href={"/about"} className="text-gray-600">
+                        <Link href={"/about"} className="text-gray-300">
                             About
                         </Link>
                     </li>
                     <li>
-                        <Link href={"/features"} className="text-gray-600">
+                        <Link href={"/features"} className="text-gray-300">
                             Features
                         </Link>
                     </li>

@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function About() {
     return (
         <div className="bg-landingPage flex flex-col flex-wrap place-items-center h-[600px] ">
@@ -18,9 +20,12 @@ export default function About() {
                 </p>
             </div>
             <div className="mt-10">
-                <button className="border border-black bg-deepDarkBlue text-white font-semibold rounded-md p-2 hover:text-blue-200 hover:shadow-xl hover:shadow-slate-200">
+                <Link
+                    href={"/dashboard/sign-up"}
+                    className="border border-black bg-deepDarkBlue text-white font-semibold rounded-md p-2 hover:bg-gray-800 hover:shadow-2xl hover:shadow-slate-300"
+                >
                     Get Started For Free
-                </button>
+                </Link>
             </div>
         </div>
     );

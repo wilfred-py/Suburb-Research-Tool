@@ -102,11 +102,11 @@ export function SignInButton() {
             <div>
                 <Link
                     href="/dashboard/sign-in"
-                    className="flex flex-row border-2 border-black rounded-md p-2 hover:bg-hoverBlue hover:shadow-xl hover:shadow-slate-200 "
+                    className="flex flex-row border-2 border-black rounded-md p-2 hover:bg-hoverBlue hover:shadow-xl hover:shadow-slate-200 hover:text-black"
                 >
                     <div className="flex items-center space-x-2">
                         <span className="-mr-1">Sign In</span>
-                        <div className="w-4 h-4 text-gray-600 transition-transform duration-300 transform hover:translate-x-1">
+                        <div className="w-4 h-4 text-gray-600 transition-transform duration-300 transform hover:translate-x-1 text-white hover:text-black">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7"></path>
                             </svg>
@@ -134,7 +134,7 @@ export function SignOutButton() {
     }
 
     return (
-        <button onClick={LogOut} className="border-0 rounded-md p-2 shadow-md hover:shadow-xl hover:shadow-slate-300">
+        <button onClick={LogOut} className="border-2 border-black rounded-md p-2 shadow-md hover:shadow-sm hover:shadow-slate-300">
             Sign Out
         </button>
     );
