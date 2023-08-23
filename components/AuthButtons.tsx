@@ -106,7 +106,7 @@ export function SignInButton() {
                 >
                     <div className="flex items-center space-x-2">
                         <span className="-mr-1">Sign In</span>
-                        <div className="w-4 h-4 text-gray-600 transition-transform duration-300 transform hover:translate-x-1 text-white hover:text-black">
+                        <div className="w-4 h-4 transition-transform duration-300 transform hover:translate-x-1 hover:text-black">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7"></path>
                             </svg>
