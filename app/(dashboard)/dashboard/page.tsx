@@ -2,6 +2,7 @@
 
 import NavBar from "@/app/NavBar";
 import Map from "@/components/Map";
+import RecentSales from "@/components/RecentSales";
 import SearchBar from "@/components/SearchBar";
 import SummaryData from "@/components/SummaryData";
 import { useState } from "react";
@@ -23,7 +24,14 @@ export default function Dashboard() {
                     <div className="flex flex-row justify-center">
                         <div className="max-h-screen w-full ">
                             <SummaryData selectedSuburb={selectedSuburb} />
-                            <Map selectedSuburb={selectedSuburb} />
+                            <div className="flex flex-row">
+                                <div className="w-7/12">
+                                    <Map selectedSuburb={selectedSuburb} />
+                                </div>
+                                <div className="w-5/12">
+                                    <RecentSales selectedSuburb={selectedSuburb} />
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
