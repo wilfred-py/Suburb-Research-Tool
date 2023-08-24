@@ -8,39 +8,39 @@ interface SummaryDataProps {
     selectedSuburb: string | null;
 }
 
-// * Get Suburb Name from URL
-function getSuburbDetailsFromUrl() {
-    const url = new URL(window.location.href);
-    const pathname = url.pathname;
+// !!! Deprecated Function (suburb is now passed in through prop) Get Suburb Name from URL
+// function getSuburbDetailsFromUrl() {
+//     const url = new URL(window.location.href);
+//     const pathname = url.pathname;
 
-    // State Regex
-    const stateRegex = /^(.*?)(VIC|NSW|ACT|WA|SA)/;
+//     // State Regex
+//     const stateRegex = /^(.*?)(VIC|NSW|ACT|WA|SA)/;
 
-    // String in URL
-    const stringInURL = pathname.replace("/dashboard/suburb/", "");
+//     // String in URL
+//     const stringInURL = pathname.replace("/dashboard/suburb/", "");
 
-    // ! Suburb Name
-    // Create substrings based on stateRegex
-    const suburbMatch = stringInURL.match(stateRegex);
+//     // ! Suburb Name
+//     // Create substrings based on stateRegex
+//     const suburbMatch = stringInURL.match(stateRegex);
 
-    // If it exists, return first match in suburbName
-    const suburbName = suburbMatch ? suburbMatch[1] : null;
+//     // If it exists, return first match in suburbName
+//     const suburbName = suburbMatch ? suburbMatch[1] : null;
 
-    // Replace "+" and remove leading and trailing white spaces
-    const formattedSuburbName = suburbName ? suburbName.replaceAll("+", " ").trim() : null;
+//     // Replace "+" and remove leading and trailing white spaces
+//     const formattedSuburbName = suburbName ? suburbName.replaceAll("+", " ").trim() : null;
 
-    // ! State Name
-    const stateName = suburbMatch ? suburbMatch[2] : null;
+//     // ! State Name
+//     const stateName = suburbMatch ? suburbMatch[2] : null;
 
-    // ! Post Code
-    const postcode = stringInURL.slice(-4);
+//     // ! Post Code
+//     const postcode = stringInURL.slice(-4);
 
-    return {
-        suburbName: formattedSuburbName,
-        stateName,
-        postcode,
-    };
-}
+//     return {
+//         suburbName: formattedSuburbName,
+//         stateName,
+//         postcode,
+//     };
+// }
 
 function deconstructSuburb(suburb: string | null) {
     // State Regex
@@ -80,8 +80,6 @@ export default function SummaryData(props: SummaryDataProps) {
                 const stateNameQuery = stateName;
 
                 setSuburbName(suburbNameQuery);
-
-                console.log(suburbName, stateName, postcode);
 
                 if (suburbName) {
                     supaClient

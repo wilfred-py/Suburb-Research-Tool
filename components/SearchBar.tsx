@@ -162,7 +162,7 @@ export default function SearchBar(props: SearchBarProps) {
                         <div>
                             <div
                                 ref={resultsRef}
-                                className="absolute flex flex-col first-line:absolute w-[632px] mt-1 p-2 bg-gray-50 border border-gray-300 rounded-lg shadow-lg rounded-bl rounded-br overflow-y-hidden"
+                                className="absolute z-10 flex flex-col first-line:absolute w-[632px] mt-1 p-2 bg-gray-50 border border-gray-300 rounded-lg shadow-lg rounded-bl rounded-br overflow-y-hidden"
                             >
                                 <span className="pb-2 font-semibold">Suggested Locations</span>
                                 {searchResults.map((suburb) => {
