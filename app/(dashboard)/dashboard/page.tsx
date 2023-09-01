@@ -1,6 +1,7 @@
 "use client";
 
 import NavBar from "@/app/NavBar";
+import DashboardSelector from "@/components/DashboardSelector";
 import Map from "@/components/Map";
 import RecentSales from "@/components/RecentSales";
 import SearchBar from "@/components/SearchBar";
@@ -8,7 +9,11 @@ import SummaryData from "@/components/SummaryData";
 import { useState } from "react";
 
 export default function Dashboard() {
+    // Suburb being queried
     const [selectedSuburb, setSelectedSuburb] = useState<string | null>(null);
+
+    // Dashboard view
+    const [selectedView, setSelectedView] = useState<string | null>(null);
 
     console.log(`selectedSuburb: ${selectedSuburb}`);
 
@@ -20,6 +25,9 @@ export default function Dashboard() {
                 <div className="flex flex-col">
                     <div className="mt-6">
                         <SearchBar setSelectedSuburb={setSelectedSuburb} />
+                    </div>
+                    <div className="">
+                        <DashboardSelector setSelectedView={setSelectedView} />
                     </div>
                     <div className="flex flex-row justify-center">
                         <div className="max-h-screen w-full ">
