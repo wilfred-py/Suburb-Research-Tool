@@ -1,0 +1,76 @@
+{
+    "Ancestry, top responses": {
+        "English": {
+            "Abbotsford": "2,915",
+            "% of suburb": "32.1",
+            "Victoria": "1,900,089",
+            "% of state": "29.2",
+            "Australia": "8,385,928",
+            "% of country": "33.0"
+        },
+        "Australian": {
+            "Abbotsford": "2,059",
+            "% of suburb": "22.7",
+            "Victoria": "1,770,726",
+            "% of state": "27.2",
+            "Australia": "7,596,753",
+            "% of country": "29.9"
+        },
+        "Irish": {
+            "Abbotsford": "1,394",
+            "% of suburb": "15.3",
+            "Victoria": "611,788",
+            "% of state": "9.4",
+            "Australia": "2,410,833",
+            "% of country": "9.5"
+        },
+        "Scottish": {
+            "Abbotsford": "1,031",
+            "% of suburb": "11.3",
+            "Victoria": "534,459",
+            "% of state": "8.2",
+            "Australia": "2,176,777",
+            "% of country": "8.6"
+        },
+        "Chinese": {
+            "Abbotsford": "833",
+            "% of suburb": "9.2",
+            "Victoria": "427,467",
+            "% of state": "6.6",
+            "Australia": "1,390,639",
+            "% of country": "5.5"
+        }
+    },
+    "English": {
+        "Agnes Water - Miriam Vale": "2,751",
+        "% of suburb": "40.4",
+        "Queensland": "1,959,880",
+        "% of state": "38.0",
+        "Australia": "8,385,928",
+        "% of country": "33.0"
+    },
+    "Australian": {
+        "Agnes Water - Miriam Vale": "2,641",
+        "% of suburb": "38.8",
+        "Queensland": "1,724,657",
+        "% of state": "33.4",
+        "Australia": "7,596,753",
+        "% of country": "29.9"
+    },
+    "Scottish": {
+        "Agnes Water - Miriam Vale": "689",
+        "% of suburb": "10.1",
+        "Queensland": "527,011",
+        "% of state": "10.2",
+        "Australia": "2,176,777",
+        "% of country": "8.6"
+    },
+    "German": {
+        "Agnes Water - Miriam Vale": "503",
+        "% of suburb": "7.4",
+        "Queensland": "309,723",
+        "% of state": "6.0",
+        "Australia": "1,026,138",
+        "% of country": "4.0"
+    }
+}
