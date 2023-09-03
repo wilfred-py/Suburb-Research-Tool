@@ -18,6 +18,10 @@ export default function Dashboard() {
 
     console.log(`selectedSuburb: ${selectedSuburb}`);
 
+    const handleViewChange = (newView: string | null) => {
+        setSelectedView(newView);
+    };
+
     return (
         <>
             <NavBar />
@@ -29,14 +33,14 @@ export default function Dashboard() {
                     </div>
 
                     {/* Dashboard selector */}
-                    <div className="">
-                        <DashboardSelector selectedView={selectedView} setSelectedView={setSelectedView} />
+                    <div className="my-4">
+                        <DashboardSelector selectedView={selectedView} onChangeView={handleViewChange} />
                     </div>
 
                     {/* Dashboard <div> */}
                     {/* Conditionally render Overview/Housing Details/Demographic/Lifestyle depending on selectedView state */}
 
-                    {selectedView == "Overview" ? <Overview selectedSuburb={selectedSuburb} /> : ""}
+                    {selectedView == "Lifestyle" ? <Overview selectedSuburb={selectedSuburb} /> : ""}
                 </div>
             </div>
         </>
