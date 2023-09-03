@@ -3,6 +3,7 @@ interface DashboardSelectorProps {
 }
 
 export default function DashboardSelector(props: DashboardSelectorProps) {
+    console.log(props.setSelectedView);
     return (
         <div className="flex flex-row justify-evenly items-center w-[400px] h-10 font-roboto border-0 border-gray-200 rounded-md bg-gray-200">
             <span className="text-center">Overview</span>
