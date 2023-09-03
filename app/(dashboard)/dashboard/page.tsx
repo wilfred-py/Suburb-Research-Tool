@@ -30,7 +30,7 @@ export default function Dashboard() {
 
                     {/* Dashboard selector */}
                     <div className="">
-                        <DashboardSelector setSelectedView={setSelectedView} />
+                        <DashboardSelector selectedView={selectedView} setSelectedView={setSelectedView} />
                     </div>
 
                     {/* Dashboard <div> */}
