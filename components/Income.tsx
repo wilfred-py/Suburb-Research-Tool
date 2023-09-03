@@ -1,183 +1,125 @@
-import PocketBase from "pocketbase";
-import { useState, useEffect } from "react";
-import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend } from "chart.js";
-import { Bar } from "react-chartjs-2";
-import { faker } from "@faker-js/faker";
+"use client";
 
-ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
+import { createClientComponentClient, createServerComponentClient } from "@supabase/auth-helpers-nextjs";
+import { useEffect, useState } from "react";
 
-// Function to get suburb name from URL
-function getSuburbNameFromURL() {
-    const url = new URL(window.location.href);
-    const pathname = url.pathname;
-    const stringInURL = pathname.replace("/suburb/", "");
-    const suburbInURL = stringInURL.replace(/&/g, " ");
-    return suburbInURL;
+interface IncomeDataItem {
+    income_data: any;
 }
 
-// Async function to complete send GET request to PB to check if suburbInURL exists in PB
-async function getSuburbName() {
-    const suburbInURL = getSuburbNameFromURL();
-    const pb = new PocketBase("http://127.0.0.1:8090");
-    console.log(`Suburb Name = ${suburbInURL}`);
-
-    // GET request using suburbInURL
-    const res = await pb.collection("summary_data").getFirstListItem(`suburb_name="${suburbInURL}"`, {
-        expand: "relField1,relField2.subRelField",
-    });
-
-    console.log(res);
-    return res?.suburb_name;
-}
-
-// Async function to get suburb data from PB
-async function getSuburbData() {
-    const suburbInURL = getSuburbNameFromURL();
-    const pb = new PocketBase("http://127.0.0.1:8090");
-
-    // GET request using suburbInURL
-    const res = await pb.collection("main_data").getFirstListItem(`suburb_name="${suburbInURL}"`, {
-        expand: "relField1,relField2.subRelField",
-    });
-
-    return res?.main_data;
-}
-
-export default function Income() {
-    const [suburbName, setSuburbName] = useState("");
-    const [stateName, setStateName] = useState("");
-    const [suburbData, setSuburbData] = useState<{ [key: string]: { [key: string]: { [key: string]: string } } }>({});
-
-    // Personal Income
-    const [personalIncomeInSuburb, setPersonalIncomeInSuburb] = useState(0);
-    const [personalIncomeInState, setPersonalIncomeInState] = useState(0);
-    const [personalIncomeInAustralia, setPersonalIncomeInAustralia] = useState(0);
-    const personalIncomeSuburbWidth = Math.round(Math.floor(((personalIncomeInSuburb / 100) * 208) / 4) / 4) * 4;
-    const personalIncomeStateWidth = Math.round(Math.floor(((personalIncomeInState / 100) * 208) / 4) / 4) * 4;
-    const personalIncomeAustraliaWidth = Math.round(Math.floor(((personalIncomeInAustralia / 100) * 208) / 4) / 4) * 4;
-
-    // Household Income
-    const [householdIncomeInSuburb, sethouseholdIncomeInSuburb] = useState(0);
-    const [householdIncomeInState, sethouseholdIncomeInState] = useState(0);
-    const [householdIncomeInAustralia, sethouseholdIncomeInAustralia] = useState(0);
-    const householdIncomeSuburbWidth = Math.round(Math.floor(((householdIncomeInSuburb / 100) * 208) / 4) / 4) * 4;
-    const householdIncomeStateWidth = Math.round(Math.floor(((householdIncomeInState / 100) * 208) / 4) / 4) * 4;
-    const householdIncomeAustraliaWidth = Math.round(Math.floor(((householdIncomeInAustralia / 100) * 208) / 4) / 4) * 4;
+export default function Test() {
+    const [incomeData, setIncomeData] = useState<IncomeDataItem[]>([]); // Initialize state with an empty array
+    const supabase = createClientComponentClient();
 
     useEffect(() => {
-        async function fetchSuburbData() {
+        async function fetchIncomeData() {
             try {
-                const suburb = await getSuburbName();
-                const data = await getSuburbData();
-                setSuburbName(suburb);
-                setSuburbData(data);
+                const { data, error } = await supabase.from("income_and_work").select("*").range(0, 3);
+                console.log(data);
+                console.log(error);
+                setIncomeData(data || []);
 
-                // State Name
-                const firstObject = data["Age"]["0-4 years"];
-                const keys = Object.keys(firstObject);
-                const stateName = keys[keys.length - 1];
-                setStateName(stateName);
+                if (error) {
+                    console.error("Error fetching data:", error);
+                } else {
+                    const formattedData = data?.map((item: IncomeDataItem) => {
+                        const incomeData = item?.income_data;
+                        const formattedIncomeData: any = {};
 
-                console.log("successfully fetched income data");
+                        // Key examples:
+                        // 1. "Employment status"
+                        // 2. "Employment, hours worked"
+                        // 3. "Median weekly incomes (a)"
+                        for (const key in incomeData) {
+                            if (incomeData?.hasOwnProperty(key)) {
+                                const innerData = incomeData[key];
+                                // innerData example:
+                                // {
+                                //     "Unemployed": {
+                                //       "NSW": "2,136,610",
+                                //       "Australia": "7,095,103",
+                                //       "% of state": "55.2",
+                                //       "Abbotsbury": "1,110",
+                                //       "% of suburb": "53.0",
+                                //       "% of country": "55.9"
+                                //     },
+                                //     "Worked full-time": {
+                                //       "NSW": "2,136,610",
+                                //       "Australia": "7,095,103",
+                                //       "% of state": "55.2",
+                                //       "Abbotsbury": "1,110",
+                                //       "% of suburb": "53.0",
+                                //       "% of country": "55.9"
+                                //     },
+                                //     "Worked part-time": {
+                                //       "NSW": "2,136,610",
+                                //       "Australia": "7,095,103",
+                                //       "% of state": "55.2",
+                                //       "Abbotsbury": "1,110",
+                                //       "% of suburb": "53.0",
+                                //       "% of country": "55.9"
+                                //     },
+                                //     "Away from work (a)": {
+                                //       "NSW": "2,136,610",
+                                //       "Australia": "7,095,103",
+                                //       "% of state": "55.2",
+                                //       "Abbotsbury": "1,110",
+                                //       "% of suburb": "53.0",
+                                //       "% of country": "55.9"
+                                //     }
+                                //   }
 
-                // Can't parse income data because value has $ sign
-
-                // Personal Income
-                setPersonalIncomeInSuburb(parseFloat(data["Median weekly incomes (a)"]["Personal (b)"][suburb].replace(/[$,]/g, "")));
-                setPersonalIncomeInState(parseFloat(data["Median weekly incomes (a)"]["Personal (b)"][stateName].replace(/[$,]/g, "")));
-                setPersonalIncomeInAustralia(
-                    parseFloat(data["Median weekly incomes (a)"]["Personal (b)"]["Australia"].replace(/[$,]/g, ""))
-                );
-
-                // Household Income
-                sethouseholdIncomeInSuburb(parseFloat(data["Median weekly incomes (a)"]["Household (d)"][suburb].replace(/[$,]/g, "")));
-                sethouseholdIncomeInState(parseFloat(data["Median weekly incomes (a)"]["Household (d)"][stateName].replace(/[$,]/g, "")));
-                sethouseholdIncomeInAustralia(
-                    parseFloat(data["Median weekly incomes (a)"]["Household (d)"]["Australia"].replace(/[$,]/g, ""))
-                );
+                                const formattedInnerData: any = {};
+                                for (const innerKey in innerData) {
+                                    if (innerData?.hasOwnProperty(innerKey)) {
+                                        formattedInnerData[innerKey] = innerData[innerKey];
+                                        // formattedInnerData example
+                                        // {
+                                        //   "NSW": "2,136,610",
+                                        //   "Australia": "7,095,103",
+                                        //   "% of state": "55.2",
+                                        //   "Abbotsbury": "1,110",
+                                        //   "% of suburb": "53.0",
+                                        //   "% of country": "55.9"
+                                        // }
+                                    }
+                                }
+                                formattedIncomeData[key] = formattedInnerData;
+                            }
+                        }
+                        return {
+                            incomeData: formattedIncomeData,
+                        };
+                    });
+                }
             } catch (error) {
-                console.error("Failed to fetch main_data:", error);
+                console.error("Data fetch unsuccessful", error);
             }
         }
-        fetchSuburbData();
+        fetchIncomeData();
     }, []);
-
-    // Chart.js
-    const labels = [2021];
-
-    const personalMedianIncomeData = {
-        labels,
-        datasets: [
-            {
-                label: suburbName,
-                data: labels.map(() => personalIncomeInSuburb),
-                backgroundColor: "rgba(245, 195, 71, 0.5)",
-            },
-            {
-                label: stateName,
-                data: labels.map(() => personalIncomeInState),
-                backgroundColor: "rgba(0, 203, 165, 0.5)",
-            },
-            {
-                label: "Australia",
-                data: labels.map(() => personalIncomeInAustralia),
-                backgroundColor: "rgba(53, 162, 235, 0.5)",
-            },
-        ],
-    };
-
-    const householdMedianIncomeData = {
-        labels,
-        datasets: [
-            {
-                label: suburbName,
-                data: labels.map(() => householdIncomeInSuburb),
-                backgroundColor: "rgba(245, 195, 71, 0.5)",
-            },
-            {
-                label: stateName,
-                data: labels.map(() => householdIncomeInState),
-                backgroundColor: "rgba(0, 203, 165, 0.5)",
-            },
-            {
-                label: "Australia",
-                data: labels.map(() => householdIncomeInAustralia),
-                backgroundColor: "rgba(53, 162, 235, 0.5)",
-            },
-        ],
-    };
-
-    const personalMedianIncomeOptions = {
-        responsive: true,
-        plugins: {
-            legend: {
-                position: "right" as const,
-            },
-            title: {
-                display: true,
-                text: "Personal Median Weekly Income",
-            },
-        },
-    };
-
-    const householdMedianIncomeOptions = {
-        responsive: true,
-        plugins: {
-            legend: {
-                position: "right" as const,
-            },
-            title: {
-                display: true,
-                text: "Household Median Weekly Income",
-            },
-        },
-    };
 
     return (
         <div>
-            <div className="m-4">
-                <Bar options={personalMedianIncomeOptions} data={personalMedianIncomeData} className="max-w-lg max-h-[360px]" />
-                <Bar options={householdMedianIncomeOptions} data={householdMedianIncomeData} className="max-w-lg max-h-[360px]" />
+            <div className="max-w-full min-h-screen bg-Shakespeare">
+                <h1 className="text-6xl">TEST PAGE LUL</h1>
+                <div>
+                    {incomeData ? (
+                        <div>
+                            {incomeData[1]?.income_data && (
+                                <div>
+                                    <h2>Income Data</h2>
+                                    <p>
+                                        Unemployment (% of australia):{" "}
+                                        {incomeData[1].income_data["Employment status"]["Unemployed"]["Australia"]}
+                                    </p>
+                                </div>
+                            )}
+                        </div>
+                    ) : (
+                        <p>Loading...</p>
+                    )}
+                </div>
             </div>
         </div>
     );

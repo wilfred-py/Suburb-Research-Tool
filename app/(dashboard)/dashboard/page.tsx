@@ -1,6 +1,7 @@
 "use client";
 
 import NavBar from "@/app/NavBar";
+import Overview from "@/components/(dashboardViews)/Overview";
 import DashboardSelector from "@/components/DashboardSelector";
 import Map from "@/components/Map";
 import RecentSales from "@/components/RecentSales";
@@ -13,7 +14,7 @@ export default function Dashboard() {
     const [selectedSuburb, setSelectedSuburb] = useState<string | null>(null);
 
     // Dashboard view
-    const [selectedView, setSelectedView] = useState<string | null>(null);
+    const [selectedView, setSelectedView] = useState<string | null>("Overview");
 
     console.log(`selectedSuburb: ${selectedSuburb}`);
 
@@ -26,22 +27,16 @@ export default function Dashboard() {
                     <div className="mt-6">
                         <SearchBar setSelectedSuburb={setSelectedSuburb} />
                     </div>
+
+                    {/* Dashboard selector */}
                     <div className="">
-                        <DashboardSelector setSelectedView={setSelectedView} />
+                        <DashboardSelector selectedView={selectedView} setSelectedView={setSelectedView} />
                     </div>
-                    <div className="flex flex-row justify-center">
-                        <div className="max-h-screen w-full ">
-                            <SummaryData selectedSuburb={selectedSuburb} />
-                            <div className="flex flex-row">
-                                <div className="w-7/12">
-                                    <Map selectedSuburb={selectedSuburb} />
-                                </div>
-                                <div className="w-5/12">
-                                    <RecentSales selectedSuburb={selectedSuburb} />
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+
+                    {/* Dashboard <div> */}
+                    {/* Conditionally render Overview/Housing Details/Demographic/Lifestyle depending on selectedView state */}
+
+                    {selectedView == "Overview" ? <Overview selectedSuburb={selectedSuburb} /> : ""}
                 </div>
             </div>
         </>
