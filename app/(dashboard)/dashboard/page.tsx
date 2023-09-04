@@ -2,12 +2,13 @@
 
 import NavBar from "@/app/NavBar";
 import DemographicView from "@/components/(dashboardViews)/DemographicView";
+import HousingDetailsView from "@/components/(dashboardViews)/HousingDetailsView";
+import LifestyleView from "@/components/(dashboardViews)/Lifestyle";
 import OverviewView from "@/components/(dashboardViews)/OverviewView";
 import DashboardSelector from "@/components/DashboardSelector";
 import Map from "@/components/Map";
 import RecentSales from "@/components/RecentSales";
 import SearchBar from "@/components/SearchBar";
-import SummaryData from "@/components/SummaryData";
 import { useState } from "react";
 
 export default function Dashboard() {
@@ -42,7 +43,9 @@ export default function Dashboard() {
                     {/* Conditionally render Overview/Housing Details/Demographic/Lifestyle depending on selectedView state */}
 
                     {selectedView == "Overview" ? <OverviewView selectedSuburb={selectedSuburb} /> : ""}
-                    {selectedView == "Demographic" ? <DemographicView /> : ""}
+                    {selectedView == "Demographic" ? <DemographicView selectedSuburb={selectedSuburb} /> : ""}
+                    {selectedView == "Housing Details" ? <HousingDetailsView selectedSuburb={selectedSuburb} /> : ""}
+                    {selectedView == "Lifestyle" ? <LifestyleView selectedSuburb={selectedSuburb} /> : ""}
                 </div>
             </div>
         </>
