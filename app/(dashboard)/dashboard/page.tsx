@@ -1,7 +1,8 @@
 "use client";
 
 import NavBar from "@/app/NavBar";
-import Overview from "@/components/(dashboardViews)/Overview";
+import DemographicView from "@/components/(dashboardViews)/DemographicView";
+import OverviewView from "@/components/(dashboardViews)/OverviewView";
 import DashboardSelector from "@/components/DashboardSelector";
 import Map from "@/components/Map";
 import RecentSales from "@/components/RecentSales";
@@ -18,6 +19,10 @@ export default function Dashboard() {
 
     console.log(`selectedSuburb: ${selectedSuburb}`);
 
+    const handleViewChange = (newView: string | null) => {
+        setSelectedView(newView);
+    };
+
     return (
         <>
             <NavBar />
@@ -29,14 +34,15 @@ export default function Dashboard() {
                     </div>
 
                     {/* Dashboard selector */}
-                    <div className="">
-                        <DashboardSelector selectedView={selectedView} setSelectedView={setSelectedView} />
+                    <div className="my-4">
+                        <DashboardSelector selectedView={selectedView} onChangeView={handleViewChange} />
                     </div>
 
                     {/* Dashboard <div> */}
                     {/* Conditionally render Overview/Housing Details/Demographic/Lifestyle depending on selectedView state */}
 
-                    {selectedView == "Overview" ? <Overview selectedSuburb={selectedSuburb} /> : ""}
+                    {selectedView == "Overview" ? <OverviewView selectedSuburb={selectedSuburb} /> : ""}
+                    {selectedView == "Demographic" ? <DemographicView /> : ""}
                 </div>
             </div>
         </>
