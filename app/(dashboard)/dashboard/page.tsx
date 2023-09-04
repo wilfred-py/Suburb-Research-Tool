@@ -1,7 +1,8 @@
 "use client";
 
 import NavBar from "@/app/NavBar";
-import Overview from "@/components/(dashboardViews)/Overview";
+import DemographicView from "@/components/(dashboardViews)/DemographicView";
+import OverviewView from "@/components/(dashboardViews)/OverviewView";
 import DashboardSelector from "@/components/DashboardSelector";
 import Map from "@/components/Map";
 import RecentSales from "@/components/RecentSales";
@@ -40,7 +41,8 @@ export default function Dashboard() {
                     {/* Dashboard <div> */}
                     {/* Conditionally render Overview/Housing Details/Demographic/Lifestyle depending on selectedView state */}
 
-                    {selectedView == "Lifestyle" ? <Overview selectedSuburb={selectedSuburb} /> : ""}
+                    {selectedView == "Overview" ? <OverviewView selectedSuburb={selectedSuburb} /> : ""}
+                    {selectedView == "Demographic" ? <DemographicView /> : ""}
                 </div>
             </div>
         </>
