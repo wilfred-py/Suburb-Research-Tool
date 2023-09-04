@@ -1,0 +1,254 @@
+{
+    "Participation in the labour force": {
+        "In the labour force": {
+            "suburb": "2,096",
+            "% of suburb": "59.2",
+            "state": "3,874,012",
+            "% of state": "58.7",
+            "Australia": "12,695,853",
+            "% of Australia": "61.1"
+        },
+        "Not in the labour force": {
+            "suburb": "1,332",
+            "% of suburb": "37.6",
+            "state": "2,341,417",
+            "% of state": "35.5",
+            "Australia": "6,888,081",
+            "% of Australia": "33.1"
+        },
+        "Not stated": {
+            "suburb": "115",
+            "% of suburb": "3.2",
+            "state": "386,728",
+            "% of state": "5.9",
+            "Australia": "1,200,851",
+            "% of Australia": "5.8"
+        }
+    },
+    "Employment status": {
+        "Worked full-time": {
+            "suburb": "1,110",
+            "% of suburb": "53.0",
+            "state": "2,136,610",
+            "% of state": "55.2",
+            "Australia": "7,095,103",
+            "% of Australia": "55.9"
+        },
+        "Worked part-time": {
+            "suburb": "531",
+            "% of suburb": "25.3",
+            "state": "1,151,660",
+            "% of state": "29.7",
+            "Australia": "3,962,550",
+            "% of Australia": "31.2"
+        },
+        "Away from work (a)": {
+            "suburb": "398",
+            "% of suburb": "19.0",
+            "state": "395,888",
+            "% of state": "10.2",
+            "Australia": "991,758",
+            "% of Australia": "7.8"
+        },
+        "Unemployed": {
+            "suburb": "61",
+            "% of suburb": "2.9",
+            "state": "189,852",
+            "% of state": "4.9",
+            "Australia": "646,442",
+            "% of Australia": "5.1"
+        }
+    },
+    "Employment, hours worked": {
+        "0 hours (away from work)": {
+            "suburb": "358",
+            "% of suburb": "17.6",
+            "state": "331,611",
+            "% of state": "9.0",
+            "Australia": "787,382",
+            "% of Australia": "6.5"
+        },
+        "1-19 hours": {
+            "suburb": "227",
+            "% of suburb": "11.1",
+            "state": "504,158",
+            "% of state": "13.7",
+            "Australia": "1,681,120",
+            "% of Australia": "14.0"
+        },
+        "20-29 hours": {
+            "suburb": "187",
+            "% of suburb": "9.2",
+            "state": "400,415",
+            "% of state": "10.9",
+            "Australia": "1,373,403",
+            "% of Australia": "11.4"
+        },
+        "30-34 hours": {
+            "suburb": "116",
+            "% of suburb": "5.7",
+            "state": "247,088",
+            "% of state": "6.7",
+            "Australia": "908,031",
+            "% of Australia": "7.5"
+        },
+        "35-39 hours": {
+            "suburb": "443",
+            "% of suburb": "21.7",
+            "state": "751,277",
+            "% of state": "20.4",
+            "Australia": "2,487,056",
+            "% of Australia": "20.6"
+        },
+        "40-44 hours": {
+            "suburb": "398",
+            "% of suburb": "19.5",
+            "state": "768,161",
+            "% of state": "20.9",
+            "Australia": "2,448,402",
+            "% of Australia": "20.3"
+        },
+        "45 hours or more": {
+            "suburb": "269",
+            "% of suburb": "13.2",
+            "state": "617,176",
+            "% of state": "16.8",
+            "Australia": "2,159,645",
+            "% of Australia": "17.9"
+        }
+    },
+    "Occupation, top responses": {
+        "Professionals": {
+            "suburb": "462",
+            "% of suburb": "22.7",
+            "state": "952,131",
+            "% of state": "25.8",
+            "Australia": "2,886,921",
+            "% of Australia": "24.0"
+        },
+        "Clerical and Administrative Workers": {
+            "suburb": "379",
+            "% of suburb": "18.6",
+            "state": "480,612",
+            "% of state": "13.0",
+            "Australia": "1,525,311",
+            "% of Australia": "12.7"
+        },
+        "Managers": {
+            "suburb": "305",
+            "% of suburb": "15.0",
+            "state": "536,820",
+            "% of state": "14.6",
+            "Australia": "1,645,769",
+            "% of Australia": "13.7"
+        },
+        "Technicians and Trades Workers": {
+            "suburb": "254",
+            "% of suburb": "12.5",
+            "state": "436,589",
+            "% of state": "11.9",
+            "Australia": "1,554,313",
+            "% of Australia": "12.9"
+        },
+        "Sales Workers": {
+            "suburb": "206",
+            "% of suburb": "10.1",
+            "state": "294,889",
+            "% of state": "8.0",
+            "Australia": "986,433",
+            "% of Australia": "8.2"
+        },
+        "Community and Personal Service Workers": {
+            "suburb": "154",
+            "% of suburb": "7.6",
+            "state": "390,779",
+            "% of state": "10.6",
+            "Australia": "1,382,205",
+            "% of Australia": "11.5"
+        },
+        "Labourers": {
+            "suburb": "131",
+            "% of suburb": "6.4",
+            "state": "300,966",
+            "% of state": "8.2",
+            "Australia": "1,086,120",
+            "% of Australia": "9.0"
+        },
+        "Machinery Operators and Drivers": {
+            "suburb": "119",
+            "% of suburb": "5.8",
+            "state": "222,186",
+            "% of state": "6.0",
+            "Australia": "755,863",
+            "% of Australia": "6.3"
+        }
+    },
+    "Industry of employment, top responses": {
+        "Primary Education": {
+            "suburb": "84",
+            "% of suburb": "4.1",
+            "state": "76,275",
+            "% of state": "2.1",
+            "Australia": "265,249",
+            "% of Australia": "2.2"
+        },
+        "Hospitals (except Psychiatric Hospitals)": {
+            "suburb": "69",
+            "% of suburb": "3.4",
+            "state": "153,159",
+            "% of state": "4.2",
+            "Australia": "545,158",
+            "% of Australia": "4.5"
+        },
+        "Secondary Education": {
+            "suburb": "55",
+            "% of suburb": "2.7",
+            "state": "64,612",
+            "% of state": "1.8",
+            "Australia": "205,360",
+            "% of Australia": "1.7"
+        },
+        "Banking": {
+            "suburb": "49",
+            "% of suburb": "2.4",
+            "state": "71,055",
+            "% of state": "1.9",
+            "Australia": "158,358",
+            "% of Australia": "1.3"
+        },
+        "Takeaway Food Services": {
+            "suburb": "43",
+            "% of suburb": "2.1",
+            "state": "66,951",
+            "% of state": "1.8",
+            "Australia": "232,691",
+            "% of Australia": "1.9"
+        }
+    },
+    "Median weekly incomes (a)": {
+        "Personal (b)": {
+            "suburb": "$846",
+            "% of suburb": "N/A",
+            "state": "$813",
+            "% of state": "N/A",
+            "Australia": "$805",
+            "% of Australia": "N/A"
+        },
+        "Family (c)": {
+            "suburb": "$2,684",
+            "% of suburb": "N/A",
+            "state": "$2,185",
+            "% of state": "N/A",
+            "Australia": "$2,120",
+            "% of Australia": "N/A"
+        },
+        "Household (d)": {
+            "suburb": "$2,621",
+            "% of suburb": "N/A",
+            "state": "$1,829",
+            "% of state": "N/A",
+            "Australia": "$1,746",
+            "% of Australia": "N/A"
+        }
+    }
+}
