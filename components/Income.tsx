@@ -13,19 +13,19 @@ interface IncomeProps {
 
 export default function Income(props: IncomeProps) {
     const [incomeData, setIncomeData] = useState<IncomeDataItem[]>([]); // Initialize state with an empty array
-    const [suburbName, setSuburbName] = useState<string | null>(null);
-    const [stateName, setStateName] = useState<string | null>(null);
+    const [deconstructedSuburb, setDeconstructedSuburb] = useState<string | null>(null);
+    const [deconstructedState, setDeconstructedState] = useState<string | null>(null);
     const supabase = createClientComponentClient();
 
     console.log(`selectedSuburb: ${props.selectedSuburb}`);
 
-    function deconstructSuburb(suburb: string | null) {
+    function deconstructSuburb(selectedSuburb: string | null) {
         // State Regex
         const stateRegex = /^(.*?),\s*(VIC|NSW|ACT|WA|SA|TAS|NT)/;
 
         // ! Suburb Name
         // Create substrings based on stateRegex
-        const suburbMatch = suburb?.match(stateRegex);
+        const suburbMatch = selectedSuburb?.match(stateRegex);
 
         // If it exists, return first match in suburbName
         const suburbName = suburbMatch ? suburbMatch[1] : null;
@@ -34,10 +34,12 @@ export default function Income(props: IncomeProps) {
         const stateName = suburbMatch ? suburbMatch[2] : null;
 
         // ! Post Code
-        const postcode = suburb?.slice(-4);
+        const postcode = selectedSuburb?.slice(-4);
 
-        setSuburbName(suburbName);
-        setStateName(stateName);
+        console.log(`suburbName: ${suburbName}`);
+
+        setDeconstructedSuburb(suburbName);
+        setDeconstructedState(stateName);
 
         return {
             suburbName,
@@ -49,6 +51,8 @@ export default function Income(props: IncomeProps) {
     useEffect(() => {
         async function fetchIncomeData(selectedSuburb: string | null) {
             try {
+                const { suburbName, stateName } = deconstructSuburb(selectedSuburb);
+
                 // * Filter through income_and_work table on Supabase using suburb_name & state_name
                 const { data, error } = await supabase
                     .from("income_and_work")
@@ -137,24 +141,25 @@ export default function Income(props: IncomeProps) {
                 console.error("Data fetch unsuccessful", error);
             }
         }
-        deconstructSuburb(props.selectedSuburb);
+
         fetchIncomeData(props.selectedSuburb);
     }, [props.selectedSuburb]);
 
-    console.log(stateName);
+    console.log(`suburbName: ${deconstructedSuburb} \n stateName: ${deconstructedState}`);
 
     return (
         <div>
             <div className="max-w-full min-h-screen bg-Shakespeare">
+                <div>{props.selectedSuburb}</div>
                 <div>
                     {incomeData ? (
                         <div>
                             {incomeData[0]?.income_data && (
                                 <div>
-                                    <h2>Income Data for {suburbName}</h2>
+                                    <h2>Income Data for {deconstructedSuburb}</h2>
                                     <p>
-                                        Unemployment (% of australia):{" "}
-                                        {incomeData[0].income_data["Employment status"]["Worked full-time"]["Australia"]}
+                                        Participation in the labour force:{" "}
+                                        {incomeData[0].income_data["Participation in the labour force"]["In the labour force"]["suburb"]}
                                     </p>
                                 </div>
                             )}
