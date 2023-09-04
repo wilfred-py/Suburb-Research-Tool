@@ -18,8 +18,6 @@ export default function Dashboard() {
     // Dashboard view
     const [selectedView, setSelectedView] = useState<string | null>("Overview");
 
-    console.log(`selectedSuburb: ${selectedSuburb}`);
-
     const handleViewChange = (newView: string | null) => {
         setSelectedView(newView);
     };

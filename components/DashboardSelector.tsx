@@ -6,8 +6,6 @@ interface DashboardSelectorProps {
 }
 
 export default function DashboardSelector(props: DashboardSelectorProps) {
-    console.log(props.selectedView);
-
     // * Build className conditionally
     const getButtonCSS = (viewName: string) => {
         if (viewName === props.selectedView) {
@@ -19,7 +17,6 @@ export default function DashboardSelector(props: DashboardSelectorProps) {
 
     // * onClick event handler for selected view
     const handleViewClick = (newView: string | null) => {
-        console.log(newView);
         props.onChangeView(newView);
     };
 

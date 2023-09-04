@@ -7,14 +7,55 @@ interface IncomeDataItem {
     income_data: any;
 }
 
-export default function Test() {
+interface IncomeProps {
+    selectedSuburb: string | null;
+}
+
+export default function Income(props: IncomeProps) {
     const [incomeData, setIncomeData] = useState<IncomeDataItem[]>([]); // Initialize state with an empty array
+    const [suburbName, setSuburbName] = useState<string | null>(null);
+    const [stateName, setStateName] = useState<string | null>(null);
     const supabase = createClientComponentClient();
+
+    console.log(`selectedSuburb: ${props.selectedSuburb}`);
+
+    function deconstructSuburb(suburb: string | null) {
+        // State Regex
+        const stateRegex = /^(.*?),\s*(VIC|NSW|ACT|WA|SA|TAS|NT)/;
+
+        // ! Suburb Name
+        // Create substrings based on stateRegex
+        const suburbMatch = suburb?.match(stateRegex);
+
+        // If it exists, return first match in suburbName
+        const suburbName = suburbMatch ? suburbMatch[1] : null;
+
+        // ! State Name
+        const stateName = suburbMatch ? suburbMatch[2] : null;
+
+        // ! Post Code
+        const postcode = suburb?.slice(-4);
+
+        setSuburbName(suburbName);
+        setStateName(stateName);
+
+        return {
+            suburbName,
+            stateName,
+            postcode,
+        };
+    }
 
     useEffect(() => {
         async function fetchIncomeData() {
             try {
-                const { data, error } = await supabase.from("income_and_work").select("*").range(0, 3);
+                // * Filter through income_and_work table on Supabase using suburb_name & state_name
+                const { data, error } = await supabase
+                    .from("income_and_work")
+                    .select("*")
+                    .eq("suburb_name", suburbName)
+                    .eq("state_name", stateName);
+
                 console.log(data);
                 console.log(error);
                 setIncomeData(data || []);
@@ -96,22 +137,24 @@ export default function Test() {
                 console.error("Data fetch unsuccessful", error);
             }
         }
+        deconstructSuburb(props.selectedSuburb);
         fetchIncomeData();
-    }, []);
+    }, [suburbName]);
+
+    console.log(stateName);
 
     return (
         <div>
             <div className="max-w-full min-h-screen bg-Shakespeare">
-                <h1 className="text-6xl">TEST PAGE LUL</h1>
                 <div>
                     {incomeData ? (
                         <div>
-                            {incomeData[1]?.income_data && (
+                            {incomeData[0]?.income_data && (
                                 <div>
                                     <h2>Income Data</h2>
                                     <p>
                                         Unemployment (% of australia):{" "}
-                                        {incomeData[1].income_data["Employment status"]["Unemployed"]["Australia"]}
+                                        {incomeData[0].income_data["Employment status"]["Unemployed"]["Australia"]}
                                     </p>
                                 </div>
                             )}

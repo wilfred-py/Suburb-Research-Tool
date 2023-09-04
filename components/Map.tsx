@@ -61,7 +61,7 @@ function deconstructSuburb(suburb: string | null) {
     // ! Post Code
     const postcode = suburb?.slice(-4);
 
-    console.log(`suburbName: ${suburbName}`);
+    // console.log(`suburbName: ${suburbName}`);
 
     return {
         suburbName,
@@ -86,7 +86,7 @@ const Map: NextPage<MapProps> = (props: MapProps) => {
         async function getSuburbDetails() {
             try {
                 const { suburbName, stateName, postcode } = deconstructSuburb(props.selectedSuburb);
-                console.log(`suburbName: ${suburbName}`);
+                // console.log(`suburbName: ${suburbName}`);
                 setSuburbName(suburbName || "");
                 setStateName(stateName || "");
                 setPostcode(postcode || "");
@@ -108,7 +108,7 @@ const Map: NextPage<MapProps> = (props: MapProps) => {
                 );
                 const geocodeData = await response.json();
                 const location = geocodeData.results[0]?.geometry.location;
-                console.log(location);
+                // console.log(location);
                 if (location) {
                     console.log("location geocoded");
                     setGeocodeData({ lat: location.lat, lng: location.lng });
