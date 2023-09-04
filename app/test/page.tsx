@@ -8,25 +8,26 @@ interface IncomeDataItem {
     income_data: any;
 }
 
-// const { data, error } = await supabase.from("books").select(
-//     `
-//     title,
-//     description:  metadata->description,
-//     price:        metadata->price,
-//     low_age:      metadata->ages->0,
-//     high_age:     metadata->ages->1
-
-//     `
-// );
-
 export default function Test() {
     const [incomeData, setIncomeData] = useState<IncomeDataItem[]>([]); // Initialize state with an empty array
     const supabase = createClientComponentClient();
-
+    const selectedSuburb = "Bray Park";
+    const suburbState = "NSW";
     useEffect(() => {
-        async function fetchIncomeData() {
+        async function fetchIncomeData(selectedSuburb: string) {
             try {
-                const { data, error } = await supabase.from("income_and_work").select("*").range(0, 3);
+                console.log(selectedSuburb);
+
+                // * Filter through income_and_work table on Supabase
+                const { data, error } = await supabase
+                    .from("income_and_work")
+                    .select("*")
+                    .eq("suburb_name", selectedSuburb)
+                    .eq("state_name", suburbState);
+
+                // * Get first 4 rows
+                // const { data, error } = await supabase.from("income_and_work").select("*").range(0, 3);
+
                 console.log(data);
                 console.log(error);
                 setIncomeData(data || []);
@@ -111,8 +112,10 @@ export default function Test() {
                 console.error("Data fetch unsuccessful", error);
             }
         }
-        fetchIncomeData();
+        fetchIncomeData(selectedSuburb);
     }, []);
+
+    console.log(incomeData);
 
     return (
         <div>
@@ -122,12 +125,12 @@ export default function Test() {
                 <div>
                     {incomeData ? (
                         <div>
-                            {incomeData[1]?.income_data && (
+                            {incomeData[0]?.income_data && (
                                 <div>
-                                    <h2>Income Data</h2>
+                                    <h2>Income Data for {selectedSuburb}</h2>
                                     <p>
                                         Unemployment (% of australia):{" "}
-                                        {incomeData[1].income_data["Employment status"]["Unemployed"]["Australia"]}
+                                        {incomeData[0].income_data["Employment status"]["Worked full-time"]["Bray Park (NSW)"]}
                                     </p>
                                 </div>
                             )}
@@ -139,70 +142,4 @@ export default function Test() {
             </div>
         </div>
     );
-
-    // useEffect(() => {
-    //     async function fetchData() {
-    //         try {
-    //             // Fetch data from the "cultural diversity" table
-    //             const { data, error } = await supabase.from("cultural_diversity").select("*");
-
-    //             console.log(data);
-    //             console.log(error);
-
-    //             setTestData(data || []);
-    //             if (error) {
-    //                 console.error("Error fetching data:", error);
-    //             } else {
-    //                 // Extract and format the data dynamically
-    //                 const formattedData = data?.map((item: CulturalDataItem) => {
-    //                     const culturalData = item.cultural_data;
-    //                     const formattedCulturalData: any = {};
-
-    //                     for (const key in culturalData) {
-    //                         if (culturalData.hasOwnProperty(key)) {
-    //                             const innerData = culturalData[key];
-    //                             const formattedInnerData: any = {};
-
-    //                             for (const innerKey in innerData) {
-    //                                 if (innerData.hasOwnProperty(innerKey)) {
-    //                                     formattedInnerData[innerKey] = innerData[innerKey];
-    //                                 }
-    //                             }
-
-    //                             formattedCulturalData[key] = formattedInnerData;
-    //                         }
-    //                     }
-
-    //                     return {
-    //                         cultural_data: formattedCulturalData,
-    //                     };
-    //                 });
-
-    //                 setTestData(formattedData || []);
-    //             }
-    //         } catch (error) {
-    //             console.error("Error fetching data:", error);
-    //         }
-    //     }
-
-    //     fetchData();
-    // }, []);
-    // return (
-    //     <div>
-    //         {testData ? (
-    //             <div>
-    //                 {/* Check if testData exists and if the "Country of birth, top responses" key is present */}
-    //                 {testData[0]?.cultural_data && (
-    //                     <div>
-    //                         <h2>Country of Birth - England</h2>
-    //                         <p>Victoria: {testData[0].cultural_data["Country of birth, top responses"]["England"]["Victoria"]}</p>
-    //                         {/* Add additional data fields here */}
-    //                     </div>
-    //                 )}
-    //             </div>
-    //         ) : (
-    //             <p>Loading...</p>
-    //         )}
-    //     </div>
-    // );
 }
