@@ -47,7 +47,7 @@ export default function Income(props: IncomeProps) {
     }
 
     useEffect(() => {
-        async function fetchIncomeData() {
+        async function fetchIncomeData(selectedSuburb: string | null) {
             try {
                 // * Filter through income_and_work table on Supabase using suburb_name & state_name
                 const { data, error } = await supabase
@@ -138,8 +138,8 @@ export default function Income(props: IncomeProps) {
             }
         }
         deconstructSuburb(props.selectedSuburb);
-        fetchIncomeData();
-    }, [suburbName]);
+        fetchIncomeData(props.selectedSuburb);
+    }, [props.selectedSuburb]);
 
     console.log(stateName);
 
@@ -151,10 +151,10 @@ export default function Income(props: IncomeProps) {
                         <div>
                             {incomeData[0]?.income_data && (
                                 <div>
-                                    <h2>Income Data</h2>
+                                    <h2>Income Data for {suburbName}</h2>
                                     <p>
                                         Unemployment (% of australia):{" "}
-                                        {incomeData[0].income_data["Employment status"]["Unemployed"]["Australia"]}
+                                        {incomeData[0].income_data["Employment status"]["Worked full-time"]["Australia"]}
                                     </p>
                                 </div>
                             )}
