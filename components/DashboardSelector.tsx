@@ -9,9 +9,9 @@ export default function DashboardSelector(props: DashboardSelectorProps) {
     // * Build className conditionally
     const getButtonCSS = (viewName: string) => {
         if (viewName === props.selectedView) {
-            return `p-1 border-2 bg-white rounded rounded-md hover:cursor-pointer select-none shadow`;
+            return `p-0.5 border-2 bg-white rounded rounded-md hover:cursor-pointer select-none shadow-lg`;
         } else {
-            return `border-2 border-gray-200 p-1 hover:cursor-pointer select-none`;
+            return `border-2 border-gray-200 rounded rounded-md p-0.5 hover:cursor-pointer select-none`;
         }
     };
 
