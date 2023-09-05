@@ -171,8 +171,8 @@ export default function Income(props: IncomeProps) {
                         <p>Loading...</p>
                     )}
                 </div>
-                <div>
-                    <EmploymentGraph />
+                <div className="max-w-2xl h-3/6 border-2 border-orange-400">
+                    <EmploymentGraph selectedSuburb={props.selectedSuburb} />
                 </div>
             </div>
         </div>
