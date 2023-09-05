@@ -8,7 +8,7 @@ export default function DemographicView(props: DemographicProps) {
     // console.log(`selectedSuburb: ${props.selectedSuburb}`);
 
     return (
-        <div className="bg-green-500 max-w-screen max-h-screen">
+        <div className="max-w-screen max-h-screen">
             {/* <div>
                 <span>{props.selectedSuburb}</span>
             </div> */}

@@ -1,9 +1,3 @@
-"use client";
-
-import { createClientComponentClient, createServerComponentClient } from "@supabase/auth-helpers-nextjs";
-import { useEffect, useState } from "react";
-import NavBar from "../NavBar";
-
 import React from "react";
 import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend } from "chart.js";
 import { Bar } from "react-chartjs-2";
@@ -78,16 +72,10 @@ export const data = {
     ],
 };
 
-export default function Test() {
+export default function EmploymentGraph() {
     return (
         <div>
-            <NavBar />
-            <div className="max-w-full min-h-screen bg-Shakespeare">
-                <h1 className="text-6xl">TEST PAGE LUL</h1>
-                <div className="bg-white">
-                    <Bar className="max-w-6xl h-6/12" options={options} data={data} />
-                </div>
-            </div>
+            <Bar options={options} data={data} />
         </div>
     );
 }

@@ -1,7 +1,8 @@
 "use client";
 
-import { createClientComponentClient, createServerComponentClient } from "@supabase/auth-helpers-nextjs";
+import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 import { useEffect, useState } from "react";
+import EmploymentGraph from "./(graphs)/EmploymentGraph";
 
 interface IncomeDataItem {
     income_data: any;
@@ -149,14 +150,16 @@ export default function Income(props: IncomeProps) {
 
     return (
         <div>
-            <div className="max-w-full min-h-screen bg-Shakespeare">
-                <div>{props.selectedSuburb}</div>
+            <div className="max-w-full min-h-screen border-2 border-black">
+                <div className="my-4">
+                    <span>Demographics of </span>
+                    <span className="font-semibold">{props.selectedSuburb}</span>
+                </div>
                 <div>
                     {incomeData ? (
                         <div>
                             {incomeData[0]?.income_data && (
                                 <div>
-                                    <h2>Income Data for {deconstructedSuburb}</h2>
                                     <p>
                                         Participation in the labour force:{" "}
                                         {incomeData[0].income_data["Participation in the labour force"]["In the labour force"]["suburb"]}
@@ -167,6 +170,9 @@ export default function Income(props: IncomeProps) {
                     ) : (
                         <p>Loading...</p>
                     )}
+                </div>
+                <div>
+                    <EmploymentGraph />
                 </div>
             </div>
         </div>
