@@ -2,7 +2,7 @@
 
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 import { useEffect, useState } from "react";
-import EmploymentGraph from "./(graphs)/EmploymentGraph";
+import EmploymentGraph from "./(graphs)/(employment)/EmploymentGraph";
 
 interface IncomeDataItem {
     income_data: any;
