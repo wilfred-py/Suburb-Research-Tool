@@ -1,3 +1,4 @@
+import Employment from "../Employment";
 import Income from "../Income";
 
 interface DemographicProps {
@@ -12,9 +13,8 @@ export default function DemographicView(props: DemographicProps) {
             {/* <div>
                 <span>{props.selectedSuburb}</span>
             </div> */}
-            <div>
-                <Income selectedSuburb={props.selectedSuburb} />
-            </div>
+            <Income selectedSuburb={props.selectedSuburb} />
+            <Employment />
         </div>
     );
 }

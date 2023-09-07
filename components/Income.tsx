@@ -150,7 +150,7 @@ export default function Income(props: IncomeProps) {
 
     return (
         <div>
-            <div className="max-w-full min-h-screen border-2 border-black">
+            <div className="border-2 border-black">
                 <div className="my-4">
                     <span>Demographics of </span>
                     <span className="font-semibold">{props.selectedSuburb}</span>
