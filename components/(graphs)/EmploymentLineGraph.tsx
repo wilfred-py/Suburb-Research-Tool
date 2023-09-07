@@ -2,8 +2,6 @@
 
 import * as React from "react";
 import { LineChart } from "@mui/x-charts/LineChart";
-import EmploymentHorizontalBar from "@/components/(graphs)/EmploymentBarGraph-Horizontal";
-import NavBar from "../NavBar";
 
 const suburbFullTime = [51.1, 53.1, 52.5, 53.5, 53.2];
 const stateFullTime = [54.2, 54.9, 53.2, 57.2, 57.1];
@@ -12,7 +10,6 @@ const australiaFullTime = [55.1, 55.3, 54.9, 57.2, 56.8];
 export default function FullTimeEmploymentLineGraph() {
     return (
         <div>
-            <NavBar />
             <div className="flex flex-col justify-center">
                 <h1 className="mt-4 text-lg text-center font-bold">Full-time employment</h1>
                 <div className="mx-auto -mt-10">
@@ -63,9 +60,6 @@ export default function FullTimeEmploymentLineGraph() {
                         margin={{ left: 70 }}
                     />
                 </div>
-            </div>
-            <div>
-                <EmploymentHorizontalBar />
             </div>
         </div>
     );
