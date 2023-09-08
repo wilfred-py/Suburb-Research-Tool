@@ -1,22 +1,31 @@
 "use client";
 
-import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
+import * as React from "react";
 import { useEffect, useState } from "react";
-import EmploymentGraph from "./(graphs)/(employment)/EmploymentGraph";
+import { LineChart } from "@mui/x-charts/LineChart";
+import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
+
+interface FullTimeEmploymentProps {
+    selectedSuburb: string | null;
+}
 
 interface IncomeDataItem {
     income_data: any;
 }
 
-interface IncomeProps {
-    selectedSuburb: string | null;
-}
-
-export default function Income(props: IncomeProps) {
-    const [incomeData, setIncomeData] = useState<IncomeDataItem[]>([]); // Initialize state with an empty array
+export default function FullTimeEmploymentLineGraph(props: FullTimeEmploymentProps) {
     const [deconstructedSuburb, setDeconstructedSuburb] = useState<string | null>(null);
     const [deconstructedState, setDeconstructedState] = useState<string | null>(null);
+    const [incomeData, setIncomeData] = useState<IncomeDataItem[]>([]);
+    const [suburbFullTime, setSuburbFullTime] = useState<number[]>([55, 55, 55, 55, 55]);
+    const [stateFullTime, setStateFullTime] = useState<number[]>([55, 55, 55, 55, 55]);
+    const [australiaFullTime, setAustraliaFullTime] = useState<number[]>([55, 55, 55, 55, 55]);
+
     const supabase = createClientComponentClient();
+
+    // const suburbFullTime = [51.1, 53.1, 52.5, 53.5, 53.2];
+    // const stateFullTime = [54.2, 54.9, 53.2, 57.2, 57.1];
+    // const australiaFullTime = [55.1, 55.3, 54.9, 57.2, 56.8];
 
     function deconstructSuburb(selectedSuburb: string | null) {
         // State Regex
@@ -34,6 +43,8 @@ export default function Income(props: IncomeProps) {
 
         // ! Post Code
         const postcode = selectedSuburb?.slice(-4);
+
+        console.log(`suburbName: ${suburbName}`);
 
         setDeconstructedSuburb(suburbName);
         setDeconstructedState(stateName);
@@ -72,9 +83,12 @@ export default function Income(props: IncomeProps) {
                         // 1. "Employment status"
                         // 2. "Employment, hours worked"
                         // 3. "Median weekly incomes (a)"
+
+                        // Loop through keys in income_data
                         for (const key in incomeData) {
                             if (incomeData?.hasOwnProperty(key)) {
                                 const innerData = incomeData[key];
+
                                 // innerData example:
                                 // {
                                 //     "Unemployed": {
@@ -112,6 +126,8 @@ export default function Income(props: IncomeProps) {
                                 //   }
 
                                 const formattedInnerData: any = {};
+
+                                // Loop through keys in innerData
                                 for (const innerKey in innerData) {
                                     if (innerData?.hasOwnProperty(innerKey)) {
                                         formattedInnerData[innerKey] = innerData[innerKey];
@@ -126,9 +142,47 @@ export default function Income(props: IncomeProps) {
                                         // }
                                     }
                                 }
+
+                                // Assign the formattedInnerData to corresponding key in formattedFullTImeData
                                 formattedIncomeData[key] = formattedInnerData;
                             }
                         }
+
+                        // Return an object containing the formatted data
+
+                        console.log(incomeData);
+                        setIncomeData(incomeData);
+
+                        // Read FT employment % of suburb from incomeData and set to state
+                        const suburbFullTime = [
+                            55.0,
+                            55.0,
+                            55.0,
+                            55.0,
+                            parseFloat(incomeData["Employment status"]["Worked full-time"]["% of suburb"]),
+                        ];
+                        setSuburbFullTime(suburbFullTime);
+
+                        // Read FT employment % of suburb from incomeData and set to state
+                        const stateFullTime = [
+                            55.0,
+                            55.0,
+                            55.0,
+                            55.0,
+                            parseFloat(incomeData["Employment status"]["Worked full-time"]["% of state"]),
+                        ];
+                        setStateFullTime(stateFullTime);
+
+                        // Read FT employment % of suburb from incomeData and set to state
+                        const australiaFullTime = [
+                            55.0,
+                            55.0,
+                            55.0,
+                            55.0,
+                            parseFloat(incomeData["Employment status"]["Worked full-time"]["% of Australia"]),
+                        ];
+                        setAustraliaFullTime(australiaFullTime);
+
                         return {
                             incomeData: formattedIncomeData,
                         };
@@ -141,32 +195,60 @@ export default function Income(props: IncomeProps) {
 
         fetchIncomeData(props.selectedSuburb);
     }, [props.selectedSuburb]);
-
+    console.log(suburbFullTime);
+    console.log(stateFullTime);
+    console.log(australiaFullTime);
     return (
         <div>
-            <div className="border-2 border-black">
-                <div className="my-4">
-                    <span>Demographics of </span>
-                    <span className="font-semibold">{props.selectedSuburb}</span>
-                </div>
-                <div>
-                    {incomeData ? (
-                        <div>
-                            {incomeData[0]?.income_data && (
-                                <div>
-                                    <p>
-                                        Participation in the labour force:{" "}
-                                        {incomeData[0].income_data["Participation in the labour force"]["In the labour force"]["suburb"]}
-                                    </p>
-                                </div>
-                            )}
-                        </div>
-                    ) : (
-                        <p>Loading...</p>
-                    )}
-                </div>
-                <div className="max-w-2xl h-3/6 border-2 border-orange-400">
-                    <EmploymentGraph selectedSuburb={props.selectedSuburb} />
+            <div className="flex flex-col justify-center">
+                <h1 className="mt-4 text-lg text-center font-bold">Full-time employment</h1>
+                <div className="mx-auto -mt-10">
+                    <LineChart
+                        xAxis={[
+                            {
+                                data: ["2001", "2006", "2011", "2016", "2021"],
+                            },
+                        ]}
+                        series={[
+                            {
+                                id: "suburb",
+                                label: "Suburb",
+                                data: suburbFullTime,
+                                showMark: false,
+                                curve: "natural",
+                            },
+                            {
+                                id: "state",
+                                label: "State",
+                                data: stateFullTime,
+                                showMark: false,
+                                curve: "natural",
+                            },
+                            {
+                                id: "australia",
+                                label: "Australia",
+                                data: australiaFullTime,
+                                showMark: false,
+                                curve: "natural",
+                            },
+                        ]}
+                        sx={{
+                            "--ChartsLegend-itemWidth": "70px",
+                            "--ChartsLegend-itemMarkSize": "10px",
+                            "--ChartsLegend-labelSpacing": "5px",
+                            "--ChartsLegend-rootSpacing": "20px",
+                        }}
+                        legend={{
+                            direction: "row",
+                            position: {
+                                vertical: "top",
+                                horizontal: "middle",
+                            },
+                        }}
+                        width={550}
+                        height={400}
+                        margin={{ left: 70 }}
+                    />
                 </div>
             </div>
         </div>
