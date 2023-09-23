@@ -52,7 +52,7 @@ export default function Income(props: IncomeProps) {
 
                 // * Filter through income_and_work table on Supabase using suburb_name & state_name
                 const { data, error } = await supabase
-                    .from("income_and_work")
+                    .from("income_and_work_2021")
                     .select("*")
                     .eq("suburb_name", suburbName)
                     .eq("state_name", stateName);

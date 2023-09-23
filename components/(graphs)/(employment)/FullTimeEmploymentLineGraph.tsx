@@ -13,10 +13,15 @@ interface IncomeDataItem {
     income_data: any;
 }
 
+interface EmploymentDataItem {
+    employment_data: any;
+}
+
 export default function FullTimeEmploymentLineGraph(props: FullTimeEmploymentProps) {
     const [deconstructedSuburb, setDeconstructedSuburb] = useState<string | null>(null);
     const [deconstructedState, setDeconstructedState] = useState<string | null>(null);
     const [incomeData, setIncomeData] = useState<IncomeDataItem[]>([]);
+    const [employmentData, setEmploymentData] = useState<EmploymentDataItem[]>([]);
     const [suburbFullTime, setSuburbFullTime] = useState<number[]>([55, 55, 55, 55, 55]);
     const [stateFullTime, setStateFullTime] = useState<number[]>([55, 55, 55, 55, 55]);
     const [australiaFullTime, setAustraliaFullTime] = useState<number[]>([55, 55, 55, 55, 55]);
@@ -57,18 +62,20 @@ export default function FullTimeEmploymentLineGraph(props: FullTimeEmploymentPro
     }
 
     useEffect(() => {
-        async function fetchIncomeData(selectedSuburb: string | null) {
+        // * Fetch 2021 income data
+        async function fetchIncomeData(tableName: string, selectedSuburb: string | null) {
             try {
+                // * Deconstruct selectedSuburb prop
                 const { suburbName, stateName } = deconstructSuburb(selectedSuburb);
 
-                // * Filter through income_and_work table on Supabase using suburb_name & state_name
+                // * Filter through income_and_work_2021 table on Supabase using suburb_name & state_name
                 const { data, error } = await supabase
-                    .from("income_and_work")
+                    .from(tableName)
                     .select("*")
                     .eq("suburb_name", suburbName)
                     .eq("state_name", stateName);
 
-                console.log(data);
+                console.log(`data: ${data}`);
                 console.log(error);
                 setIncomeData(data || []);
 
@@ -150,35 +157,24 @@ export default function FullTimeEmploymentLineGraph(props: FullTimeEmploymentPro
 
                         // Return an object containing the formatted data
 
-                        console.log(incomeData);
+                        console.log(`incomeData: ${incomeData}`);
+
                         setIncomeData(incomeData);
 
-                        // Read FT employment % of suburb from incomeData and set to state
-                        const suburbFullTime = [
-                            55.0,
-                            55.0,
-                            55.0,
-                            55.0,
-                            parseFloat(incomeData["Employment status"]["Worked full-time"]["% of suburb"]),
-                        ];
+                        // * Read FT employment % of suburb from incomeData and set to state
+                        const suburbFullTime = [0, 0, 0, 0, parseFloat(incomeData["Employment status"]["Worked full-time"]["% of suburb"])];
                         setSuburbFullTime(suburbFullTime);
 
-                        // Read FT employment % of suburb from incomeData and set to state
-                        const stateFullTime = [
-                            55.0,
-                            55.0,
-                            55.0,
-                            55.0,
-                            parseFloat(incomeData["Employment status"]["Worked full-time"]["% of state"]),
-                        ];
+                        // * Read FT employment % of suburb from incomeData and set to state
+                        const stateFullTime = [0, 0, 0, 0, parseFloat(incomeData["Employment status"]["Worked full-time"]["% of state"])];
                         setStateFullTime(stateFullTime);
 
-                        // Read FT employment % of suburb from incomeData and set to state
+                        // * Read FT employment % of suburb from incomeData and set to state
                         const australiaFullTime = [
-                            55.0,
-                            55.0,
-                            55.0,
-                            55.0,
+                            0,
+                            0,
+                            0,
+                            0,
                             parseFloat(incomeData["Employment status"]["Worked full-time"]["% of Australia"]),
                         ];
                         setAustraliaFullTime(australiaFullTime);
@@ -193,8 +189,112 @@ export default function FullTimeEmploymentLineGraph(props: FullTimeEmploymentPro
             }
         }
 
-        fetchIncomeData(props.selectedSuburb);
+        // * Fetch employment data from "employment_data" jsonb column
+        async function fetchEmploymentData(tableName: string, selectedSuburb: string | null) {
+            try {
+                // * Deconstruct selectedSuburb prop
+                const { suburbName, stateName } = deconstructSuburb(selectedSuburb);
+
+                // * Filter through income_and_work_2021 table on Supabase using suburb_name & state_name
+                const { data, error } = await supabase
+                    .from(tableName)
+                    .select("*")
+                    .eq("suburb_name", suburbName)
+                    .eq("state_name", stateName);
+
+                console.log(data);
+                console.log(`error: ${error}`);
+                setEmploymentData(data || []);
+
+                if (error) {
+                    console.error("Error fetching data:", error);
+                } else {
+                    const formattedData = data?.map((item: EmploymentDataItem) => {
+                        const employmentData = item?.employment_data;
+                        const formattedEmploymentData: any = {};
+
+                        // Loop through keys in income_data
+                        for (const key in employmentData) {
+                            if (employmentData?.hasOwnProperty(key)) {
+                                const innerData = employmentData[key];
+
+                                const formattedInnerData: any = {};
+
+                                // Loop through keys in innerData
+                                for (const innerKey in innerData) {
+                                    if (innerData?.hasOwnProperty(innerKey)) {
+                                        formattedInnerData[innerKey] = innerData[innerKey];
+                                    }
+                                }
+
+                                // Assign the formattedInnerData to corresponding key in formattedFullTImeData
+                                formattedEmploymentData[key] = formattedInnerData;
+                            }
+                        }
+
+                        // Return an object containing the formatted data
+
+                        console.log(employmentData);
+                        console.log(employmentData[0]);
+                        setEmploymentData(employmentData);
+
+                        // * Read FT employment % of suburb from employmentData and set to state
+                        const suburbFullTime = [
+                            55,
+                            parseFloat(employmentData["Employment People aged 15 years and over"]["Worked full-time"]["% of suburb"]),
+                            55,
+                            55,
+                            55,
+                        ];
+                        setSuburbFullTime(suburbFullTime);
+
+                        // * Read FT employment % of state from employmentData and set to state
+                        const stateFullTime = [
+                            55,
+                            parseFloat(employmentData["Employment People aged 555 years and over"]["Worked full-time"]["% of state"]),
+                            55,
+                            55,
+                            55,
+                        ];
+                        setStateFullTime(stateFullTime);
+
+                        // TODO: if state data not available, remove item from array => this should aim to remove that data point from the line graph and shortern the line
+                        // TODO: add value to array based on year:
+                        // - 2001: [0]
+                        // - 2006: [1]
+                        // - 2011: [2]
+                        // - 2016: [3]
+                        // - 2021: [4]
+
+                        // * Read FT employment % of Australia from employmentData and set to state
+                        const australiaFullTime = [
+                            55,
+                            parseFloat(employmentData["Employment People aged 15 years and over"]["Worked full-time"]["% of Australia"]),
+                            55,
+                            55,
+                            55,
+                        ];
+                        setAustraliaFullTime(australiaFullTime);
+
+                        return {
+                            employmentData: formattedEmploymentData,
+                        };
+                    });
+                }
+            } catch (error) {
+                console.error("Data fetch unsuccessful", error);
+            }
+        }
+
+        // !!!
+        // fetchEmploymentData("data_2001", props.selectedSuburb);
+        fetchEmploymentData("data_2006", props.selectedSuburb);
+        // fetchEmploymentData("data_2011", props.selectedSuburb);
+        // fetchEmploymentData("data_2016", props.selectedSuburb);
+        // fetchIncomeData("income_and_work_2021", props.selectedSuburb);
+        // !!!
     }, [props.selectedSuburb]);
+
     console.log(suburbFullTime);
     console.log(stateFullTime);
     console.log(australiaFullTime);
