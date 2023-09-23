@@ -14,7 +14,7 @@ export default function DemographicView(props: DemographicProps) {
                 <span>{props.selectedSuburb}</span>
             </div> */}
             <Employment selectedSuburb={props.selectedSuburb} />
-            <Income selectedSuburb={props.selectedSuburb} />
+            {/* <Income selectedSuburb={props.selectedSuburb} /> */}
         </div>
     );
 }
