@@ -109,6 +109,13 @@ export default function FullTimeEmploymentLineGraph(props: FullTimeEmploymentPro
                     const percentageSuburbFullTime =
                         data[0]["employment_data"]["Employment People aged 15 years and over"]["Worked full-time"]["% of suburb"];
 
+                    const percentageStateFullTime =
+                        data[0]["employment_data"]["Employment People aged 15 years and over"]["Worked full-time"]["% of state"];
+
+                    const percentageAustraliaFullTime =
+                        data[0]["employment_data"]["Employment People aged 15 years and over"]["Worked full-time"]["% of Australia"];
+
+                    // Set suburbFullTime if it exists
                     if (percentageSuburbFullTime) {
                         newSuburbFullTime[0] = percentageSuburbFullTime;
                         setSuburbFullTime(newSuburbFullTime);
@@ -116,18 +123,59 @@ export default function FullTimeEmploymentLineGraph(props: FullTimeEmploymentPro
                         // ! If data is not available, remove element from array so line graph does not display it
                         newSuburbFullTime[0] = 0;
                     }
+
+                    // Set stateFullTime if it exists
+                    if (percentageStateFullTime) {
+                        newStateFullTime[0] = percentageStateFullTime;
+                        setStateFullTime(newStateFullTime);
+                    } else if (!percentageStateFullTime) {
+                        // ! If data is not available, remove element from array so line graph does not display it
+                        newStateFullTime[0] = 0;
+                    }
+
+                    // Set australiaFullTime if it exists
+                    if (percentageAustraliaFullTime) {
+                        newAustraliaFullTime[0] = percentageAustraliaFullTime;
+                        setAustraliaFullTime(newAustraliaFullTime);
+                    } else if (!percentageAustraliaFullTime) {
+                        // ! If data is not available, remove element from array so line graph does not display it
+                        newAustraliaFullTime[0] = 0;
+                    }
                 }
                 // * 2006
                 else if (year == "2006") {
                     const percentageSuburbFullTime =
                         data[0]["employment_data"]["Employment People aged 15 years and over"]["Worked full-time"]["% of suburb"];
+                    const percentageStateFullTime =
+                        data[0]["employment_data"]["Employment People aged 15 years and over"]["Worked full-time"]["% of state"];
+                    const percentageAustraliaFullTime =
+                        data[0]["employment_data"]["Employment People aged 15 years and over"]["Worked full-time"]["% of Australia"];
 
+                    // Set suburbFullTime if it exists
                     if (percentageSuburbFullTime) {
                         newSuburbFullTime[1] = percentageSuburbFullTime;
                         setSuburbFullTime(newSuburbFullTime);
                     } else if (!percentageSuburbFullTime) {
                         // ! If data is not available, remove element from array so line graph does not display it
                         newSuburbFullTime[1] = 0;
+                    }
+
+                    // Set stateFullTime if it exists
+                    if (percentageStateFullTime) {
+                        newStateFullTime[1] = percentageStateFullTime;
+                        setStateFullTime(newStateFullTime);
+                    } else if (!percentageStateFullTime) {
+                        // ! If data is not available, remove element from array so line graph does not display it
+                        newStateFullTime[1] = 0;
+                    }
+
+                    // Set australiaFullTime if it exists
+                    if (percentageAustraliaFullTime) {
+                        newAustraliaFullTime[1] = percentageAustraliaFullTime;
+                        setAustraliaFullTime(newAustraliaFullTime);
+                    } else if (!percentageAustraliaFullTime) {
+                        // ! If data is not available, remove element from array so line graph does not display it
+                        newAustraliaFullTime[1] = 0;
                     }
                 }
 
@@ -137,7 +185,16 @@ export default function FullTimeEmploymentLineGraph(props: FullTimeEmploymentPro
                         data[0]["employment_data"]["Employment People who reported being in the labour force, aged 15 years and over"][
                             "Worked full-time"
                         ]["% of suburb"];
+                    const percentageStateFullTime =
+                        data[0]["employment_data"]["Employment People who reported being in the labour force, aged 15 years and over"][
+                            "Worked full-time"
+                        ]["% of state"];
+                    const percentageAustraliaFullTime =
+                        data[0]["employment_data"]["Employment People who reported being in the labour force, aged 15 years and over"][
+                            "Worked full-time"
+                        ]["% of Australia"];
 
+                    // Set suburbFullTime if it exists
                     if (percentageSuburbFullTime) {
                         newSuburbFullTime[2] = percentageSuburbFullTime;
                         setSuburbFullTime(newSuburbFullTime);
@@ -145,36 +202,100 @@ export default function FullTimeEmploymentLineGraph(props: FullTimeEmploymentPro
                         // ! If data is not available, remove element from array so line graph does not display it
                         newSuburbFullTime[2] = 0;
                     }
+
+                    // Set stateFullTime if it exists
+                    if (percentageStateFullTime) {
+                        newStateFullTime[2] = percentageStateFullTime;
+                        setStateFullTime(newStateFullTime);
+                    } else if (!percentageStateFullTime) {
+                        // ! If data is not available, remove element from array so line graph does not display it
+                        newStateFullTime[2] = 0;
+                    }
+
+                    // Set australiaFullTime if it exists
+                    if (percentageAustraliaFullTime) {
+                        newAustraliaFullTime[2] = percentageAustraliaFullTime;
+                        setAustraliaFullTime(newAustraliaFullTime);
+                    } else if (!percentageAustraliaFullTime) {
+                        // ! If data is not available, remove element from array so line graph does not display it
+                        newAustraliaFullTime[2] = 0;
+                    }
                 }
 
                 // * 2016
                 else if (year == "2016") {
-                    try {
-                        const percentageSuburbFullTime =
-                            data[0]["employment_data"]["Employment People who reported being in the labour force, aged 15 years and over"][
-                                "Worked full-time"
-                            ]["% of suburb"];
-                        if (percentageSuburbFullTime) {
-                            newSuburbFullTime[3] = percentageSuburbFullTime;
-                            setSuburbFullTime(newSuburbFullTime);
-                        }
-                    } catch (error) {
-                        console.error("Error: data does not exist", error);
+                    const percentageSuburbFullTime =
+                        data[0]["employment_data"]["Employment People who reported being in the labour force, aged 15 years and over"][
+                            "Worked full-time"
+                        ]["% of suburb"];
+                    const percentageStateFullTime =
+                        data[0]["employment_data"]["Employment People who reported being in the labour force, aged 15 years and over"][
+                            "Worked full-time"
+                        ]["% of state"];
+                    const percentageAustraliaFullTime =
+                        data[0]["employment_data"]["Employment People who reported being in the labour force, aged 15 years and over"][
+                            "Worked full-time"
+                        ]["% of Australia"];
+
+                    // Set suburbFullTime if it exists
+                    if (percentageSuburbFullTime) {
+                        newSuburbFullTime[3] = percentageSuburbFullTime;
+                        setSuburbFullTime(newSuburbFullTime);
+                    } else if (!percentageSuburbFullTime) {
                         // ! If data is not available, remove element from array so line graph does not display it
                         newSuburbFullTime[3] = 0;
+                    }
+
+                    // Set stateFullTime if it exists
+                    if (percentageStateFullTime) {
+                        newStateFullTime[3] = percentageStateFullTime;
+                        setStateFullTime(newStateFullTime);
+                    } else if (!percentageStateFullTime) {
+                        // ! If data is not available, remove element from array so line graph does not display it
+                        newStateFullTime[3] = 0;
+                    }
+
+                    // Set australiaFullTime if it exists
+                    if (percentageAustraliaFullTime) {
+                        newAustraliaFullTime[3] = percentageAustraliaFullTime;
+                        setAustraliaFullTime(newAustraliaFullTime);
+                    } else if (!percentageAustraliaFullTime) {
+                        // ! If data is not available, remove element from array so line graph does not display it
+                        newAustraliaFullTime[3] = 0;
                     }
                 }
 
                 // * 2021
                 else if (year == "2021") {
                     const percentageSuburbFullTime = data[0]["employment_data"]["Employment status"]["Worked full-time"]["% of suburb"];
+                    const percentageStateFullTime = data[0]["employment_data"]["Employment status"]["Worked full-time"]["% of state"];
+                    const percentageAustraliaFullTime = data[0]["employment_data"]["Employment status"]["Worked full-time"]["% of country"];
 
+                    // Set suburbFullTime if it exists
                     if (percentageSuburbFullTime) {
                         newSuburbFullTime[4] = percentageSuburbFullTime;
                         setSuburbFullTime(newSuburbFullTime);
                     } else if (!percentageSuburbFullTime) {
                         // ! If data is not available, remove element from array so line graph does not display it
                         newSuburbFullTime[4] = 0;
+                    }
+
+                    // Set stateFullTime if it exists
+                    if (percentageStateFullTime) {
+                        newStateFullTime[4] = percentageStateFullTime;
+                        setStateFullTime(newStateFullTime);
+                    } else if (!percentageStateFullTime) {
+                        // ! If data is not available, remove element from array so line graph does not display it
+                        newStateFullTime[4] = 0;
+                    }
+
+                    // Set australiaFullTime if it exists
+                    if (percentageAustraliaFullTime) {
+                        newAustraliaFullTime[4] = percentageAustraliaFullTime;
+                        setAustraliaFullTime(newAustraliaFullTime);
+                    } else if (!percentageAustraliaFullTime) {
+                        // ! If data is not available, remove element from array so line graph does not display it
+                        newAustraliaFullTime[4] = 0;
                     }
                 }
             });
