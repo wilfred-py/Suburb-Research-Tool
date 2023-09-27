@@ -61,243 +61,381 @@ export default function FullTimeEmploymentLineGraph(props: FullTimeEmploymentPro
         };
     }
 
+    // useEffect(() => {
+    //     // * Fetch 2021 income data
+    //     async function fetchIncomeData(tableName: string, selectedSuburb: string | null) {
+    //         try {
+    //             // * Deconstruct selectedSuburb prop
+    //             const { suburbName, stateName } = deconstructSuburb(selectedSuburb);
+
+    //             // * Filter through income_and_work_2021 table on Supabase using suburb_name & state_name
+    //             const { data, error } = await supabase
+    //                 .from(tableName)
+    //                 .select("*")
+    //                 .eq("suburb_name", suburbName)
+    //                 .eq("state_name", stateName);
+
+    //             console.log(`data: ${data}`);
+    //             console.log(error);
+    //             setIncomeData(data || []);
+
+    //             if (error) {
+    //                 console.error("Error fetching data:", error);
+    //             } else {
+    //                 const formattedData = data?.map((item: IncomeDataItem) => {
+    //                     const incomeData = item?.income_data;
+    //                     const formattedIncomeData: any = {};
+
+    //                     // Key examples:
+    //                     // 1. "Employment status"
+    //                     // 2. "Employment, hours worked"
+    //                     // 3. "Median weekly incomes (a)"
+
+    //                     // Loop through keys in income_data
+    //                     for (const key in incomeData) {
+    //                         if (incomeData?.hasOwnProperty(key)) {
+    //                             const innerData = incomeData[key];
+
+    //                             // innerData example:
+    //                             // {
+    //                             //     "Unemployed": {
+    //                             //       "NSW": "2,136,610",
+    //                             //       "Australia": "7,095,103",
+    //                             //       "% of state": "55.2",
+    //                             //       "Abbotsbury": "1,110",
+    //                             //       "% of suburb": "53.0",
+    //                             //       "% of country": "55.9"
+    //                             //     },
+    //                             //     "Worked full-time": {
+    //                             //       "NSW": "2,136,610",
+    //                             //       "Australia": "7,095,103",
+    //                             //       "% of state": "55.2",
+    //                             //       "Abbotsbury": "1,110",
+    //                             //       "% of suburb": "53.0",
+    //                             //       "% of country": "55.9"
+    //                             //     },
+    //                             //     "Worked part-time": {
+    //                             //       "NSW": "2,136,610",
+    //                             //       "Australia": "7,095,103",
+    //                             //       "% of state": "55.2",
+    //                             //       "Abbotsbury": "1,110",
+    //                             //       "% of suburb": "53.0",
+    //                             //       "% of country": "55.9"
+    //                             //     },
+    //                             //     "Away from work (a)": {
+    //                             //       "NSW": "2,136,610",
+    //                             //       "Australia": "7,095,103",
+    //                             //       "% of state": "55.2",
+    //                             //       "Abbotsbury": "1,110",
+    //                             //       "% of suburb": "53.0",
+    //                             //       "% of country": "55.9"
+    //                             //     }
+    //                             //   }
+
+    //                             const formattedInnerData: any = {};
+
+    //                             // Loop through keys in innerData
+    //                             for (const innerKey in innerData) {
+    //                                 if (innerData?.hasOwnProperty(innerKey)) {
+    //                                     formattedInnerData[innerKey] = innerData[innerKey];
+    //                                     // formattedInnerData example
+    //                                     // {
+    //                                     //   "NSW": "2,136,610",
+    //                                     //   "Australia": "7,095,103",
+    //                                     //   "% of state": "55.2",
+    //                                     //   "Abbotsbury": "1,110",
+    //                                     //   "% of suburb": "53.0",
+    //                                     //   "% of country": "55.9"
+    //                                     // }
+    //                                 }
+    //                             }
+
+    //                             // Assign the formattedInnerData to corresponding key in formattedFullTImeData
+    //                             formattedIncomeData[key] = formattedInnerData;
+    //                         }
+    //                     }
+
+    //                     // Return an object containing the formatted data
+
+    //                     console.log(`incomeData: ${incomeData}`);
+
+    //                     setIncomeData(incomeData);
+
+    //                     // * Read FT employment % of suburb from incomeData and set to state
+    //                     const suburbFullTime = [0, 0, 0, 0, parseFloat(incomeData["Employment status"]["Worked full-time"]["% of suburb"])];
+    //                     setSuburbFullTime(suburbFullTime);
+
+    //                     // * Read FT employment % of suburb from incomeData and set to state
+    //                     const stateFullTime = [0, 0, 0, 0, parseFloat(incomeData["Employment status"]["Worked full-time"]["% of state"])];
+    //                     setStateFullTime(stateFullTime);
+
+    //                     // * Read FT employment % of suburb from incomeData and set to state
+    //                     const australiaFullTime = [
+    //                         0,
+    //                         0,
+    //                         0,
+    //                         0,
+    //                         parseFloat(incomeData["Employment status"]["Worked full-time"]["% of Australia"]),
+    //                     ];
+    //                     setAustraliaFullTime(australiaFullTime);
+
+    //                     return {
+    //                         incomeData: formattedIncomeData,
+    //                     };
+    //                 });
+    //             }
+    //         } catch (error) {
+    //             console.error("Data fetch unsuccessful", error);
+    //         }
+    //     }
+
+    // // * Fetch employment data from "employment_data" jsonb column (2001, 2006, 2016 - these years share common employment HTML structure)
+    // async function fetchEmploymentDataA(tableName: string, selectedSuburb: string | null) {
+    //     try {
+    //         // * Deconstruct selectedSuburb prop
+    //         const { suburbName, stateName } = deconstructSuburb(selectedSuburb);
+
+    //         // * Filter through income_and_work_2021 table on Supabase using suburb_name & state_name
+    //         const { data, error } = await supabase
+    //             .from(tableName)
+    //             .select("*")
+    //             .eq("suburb_name", suburbName)
+    //             .eq("state_name", stateName);
+
+    //         console.log(data);
+    //         console.log(`error: ${error}`);
+    //         setEmploymentData(data || []);
+
+    //         if (error) {
+    //             console.error("Error fetching data:", error);
+    //         } else {
+    //             const formattedData = data?.map((item: EmploymentDataItem) => {
+    //                 const employmentData = item?.employment_data;
+    //                 const formattedEmploymentData: any = {};
+
+    //                 // Loop through keys in income_data
+    //                 for (const key in employmentData) {
+    //                     if (employmentData?.hasOwnProperty(key)) {
+    //                         const innerData = employmentData[key];
+
+    //                         const formattedInnerData: any = {};
+
+    //                         // Loop through keys in innerData
+    //                         for (const innerKey in innerData) {
+    //                             if (innerData?.hasOwnProperty(innerKey)) {
+    //                                 formattedInnerData[innerKey] = innerData[innerKey];
+    //                             }
+    //                         }
+
+    //                         // Assign the formattedInnerData to corresponding key in formattedFullTImeData
+    //                         formattedEmploymentData[key] = formattedInnerData;
+    //                     }
+    //                 }
+
+    //                 // Return an object containing the formatted data
+
+    //                 console.log(employmentData);
+    //                 console.log(employmentData[0]);
+    //                 setEmploymentData(employmentData);
+
+    //                 const newSuburbFullTime = [...suburbFullTime];
+    //                 const newStateFullTime = [...stateFullTime];
+    //                 const newAustraliaFullTime = [...australiaFullTime];
+
+    //                 if (tableName == "data_2001") {
+    //                     newSuburbFullTime[0] = parseFloat(
+    //                         employmentData["Employment People aged 15 years and over"]["Worked full-time"]["% of suburb"]
+    //                     );
+    //                     setSuburbFullTime(newSuburbFullTime);
+    //                     // newStateFullTime[0] = parseFloat(
+    //                     //     employmentData["Employment People aged 15 years and over"]["Worked full-time"]["% of state"]
+    //                     // );
+    //                     // setStateFullTime(newStateFullTime);
+    //                     // newAustraliaFullTime[0] = parseFloat(
+    //                     //     employmentData["Employment People aged 15 years and over"]["Worked full-time"]["% of Australia"]
+    //                     // );
+    //                     // setAustraliaFullTime(newAustraliaFullTime);
+    //                 } else if (tableName == "data_2006") {
+    //                     newSuburbFullTime[1] = parseFloat(
+    //                         employmentData["Employment People aged 15 years and over"]["Worked full-time"]["% of suburb"]
+    //                     );
+    //                     setSuburbFullTime(newSuburbFullTime);
+    //                 } else if (tableName == "data_2016") {
+    //                     newSuburbFullTime[3] = parseFloat(
+    //                         employmentData["Employment People aged 15 years and over"]["Worked full-time"]["% of suburb"]
+    //                     );
+    //                     setSuburbFullTime(newSuburbFullTime);
+    //                 }
+
+    //                 // else if (tableName == "data_2011") {
+    //                 //     newSuburbFullTime[2] = parseFloat(
+    //                 //         employmentData["Employment People who reported being in the labour force, aged 15 years and over"][
+    //                 //             "Worked full-time"
+    //                 //         ]["% of suburb"]
+    //                 //     );
+    //                 //     setSuburbFullTime(newSuburbFullTime);
+    //                 // } else if (tableName == "income_and_work_2021") {
+    //                 //     newSuburbFullTime[4] = parseFloat(employmentData["Employment status"]["Worked full-time"]["% of suburb"]);
+    //                 //     setSuburbFullTime(newSuburbFullTime);
+    //                 // }
+
+    //                 return {
+    //                     employmentData: formattedEmploymentData,
+    //                 };
+    //             });
+    //         }
+    //     } catch (error) {
+    //         console.error("Data fetch unsuccessful", error);
+    //     }
+    // }
+
+    //     // !!
+    //     // ? (employmentDataFetchA)
+    //     // - 2001: ["Employment People aged 15 years and over"]["Worked full-time"][% of xyz]
+    //     // - 2006: ["Employment People aged 15 years and over"]["Worked full-time"][% of xyz]
+    //     // - 2016: ["Employment People aged 15 years and over"]["Worked full-time"][% of xyz]
+
+    //     // - 2011: ["Employment People who reported being in the labour force, aged 15 years and over"]["Worked full-time"][% of xyz]
+
+    //     // - 2021: ["Employment status"]["Worked full-time"][% of xyz]
+
+    //     // * Call async data fetch functions for each year
+    //     fetchEmploymentDataA("data_2001", props.selectedSuburb);
+    //     fetchEmploymentDataA("data_2006", props.selectedSuburb);
+    //     // fetchEmploymentData("data_2011", props.selectedSuburb);
+    //     fetchEmploymentDataA("data_2016", props.selectedSuburb);
+    //     // fetchIncomeData("income_and_work_2021", props.selectedSuburb);
+    //     // !!!
+    // }, [props.selectedSuburb]);
+
+    // console.log(suburbFullTime);
+    // console.log(stateFullTime);
+    // console.log(australiaFullTime);
+
+    // * Function that fetches data for a specific year
+    async function fetchEmploymentDataByYear(year: string, tableName: string, selectedSuburb: string | null) {
+        try {
+            const { suburbName, stateName } = deconstructSuburb(selectedSuburb);
+            console.log(`suburbName: ${suburbName}`);
+            const { data, error } = await supabase.from(tableName).select("*").eq("suburb_name", suburbName).eq("state_name", stateName);
+
+            if (error) {
+                console.error("Error fetching data:", error);
+                return null;
+            }
+
+            return { year, data };
+        } catch (error) {
+            console.error("Data fetch unsuccessful", error);
+            return null;
+        }
+    }
+
     useEffect(() => {
-        // * Fetch 2021 income data
-        async function fetchIncomeData(tableName: string, selectedSuburb: string | null) {
-            try {
-                // * Deconstruct selectedSuburb prop
-                const { suburbName, stateName } = deconstructSuburb(selectedSuburb);
+        async function fetchData() {
+            const years = ["2001", "2006", "2011", "2016", ""];
+            const dataPromises = years.map((year) => fetchEmploymentDataByYear(year, `data_${year}`, props.selectedSuburb));
 
-                // * Filter through income_and_work_2021 table on Supabase using suburb_name & state_name
-                const { data, error } = await supabase
-                    .from(tableName)
-                    .select("*")
-                    .eq("suburb_name", suburbName)
-                    .eq("state_name", stateName);
+            const newSuburbFullTime = [...suburbFullTime];
+            const newStateFullTime = [...stateFullTime];
+            const newAustraliaFullTime = [...australiaFullTime];
 
+            //  Wait for datat to be fetched
+            const dataResults = await Promise.all(dataPromises);
+
+            // Filter out any null results (errors)
+            const validData = dataResults.filter((result): result is { year: string; data: any[] } => result !== null);
+
+            // Process the valid data and update state accordingly
+            validData.forEach((result) => {
+                const { year, data } = result;
+
+                // Process and update state based on year and data
+                // (Similar to what you were doing in your fetchEmploymentDataA function)
+                console.log(`result: ${JSON.stringify(result, null, 2)}`);
                 console.log(`data: ${data}`);
-                console.log(error);
-                setIncomeData(data || []);
 
-                if (error) {
-                    console.error("Error fetching data:", error);
-                } else {
-                    const formattedData = data?.map((item: IncomeDataItem) => {
-                        const incomeData = item?.income_data;
-                        const formattedIncomeData: any = {};
+                // * 2001
+                if (year == "2001") {
+                    const percentageSuburbFullTime =
+                        data[0]["employment_data"]["Employment People aged 15 years and over"]["Worked full-time"]["% of suburb"];
 
-                        // Key examples:
-                        // 1. "Employment status"
-                        // 2. "Employment, hours worked"
-                        // 3. "Median weekly incomes (a)"
-
-                        // Loop through keys in income_data
-                        for (const key in incomeData) {
-                            if (incomeData?.hasOwnProperty(key)) {
-                                const innerData = incomeData[key];
-
-                                // innerData example:
-                                // {
-                                //     "Unemployed": {
-                                //       "NSW": "2,136,610",
-                                //       "Australia": "7,095,103",
-                                //       "% of state": "55.2",
-                                //       "Abbotsbury": "1,110",
-                                //       "% of suburb": "53.0",
-                                //       "% of country": "55.9"
-                                //     },
-                                //     "Worked full-time": {
-                                //       "NSW": "2,136,610",
-                                //       "Australia": "7,095,103",
-                                //       "% of state": "55.2",
-                                //       "Abbotsbury": "1,110",
-                                //       "% of suburb": "53.0",
-                                //       "% of country": "55.9"
-                                //     },
-                                //     "Worked part-time": {
-                                //       "NSW": "2,136,610",
-                                //       "Australia": "7,095,103",
-                                //       "% of state": "55.2",
-                                //       "Abbotsbury": "1,110",
-                                //       "% of suburb": "53.0",
-                                //       "% of country": "55.9"
-                                //     },
-                                //     "Away from work (a)": {
-                                //       "NSW": "2,136,610",
-                                //       "Australia": "7,095,103",
-                                //       "% of state": "55.2",
-                                //       "Abbotsbury": "1,110",
-                                //       "% of suburb": "53.0",
-                                //       "% of country": "55.9"
-                                //     }
-                                //   }
-
-                                const formattedInnerData: any = {};
-
-                                // Loop through keys in innerData
-                                for (const innerKey in innerData) {
-                                    if (innerData?.hasOwnProperty(innerKey)) {
-                                        formattedInnerData[innerKey] = innerData[innerKey];
-                                        // formattedInnerData example
-                                        // {
-                                        //   "NSW": "2,136,610",
-                                        //   "Australia": "7,095,103",
-                                        //   "% of state": "55.2",
-                                        //   "Abbotsbury": "1,110",
-                                        //   "% of suburb": "53.0",
-                                        //   "% of country": "55.9"
-                                        // }
-                                    }
-                                }
-
-                                // Assign the formattedInnerData to corresponding key in formattedFullTImeData
-                                formattedIncomeData[key] = formattedInnerData;
-                            }
-                        }
-
-                        // Return an object containing the formatted data
-
-                        console.log(`incomeData: ${incomeData}`);
-
-                        setIncomeData(incomeData);
-
-                        // * Read FT employment % of suburb from incomeData and set to state
-                        const suburbFullTime = [0, 0, 0, 0, parseFloat(incomeData["Employment status"]["Worked full-time"]["% of suburb"])];
-                        setSuburbFullTime(suburbFullTime);
-
-                        // * Read FT employment % of suburb from incomeData and set to state
-                        const stateFullTime = [0, 0, 0, 0, parseFloat(incomeData["Employment status"]["Worked full-time"]["% of state"])];
-                        setStateFullTime(stateFullTime);
-
-                        // * Read FT employment % of suburb from incomeData and set to state
-                        const australiaFullTime = [
-                            0,
-                            0,
-                            0,
-                            0,
-                            parseFloat(incomeData["Employment status"]["Worked full-time"]["% of Australia"]),
-                        ];
-                        setAustraliaFullTime(australiaFullTime);
-
-                        return {
-                            incomeData: formattedIncomeData,
-                        };
-                    });
+                    if (percentageSuburbFullTime) {
+                        newSuburbFullTime[0] = percentageSuburbFullTime;
+                        setSuburbFullTime(newSuburbFullTime);
+                    } else if (!percentageSuburbFullTime) {
+                        // ! If data is not available, remove element from array so line graph does not display it
+                        newSuburbFullTime[0] = 0;
+                    }
                 }
-            } catch (error) {
-                console.error("Data fetch unsuccessful", error);
-            }
+                // * 2006
+                else if (year == "2006") {
+                    const percentageSuburbFullTime =
+                        data[0]["employment_data"]["Employment People aged 15 years and over"]["Worked full-time"]["% of suburb"];
+
+                    if (percentageSuburbFullTime) {
+                        newSuburbFullTime[1] = percentageSuburbFullTime;
+                        setSuburbFullTime(newSuburbFullTime);
+                    } else if (!percentageSuburbFullTime) {
+                        // ! If data is not available, remove element from array so line graph does not display it
+                        newSuburbFullTime[1] = 0;
+                    }
+                }
+
+                // * 2011
+                else if (year == "2011") {
+                    const percentageSuburbFullTime =
+                        data[0]["employment_data"]["Employment People who reported being in the labour force, aged 15 years and over"][
+                            "Worked full-time"
+                        ]["% of suburb"];
+
+                    if (percentageSuburbFullTime) {
+                        newSuburbFullTime[2] = percentageSuburbFullTime;
+                        setSuburbFullTime(newSuburbFullTime);
+                    } else if (!percentageSuburbFullTime) {
+                        // ! If data is not available, remove element from array so line graph does not display it
+                        newSuburbFullTime[2] = 0;
+                    }
+                }
+
+                // * 2016
+                else if (year == "2016") {
+                    try {
+                        const percentageSuburbFullTime =
+                            data[0]["employment_data"]["Employment People aged 15 years and over"]["Worked full-time"]["% of suburb"];
+                        if (percentageSuburbFullTime) {
+                            newSuburbFullTime[3] = percentageSuburbFullTime;
+                            setSuburbFullTime(newSuburbFullTime);
+                        }
+                    } catch (error) {
+                        console.error("Error: data does not exist", error);
+                        // ! If data is not available, remove element from array so line graph does not display it
+                        newSuburbFullTime[3] = 0;
+                    }
+                }
+
+                // * 2021
+                else if (year == "2021") {
+                    const percentageSuburbFullTime = data[0]["Employment status"]["Worked full-time"]["% of suburb"];
+
+                    if (percentageSuburbFullTime) {
+                        newSuburbFullTime[4] = percentageSuburbFullTime;
+                        setSuburbFullTime(newSuburbFullTime);
+                    } else if (!percentageSuburbFullTime) {
+                        // ! If data is not available, remove element from array so line graph does not display it
+                        newSuburbFullTime[4] = 0;
+                    }
+                }
+            });
         }
 
-        // * Fetch employment data from "employment_data" jsonb column
-        async function fetchEmploymentData(tableName: string, selectedSuburb: string | null) {
-            try {
-                // * Deconstruct selectedSuburb prop
-                const { suburbName, stateName } = deconstructSuburb(selectedSuburb);
-
-                // * Filter through income_and_work_2021 table on Supabase using suburb_name & state_name
-                const { data, error } = await supabase
-                    .from(tableName)
-                    .select("*")
-                    .eq("suburb_name", suburbName)
-                    .eq("state_name", stateName);
-
-                console.log(data);
-                console.log(`error: ${error}`);
-                setEmploymentData(data || []);
-
-                if (error) {
-                    console.error("Error fetching data:", error);
-                } else {
-                    const formattedData = data?.map((item: EmploymentDataItem) => {
-                        const employmentData = item?.employment_data;
-                        const formattedEmploymentData: any = {};
-
-                        // Loop through keys in income_data
-                        for (const key in employmentData) {
-                            if (employmentData?.hasOwnProperty(key)) {
-                                const innerData = employmentData[key];
-
-                                const formattedInnerData: any = {};
-
-                                // Loop through keys in innerData
-                                for (const innerKey in innerData) {
-                                    if (innerData?.hasOwnProperty(innerKey)) {
-                                        formattedInnerData[innerKey] = innerData[innerKey];
-                                    }
-                                }
-
-                                // Assign the formattedInnerData to corresponding key in formattedFullTImeData
-                                formattedEmploymentData[key] = formattedInnerData;
-                            }
-                        }
-
-                        // Return an object containing the formatted data
-
-                        console.log(employmentData);
-                        console.log(employmentData[0]);
-                        setEmploymentData(employmentData);
-
-                        // * Read FT employment % of suburb from employmentData and set to state
-                        const suburbFullTime = [
-                            55,
-                            parseFloat(employmentData["Employment People aged 15 years and over"]["Worked full-time"]["% of suburb"]),
-                            55,
-                            55,
-                            55,
-                        ];
-                        setSuburbFullTime(suburbFullTime);
-
-                        // * Read FT employment % of state from employmentData and set to state
-                        const stateFullTime = [
-                            55,
-                            parseFloat(employmentData["Employment People aged 555 years and over"]["Worked full-time"]["% of state"]),
-                            55,
-                            55,
-                            55,
-                        ];
-                        setStateFullTime(stateFullTime);
-
-                        // TODO: if state data not available, remove item from array => this should aim to remove that data point from the line graph and shortern the line
-                        // TODO: add value to array based on year:
-                        // - 2001: [0]
-                        // - 2006: [1]
-                        // - 2011: [2]
-                        // - 2016: [3]
-                        // - 2021: [4]
-
-                        // * Read FT employment % of Australia from employmentData and set to state
-                        const australiaFullTime = [
-                            55,
-                            parseFloat(employmentData["Employment People aged 15 years and over"]["Worked full-time"]["% of Australia"]),
-                            55,
-                            55,
-                            55,
-                        ];
-                        setAustraliaFullTime(australiaFullTime);
-
-                        return {
-                            employmentData: formattedEmploymentData,
-                        };
-                    });
-                }
-            } catch (error) {
-                console.error("Data fetch unsuccessful", error);
-            }
+        if (props.selectedSuburb) {
+            fetchData();
         }
-
-        // !!!
-        // fetchEmploymentData("data_2001", props.selectedSuburb);
-        fetchEmploymentData("data_2006", props.selectedSuburb);
-        // fetchEmploymentData("data_2011", props.selectedSuburb);
-        // fetchEmploymentData("data_2016", props.selectedSuburb);
-        // fetchIncomeData("income_and_work_2021", props.selectedSuburb);
-        // !!!
     }, [props.selectedSuburb]);
 
-    console.log(suburbFullTime);
-    console.log(stateFullTime);
-    console.log(australiaFullTime);
+    console.log(`suburbFullTime: ${suburbFullTime}`);
+
     return (
         <div>
             <div className="flex flex-col justify-center">
@@ -308,6 +446,12 @@ export default function FullTimeEmploymentLineGraph(props: FullTimeEmploymentPro
                             xAxis={[
                                 {
                                     data: ["2001", "2006", "2011", "2016", "2021"],
+                                },
+                            ]}
+                            yAxis={[
+                                {
+                                    min: 30,
+                                    max: 80,
                                 },
                             ]}
                             series={[
