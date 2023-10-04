@@ -2,8 +2,10 @@
 
 import * as React from "react";
 import { useEffect, useState } from "react";
-import { LineChart } from "@mui/x-charts/LineChart";
+// import { LineChart } from "@mui/x-charts/LineChart";
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
+
+import { LineChart, Line, CartesianGrid, XAxis, YAxis, Tooltip, Legend, ResponsiveContainer, Label, CartesianAxis } from "recharts";
 
 interface FullTimeEmploymentProps {
     selectedSuburb: string | null;
@@ -339,64 +341,100 @@ export default function FullTimeEmploymentLineGraph(props: FullTimeEmploymentPro
     // console.log(`australiaFullTime: ${australiaFullTime}`);
     // console.log(`No Suburb Data: ${noSuburbData}`);
 
+    const data = [
+        { name: "2001", Suburb: 67.2, State: null, Australia: 64.1 },
+        { name: "2006", Suburb: 68.2, State: null, Australia: 66.1 },
+        { name: "2011", Suburb: 64.3, State: 61.2, Australia: 63.1 },
+        { name: "2016", Suburb: 65.6, State: 61.1, Australia: 66.1 },
+        { name: "2021", Suburb: 68.2, State: 61.1, Australia: 68.1 },
+    ];
+
+    const renderLines = (data: any) => {
+        const dynamicData = [...data];
+        const lines = dynamicData.map((value) => (
+            <Line type="natural" dataKey={value["selectedSuburb"]} stroke="#219C90" strokeWidth={2} />
+        ));
+        return lines;
+    };
+
+    const renderLineChart = (
+        <LineChart width={600} height={400} data={data} margin={{ top: 30, right: 30, bottom: 30, left: 30 }}>
+            <Line type="natural" dataKey="Suburb" stroke="#219C90" strokeWidth={2} />
+            <Line type="natural" dataKey="State" stroke="#3182bd" strokeWidth={1.5} />
+            <Line type="natural" dataKey="Australia" stroke="#A90076" strokeWidth={1.5} />
+            <CartesianGrid stroke="#ccc" strokeDasharray="5 5" />
+            <XAxis dataKey="name">
+                <Label value="year" position="bottom" />
+            </XAxis>
+            <YAxis tickCount={5}>
+                <Label value="%" position="insideLeft" />
+            </YAxis>
+            <Tooltip offset={50} cursor={false} />
+            <Legend verticalAlign="top" height={36} />
+            <CartesianGrid y={40}></CartesianGrid>
+        </LineChart>
+    );
+
     return (
         <div>
             <div className="flex flex-col justify-center">
                 <h1 className="mt-4 text-lg text-center font-bold">Full-time employment</h1>
-                <div className="mx-auto -mt-10">
+                <div className="mx-auto -mt-4">
                     {incomeData ? (
-                        <LineChart
-                            xAxis={[
-                                {
-                                    data: ["2001", "2006", "2011", "2016", "2021"],
-                                },
-                            ]}
-                            yAxis={[
-                                {
-                                    min: 40,
-                                    max: 75,
-                                },
-                            ]}
-                            series={[
-                                {
-                                    id: "suburb",
-                                    label: `${selectedSuburb}`,
-                                    data: suburbFullTime,
-                                    showMark: true,
-                                    curve: "natural",
-                                },
-                                {
-                                    id: "state",
-                                    label: `${selectedState}`,
-                                    data: stateFullTime,
-                                    showMark: true,
-                                    curve: "natural",
-                                },
-                                {
-                                    id: "australia",
-                                    label: "Australia",
-                                    data: australiaFullTime,
-                                    showMark: true,
-                                    curve: "natural",
-                                },
-                            ]}
-                            sx={{
-                                "--ChartsLegend-itemWidth": "70px",
-                                "--ChartsLegend-itemMarkSize": "10px",
-                                "--ChartsLegend-labelSpacing": "5px",
-                                "--ChartsLegend-rootSpacing": "50px",
-                            }}
-                            legend={{
-                                direction: "row",
-                                position: {
-                                    vertical: "top",
-                                    horizontal: "middle",
-                                },
-                            }}
-                            width={550}
-                            height={400}
-                            margin={{ left: 70 }}
-                        />
+                        // <LineChart
+                        //     xAxis={[
+                        //         {
+                        //             data: ["2001", "2006", "2011", "2016", "2021"],
+                        //         },
+                        //     ]}
+                        //     yAxis={[
+                        //         {
+                        //             min: 40,
+                        //             max: 75,
+                        //         },
+                        //     ]}
+                        //     series={[
+                        //         {
+                        //             id: "suburb",
+                        //             label: `${selectedSuburb}`,
+                        //             data: suburbFullTime,
+                        //             showMark: true,
+                        //             curve: "natural",
+                        //         },
+                        //         {
+                        //             id: "state",
+                        //             label: `${selectedState}`,
+                        //             data: stateFullTime,
+                        //             showMark: true,
+                        //             curve: "natural",
+                        //         },
+                        //         {
+                        //             id: "australia",
+                        //             label: "Australia",
+                        //             data: australiaFullTime,
+                        //             showMark: true,
+                        //             curve: "natural",
+                        //         },
+                        //     ]}
+                        //     sx={{
+                        //         "--ChartsLegend-itemWidth": "70px",
+                        //         "--ChartsLegend-itemMarkSize": "10px",
+                        //         "--ChartsLegend-labelSpacing": "5px",
+                        //         "--ChartsLegend-rootSpacing": "50px",
+                        //     }}
+                        //     legend={{
+                        //         direction: "row",
+                        //         position: {
+                        //             vertical: "top",
+                        //             horizontal: "middle",
+                        //         },
+                        //     }}
+                        //     width={550}
+                        //     height={400}
+                        //     margin={{ left: 70 }}
+                        // />
+                        // * <Recharts />
+                        <div>{renderLineChart}</div>
                     ) : (
                         ""
                     )}

@@ -5,11 +5,13 @@ import { Roboto, Inter } from "@next/font/google";
 const roboto = Roboto({
     weight: ["100", "300", "500", "700"],
     variable: "--font-roboto",
+    subsets: ["latin"],
 });
 
 const inter = Inter({
     weight: ["100", "300", "500", "700"],
     variable: "--font-inter",
+    subsets: ["latin"],
 });
 
 export const metadata = {
