@@ -341,6 +341,8 @@ export default function FullTimeEmploymentLineGraph(props: FullTimeEmploymentPro
     console.log(`australiaFullTime: ${australiaFullTime}`);
     console.log(`No Suburb Data: ${noSuburbData}`);
 
+    // * <Recharts />
+
     const data = [
         { name: "2001", Suburb: suburbFullTime[0], State: stateFullTime[0], Australia: australiaFullTime[0] },
         { name: "2006", Suburb: suburbFullTime[1], State: stateFullTime[1], Australia: australiaFullTime[1] },
@@ -349,19 +351,11 @@ export default function FullTimeEmploymentLineGraph(props: FullTimeEmploymentPro
         { name: "2021", Suburb: suburbFullTime[4], State: stateFullTime[4], Australia: australiaFullTime[4] },
     ];
 
-    const renderLines = (data: any) => {
-        const dynamicData = [...data];
-        const lines = dynamicData.map((value) => (
-            <Line type="natural" dataKey={value["selectedSuburb"]} stroke="#219C90" strokeWidth={2} />
-        ));
-        return lines;
-    };
-
     const renderLineChart = (
         <LineChart width={600} height={400} data={data} margin={{ top: 30, right: 30, bottom: 30, left: 30 }}>
-            <Line type="natural" dataKey="Suburb" stroke="#219C90" strokeWidth={2} />
-            <Line type="natural" dataKey="State" stroke="#3182bd" strokeWidth={1.5} />
-            <Line type="natural" dataKey="Australia" stroke="#A90076" strokeWidth={1.5} />
+            <Line type="natural" dataKey="Suburb" stroke="#219C90" strokeWidth={2.4} />
+            <Line type="natural" dataKey="State" stroke="#068FFF" strokeWidth={1.4} />
+            <Line type="natural" dataKey="Australia" stroke="#A90076" strokeWidth={1.4} />
             <CartesianGrid stroke="#ccc" strokeDasharray="5 5" />
             <XAxis dataKey="name">
                 <Label value="year" position="bottom" />
@@ -370,7 +364,7 @@ export default function FullTimeEmploymentLineGraph(props: FullTimeEmploymentPro
                 <Label value="%" position="insideLeft" />
             </YAxis>
             <Tooltip offset={50} cursor={false} />
-            <Legend verticalAlign="top" height={36} />
+            <Legend verticalAlign="top" height={36} align="center" />
             <CartesianGrid y={40}></CartesianGrid>
         </LineChart>
     );
