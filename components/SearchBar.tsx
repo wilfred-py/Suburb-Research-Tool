@@ -35,7 +35,8 @@ export default function SearchBar(props: SearchBarProps) {
     // state to manage drop down list of matching results; initialise with all suburb names
     const [searchResults, setSearchResults] = useState<string[]>(recommendedSearches);
 
-    const [focusedIndex, setFocusedIndex] = useState<number>(-1);
+    // state to manage if user has selected a suburb
+    const [suburbSelected, setSuburbSelected] = useState(false);
 
     const resultsRef = useRef(null);
     const inputRef = useRef(null);
@@ -82,11 +83,12 @@ export default function SearchBar(props: SearchBarProps) {
         if (searchQuery === "") {
             setSearchResults(recommendedSearches);
             setShowResults(false);
-        } else {
+        } else if (!suburbSelected) {
+            console.log(`searchQuery: ${searchQuery}`);
             const filteredResults = suburbs.filter((suburb) => suburb.toLowerCase().includes(searchQuery.toLowerCase()));
             const topResults = filteredResults.slice(0, 10);
             setSearchResults(topResults);
-            // setShowResults(true);
+            setShowResults(true);
         }
     }, [searchQuery]);
 
@@ -108,13 +110,23 @@ export default function SearchBar(props: SearchBarProps) {
         if (event.key === "Enter") {
             event.preventDefault();
         }
+
+        if (event.key === "Escape") {
+            event.preventDefault();
+            setSearchQuery("");
+            setShowResults(false);
+            setSuburbSelected(false);
+        }
     };
 
     // * Handle click inside <input> tag
     const handleInputClick = () => {
+        setShowResults(true);
         // If value is blank, set showResults to true
         if (searchQuery == "") {
             setShowResults(true);
+        } else if (searchQuery) {
+            setShowResults(true); // Show results if user clicks on input field
         } else {
             setShowResults(false); // If value exists, set showResults to false
         }
@@ -124,6 +136,7 @@ export default function SearchBar(props: SearchBarProps) {
     const handleResultsClick = (suburb: string) => {
         setShowResults(false);
         setSearchQuery(suburb);
+        setSuburbSelected(true);
         props.setSelectedSuburb(suburb);
     };
 
