@@ -84,7 +84,7 @@ export default function SearchBar(props: SearchBarProps) {
             setSearchResults(recommendedSearches);
             setShowResults(false);
         } else if (!suburbSelected) {
-            console.log(`searchQuery: ${searchQuery}`);
+            // console.log(`searchQuery: ${searchQuery}`);
             const filteredResults = suburbs.filter((suburb) => suburb.toLowerCase().includes(searchQuery.toLowerCase()));
             const topResults = filteredResults.slice(0, 10);
             setSearchResults(topResults);
