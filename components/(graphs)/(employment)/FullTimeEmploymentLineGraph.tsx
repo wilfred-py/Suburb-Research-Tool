@@ -44,7 +44,7 @@ export default function FullTimeEmploymentLineGraph(props: FullTimeEmploymentPro
 
     function deconstructSuburb(selectedSuburb: string | null) {
         // State Regex
-        const stateRegex = /^(.*?),\s*(VIC|NSW|ACT|WA|SA|TAS|NT)/;
+        const stateRegex = /^(.*?),\s*(VIC|NSW|ACT|WA|SA|TAS|NT|QLD|Other Territories)/;
 
         // ! Suburb Name
         // Create substrings based on stateRegex
@@ -187,7 +187,6 @@ export default function FullTimeEmploymentLineGraph(props: FullTimeEmploymentPro
                         } else if (!percentageSuburbFullTime) {
                             // ! If data is not available, remove element from array so line graph does not display it
                             newSuburbFullTime[1] = null;
-                            setNoSuburbData(true);
                         }
 
                         // Set stateFullTime if it exists
