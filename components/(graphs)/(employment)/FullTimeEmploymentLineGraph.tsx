@@ -60,7 +60,8 @@ export default function FullTimeEmploymentLineGraph(props: FullTimeEmploymentPro
         // ! Post Code
         const postcode = selectedSuburb?.slice(-4);
 
-        // console.log(`suburbName: ${suburbName}`);
+        console.log(`suburbName: ${suburbName}`);
+        console.log(`stateName: ${stateName}`);
 
         setDeconstructedSuburb(suburbName);
         setDeconstructedState(stateName);
@@ -79,7 +80,11 @@ export default function FullTimeEmploymentLineGraph(props: FullTimeEmploymentPro
             setSelectedSuburb(suburbName);
             setSelectedState(stateName);
 
-            const { data, error } = await supabase.from(tableName).select("*").eq("suburb_name", suburbName).eq("state_name", stateName);
+            const { data, error } = await supabase
+                .from(tableName)
+                .select("*")
+                .like("suburb_name", `%${suburbName}%`)
+                .eq("state_name", stateName);
 
             if (error) {
                 console.error("Error fetching data:", error);
@@ -204,6 +209,7 @@ export default function FullTimeEmploymentLineGraph(props: FullTimeEmploymentPro
 
                     // * 2011
                     else if (year == "2011") {
+                        console.log(`2011 data: ${data[0]}`);
                         const percentageSuburbFullTime =
                             data[0]["employment_data"]["Employment People who reported being in the labour force, aged 15 years and over"][
                                 "Worked full-time"
