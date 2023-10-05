@@ -8,43 +8,9 @@ interface SummaryDataProps {
     selectedSuburb: string | null;
 }
 
-// !!! Deprecated Function (suburb is now passed in through prop) Get Suburb Name from URL
-// function getSuburbDetailsFromUrl() {
-//     const url = new URL(window.location.href);
-//     const pathname = url.pathname;
-
-//     // State Regex
-//     const stateRegex = /^(.*?)(VIC|NSW|ACT|WA|SA)/;
-
-//     // String in URL
-//     const stringInURL = pathname.replace("/dashboard/suburb/", "");
-
-//     // ! Suburb Name
-//     // Create substrings based on stateRegex
-//     const suburbMatch = stringInURL.match(stateRegex);
-
-//     // If it exists, return first match in suburbName
-//     const suburbName = suburbMatch ? suburbMatch[1] : null;
-
-//     // Replace "+" and remove leading and trailing white spaces
-//     const formattedSuburbName = suburbName ? suburbName.replaceAll("+", " ").trim() : null;
-
-//     // ! State Name
-//     const stateName = suburbMatch ? suburbMatch[2] : null;
-
-//     // ! Post Code
-//     const postcode = stringInURL.slice(-4);
-
-//     return {
-//         suburbName: formattedSuburbName,
-//         stateName,
-//         postcode,
-//     };
-// }
-
 function deconstructSuburb(suburb: string | null) {
     // State Regex
-    const stateRegex = /^(.*?),\s*(VIC|NSW|ACT|WA|SA|TAS|NT)/;
+    const stateRegex = /^(.*?),\s*(VIC|NSW|ACT|WA|SA|TAS|NT|QLD|Other Territories)/;
 
     // ! Suburb Name
     // Create substrings based on stateRegex
@@ -84,7 +50,7 @@ export default function SummaryData(props: SummaryDataProps) {
                 if (suburbName) {
                     supaClient
                         .rpc("get_first_10_rows")
-                        .eq("suburb_name", suburbNameQuery)
+                        .like("suburb_name", `%${suburbNameQuery}%`)
                         .eq("state_name", stateNameQuery)
                         .eq("post_code", postcode)
                         .then(({ data }) => {

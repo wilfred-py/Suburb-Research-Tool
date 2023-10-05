@@ -33,7 +33,6 @@ export default function FullTimeEmploymentLineGraph(props: FullTimeEmploymentPro
     const [australiaFullTime, setAustraliaFullTime] = useState<(number | null)[]>([null, null, null, null, null]);
 
     // States to manage instances where data does not exist
-    const [noSuburbData, setNoSuburbData] = useState(false);
     const [noStateData, setNoStateData] = useState(false);
     const [noAustraliaData, setNoAustraliaData] = useState(false);
 
@@ -125,6 +124,11 @@ export default function FullTimeEmploymentLineGraph(props: FullTimeEmploymentPro
                 try {
                     // * 2001
                     if (year == "2001") {
+                        // Clear suburbFullTime from previous search
+                        setSuburbFullTime([null, null, null, null, null]);
+                        setStateFullTime([null, null, null, null, null]);
+                        setAustraliaFullTime([null, null, null, null, null]);
+
                         const percentageSuburbFullTime =
                             data[0]["employment_data"]["Employment People aged 15 years and over"]["Worked full-time"]["% of suburb"];
 
@@ -140,10 +144,10 @@ export default function FullTimeEmploymentLineGraph(props: FullTimeEmploymentPro
                             setSuburbFullTime(newSuburbFullTime);
                         } else if (!percentageSuburbFullTime) {
                             // ! If data is not available, remove element from array so line graph does not display it
-                            // newSuburbFullTime[0] = null;
-                            newSuburbFullTime.splice(0, 1);
+                            console.log(`2001 data not available for ${selectedSuburb}`);
+                            newSuburbFullTime[0] = null;
+                            // newSuburbFullTime.splice(0, 1);
                             setSuburbFullTime(newSuburbFullTime);
-                            setNoSuburbData(true);
                         }
 
                         // Set stateFullTime if it exists
@@ -157,8 +161,6 @@ export default function FullTimeEmploymentLineGraph(props: FullTimeEmploymentPro
                             newStateFullTime.splice(0, 1);
                             setStateFullTime(newStateFullTime);
                         }
-
-                        // console.log(`stateFullTime: ${stateFullTime}`);
 
                         // Set australiaFullTime if it exists
                         if (percentageAustraliaFullTime) {
@@ -209,7 +211,6 @@ export default function FullTimeEmploymentLineGraph(props: FullTimeEmploymentPro
 
                     // * 2011
                     else if (year == "2011") {
-                        console.log(`2011 data: ${data[0]}`);
                         const percentageSuburbFullTime =
                             data[0]["employment_data"]["Employment People who reported being in the labour force, aged 15 years and over"][
                                 "Worked full-time"
@@ -230,7 +231,6 @@ export default function FullTimeEmploymentLineGraph(props: FullTimeEmploymentPro
                         } else if (!percentageSuburbFullTime) {
                             // ! If data is not available, remove element from array so line graph does not display it
                             newSuburbFullTime[2] = null;
-                            setNoSuburbData(true);
                         }
 
                         // Set stateFullTime if it exists
@@ -274,7 +274,6 @@ export default function FullTimeEmploymentLineGraph(props: FullTimeEmploymentPro
                         } else if (!percentageSuburbFullTime) {
                             // ! If data is not available, remove element from array so line graph does not display it
                             newSuburbFullTime[3] = null;
-                            setNoSuburbData(true);
                         }
 
                         // Set stateFullTime if it exists
@@ -310,7 +309,6 @@ export default function FullTimeEmploymentLineGraph(props: FullTimeEmploymentPro
                         } else if (!percentageSuburbFullTime) {
                             // ! If data is not available, remove element from array so line graph does not display it
                             newSuburbFullTime[4] = null;
-                            setNoSuburbData(true);
                         }
 
                         // Set stateFullTime if it exists
@@ -333,6 +331,27 @@ export default function FullTimeEmploymentLineGraph(props: FullTimeEmploymentPro
                     }
                 } catch (error) {
                     console.error(`Error processing data for ${year}`, error);
+                    if (year === "2001") {
+                        console.log(`${year} data not available for ${selectedSuburb}`);
+                        newSuburbFullTime[0] = null;
+                        setSuburbFullTime(newSuburbFullTime);
+                    } else if (year === "2006") {
+                        console.log(`2006 data not available for ${selectedSuburb}`);
+                        newSuburbFullTime[1] = null;
+                        setSuburbFullTime(newSuburbFullTime);
+                    } else if (year === "2011") {
+                        console.log(`2011 data not available for ${selectedSuburb}`);
+                        newSuburbFullTime[2] = null;
+                        setSuburbFullTime(newSuburbFullTime);
+                    } else if (year === "2016") {
+                        console.log(`2016 data not available for ${selectedSuburb}`);
+                        newSuburbFullTime[3] = null;
+                        setSuburbFullTime(newSuburbFullTime);
+                    } else if (year === "2021") {
+                        console.log(`2021 data not available for ${selectedSuburb}`);
+                        newSuburbFullTime[4] = null;
+                        setSuburbFullTime(newSuburbFullTime);
+                    }
                 }
             });
         }
@@ -345,7 +364,6 @@ export default function FullTimeEmploymentLineGraph(props: FullTimeEmploymentPro
     console.log(`suburbFullTime: ${suburbFullTime}`);
     console.log(`stateFullTime: ${stateFullTime}`);
     console.log(`australiaFullTime: ${australiaFullTime}`);
-    console.log(`No Suburb Data: ${noSuburbData}`);
 
     // * <Recharts />
 
