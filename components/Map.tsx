@@ -46,7 +46,7 @@ interface MapProps {
 
 function deconstructSuburb(suburb: string | null) {
     // State Regex
-    const stateRegex = /^(.*?),\s*(VIC|NSW|ACT|WA|SA|TAS|NT)/;
+    const stateRegex = /^(.*?),\s*(VIC|NSW|ACT|WA|SA|TAS|NT|QLD|Other Territories)/;
 
     // ! Suburb Name
     // Create substrings based on stateRegex
