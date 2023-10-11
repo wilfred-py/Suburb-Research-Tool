@@ -8,7 +8,7 @@ interface EmploymentProps {
 
 export default function Employment(props: EmploymentProps) {
     return (
-        <div className="flex flex-col border-2 border-blue-400">
+        <div className="flex flex-col border-2 border-blue-400 my-4">
             <h1 className="text-2xl font-bold mx-auto">Employment</h1>
             <div className="flex flex-row flex-wrap">
                 <FullTimeEmploymentLineGraph selectedSuburb={props.selectedSuburb} />
