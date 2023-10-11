@@ -1,110 +1,174 @@
 "use client";
 
-import React from "react";
-import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend } from "chart.js";
-import { Bar } from "react-chartjs-2";
-import { faker } from "@faker-js/faker";
-import main_data_Abbotsford from "../data/main_data/main_data_Abbotsford.json";
-import summary_data_Abbotsford from "../data/summary_data/summary_data_Abbotsford.json";
+import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
+import { useEffect, useState } from "react";
+import EmploymentGraph from "./(graphs)/(employment)/EmploymentGraph";
 
-ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
+interface IncomeDataItem {
+    income_data: any;
+}
 
-const summaryData = summary_data_Abbotsford;
-const mainData = main_data_Abbotsford;
-const keys = Object.keys(mainData["People"]["Male"]);
+interface IncomeProps {
+    selectedSuburb: string | null;
+}
 
-// Name of Suburb
-const suburbName = keys[0].toString();
+export default function Income(props: IncomeProps) {
+    const [incomeData, setIncomeData] = useState<IncomeDataItem[]>([]); // Initialize state with an empty array
+    const [deconstructedSuburb, setDeconstructedSuburb] = useState<string | null>(null);
+    const [deconstructedState, setDeconstructedState] = useState<string | null>(null);
+    const supabase = createClientComponentClient();
 
-// Name of State
-const stateName = keys[2];
+    function deconstructSuburb(selectedSuburb: string | null) {
+        // State Regex
+        const stateRegex = /^(.*?),\s*(VIC|NSW|ACT|WA|SA|TAS|NT|QLD|Other Territories)/;
 
-const personalIncome =
-    mainData["Median weekly incomes (a)"]["Personal (b)"][
-        suburbName as keyof (typeof main_data_Abbotsford)["Median weekly incomes (a)"]["Personal (b)"]
-    ];
+        // ! Suburb Name
+        // Create substrings based on stateRegex
+        const suburbMatch = selectedSuburb?.match(stateRegex);
 
-const statePersonalIncome =
-    mainData["Median weekly incomes (a)"]["Personal (b)"][
-        stateName as keyof (typeof main_data_Abbotsford)["Median weekly incomes (a)"]["Personal (b)"]
-    ];
+        // If it exists, return first match in suburbName
+        const suburbName = suburbMatch ? suburbMatch[1] : null;
 
-// Chart.js
-const labels = [2016, 2021];
+        // ! State Name
+        const stateName = suburbMatch ? suburbMatch[2] : null;
 
-const personalMedianIncomeOptions = {
-    responsive: true,
-    plugins: {
-        legend: {
-            position: "right" as const,
-        },
-        title: {
-            display: true,
-            text: "Personal Median Weekly Income",
-        },
-    },
-};
+        // ! Post Code
+        const postcode = selectedSuburb?.slice(-4);
 
-const householdMedianIncomeOptions = {
-    responsive: true,
-    plugins: {
-        legend: {
-            position: "right" as const,
-        },
-        title: {
-            display: true,
-            text: "Household Median Weekly Income",
-        },
-    },
-};
+        setDeconstructedSuburb(suburbName);
+        setDeconstructedState(stateName);
 
-const personalMedianIncomeData = {
-    labels,
-    datasets: [
-        {
-            label: suburbName,
-            data: labels.map(() => faker.datatype.number({ min: 0, max: 3500 })),
-            backgroundColor: "rgba(245, 195, 71, 0.5)",
-        },
-        {
-            label: stateName,
-            data: labels.map(() => faker.datatype.number({ min: 0, max: 3500 })),
-            backgroundColor: "rgba(0, 203, 165, 0.5)",
-        },
-        {
-            label: "Australia",
-            data: labels.map(() => faker.datatype.number({ min: 0, max: 3500 })),
-            backgroundColor: "rgba(53, 162, 235, 0.5)",
-        },
-    ],
-};
+        return {
+            suburbName,
+            stateName,
+            postcode,
+        };
+    }
 
-const householdMedianIncomeData = {
-    labels,
-    datasets: [
-        {
-            label: suburbName,
-            data: labels.map(() => faker.datatype.number({ min: 0, max: 3500 })),
-            backgroundColor: "rgba(245, 195, 71, 0.5)",
-        },
-        {
-            label: stateName,
-            data: labels.map(() => faker.datatype.number({ min: 0, max: 3500 })),
-            backgroundColor: "rgba(0, 203, 165, 0.5)",
-        },
-        {
-            label: "Australia",
-            data: labels.map(() => faker.datatype.number({ min: 0, max: 3500 })),
-            backgroundColor: "rgba(53, 162, 235, 0.5)",
-        },
-    ],
-};
+    useEffect(() => {
+        async function fetchIncomeData(selectedSuburb: string | null) {
+            try {
+                const { suburbName, stateName } = deconstructSuburb(selectedSuburb);
 
-export default function Income() {
+                // * Filter through income_and_work table on Supabase using suburb_name & state_name
+                const { data, error } = await supabase
+                    .from("income_and_work_2021")
+                    .select("*")
+                    .eq("suburb_name", suburbName)
+                    .eq("state_name", stateName);
+
+                console.log(data);
+                console.log(error);
+                setIncomeData(data || []);
+
+                if (error) {
+                    console.error("Error fetching data:", error);
+                } else {
+                    const formattedData = data?.map((item: IncomeDataItem) => {
+                        const incomeData = item?.income_data;
+                        const formattedIncomeData: any = {};
+
+                        // Key examples:
+                        // 1. "Employment status"
+                        // 2. "Employment, hours worked"
+                        // 3. "Median weekly incomes (a)"
+                        for (const key in incomeData) {
+                            if (incomeData?.hasOwnProperty(key)) {
+                                const innerData = incomeData[key];
+                                // innerData example:
+                                // {
+                                //     "Unemployed": {
+                                //       "NSW": "2,136,610",
+                                //       "Australia": "7,095,103",
+                                //       "% of state": "55.2",
+                                //       "Abbotsbury": "1,110",
+                                //       "% of suburb": "53.0",
+                                //       "% of country": "55.9"
+                                //     },
+                                //     "Worked full-time": {
+                                //       "NSW": "2,136,610",
+                                //       "Australia": "7,095,103",
+                                //       "% of state": "55.2",
+                                //       "Abbotsbury": "1,110",
+                                //       "% of suburb": "53.0",
+                                //       "% of country": "55.9"
+                                //     },
+                                //     "Worked part-time": {
+                                //       "NSW": "2,136,610",
+                                //       "Australia": "7,095,103",
+                                //       "% of state": "55.2",
+                                //       "Abbotsbury": "1,110",
+                                //       "% of suburb": "53.0",
+                                //       "% of country": "55.9"
+                                //     },
+                                //     "Away from work (a)": {
+                                //       "NSW": "2,136,610",
+                                //       "Australia": "7,095,103",
+                                //       "% of state": "55.2",
+                                //       "Abbotsbury": "1,110",
+                                //       "% of suburb": "53.0",
+                                //       "% of country": "55.9"
+                                //     }
+                                //   }
+
+                                const formattedInnerData: any = {};
+                                for (const innerKey in innerData) {
+                                    if (innerData?.hasOwnProperty(innerKey)) {
+                                        formattedInnerData[innerKey] = innerData[innerKey];
+                                        // formattedInnerData example
+                                        // {
+                                        //   "NSW": "2,136,610",
+                                        //   "Australia": "7,095,103",
+                                        //   "% of state": "55.2",
+                                        //   "Abbotsbury": "1,110",
+                                        //   "% of suburb": "53.0",
+                                        //   "% of country": "55.9"
+                                        // }
+                                    }
+                                }
+                                formattedIncomeData[key] = formattedInnerData;
+                            }
+                        }
+                        return {
+                            incomeData: formattedIncomeData,
+                        };
+                    });
+                }
+            } catch (error) {
+                console.error("Data fetch unsuccessful", error);
+            }
+        }
+
+        fetchIncomeData(props.selectedSuburb);
+    }, [props.selectedSuburb]);
+
     return (
-        <div className="m-4">
-            <Bar options={personalMedianIncomeOptions} data={personalMedianIncomeData} className="max-w-lg max-h-[360px]" />
-            <Bar options={householdMedianIncomeOptions} data={householdMedianIncomeData} className="max-w-lg max-h-[360px]" />
+        <div>
+            <div className="border-2 border-black">
+                <div className="my-4">
+                    <span>Demographics of </span>
+                    <span className="font-semibold">{props.selectedSuburb}</span>
+                </div>
+                <div>
+                    {incomeData ? (
+                        <div>
+                            {incomeData[0]?.income_data && (
+                                <div>
+                                    <p>
+                                        Participation in the labour force:{" "}
+                                        {incomeData[0].income_data["Participation in the labour force"]["In the labour force"]["suburb"]}
+                                    </p>
+                                </div>
+                            )}
+                        </div>
+                    ) : (
+                        <p>Loading...</p>
+                    )}
+                </div>
+                <div className="max-w-2xl h-3/6 border-2 border-orange-400">
+                    <EmploymentGraph selectedSuburb={props.selectedSuburb} />
+                </div>
+            </div>
         </div>
     );
 }
