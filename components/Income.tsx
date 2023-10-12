@@ -11,7 +11,7 @@ export default function Income(props: IncomeProps) {
             <h1 className="text-2xl font-bold mx-auto">Income</h1>
             <div className="flex flex-row flex-wrap">
                 <PersonalMedianWeeklyIncome selectedSuburb={props.selectedSuburb} />
-                {/* <HouseholdMedianWeeklyIncome selectedSuburb={props.selectedSuburb} /> */}
+                <HouseholdMedianWeeklyIncome selectedSuburb={props.selectedSuburb} />
             </div>
         </div>
     );
