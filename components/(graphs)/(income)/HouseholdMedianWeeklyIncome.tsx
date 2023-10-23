@@ -343,7 +343,7 @@ export default function HouseholdMedianWeeklyIncome(props: HouseholdIncomeProps)
             <XAxis dataKey="name">
                 <Label value="year" position="bottom" />
             </XAxis>
-            <YAxis tickCount={6} domain={[750, 2500]}>
+            <YAxis tickCount={6} domain={["auto", "auto"]}>
                 <Label value="$" position="insideLeft" />
             </YAxis>
             <Tooltip offset={50} cursor={false} />

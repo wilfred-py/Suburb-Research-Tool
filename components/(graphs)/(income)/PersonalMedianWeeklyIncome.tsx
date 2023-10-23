@@ -358,7 +358,7 @@ export default function PersonalMedianWeeklyIncome(props: PersonalIncomeProps) {
             <XAxis dataKey="name">
                 <Label value="year" position="bottom" />
             </XAxis>
-            <YAxis tickCount={6} domain={[400, 1500]}>
+            <YAxis tickCount={6} domain={["auto", "auto"]}>
                 <Label value="$" position="insideLeft" />
             </YAxis>
             <Tooltip offset={50} cursor={false} />
