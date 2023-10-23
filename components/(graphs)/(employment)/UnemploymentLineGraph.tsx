@@ -352,7 +352,7 @@ export default function UnemploymentLineGraph(props: UnemploymentProps) {
             <XAxis dataKey="name">
                 <Label value="year" position="bottom" />
             </XAxis>
-            <YAxis tickCount={6} domain={[0, 15]}>
+            <YAxis tickCount={6} domain={["auto", "auto"]}>
                 <Label value="%" position="insideLeft" />
             </YAxis>
             <Tooltip offset={50} cursor={false} />
