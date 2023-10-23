@@ -347,6 +347,9 @@ export default function UnemploymentLineGraph(props: UnemploymentProps) {
 
     // * useEffect hook to determine min and max for y-axis
     useEffect(() => {
+        setDataMin(0);
+        setDataMax(0);
+
         async function minMax(
             suburbUnemployment: (number | null)[],
             stateUnemployment: (number | null)[],
@@ -375,19 +378,21 @@ export default function UnemploymentLineGraph(props: UnemploymentProps) {
 
             setDataMin(dataMin);
             setDataMax(dataMax);
-
-            console.log(dataMin);
-            console.log(dataMax);
         }
 
         minMax(suburbUnemployment, stateUnemployment, australiaUnemployment);
-        console.log(`dataMin: ${dataMin}`);
-        console.log(`dataMax: ${dataMax}`);
     }, [suburbUnemployment, stateUnemployment, australiaUnemployment]);
+
+    // ! CONSOLE LOGS OUTSIDE useEffect hooks ************
 
     console.log(`suburbUnemployment: ${suburbUnemployment}`);
     // console.log(`stateUnemployment: ${stateUnemployment}`);
     // console.log(`australiaUnemployment: ${australiaUnemployment}`);
+
+    console.log(`dataMin: ${dataMin}`);
+    console.log(`dataMax: ${dataMax}`);
+
+    // ! CONSOLE LOGS OUTSIDE useEffect hooks ************
 
     // * <Recharts />
 
