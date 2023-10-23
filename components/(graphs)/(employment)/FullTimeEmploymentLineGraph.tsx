@@ -37,6 +37,10 @@ export default function FullTimeEmploymentLineGraph(props: FullTimeEmploymentPro
     const [insufficientStateData, setInsufficientStateData] = useState(false);
     const [insufficientAustraliaData, setInsufficientAustraliaData] = useState(false);
 
+    // State to manage minimum and maximum data points for y-axis
+    const [dataMin, setDataMin] = useState(0);
+    const [dataMax, setDataMax] = useState(0);
+
     const supabase = createClientComponentClient();
 
     function deconstructSuburb(selectedSuburb: string | null) {
@@ -331,9 +335,50 @@ export default function FullTimeEmploymentLineGraph(props: FullTimeEmploymentPro
         }
     }, [props.selectedSuburb]);
 
+    // * useEffect hook to determine min and max for y-axis
+    useEffect(() => {
+        async function minMax(
+            suburbUnemployment: (number | null)[],
+            stateUnemployment: (number | null)[],
+            australiaUnemployment: (number | null)[]
+        ) {
+            // Define minimum and maximum variables
+            let dataMin: number = 100;
+            let dataMax: number = 0;
+
+            // Combine all 3 arrays
+            const combinedList = suburbUnemployment.concat(stateUnemployment, australiaUnemployment);
+
+            // Remove null values from combinedList
+            const cleanedList = combinedList.filter((value) => value !== null) as number[];
+            console.log(cleanedList);
+
+            // Iterate over items in arrays and determine lowest number for dataMin and highest number for dataMax
+            for (let i = 0; i < cleanedList.length; i++) {
+                if (cleanedList[i] !== null && cleanedList[i] < dataMin) {
+                    dataMin = cleanedList[i];
+                }
+                if (cleanedList[i] !== null && cleanedList[i] > dataMax) {
+                    dataMax = cleanedList[i];
+                }
+            }
+
+            setDataMin(dataMin);
+            setDataMax(dataMax);
+        }
+
+        minMax(suburbFullTime, stateFullTime, australiaFullTime);
+    }, [suburbFullTime, stateFullTime, australiaFullTime]);
+
+    // ! CONSOLE LOGS OUTSIDE useEffect hooks ************
+
     // console.log(`suburbFullTime: ${suburbFullTime}`);
     // console.log(`stateFullTime: ${stateFullTime}`);
     // console.log(`australiaFullTime: ${australiaFullTime}`);
+    console.log(dataMin);
+    console.log(dataMax);
+
+    // ! CONSOLE LOGS OUTSIDE useEffect hooks ************
 
     // * <Recharts />
 
@@ -354,7 +399,7 @@ export default function FullTimeEmploymentLineGraph(props: FullTimeEmploymentPro
             <XAxis dataKey="name">
                 <Label value="year" position="bottom" />
             </XAxis>
-            <YAxis tickCount={10} domain={["auto", "auto"]} padding={{ bottom: 30 }}>
+            <YAxis tickCount={10} domain={[dataMin - 3, dataMax + 3]} padding={{ bottom: 15 }}>
                 <Label value="%" position="insideLeft" />
             </YAxis>
             <Tooltip offset={50} cursor={false} />
