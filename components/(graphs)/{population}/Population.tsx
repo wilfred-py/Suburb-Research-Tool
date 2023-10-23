@@ -244,7 +244,7 @@ export default function Population(props: PopulationProps) {
             <XAxis dataKey="name">
                 <Label value="year" position="bottom" />
             </XAxis>
-            <YAxis tickCount={6} domain={[0, 15000]}>
+            <YAxis tickCount={6} domain={["auto", "auto"]} padding={{ bottom: 30 }}>
                 <Label value="" position="insideLeft" />
             </YAxis>
             <Tooltip offset={50} cursor={false} />
@@ -259,7 +259,7 @@ export default function Population(props: PopulationProps) {
             <XAxis dataKey="name">
                 <Label value="year" position="bottom" />
             </XAxis>
-            <YAxis tickCount={10} domain={["auto", "auto"]}>
+            <YAxis tickCount={10} domain={[35, 75]} padding={{ bottom: 10 }}>
                 <Label value="" position="insideLeft" />
             </YAxis>
             <Tooltip offset={50} cursor={false} />

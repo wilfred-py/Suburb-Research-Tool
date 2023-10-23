@@ -107,8 +107,6 @@ export default function PersonalMedianWeeklyIncome(props: PersonalIncomeProps) {
             setInsufficientSuburbData(true);
         }
 
-        console.log(`PersonalIncome nullCount: ${nullCount} \n PersonalIncome numberCount: ${numberCount}`);
-
         return (numberCount === 1 && nullCount === 4) || nullCount === 5;
     }
 
@@ -118,7 +116,6 @@ export default function PersonalMedianWeeklyIncome(props: PersonalIncomeProps) {
             setSuburbPersonalIncome([null, null, null, null, null]);
             setStatePersonalIncome([null, null, null, null, null]);
 
-            console.log(`selectedSuburb: ${props.selectedSuburb}`);
             const years = ["2001", "2006", "2011", "2016", "2021"];
             const dataPromises = years.map((year) => fetchEmploymentDataByYear(year, `data_${year}`, props.selectedSuburb));
 
@@ -335,7 +332,7 @@ export default function PersonalMedianWeeklyIncome(props: PersonalIncomeProps) {
         }
     }, [props.selectedSuburb]);
 
-    console.log(`suburbPersonalIncome: ${suburbPersonalIncome}`);
+    // console.log(`suburbPersonalIncome: ${suburbPersonalIncome}`);
     // console.log(`statePersonalIncome: ${statePersonalIncome}`);
     // console.log(`australiaPersonalIncome: ${australiaPersonalIncome}`);
 
@@ -358,7 +355,7 @@ export default function PersonalMedianWeeklyIncome(props: PersonalIncomeProps) {
             <XAxis dataKey="name">
                 <Label value="year" position="bottom" />
             </XAxis>
-            <YAxis tickCount={6} domain={["auto", "auto"]}>
+            <YAxis tickCount={6} domain={["auto", "auto"]} padding={{ bottom: 30 }}>
                 <Label value="$" position="insideLeft" />
             </YAxis>
             <Tooltip offset={50} cursor={false} />

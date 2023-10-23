@@ -354,7 +354,7 @@ export default function FullTimeEmploymentLineGraph(props: FullTimeEmploymentPro
             <XAxis dataKey="name">
                 <Label value="year" position="bottom" />
             </XAxis>
-            <YAxis tickCount={10} domain={["auto", "auto"]}>
+            <YAxis tickCount={10} domain={["auto", "auto"]} padding={{ bottom: 30 }}>
                 <Label value="%" position="insideLeft" />
             </YAxis>
             <Tooltip offset={50} cursor={false} />
