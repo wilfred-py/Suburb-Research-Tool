@@ -1,3 +1,4 @@
+import Population from "../(graphs)/{population}/Population";
 import Employment from "../Employment";
 import Income from "../Income";
 
@@ -10,6 +11,7 @@ export default function DemographicView(props: DemographicProps) {
 
     return (
         <div className="max-w-screen max-h-screen flex flex-wrap">
+            <Population selectedSuburb={props.selectedSuburb} />
             <Employment selectedSuburb={props.selectedSuburb} />
             <Income selectedSuburb={props.selectedSuburb} />
         </div>
