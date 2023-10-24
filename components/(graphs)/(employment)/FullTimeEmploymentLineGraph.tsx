@@ -157,11 +157,13 @@ export default function FullTimeEmploymentLineGraph(props: FullTimeEmploymentPro
 
                     // * 2001
                     if (year == "2001") {
-                        const percentageSuburbFullTime =
-                            data[0]["employment_data"]["Employment People aged 15 years and over"]["Worked full-time"]["% of suburb"];
+                        const percentageSuburbFullTime = parseFloat(
+                            data[0]["employment_data"]["Employment People aged 15 years and over"]["Worked full-time"]["% of suburb"]
+                        );
 
-                        const percentageStateFullTime =
-                            data[0]["employment_data"]["Employment People aged 15 years and over"]["Worked full-time"]["% of state"];
+                        const percentageStateFullTime = parseFloat(
+                            data[0]["employment_data"]["Employment People aged 15 years and over"]["Worked full-time"]["% of state"]
+                        );
 
                         // Set suburbFullTime if it exists
                         if (percentageSuburbFullTime) {
@@ -185,10 +187,12 @@ export default function FullTimeEmploymentLineGraph(props: FullTimeEmploymentPro
                     }
                     // * 2006
                     else if (year == "2006") {
-                        const percentageSuburbFullTime =
-                            data[0]["employment_data"]["Employment People aged 15 years and over"]["Worked full-time"]["% of suburb"];
-                        const percentageStateFullTime =
-                            data[0]["employment_data"]["Employment People aged 15 years and over"]["Worked full-time"]["% of state"];
+                        const percentageSuburbFullTime = parseFloat(
+                            data[0]["employment_data"]["Employment People aged 15 years and over"]["Worked full-time"]["% of suburb"]
+                        );
+                        const percentageStateFullTime = parseFloat(
+                            data[0]["employment_data"]["Employment People aged 15 years and over"]["Worked full-time"]["% of state"]
+                        );
 
                         // Set suburbFullTime if it exists
                         if (percentageSuburbFullTime) {
@@ -213,14 +217,16 @@ export default function FullTimeEmploymentLineGraph(props: FullTimeEmploymentPro
 
                     // * 2011
                     else if (year == "2011") {
-                        const percentageSuburbFullTime =
+                        const percentageSuburbFullTime = parseFloat(
                             data[0]["employment_data"]["Employment People who reported being in the labour force, aged 15 years and over"][
                                 "Worked full-time"
-                            ]["% of suburb"];
-                        const percentageStateFullTime =
+                            ]["% of suburb"]
+                        );
+                        const percentageStateFullTime = parseFloat(
                             data[0]["employment_data"]["Employment People who reported being in the labour force, aged 15 years and over"][
                                 "Worked full-time"
-                            ]["% of state"];
+                            ]["% of state"]
+                        );
 
                         // Set suburbFullTime if it exists
                         if (percentageSuburbFullTime) {
@@ -245,14 +251,16 @@ export default function FullTimeEmploymentLineGraph(props: FullTimeEmploymentPro
 
                     // * 2016
                     else if (year == "2016") {
-                        const percentageSuburbFullTime =
+                        const percentageSuburbFullTime = parseFloat(
                             data[0]["employment_data"]["Employment People who reported being in the labour force, aged 15 years and over"][
                                 "Worked full-time"
-                            ]["% of suburb"];
-                        const percentageStateFullTime =
+                            ]["% of suburb"]
+                        );
+                        const percentageStateFullTime = parseFloat(
                             data[0]["employment_data"]["Employment People who reported being in the labour force, aged 15 years and over"][
                                 "Worked full-time"
-                            ]["% of state"];
+                            ]["% of state"]
+                        );
 
                         // Set suburbFullTime if it exists
                         if (percentageSuburbFullTime) {
@@ -277,8 +285,12 @@ export default function FullTimeEmploymentLineGraph(props: FullTimeEmploymentPro
 
                     // * 2021
                     else if (year == "2021") {
-                        const percentageSuburbFullTime = data[0]["employment_data"]["Employment status"]["Worked full-time"]["% of suburb"];
-                        const percentageStateFullTime = data[0]["employment_data"]["Employment status"]["Worked full-time"]["% of state"];
+                        const percentageSuburbFullTime = parseFloat(
+                            data[0]["employment_data"]["Employment status"]["Worked full-time"]["% of suburb"]
+                        );
+                        const percentageStateFullTime = parseFloat(
+                            data[0]["employment_data"]["Employment status"]["Worked full-time"]["% of state"]
+                        );
 
                         // Set suburbFullTime if it exists
                         if (percentageSuburbFullTime) {
@@ -343,7 +355,7 @@ export default function FullTimeEmploymentLineGraph(props: FullTimeEmploymentPro
             australiaUnemployment: (number | null)[]
         ) {
             // Define minimum and maximum variables
-            let dataMin: number = 100;
+            let dataMin: number = 9999;
             let dataMax: number = 0;
 
             // Combine all 3 arrays
@@ -377,6 +389,8 @@ export default function FullTimeEmploymentLineGraph(props: FullTimeEmploymentPro
     // console.log(`australiaFullTime: ${australiaFullTime}`);
     console.log(dataMin);
     console.log(dataMax);
+    console.log(typeof dataMax);
+    console.log(typeof dataMin);
 
     // ! CONSOLE LOGS OUTSIDE useEffect hooks ************
 
@@ -399,7 +413,7 @@ export default function FullTimeEmploymentLineGraph(props: FullTimeEmploymentPro
             <XAxis dataKey="name">
                 <Label value="year" position="bottom" />
             </XAxis>
-            <YAxis tickCount={10} domain={[dataMin - 3, dataMax + 3]} padding={{ bottom: 15 }}>
+            <YAxis tickCount={10} domain={[dataMin - 2, dataMax + 2]} padding={{ bottom: 15 }}>
                 <Label value="%" position="insideLeft" />
             </YAxis>
             <Tooltip offset={50} cursor={false} />
