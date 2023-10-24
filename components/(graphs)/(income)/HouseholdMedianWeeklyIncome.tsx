@@ -29,6 +29,10 @@ export default function HouseholdMedianWeeklyIncome(props: HouseholdIncomeProps)
     // States to manage instances where data does not exist
     const [insufficientSuburbData, setInsufficientSuburbData] = useState(false);
 
+    // State to manage minimum and maximum data points for y-axis
+    const [dataMin, setDataMin] = useState(0);
+    const [dataMax, setDataMax] = useState(0);
+
     const supabase = createClientComponentClient();
 
     function deconstructSuburb(selectedSuburb: string | null) {
@@ -318,11 +322,49 @@ export default function HouseholdMedianWeeklyIncome(props: HouseholdIncomeProps)
         }
     }, [props.selectedSuburb]);
 
+    // * useEffect hook to determine min and max for y-axis
+    useEffect(() => {
+        async function minMax(
+            suburbUnemployment: (number | null)[],
+            stateUnemployment: (number | null)[],
+            australiaUnemployment: (number | null)[]
+        ) {
+            // Define minimum and maximum variables
+            let dataMin: number = 9999;
+            let dataMax: number = 0;
+
+            // Combine all 3 arrays
+            const combinedList = suburbUnemployment.concat(stateUnemployment, australiaUnemployment);
+
+            // Remove null values from combinedList
+            const cleanedList = combinedList.filter((value) => value !== null) as number[];
+            console.log(cleanedList);
+
+            // Iterate over items in arrays and determine lowest number for dataMin and highest number for dataMax
+            for (let i = 0; i < cleanedList.length; i++) {
+                if (cleanedList[i] !== null && cleanedList[i] < dataMin) {
+                    dataMin = cleanedList[i];
+                }
+                if (cleanedList[i] !== null && cleanedList[i] > dataMax) {
+                    dataMax = cleanedList[i];
+                }
+            }
+
+            setDataMin(dataMin);
+            setDataMax(dataMax);
+        }
+
+        minMax(suburbHouseholdIncome, stateHouseholdIncome, australiaHouseholdIncome);
+    }, [suburbHouseholdIncome, stateHouseholdIncome, australiaHouseholdIncome]);
+
     // console.log(`suburbHouseholdIncome: ${suburbHouseholdIncome}`);
     // console.log(`stateHouseholdIncome: ${stateHouseholdIncome}`);
     // console.log(`australiaHouseholdIncome: ${australiaHouseholdIncome}`);
 
     // console.log(`insufficientData: ${insufficientSuburbData}`);
+
+    // console.log(dataMin);
+    // console.log(dataMax);
 
     // * <Recharts />
 
@@ -343,7 +385,7 @@ export default function HouseholdMedianWeeklyIncome(props: HouseholdIncomeProps)
             <XAxis dataKey="name">
                 <Label value="year" position="bottom" />
             </XAxis>
-            <YAxis tickCount={6} domain={["auto", "auto"]} padding={{ bottom: 30 }}>
+            <YAxis tickCount={6} domain={[dataMin - 200, dataMax + 200]} padding={{ bottom: 30 }}>
                 <Label value="$" position="insideLeft" />
             </YAxis>
             <Tooltip offset={50} cursor={false} />
