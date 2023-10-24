@@ -387,10 +387,8 @@ export default function FullTimeEmploymentLineGraph(props: FullTimeEmploymentPro
     // console.log(`suburbFullTime: ${suburbFullTime}`);
     // console.log(`stateFullTime: ${stateFullTime}`);
     // console.log(`australiaFullTime: ${australiaFullTime}`);
-    console.log(dataMin);
-    console.log(dataMax);
-    console.log(typeof dataMax);
-    console.log(typeof dataMin);
+    // console.log(dataMin);
+    // console.log(dataMax);
 
     // ! CONSOLE LOGS OUTSIDE useEffect hooks ************
 
