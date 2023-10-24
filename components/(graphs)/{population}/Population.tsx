@@ -130,7 +130,7 @@ export default function Population(props: PopulationProps) {
                 try {
                     // * 2001
                     if (year == "2001") {
-                        const suburbPopulation = data[0]["people"];
+                        const suburbPopulation = parseInt(data[0]["people"]);
 
                         if (suburbPopulation) {
                             newSuburbPopulation[0] = suburbPopulation;
@@ -142,7 +142,7 @@ export default function Population(props: PopulationProps) {
                     }
                     // * 2006
                     else if (year == "2006") {
-                        const suburbPopulation = data[0]["people"];
+                        const suburbPopulation = parseInt(data[0]["people"]);
 
                         if (suburbPopulation) {
                             newSuburbPopulation[1] = suburbPopulation;
@@ -155,7 +155,7 @@ export default function Population(props: PopulationProps) {
 
                     // * 2011
                     else if (year == "2011") {
-                        const suburbPopulation = data[0]["people"];
+                        const suburbPopulation = parseInt(data[0]["people"]);
 
                         if (suburbPopulation) {
                             newSuburbPopulation[2] = suburbPopulation;
@@ -169,7 +169,7 @@ export default function Population(props: PopulationProps) {
 
                     // * 2016
                     else if (year == "2016") {
-                        const suburbPopulation = data[0]["people"];
+                        const suburbPopulation = parseInt(data[0]["people"]);
 
                         if (suburbPopulation) {
                             newSuburbPopulation[3] = suburbPopulation;
@@ -183,8 +183,8 @@ export default function Population(props: PopulationProps) {
 
                     // * 2021
                     else if (year == "2021") {
-                        const malesInSuburb = data[0]["male_in_suburb"];
-                        const femalesInSuburb = data[0]["female_in_suburb"];
+                        const malesInSuburb = parseInt(data[0]["male_in_suburb"]);
+                        const femalesInSuburb = parseInt(data[0]["female_in_suburb"]);
 
                         const suburbPopulation = malesInSuburb + femalesInSuburb;
 
@@ -236,7 +236,7 @@ export default function Population(props: PopulationProps) {
     useEffect(() => {
         async function minMax(suburbUnemployment: (number | null)[]) {
             // Define minimum and maximum variables
-            let dataMin: number = 9999;
+            let dataMin: number = 999999;
             let dataMax: number = 0;
 
             // Remove null values from combinedList
@@ -253,12 +253,33 @@ export default function Population(props: PopulationProps) {
                 }
             }
 
+            // Add buffer to dataMin
+            // If 4 digits, +/- 100
+            // If 5 digits, +/- 3000
+            if (dataMin.toString().length <= 4) {
+                dataMin -= 100;
+            } else {
+                dataMin -= 1000;
+            }
+
+            // Add buffer to dataMax
+            // If 4 digits, +/- 100
+            // If 5 digits, +/- 3000
+            if (dataMax.toString().length <= 4) {
+                dataMax += 100;
+            } else {
+                dataMax += 1000;
+            }
+
             setDataMin(dataMin);
             setDataMax(dataMax);
         }
 
         minMax(suburbPopulation);
     }, [suburbPopulation]);
+
+    console.log(dataMin);
+    console.log(dataMax);
 
     // * <Recharts />
     const data = [
@@ -276,7 +297,7 @@ export default function Population(props: PopulationProps) {
             <XAxis dataKey="name">
                 <Label value="year" position="bottom" />
             </XAxis>
-            <YAxis tickCount={6} domain={[dataMin, dataMax + 500]} padding={{ bottom: 30 }}>
+            <YAxis tickCount={6} domain={[dataMin, dataMax]} padding={{ bottom: 30 }}>
                 <Label value="" position="insideLeft" />
             </YAxis>
             <Tooltip offset={50} cursor={false} />
