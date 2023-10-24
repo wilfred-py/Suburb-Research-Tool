@@ -151,11 +151,13 @@ export default function PartTimeEmploymentLineGraph(props: PartTimeEmploymentPro
 
                     // * 2001
                     if (year == "2001") {
-                        const percentageSuburbPartTime =
-                            data[0]["employment_data"]["Employment People aged 15 years and over"]["Worked part-time"]["% of suburb"];
+                        const percentageSuburbPartTime = parseFloat(
+                            data[0]["employment_data"]["Employment People aged 15 years and over"]["Worked part-time"]["% of suburb"]
+                        );
 
-                        const percentageStatePartTime =
-                            data[0]["employment_data"]["Employment People aged 15 years and over"]["Worked part-time"]["% of state"];
+                        const percentageStatePartTime = parseFloat(
+                            data[0]["employment_data"]["Employment People aged 15 years and over"]["Worked part-time"]["% of state"]
+                        );
 
                         // Set suburbPartTime if it exists
                         if (percentageSuburbPartTime) {
@@ -180,10 +182,12 @@ export default function PartTimeEmploymentLineGraph(props: PartTimeEmploymentPro
 
                     // * 2006
                     else if (year == "2006") {
-                        const percentageSuburbPartTime =
-                            data[0]["employment_data"]["Employment People aged 15 years and over"]["Worked part-time"]["% of suburb"];
-                        const percentageStatePartTime =
-                            data[0]["employment_data"]["Employment People aged 15 years and over"]["Worked part-time"]["% of state"];
+                        const percentageSuburbPartTime = parseFloat(
+                            data[0]["employment_data"]["Employment People aged 15 years and over"]["Worked part-time"]["% of suburb"]
+                        );
+                        const percentageStatePartTime = parseFloat(
+                            data[0]["employment_data"]["Employment People aged 15 years and over"]["Worked part-time"]["% of state"]
+                        );
 
                         // Set suburbPartTime if it exists
                         if (percentageSuburbPartTime) {
@@ -208,14 +212,16 @@ export default function PartTimeEmploymentLineGraph(props: PartTimeEmploymentPro
 
                     // * 2011
                     else if (year == "2011") {
-                        const percentageSuburbPartTime =
+                        const percentageSuburbPartTime = parseFloat(
                             data[0]["employment_data"]["Employment People who reported being in the labour force, aged 15 years and over"][
                                 "Worked part-time"
-                            ]["% of suburb"];
-                        const percentageStatePartTime =
+                            ]["% of suburb"]
+                        );
+                        const percentageStatePartTime = parseFloat(
                             data[0]["employment_data"]["Employment People who reported being in the labour force, aged 15 years and over"][
                                 "Worked part-time"
-                            ]["% of state"];
+                            ]["% of state"]
+                        );
 
                         // Set suburbPartTime if it exists
                         if (percentageSuburbPartTime) {
@@ -240,14 +246,16 @@ export default function PartTimeEmploymentLineGraph(props: PartTimeEmploymentPro
 
                     // * 2016
                     else if (year == "2016") {
-                        const percentageSuburbPartTime =
+                        const percentageSuburbPartTime = parseFloat(
                             data[0]["employment_data"]["Employment People who reported being in the labour force, aged 15 years and over"][
                                 "Worked part-time"
-                            ]["% of suburb"];
-                        const percentageStatePartTime =
+                            ]["% of suburb"]
+                        );
+                        const percentageStatePartTime = parseFloat(
                             data[0]["employment_data"]["Employment People who reported being in the labour force, aged 15 years and over"][
                                 "Worked part-time"
-                            ]["% of state"];
+                            ]["% of state"]
+                        );
 
                         // Set suburbPartTime if it exists
                         if (percentageSuburbPartTime) {
@@ -272,8 +280,12 @@ export default function PartTimeEmploymentLineGraph(props: PartTimeEmploymentPro
 
                     // * 2021
                     else if (year == "2021") {
-                        const percentageSuburbPartTime = data[0]["employment_data"]["Employment status"]["Worked part-time"]["% of suburb"];
-                        const percentageStatePartTime = data[0]["employment_data"]["Employment status"]["Worked part-time"]["% of state"];
+                        const percentageSuburbPartTime = parseFloat(
+                            data[0]["employment_data"]["Employment status"]["Worked part-time"]["% of suburb"]
+                        );
+                        const percentageStatePartTime = parseFloat(
+                            data[0]["employment_data"]["Employment status"]["Worked part-time"]["% of state"]
+                        );
 
                         // Set suburbPartTime if it exists
                         if (percentageSuburbPartTime) {
