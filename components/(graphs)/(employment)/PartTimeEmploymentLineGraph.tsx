@@ -370,8 +370,8 @@ export default function PartTimeEmploymentLineGraph(props: PartTimeEmploymentPro
     // console.log(`suburbPartTime: ${suburbPartTime}`);
     // console.log(`statePartTime: ${statePartTime}`);
     // console.log(`australiaPartTime: ${australiaPartTime}`);
-    console.log(`dataMin: ${dataMin}`);
-    console.log(`dataMax: ${dataMax}`);
+    // console.log(`dataMin: ${dataMin}`);
+    // console.log(`dataMax: ${dataMax}`);
 
     // ! CONSOLE LOGS OUTSIDE useEffect hooks ************
 

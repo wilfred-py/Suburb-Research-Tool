@@ -385,12 +385,12 @@ export default function UnemploymentLineGraph(props: UnemploymentProps) {
 
     // ! CONSOLE LOGS OUTSIDE useEffect hooks ************
 
-    console.log(`suburbUnemployment: ${suburbUnemployment}`);
+    // console.log(`suburbUnemployment: ${suburbUnemployment}`);
     // console.log(`stateUnemployment: ${stateUnemployment}`);
     // console.log(`australiaUnemployment: ${australiaUnemployment}`);
 
-    console.log(`dataMin: ${dataMin}`);
-    console.log(`dataMax: ${dataMax}`);
+    // console.log(`dataMin: ${dataMin}`);
+    // console.log(`dataMax: ${dataMax}`);
 
     // ! CONSOLE LOGS OUTSIDE useEffect hooks ************
 
