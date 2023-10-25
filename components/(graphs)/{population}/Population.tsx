@@ -45,9 +45,6 @@ export default function Population(props: PopulationProps) {
         // console.log(`suburbName: ${suburbName}`);
         // console.log(`stateName: ${stateName}`);
 
-        setDeconstructedSuburb(suburbName);
-        setDeconstructedState(stateName);
-
         return {
             suburbName,
             stateName,
@@ -108,7 +105,7 @@ export default function Population(props: PopulationProps) {
             setSuburbPopulation([null, null, null, null, null]);
             setStatePopulation([null, null, null, null, null]);
 
-            console.log(`selectedSuburb: ${props.selectedSuburb}`);
+            // console.log(`selectedSuburb: ${props.selectedSuburb}`);
             const years = ["2001", "2006", "2011", "2016", "2021"];
             const dataPromises = years.map((year) => fetchEmploymentDataByYear(year, `data_${year}`, props.selectedSuburb));
 
@@ -241,7 +238,7 @@ export default function Population(props: PopulationProps) {
 
             // Remove null values from combinedList
             const cleanedList = suburbUnemployment.filter((value) => value !== null) as number[];
-            console.log(cleanedList);
+            // console.log(cleanedList);
 
             // Iterate over items in arrays and determine lowest number for dataMin and highest number for dataMax
             for (let i = 0; i < cleanedList.length; i++) {
@@ -278,8 +275,8 @@ export default function Population(props: PopulationProps) {
         minMax(suburbPopulation);
     }, [suburbPopulation]);
 
-    console.log(dataMin);
-    console.log(dataMax);
+    // console.log(dataMin);
+    // console.log(dataMax);
 
     // * <Recharts />
     const data = [
@@ -313,7 +310,7 @@ export default function Population(props: PopulationProps) {
                 <Label value="year" position="bottom" />
             </XAxis>
             <YAxis tickCount={10} domain={[35, 75]} padding={{ bottom: 30 }}>
-                <Label value="" position="insideLeft" />
+                <Label value="number of people" position="insideLeft" />
             </YAxis>
             <Tooltip offset={50} cursor={false} />
             <Legend verticalAlign="top" height={36} align="center" />

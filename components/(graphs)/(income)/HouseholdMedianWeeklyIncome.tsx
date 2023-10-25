@@ -338,7 +338,7 @@ export default function HouseholdMedianWeeklyIncome(props: HouseholdIncomeProps)
 
             // Remove null values from combinedList
             const cleanedList = combinedList.filter((value) => value !== null) as number[];
-            console.log(cleanedList);
+            // console.log(cleanedList);
 
             // Iterate over items in arrays and determine lowest number for dataMin and highest number for dataMax
             for (let i = 0; i < cleanedList.length; i++) {
