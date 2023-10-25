@@ -231,13 +231,13 @@ export default function Population(props: PopulationProps) {
 
     // * useEffect hook to determine min and max for y-axis
     useEffect(() => {
-        async function minMax(suburbUnemployment: (number | null)[]) {
+        async function minMax(suburbPopulation: (number | null)[]) {
             // Define minimum and maximum variables
             let dataMin: number = 999999;
             let dataMax: number = 0;
 
             // Remove null values from combinedList
-            const cleanedList = suburbUnemployment.filter((value) => value !== null) as number[];
+            const cleanedList = suburbPopulation.filter((value) => value !== null) as number[];
             // console.log(cleanedList);
 
             // Iterate over items in arrays and determine lowest number for dataMin and highest number for dataMax
