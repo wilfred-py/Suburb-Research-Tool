@@ -1,6 +1,5 @@
-import Adolescents from "../(graphs)/(age)/Adolescents";
-import Children from "../(graphs)/(age)/Children";
 import Population from "../(graphs)/{population}/Population";
+import Age from "../Age";
 import Employment from "../Employment";
 import Income from "../Income";
 
@@ -14,8 +13,7 @@ export default function DemographicView(props: DemographicProps) {
     return (
         <div className="max-w-screen max-h-screen flex flex-wrap">
             <Population selectedSuburb={props.selectedSuburb} />
-            <Children selectedSuburb={props.selectedSuburb} />
-            <Adolescents selectedSuburb={props.selectedSuburb} />
+            <Age selectedSuburb={props.selectedSuburb} />
             <Employment selectedSuburb={props.selectedSuburb} />
             <Income selectedSuburb={props.selectedSuburb} />
         </div>
