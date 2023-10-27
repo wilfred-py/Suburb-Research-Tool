@@ -1,6 +1,7 @@
 import Adolescents from "./(graphs)/(age)/Adolescents";
 import Children from "./(graphs)/(age)/Children";
 import MiddleAged from "./(graphs)/(age)/MiddleAged";
+import Seniors from "./(graphs)/(age)/Seniors";
 import YoungAdults from "./(graphs)/(age)/YoungAdults";
 
 interface AgeProps {
@@ -16,6 +17,7 @@ export default function Age(props: AgeProps) {
                 <Adolescents selectedSuburb={props.selectedSuburb} />
                 <YoungAdults selectedSuburb={props.selectedSuburb} />
                 <MiddleAged selectedSuburb={props.selectedSuburb} />
+                <Seniors selectedSuburb={props.selectedSuburb} />
             </div>
         </div>
     );
