@@ -104,7 +104,7 @@ export default function Adolescents(props: AdolescentsProps) {
             setStateAdolescents([null, null, null]);
             setAustraliaAdolescents([null, null, null]);
 
-            console.log(`selectedSuburb: ${props.selectedSuburb}`);
+            // console.log(`selectedSuburb: ${props.selectedSuburb}`);
             const years = ["2011", "2016", "2021"];
             const dataPromises = years.map((year) => fetchAdolescentsDataByYear(year, `data_${year}`, props.selectedSuburb));
 
@@ -142,16 +142,16 @@ export default function Adolescents(props: AdolescentsProps) {
                         const fifteenToNineteenState = parseFloat(data[0]["percentage_15_19_years_in_state"]);
                         const fifteenToNineteenAustralia = parseFloat(data[0]["percentage_15_19_years_in_australia"]);
 
-                        console.log(tenToFourteenInSuburb);
-                        console.log(fifteenToNineteenSuburb);
+                        // console.log(tenToFourteenInSuburb);
+                        // console.log(fifteenToNineteenSuburb);
 
                         const adolescentsInSuburb = Math.round((tenToFourteenInSuburb + fifteenToNineteenSuburb) * 100) / 100;
                         const adolescentsInState = Math.round((tenToFourteenInState + fifteenToNineteenState) * 100) / 100;
                         const adolescentsInAustralia = Math.round((tenToFourteenInAustralia + fifteenToNineteenAustralia) * 100) / 100;
 
-                        console.log(adolescentsInSuburb);
-                        console.log(adolescentsInState);
-                        console.log(adolescentsInAustralia);
+                        // console.log(adolescentsInSuburb);
+                        // console.log(adolescentsInState);
+                        // console.log(adolescentsInAustralia);
 
                         // >> Set suburb
                         if (adolescentsInSuburb) {
@@ -196,16 +196,16 @@ export default function Adolescents(props: AdolescentsProps) {
                         const fifteenToNineteenState = parseFloat(data[0]["percentage_15_19_years_in_state"]);
                         const fifteenToNineteenAustralia = parseFloat(data[0]["percentage_15_19_years_in_australia"]);
 
-                        console.log(tenToFourteenInSuburb);
-                        console.log(fifteenToNineteenSuburb);
+                        // console.log(tenToFourteenInSuburb);
+                        // console.log(fifteenToNineteenSuburb);
 
                         const adolescentsInSuburb = Math.round((tenToFourteenInSuburb + fifteenToNineteenSuburb) * 100) / 100;
                         const adolescentsInState = Math.round((tenToFourteenInState + fifteenToNineteenState) * 100) / 100;
                         const adolescentsInAustralia = Math.round((tenToFourteenInAustralia + fifteenToNineteenAustralia) * 100) / 100;
 
-                        console.log(adolescentsInSuburb);
-                        console.log(adolescentsInState);
-                        console.log(adolescentsInAustralia);
+                        // console.log(adolescentsInSuburb);
+                        // console.log(adolescentsInState);
+                        // console.log(adolescentsInAustralia);
 
                         // >> Set suburb
                         if (adolescentsInSuburb) {
@@ -250,16 +250,16 @@ export default function Adolescents(props: AdolescentsProps) {
                         const fifteenToNineteenState = parseFloat(data[0]["percentage_15_19_years_in_state"]);
                         const fifteenToNineteenAustralia = parseFloat(data[0]["percentage_15_19_years_in_australia"]);
 
-                        console.log(tenToFourteenInSuburb);
-                        console.log(fifteenToNineteenSuburb);
+                        // console.log(tenToFourteenInSuburb);
+                        // console.log(fifteenToNineteenSuburb);
 
                         const adolescentsInSuburb = Math.round((tenToFourteenInSuburb + fifteenToNineteenSuburb) * 100) / 100;
                         const adolescentsInState = Math.round((tenToFourteenInState + fifteenToNineteenState) * 100) / 100;
                         const adolescentsInAustralia = Math.round((tenToFourteenInAustralia + fifteenToNineteenAustralia) * 100) / 100;
 
-                        console.log(adolescentsInSuburb);
-                        console.log(adolescentsInState);
-                        console.log(adolescentsInAustralia);
+                        // console.log(adolescentsInSuburb);
+                        // console.log(adolescentsInState);
+                        // console.log(adolescentsInAustralia);
 
                         // >> Set suburb
                         if (adolescentsInSuburb) {
@@ -353,13 +353,13 @@ export default function Adolescents(props: AdolescentsProps) {
         minMax(suburbAdolescents, stateAdolescents, australiaAdolescents);
     }, [suburbAdolescents, stateAdolescents, australiaAdolescents]);
 
-    console.log(dataMin);
-    console.log(dataMax);
+    // console.log(dataMin);
+    // console.log(dataMax);
 
     // ! Console Log
-    console.log(suburbAdolescents);
-    console.log(stateAdolescents);
-    console.log(australiaAdolescents);
+    // console.log(suburbAdolescents);
+    // console.log(stateAdolescents);
+    // console.log(australiaAdolescents);
     // ! Console Log
 
     // * <Recharts />

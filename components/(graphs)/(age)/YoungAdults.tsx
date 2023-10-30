@@ -104,7 +104,7 @@ export default function YoungAdults(props: YoungAdultsProps) {
             setStateYoungAdults([null, null, null]);
             setAustraliaYoungAdults([null, null, null]);
 
-            console.log(`selectedSuburb: ${props.selectedSuburb}`);
+            // console.log(`selectedSuburb: ${props.selectedSuburb}`);
             const years = ["2011", "2016", "2021"];
             const dataPromises = years.map((year) => fetchYoungAdultsDataByYear(year, `data_${year}`, props.selectedSuburb));
 
@@ -161,9 +161,9 @@ export default function YoungAdults(props: YoungAdultsProps) {
                                 (earlyTwentiesInAustralia + lateTwentiesAustralia + earlyThirtiesAustralia + lateThirtiesAustralia) * 100
                             ) / 100;
 
-                        console.log(youngAdultsInSuburb);
-                        console.log(youngAdultsInState);
-                        console.log(youngAdultsInAustralia);
+                        // console.log(youngAdultsInSuburb);
+                        // console.log(youngAdultsInState);
+                        // console.log(youngAdultsInAustralia);
 
                         // >> Set suburb
                         if (youngAdultsInSuburb) {
@@ -227,9 +227,9 @@ export default function YoungAdults(props: YoungAdultsProps) {
                                 (earlyTwentiesInAustralia + lateTwentiesAustralia + earlyThirtiesAustralia + lateThirtiesAustralia) * 100
                             ) / 100;
 
-                        console.log(youngAdultsInSuburb);
-                        console.log(youngAdultsInState);
-                        console.log(youngAdultsInAustralia);
+                        // console.log(youngAdultsInSuburb);
+                        // console.log(youngAdultsInState);
+                        // console.log(youngAdultsInAustralia);
 
                         // >> Set suburb
                         if (youngAdultsInSuburb) {
@@ -293,9 +293,9 @@ export default function YoungAdults(props: YoungAdultsProps) {
                                 (earlyTwentiesInAustralia + lateTwentiesAustralia + earlyThirtiesAustralia + lateThirtiesAustralia) * 100
                             ) / 100;
 
-                        console.log(youngAdultsInSuburb);
-                        console.log(youngAdultsInState);
-                        console.log(youngAdultsInAustralia);
+                        // console.log(youngAdultsInSuburb);
+                        // console.log(youngAdultsInState);
+                        // console.log(youngAdultsInAustralia);
 
                         // >> Set suburb
                         if (youngAdultsInSuburb) {
@@ -389,13 +389,13 @@ export default function YoungAdults(props: YoungAdultsProps) {
         minMax(suburbYoungAdults, stateYoungAdults, australiaYoungAdults);
     }, [suburbYoungAdults, stateYoungAdults, australiaYoungAdults]);
 
-    console.log(dataMin);
-    console.log(dataMax);
+    // console.log(dataMin);
+    // console.log(dataMax);
 
     // ! Console Log
-    console.log(suburbYoungAdults);
-    console.log(stateYoungAdults);
-    console.log(australiaYoungAdults);
+    // console.log(suburbYoungAdults);
+    // console.log(stateYoungAdults);
+    // console.log(australiaYoungAdults);
     // ! Console Log
 
     // * <Recharts />

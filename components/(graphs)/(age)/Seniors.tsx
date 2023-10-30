@@ -104,7 +104,7 @@ export default function Seniors(props: SeniorsProps) {
             setStateSeniors([null, null, null]);
             setAustraliaSeniors([null, null, null]);
 
-            console.log(`selectedSuburb: ${props.selectedSuburb}`);
+            // console.log(`selectedSuburb: ${props.selectedSuburb}`);
             const years = ["2011", "2016", "2021"];
             const dataPromises = years.map((year) => fetchSeniorsDataByYear(year, `data_${year}`, props.selectedSuburb));
 
@@ -193,9 +193,9 @@ export default function Seniors(props: SeniorsProps) {
                                     100
                             ) / 100;
 
-                        console.log(seniorsInSuburb);
-                        console.log(seniorsInState);
-                        console.log(seniorsInAustralia);
+                        // console.log(seniorsInSuburb);
+                        // console.log(seniorsInState);
+                        // console.log(seniorsInAustralia);
 
                         // >> Set suburb
                         if (seniorsInSuburb) {
@@ -291,9 +291,9 @@ export default function Seniors(props: SeniorsProps) {
                                     100
                             ) / 100;
 
-                        console.log(seniorsInSuburb);
-                        console.log(seniorsInState);
-                        console.log(seniorsInAustralia);
+                        // console.log(seniorsInSuburb);
+                        // console.log(seniorsInState);
+                        // console.log(seniorsInAustralia);
 
                         // >> Set suburb
                         if (seniorsInSuburb) {
@@ -389,9 +389,9 @@ export default function Seniors(props: SeniorsProps) {
                                     100
                             ) / 100;
 
-                        console.log(seniorsInSuburb);
-                        console.log(seniorsInState);
-                        console.log(seniorsInAustralia);
+                        // console.log(seniorsInSuburb);
+                        // console.log(seniorsInState);
+                        // console.log(seniorsInAustralia);
 
                         // >> Set suburb
                         if (seniorsInSuburb) {
@@ -485,13 +485,13 @@ export default function Seniors(props: SeniorsProps) {
         minMax(suburbSeniors, stateSeniors, australiaSeniors);
     }, [suburbSeniors, stateSeniors, australiaSeniors]);
 
-    console.log(dataMin);
-    console.log(dataMax);
+    // console.log(dataMin);
+    // console.log(dataMax);
 
     // ! Console Log
-    console.log(suburbSeniors);
-    console.log(stateSeniors);
-    console.log(australiaSeniors);
+    // console.log(suburbSeniors);
+    // console.log(stateSeniors);
+    // console.log(australiaSeniors);
     // ! Console Log
 
     // * <Recharts />
