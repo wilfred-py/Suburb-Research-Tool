@@ -36,7 +36,7 @@ const data = [
 
 export default function AncestryChart(props: AncestryChartProps) {
     const [selectedSuburb, setSelectedSuburb] = useState<string | null>("");
-    const [suburbAncestry, setSuburbAncestry] = useState<string[]>([]);
+    const [suburbAncestry, setSuburbAncestry] = useState<{ key: string; value: number }[]>([]);
     const [stateAncestry, setStateAncestry] = useState<string | null[]>([]);
 
     const supabase = createClientComponentClient();
@@ -126,10 +126,13 @@ export default function AncestryChart(props: AncestryChartProps) {
                     // * 2011
                     if (year == "2011") {
                         const ancestryData = data[0]["cultural_data"]["Ancestry, top responses"];
+                        console.log(ancestryData);
 
                         Object.entries(ancestryData).forEach(([key, value]) => {
                             console.log(`Key: ${key}, Value: ${value}`);
-                            newSuburbAncestry.push(key);
+
+                            const ancestryObject = { key: key, value: parseFloat(ancestryData[key]["% of suburb"]) };
+                            newSuburbAncestry.push(ancestryObject);
                         });
 
                         setSuburbAncestry(newSuburbAncestry);
