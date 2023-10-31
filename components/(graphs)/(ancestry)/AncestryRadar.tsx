@@ -6,12 +6,6 @@ interface AncestryChartProps {
     selectedSuburb: string | null;
 }
 
-interface AncestryData {
-    subject: string;
-    suburb: number;
-    state: number;
-}
-
 const data = [
     {
         subject: "Italian",
@@ -42,8 +36,8 @@ const data = [
 
 export default function AncestryChart(props: AncestryChartProps) {
     const [selectedSuburb, setSelectedSuburb] = useState<string | null>("");
-    const [suburbAncestry, setSuburbAncestry] = useState<AncestryData[]>([]);
-    const [stateAncestry, setStateAncestry] = useState<AncestryData[]>([]);
+    const [suburbAncestry, setSuburbAncestry] = useState<string[]>([]);
+    const [stateAncestry, setStateAncestry] = useState<string | null[]>([]);
 
     const supabase = createClientComponentClient();
 
@@ -103,6 +97,7 @@ export default function AncestryChart(props: AncestryChartProps) {
         async function fetchData() {
             // Clear old array values from previous search
             setSuburbAncestry([]);
+            console.log("test");
             setStateAncestry([]);
 
             console.log(`selectedSuburb: ${props.selectedSuburb}`);
@@ -110,6 +105,7 @@ export default function AncestryChart(props: AncestryChartProps) {
             const dataPromises = years.map((year) => fetchAncestryDataByYear(year, `data_${year}`, props.selectedSuburb));
 
             const newSuburbAncestry = [...suburbAncestry];
+            console.log(newSuburbAncestry);
             const newStateAncestry = [...stateAncestry];
 
             //  Wait for data to be fetched
@@ -129,7 +125,14 @@ export default function AncestryChart(props: AncestryChartProps) {
 
                     // * 2011
                     if (year == "2011") {
-                        console.log(data[0]["cultural_data"]);
+                        const ancestryData = data[0]["cultural_data"]["Ancestry, top responses"];
+
+                        Object.entries(ancestryData).forEach(([key, value]) => {
+                            console.log(`Key: ${key}, Value: ${value}`);
+                            newSuburbAncestry.push(key);
+                        });
+
+                        setSuburbAncestry(newSuburbAncestry);
                     }
 
                     // * 2016
@@ -157,6 +160,10 @@ export default function AncestryChart(props: AncestryChartProps) {
             fetchData();
         }
     }, [props.selectedSuburb]);
+
+    // ! CONSOLE LOGS
+    console.log(suburbAncestry);
+    // ! CONSOLE LOGS
 
     return (
         <>
