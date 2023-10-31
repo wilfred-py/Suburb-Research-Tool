@@ -104,7 +104,7 @@ export default function MiddleAged(props: MiddleAgedProps) {
             setStateMiddleAged([null, null, null]);
             setAustraliaMiddleAged([null, null, null]);
 
-            console.log(`selectedSuburb: ${props.selectedSuburb}`);
+            // console.log(`selectedSuburb: ${props.selectedSuburb}`);
             const years = ["2011", "2016", "2021"];
             const dataPromises = years.map((year) => fetchMiddleAgedDataByYear(year, `data_${year}`, props.selectedSuburb));
 
@@ -163,9 +163,9 @@ export default function MiddleAged(props: MiddleAgedProps) {
                                     100
                             ) / 100;
 
-                        console.log(middleAgedInSuburb);
-                        console.log(MiddleAgedInState);
-                        console.log(MiddleAgedInAustralia);
+                        // console.log(middleAgedInSuburb);
+                        // console.log(MiddleAgedInState);
+                        // console.log(MiddleAgedInAustralia);
 
                         // >> Set suburb
                         if (middleAgedInSuburb) {
@@ -231,9 +231,9 @@ export default function MiddleAged(props: MiddleAgedProps) {
                                     100
                             ) / 100;
 
-                        console.log(middleAgedInSuburb);
-                        console.log(MiddleAgedInState);
-                        console.log(MiddleAgedInAustralia);
+                        // console.log(middleAgedInSuburb);
+                        // console.log(MiddleAgedInState);
+                        // console.log(MiddleAgedInAustralia);
 
                         // >> Set suburb
                         if (middleAgedInSuburb) {
@@ -299,9 +299,9 @@ export default function MiddleAged(props: MiddleAgedProps) {
                                     100
                             ) / 100;
 
-                        console.log(middleAgedInSuburb);
-                        console.log(MiddleAgedInState);
-                        console.log(MiddleAgedInAustralia);
+                        // console.log(middleAgedInSuburb);
+                        // console.log(MiddleAgedInState);
+                        // console.log(MiddleAgedInAustralia);
 
                         // >> Set suburb
                         if (middleAgedInSuburb) {
@@ -395,13 +395,13 @@ export default function MiddleAged(props: MiddleAgedProps) {
         minMax(suburbMiddleAged, stateMiddleAged, australiaMiddleAged);
     }, [suburbMiddleAged, stateMiddleAged, australiaMiddleAged]);
 
-    console.log(dataMin);
-    console.log(dataMax);
+    // console.log(dataMin);
+    // console.log(dataMax);
 
     // ! Console Log
-    console.log(suburbMiddleAged);
-    console.log(stateMiddleAged);
-    console.log(australiaMiddleAged);
+    // console.log(suburbMiddleAged);
+    // console.log(stateMiddleAged);
+    // console.log(australiaMiddleAged);
     // ! Console Log
 
     // * <Recharts />

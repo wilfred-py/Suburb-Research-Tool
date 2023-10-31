@@ -104,7 +104,7 @@ export default function Children(props: ChildrenProps) {
             setStateChildren([null, null, null]);
             setAustraliaChildren([null, null, null]);
 
-            console.log(`selectedSuburb: ${props.selectedSuburb}`);
+            // console.log(`selectedSuburb: ${props.selectedSuburb}`);
             const years = ["2011", "2016", "2021"];
             const dataPromises = years.map((year) => fetchChildrenDataByYear(year, `data_${year}`, props.selectedSuburb));
 
@@ -142,16 +142,16 @@ export default function Children(props: ChildrenProps) {
                         const fiveToNineInState = parseFloat(data[0]["percentage_5_9_years_in_state"]);
                         const fiveToNineInAustralia = parseFloat(data[0]["percentage_5_9_years_in_australia"]);
 
-                        console.log(zeroToFourInSuburb);
-                        console.log(fiveToNineInSuburb);
+                        // console.log(zeroToFourInSuburb);
+                        // console.log(fiveToNineInSuburb);
 
                         const childrenInSuburb = Math.round((zeroToFourInSuburb + fiveToNineInSuburb) * 100) / 100;
                         const childrenInState = Math.round((zeroToFourInState + fiveToNineInState) * 100) / 100;
                         const childrenInAustralia = Math.round((zeroToFourInAustralia + fiveToNineInAustralia) * 100) / 100;
 
-                        console.log(childrenInSuburb);
-                        console.log(childrenInState);
-                        console.log(childrenInAustralia);
+                        // console.log(childrenInSuburb);
+                        // console.log(childrenInState);
+                        // console.log(childrenInAustralia);
 
                         // >> Set suburb
                         if (childrenInSuburb) {
@@ -196,15 +196,15 @@ export default function Children(props: ChildrenProps) {
                         const fiveToNineInState = parseFloat(data[0]["percentage_5_9_years_in_state"]);
                         const fiveToNineInAustralia = parseFloat(data[0]["percentage_5_9_years_in_australia"]);
 
-                        console.log(zeroToFourInSuburb);
-                        console.log(fiveToNineInSuburb);
+                        // console.log(zeroToFourInSuburb);
+                        // console.log(fiveToNineInSuburb);
 
                         const childrenInSuburb = Math.round((zeroToFourInSuburb + fiveToNineInSuburb) * 100) / 100;
                         const childrenInState = Math.round((zeroToFourInState + fiveToNineInState) * 100) / 100;
                         const childrenInAustralia = Math.round((zeroToFourInAustralia + fiveToNineInAustralia) * 100) / 100;
 
-                        console.log(childrenInSuburb);
-                        console.log(childrenInState);
+                        // console.log(childrenInSuburb);
+                        // console.log(childrenInState);
 
                         // >> Set suburb
                         if (childrenInSuburb) {
@@ -249,16 +249,16 @@ export default function Children(props: ChildrenProps) {
                         const fiveToNineInState = parseFloat(data[0]["percentage_5_9_years_in_state"]);
                         const fiveToNineInAustralia = parseFloat(data[0]["percentage_5_9_years_in_australia"]);
 
-                        console.log(zeroToFourInSuburb);
-                        console.log(fiveToNineInSuburb);
+                        // console.log(zeroToFourInSuburb);
+                        // console.log(fiveToNineInSuburb);
 
                         const childrenInSuburb = Math.round((zeroToFourInSuburb + fiveToNineInSuburb) * 100) / 100;
                         const childrenInState = Math.round((zeroToFourInState + fiveToNineInState) * 100) / 100;
                         const childrenInAustralia = Math.round((zeroToFourInAustralia + fiveToNineInAustralia) * 100) / 100;
 
-                        console.log(childrenInSuburb);
-                        console.log(childrenInState);
-                        console.log(childrenInAustralia);
+                        // console.log(childrenInSuburb);
+                        // console.log(childrenInState);
+                        // console.log(childrenInAustralia);
 
                         // >> Set suburb
                         if (childrenInSuburb) {
@@ -348,13 +348,13 @@ export default function Children(props: ChildrenProps) {
         minMax(suburbChildren, stateChildren, australiaChildren);
     }, [suburbChildren, stateChildren, australiaChildren]);
 
-    console.log(dataMin);
-    console.log(dataMax);
+    // console.log(dataMin);
+    // console.log(dataMax);
 
     // ! Console Log
-    console.log(suburbChildren);
-    console.log(stateChildren);
-    console.log(australiaChildren);
+    // console.log(suburbChildren);
+    // console.log(stateChildren);
+    // console.log(australiaChildren);
     // ! Console Log
 
     // * <Recharts />
