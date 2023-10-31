@@ -6,34 +6,6 @@ interface AncestryChartProps {
     selectedSuburb: string | null;
 }
 
-const data = [
-    {
-        subject: "Italian",
-        suburb: 18.6,
-        state: 2.8,
-    },
-    {
-        subject: "Australian",
-        suburb: 14.6,
-        state: 25.0,
-    },
-    {
-        subject: "English",
-        suburb: 8.9,
-        state: 24.2,
-    },
-    {
-        subject: "Assyrian",
-        suburb: 5.6,
-        state: 0.2,
-    },
-    {
-        subject: "Croatian",
-        suburb: 4.8,
-        state: 0.5,
-    },
-];
-
 export default function AncestryChart(props: AncestryChartProps) {
     const [selectedSuburb, setSelectedSuburb] = useState<string | null>("");
     const [suburbAncestry, setSuburbAncestry] = useState<{ key: string; value: number }[]>([]);
@@ -97,16 +69,14 @@ export default function AncestryChart(props: AncestryChartProps) {
         async function fetchData() {
             // Clear old array values from previous search
             setSuburbAncestry([]);
-            console.log("test");
             setStateAncestry([]);
 
             console.log(`selectedSuburb: ${props.selectedSuburb}`);
             const years = ["2011", "2016", "2021"];
             const dataPromises = years.map((year) => fetchAncestryDataByYear(year, `data_${year}`, props.selectedSuburb));
 
-            const newSuburbAncestry = [...suburbAncestry];
-            console.log(newSuburbAncestry);
-            const newStateAncestry = [...stateAncestry];
+            const newSuburbAncestry: any[] = [];
+            const newStateAncestry: any[] = [];
 
             //  Wait for data to be fetched
             const dataResults = await Promise.all(dataPromises);
@@ -131,11 +101,21 @@ export default function AncestryChart(props: AncestryChartProps) {
                         Object.entries(ancestryData).forEach(([key, value]) => {
                             console.log(`Key: ${key}, Value: ${value}`);
 
-                            const ancestryObject = { key: key, value: parseFloat(ancestryData[key]["% of suburb"]) };
-                            newSuburbAncestry.push(ancestryObject);
+                            // >> Suburb Ancestry
+                            const suburbAncestryObject = {
+                                ancestry: key,
+                                suburb: parseFloat(ancestryData[key]["% of suburb"]),
+                                state: parseFloat(ancestryData[key]["% of state"]),
+                            };
+                            newSuburbAncestry.push(suburbAncestryObject);
+
+                            // >> State Ancestry
+                            const stateAncestryObject = { key: key, value: parseFloat(ancestryData[key]["% of state"]) };
+                            newStateAncestry.push(stateAncestryObject);
                         });
 
                         setSuburbAncestry(newSuburbAncestry);
+                        setStateAncestry(newStateAncestry);
                     }
 
                     // * 2016
@@ -161,8 +141,12 @@ export default function AncestryChart(props: AncestryChartProps) {
 
         if (props.selectedSuburb) {
             fetchData();
+        } else {
+            setSuburbAncestry([]);
         }
     }, [props.selectedSuburb]);
+
+    const data = suburbAncestry;
 
     // ! CONSOLE LOGS
     console.log(suburbAncestry);
@@ -173,7 +157,7 @@ export default function AncestryChart(props: AncestryChartProps) {
             <div>
                 <RadarChart outerRadius="80%" width={730} height={450} data={data}>
                     <PolarGrid />
-                    <PolarAngleAxis dataKey="subject" />
+                    <PolarAngleAxis dataKey="ancestry" />
                     <PolarRadiusAxis angle={30} />
                     <Radar name="% of suburb" dataKey="suburb" stroke="#219C90" fill="#219C90" fillOpacity={0.28} />
                     <Radar name="% of state" dataKey="state" stroke="#068FFF" fill="#068FFF" fillOpacity={0.28} />
