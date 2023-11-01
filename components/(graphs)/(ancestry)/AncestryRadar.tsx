@@ -10,7 +10,7 @@ interface AncestryChartProps {
 export default function AncestryChart(props: AncestryChartProps) {
     const [selectedSuburb, setSelectedSuburb] = useState<string | null>("");
     const [suburbAncestry, setSuburbAncestry] = useState<{ key: string; value: number }[]>([]);
-    const [stateAncestry, setStateAncestry] = useState<string | null[]>([]);
+    const [selectedYear, setSelectedYear] = useState<string | null>("");
 
     const supabase = createClientComponentClient();
 
@@ -70,7 +70,6 @@ export default function AncestryChart(props: AncestryChartProps) {
         async function fetchData() {
             // Clear old array values from previous search
             setSuburbAncestry([]);
-            setStateAncestry([]);
 
             console.log(`selectedSuburb: ${props.selectedSuburb}`);
             const years = ["2011", "2016", "2021"];
@@ -116,7 +115,6 @@ export default function AncestryChart(props: AncestryChartProps) {
                         });
 
                         setSuburbAncestry(newSuburbAncestry);
-                        setStateAncestry(newStateAncestry);
                     }
 
                     // * 2016
@@ -141,7 +139,6 @@ export default function AncestryChart(props: AncestryChartProps) {
                         });
 
                         setSuburbAncestry(newSuburbAncestry);
-                        setStateAncestry(newStateAncestry);
                     }
 
                     // * 2021
@@ -166,7 +163,6 @@ export default function AncestryChart(props: AncestryChartProps) {
                         });
 
                         setSuburbAncestry(newSuburbAncestry);
-                        setStateAncestry(newStateAncestry);
                     }
                 } catch (error) {
                     console.error(`Error processing data for ${year}`, error);
@@ -189,6 +185,7 @@ export default function AncestryChart(props: AncestryChartProps) {
         }
     }, [props.selectedSuburb]);
 
+    // * Create arrays for each year
     const twentyElevenData: any = [];
     const twentySixteenData: any = [];
     const twentyTwentyOneData: any = [];
@@ -204,14 +201,17 @@ export default function AncestryChart(props: AncestryChartProps) {
         twentyTwentyOneData.push(suburbAncestry[i]);
     }
 
-    // ! CONSOLE LOGS
+    function handleYearChange(value: string) {
+        setSelectedYear(value);
+    }
 
+    // ! CONSOLE LOGS
     // ! CONSOLE LOGS
 
     return (
         <>
             <div>
-                <Select>
+                <Select onValueChange={handleYearChange}>
                     <SelectTrigger className="w-[180px]">
                         <SelectValue placeholder="Year" />
                     </SelectTrigger>
@@ -221,41 +221,47 @@ export default function AncestryChart(props: AncestryChartProps) {
                         <SelectItem value="2021">2021</SelectItem>
                     </SelectContent>
                 </Select>
-                <div>
-                    <RadarChart outerRadius="80%" width={730} height={450} data={twentyElevenData}>
-                        <PolarGrid />
-                        <PolarAngleAxis dataKey="ancestry" />
-                        <PolarRadiusAxis angle={30} />
-                        <Radar name="% of suburb" dataKey="suburb" stroke="#219C90" fill="#219C90" fillOpacity={0.28} />
-                        <Radar name="% of state" dataKey="state" stroke="#068FFF" fill="#068FFF" fillOpacity={0.28} />
-                        <Legend />
-                        <Tooltip offset={50} />
-                    </RadarChart>
-                </div>
+                {selectedYear === "2011" && (
+                    <div>
+                        <RadarChart outerRadius="80%" width={730} height={450} data={twentyElevenData}>
+                            <PolarGrid />
+                            <PolarAngleAxis dataKey="ancestry" />
+                            <PolarRadiusAxis angle={30} />
+                            <Radar name="% of suburb" dataKey="suburb" stroke="#219C90" fill="#219C90" fillOpacity={0.28} />
+                            <Radar name="% of state" dataKey="state" stroke="#068FFF" fill="#068FFF" fillOpacity={0.28} />
+                            <Legend />
+                            <Tooltip offset={50} />
+                        </RadarChart>
+                    </div>
+                )}
 
-                <div>
-                    <RadarChart outerRadius="80%" width={730} height={450} data={twentySixteenData}>
-                        <PolarGrid />
-                        <PolarAngleAxis dataKey="ancestry" />
-                        <PolarRadiusAxis angle={30} />
-                        <Radar name="% of suburb" dataKey="suburb" stroke="#219C90" fill="#219C90" fillOpacity={0.28} />
-                        <Radar name="% of state" dataKey="state" stroke="#068FFF" fill="#068FFF" fillOpacity={0.28} />
-                        <Legend />
-                        <Tooltip offset={50} />
-                    </RadarChart>
-                </div>
+                {selectedYear === "2016" && (
+                    <div>
+                        <RadarChart outerRadius="80%" width={730} height={450} data={twentySixteenData}>
+                            <PolarGrid />
+                            <PolarAngleAxis dataKey="ancestry" />
+                            <PolarRadiusAxis angle={30} />
+                            <Radar name="% of suburb" dataKey="suburb" stroke="#219C90" fill="#219C90" fillOpacity={0.28} />
+                            <Radar name="% of state" dataKey="state" stroke="#068FFF" fill="#068FFF" fillOpacity={0.28} />
+                            <Legend />
+                            <Tooltip offset={50} />
+                        </RadarChart>
+                    </div>
+                )}
 
-                <div>
-                    <RadarChart outerRadius="80%" width={730} height={450} data={twentyTwentyOneData}>
-                        <PolarGrid />
-                        <PolarAngleAxis dataKey="ancestry" />
-                        <PolarRadiusAxis angle={30} />
-                        <Radar name="% of suburb" dataKey="suburb" stroke="#219C90" fill="#219C90" fillOpacity={0.28} />
-                        <Radar name="% of state" dataKey="state" stroke="#068FFF" fill="#068FFF" fillOpacity={0.28} />
-                        <Legend />
-                        <Tooltip offset={50} />
-                    </RadarChart>
-                </div>
+                {selectedYear === "2021" && (
+                    <div>
+                        <RadarChart outerRadius="80%" width={730} height={450} data={twentyTwentyOneData}>
+                            <PolarGrid />
+                            <PolarAngleAxis dataKey="ancestry" />
+                            <PolarRadiusAxis angle={30} />
+                            <Radar name="% of suburb" dataKey="suburb" stroke="#219C90" fill="#219C90" fillOpacity={0.28} />
+                            <Radar name="% of state" dataKey="state" stroke="#068FFF" fill="#068FFF" fillOpacity={0.28} />
+                            <Legend />
+                            <Tooltip offset={50} />
+                        </RadarChart>
+                    </div>
+                )}
             </div>
         </>
     );
