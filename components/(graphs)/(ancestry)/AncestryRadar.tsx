@@ -10,7 +10,7 @@ interface AncestryChartProps {
 export default function AncestryChart(props: AncestryChartProps) {
     const [selectedSuburb, setSelectedSuburb] = useState<string | null>("");
     const [suburbAncestry, setSuburbAncestry] = useState<{ key: string; value: number }[]>([]);
-    const [selectedYear, setSelectedYear] = useState<string | null>("");
+    const [selectedYear, setSelectedYear] = useState<string | null>("2021");
 
     const supabase = createClientComponentClient();
 
@@ -206,6 +206,7 @@ export default function AncestryChart(props: AncestryChartProps) {
     }
 
     // ! CONSOLE LOGS
+    console.log(selectedYear);
     // ! CONSOLE LOGS
 
     return (
@@ -213,7 +214,7 @@ export default function AncestryChart(props: AncestryChartProps) {
             <div>
                 <Select onValueChange={handleYearChange}>
                     <SelectTrigger className="w-[180px]">
-                        <SelectValue placeholder="Year" />
+                        <SelectValue placeholder="2021" />
                     </SelectTrigger>
                     <SelectContent>
                         <SelectItem value="2011">2011</SelectItem>
@@ -221,6 +222,7 @@ export default function AncestryChart(props: AncestryChartProps) {
                         <SelectItem value="2021">2021</SelectItem>
                     </SelectContent>
                 </Select>
+
                 {selectedYear === "2011" && (
                     <div>
                         <RadarChart outerRadius="80%" width={730} height={450} data={twentyElevenData}>
