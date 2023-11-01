@@ -2,6 +2,7 @@ import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 import React, { PureComponent, useEffect, useState } from "react";
 import { Radar, RadarChart, PolarGrid, Legend, PolarAngleAxis, PolarRadiusAxis, ResponsiveContainer, Tooltip } from "recharts";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 
 interface AncestryChartProps {
     selectedSuburb: string | null;
@@ -89,17 +90,17 @@ export default function AncestryChart(props: AncestryChartProps) {
                 const { year, data } = result;
 
                 try {
-                    // Age brackets different to 2011, 2016, 2021
+                    // Ancestry not recorded 2011, 2016, 2021
                     // * 2001
                     // * 2006
 
                     // * 2011
                     if (year == "2011") {
                         const ancestryData = data[0]["cultural_data"]["Ancestry, top responses"];
-                        console.log(ancestryData);
+                        // console.log(ancestryData);
 
                         Object.entries(ancestryData).forEach(([key, value]) => {
-                            console.log(`Key: ${key}, Value: ${value}`);
+                            // console.log(`Key: ${key}, Value: ${value}`);
 
                             // >> Suburb Ancestry
                             const suburbAncestryObject = {
@@ -120,10 +121,10 @@ export default function AncestryChart(props: AncestryChartProps) {
                     // * 2016
                     else if (year == "2016") {
                         const ancestryData = data[0]["cultural_data"]["Ancestry, top responses"];
-                        console.log(ancestryData);
+                        // console.log(ancestryData);
 
                         Object.entries(ancestryData).forEach(([key, value]) => {
-                            console.log(`Key: ${key}, Value: ${value}`);
+                            // console.log(`Key: ${key}, Value: ${value}`);
 
                             // >> Suburb Ancestry
                             const suburbAncestryObject = {
@@ -144,10 +145,10 @@ export default function AncestryChart(props: AncestryChartProps) {
                     // * 2021
                     else if (year == "2021") {
                         const ancestryData = data[0]["cultural_data"]["Ancestry, top responses"];
-                        console.log(ancestryData);
+                        // console.log(ancestryData);
 
                         Object.entries(ancestryData).forEach(([key, value]) => {
-                            console.log(`Key: ${key}, Value: ${value}`);
+                            // console.log(`Key: ${key}, Value: ${value}`);
 
                             // >> Suburb Ancestry
                             const suburbAncestryObject = {
@@ -206,7 +207,7 @@ export default function AncestryChart(props: AncestryChartProps) {
     }
 
     // ! CONSOLE LOGS
-    console.log(selectedYear);
+    // console.log(selectedYear);
     // ! CONSOLE LOGS
 
     return (
