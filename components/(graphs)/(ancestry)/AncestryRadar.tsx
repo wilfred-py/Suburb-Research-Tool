@@ -1,6 +1,7 @@
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 import React, { PureComponent, useEffect, useState } from "react";
 import { Radar, RadarChart, PolarGrid, Legend, PolarAngleAxis, PolarRadiusAxis, ResponsiveContainer, Tooltip } from "recharts";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 
 interface AncestryChartProps {
     selectedSuburb: string | null;
@@ -9,7 +10,7 @@ interface AncestryChartProps {
 export default function AncestryChart(props: AncestryChartProps) {
     const [selectedSuburb, setSelectedSuburb] = useState<string | null>("");
     const [suburbAncestry, setSuburbAncestry] = useState<{ key: string; value: number }[]>([]);
-    const [stateAncestry, setStateAncestry] = useState<string | null[]>([]);
+    const [selectedYear, setSelectedYear] = useState<string | null>("");
 
     const supabase = createClientComponentClient();
 
@@ -69,7 +70,6 @@ export default function AncestryChart(props: AncestryChartProps) {
         async function fetchData() {
             // Clear old array values from previous search
             setSuburbAncestry([]);
-            setStateAncestry([]);
 
             console.log(`selectedSuburb: ${props.selectedSuburb}`);
             const years = ["2011", "2016", "2021"];
@@ -115,15 +115,54 @@ export default function AncestryChart(props: AncestryChartProps) {
                         });
 
                         setSuburbAncestry(newSuburbAncestry);
-                        setStateAncestry(newStateAncestry);
                     }
 
                     // * 2016
                     else if (year == "2016") {
+                        const ancestryData = data[0]["cultural_data"]["Ancestry, top responses"];
+                        console.log(ancestryData);
+
+                        Object.entries(ancestryData).forEach(([key, value]) => {
+                            console.log(`Key: ${key}, Value: ${value}`);
+
+                            // >> Suburb Ancestry
+                            const suburbAncestryObject = {
+                                ancestry: key,
+                                suburb: parseFloat(ancestryData[key]["% of suburb"]),
+                                state: parseFloat(ancestryData[key]["% of state"]),
+                            };
+                            newSuburbAncestry.push(suburbAncestryObject);
+
+                            // >> State Ancestry
+                            const stateAncestryObject = { key: key, value: parseFloat(ancestryData[key]["% of state"]) };
+                            newStateAncestry.push(stateAncestryObject);
+                        });
+
+                        setSuburbAncestry(newSuburbAncestry);
                     }
 
                     // * 2021
                     else if (year == "2021") {
+                        const ancestryData = data[0]["cultural_data"]["Ancestry, top responses"];
+                        console.log(ancestryData);
+
+                        Object.entries(ancestryData).forEach(([key, value]) => {
+                            console.log(`Key: ${key}, Value: ${value}`);
+
+                            // >> Suburb Ancestry
+                            const suburbAncestryObject = {
+                                ancestry: key,
+                                suburb: parseFloat(ancestryData[key]["% of suburb"]),
+                                state: parseFloat(ancestryData[key]["% of state"]),
+                            };
+                            newSuburbAncestry.push(suburbAncestryObject);
+
+                            // >> State Ancestry
+                            const stateAncestryObject = { key: key, value: parseFloat(ancestryData[key]["% of state"]) };
+                            newStateAncestry.push(stateAncestryObject);
+                        });
+
+                        setSuburbAncestry(newSuburbAncestry);
                     }
                 } catch (error) {
                     console.error(`Error processing data for ${year}`, error);
@@ -146,24 +185,83 @@ export default function AncestryChart(props: AncestryChartProps) {
         }
     }, [props.selectedSuburb]);
 
-    const data = suburbAncestry;
+    // * Create arrays for each year
+    const twentyElevenData: any = [];
+    const twentySixteenData: any = [];
+    const twentyTwentyOneData: any = [];
+    for (let i = 0; i < 5; i++) {
+        twentyElevenData.push(suburbAncestry[i]);
+    }
+
+    for (let i = 5; i < 10; i++) {
+        twentySixteenData.push(suburbAncestry[i]);
+    }
+
+    for (let i = 10; i < 15; i++) {
+        twentyTwentyOneData.push(suburbAncestry[i]);
+    }
+
+    function handleYearChange(value: string) {
+        setSelectedYear(value);
+    }
 
     // ! CONSOLE LOGS
-    console.log(suburbAncestry);
     // ! CONSOLE LOGS
 
     return (
         <>
             <div>
-                <RadarChart outerRadius="80%" width={730} height={450} data={data}>
-                    <PolarGrid />
-                    <PolarAngleAxis dataKey="ancestry" />
-                    <PolarRadiusAxis angle={30} />
-                    <Radar name="% of suburb" dataKey="suburb" stroke="#219C90" fill="#219C90" fillOpacity={0.28} />
-                    <Radar name="% of state" dataKey="state" stroke="#068FFF" fill="#068FFF" fillOpacity={0.28} />
-                    <Legend />
-                    <Tooltip offset={50} />
-                </RadarChart>
+                <Select onValueChange={handleYearChange}>
+                    <SelectTrigger className="w-[180px]">
+                        <SelectValue placeholder="Year" />
+                    </SelectTrigger>
+                    <SelectContent>
+                        <SelectItem value="2011">2011</SelectItem>
+                        <SelectItem value="2016">2016</SelectItem>
+                        <SelectItem value="2021">2021</SelectItem>
+                    </SelectContent>
+                </Select>
+                {selectedYear === "2011" && (
+                    <div>
+                        <RadarChart outerRadius="80%" width={730} height={450} data={twentyElevenData}>
+                            <PolarGrid />
+                            <PolarAngleAxis dataKey="ancestry" />
+                            <PolarRadiusAxis angle={30} />
+                            <Radar name="% of suburb" dataKey="suburb" stroke="#219C90" fill="#219C90" fillOpacity={0.28} />
+                            <Radar name="% of state" dataKey="state" stroke="#068FFF" fill="#068FFF" fillOpacity={0.28} />
+                            <Legend />
+                            <Tooltip offset={50} />
+                        </RadarChart>
+                    </div>
+                )}
+
+                {selectedYear === "2016" && (
+                    <div>
+                        <RadarChart outerRadius="80%" width={730} height={450} data={twentySixteenData}>
+                            <PolarGrid />
+                            <PolarAngleAxis dataKey="ancestry" />
+                            <PolarRadiusAxis angle={30} />
+                            <Radar name="% of suburb" dataKey="suburb" stroke="#219C90" fill="#219C90" fillOpacity={0.28} />
+                            <Radar name="% of state" dataKey="state" stroke="#068FFF" fill="#068FFF" fillOpacity={0.28} />
+                            <Legend />
+                            <Tooltip offset={50} />
+                        </RadarChart>
+                    </div>
+                )}
+
+                {selectedYear === "2021" && (
+                    <div>
+                        <RadarChart outerRadius="80%" width={730} height={450} data={twentyTwentyOneData}>
+                            <PolarGrid />
+                            <PolarAngleAxis dataKey="ancestry" />
+                            <PolarRadiusAxis angle={30} />
+                            <Radar name="% of suburb" dataKey="suburb" stroke="#219C90" fill="#219C90" fillOpacity={0.28} />
+                            <Radar name="% of state" dataKey="state" stroke="#068FFF" fill="#068FFF" fillOpacity={0.28} />
+                            <Legend />
+                            <Tooltip offset={50} />
+                        </RadarChart>
+                    </div>
+                )}
             </div>
         </>
     );
