@@ -1,5 +1,8 @@
+import DivorcedLineGraph from "./(graphs)/(maritalStatus)/DivorcedLineGraph";
 import MarriedLineGraph from "./(graphs)/(maritalStatus)/MarriedLineGraph";
+import NeverMarriedLineGraph from "./(graphs)/(maritalStatus)/NeverMarriedLineGraph";
 import SeparatedLineGraph from "./(graphs)/(maritalStatus)/SeparatedLineGraph";
+import WidowedLineGraph from "./(graphs)/(maritalStatus)/WidowedLineGraph";
 
 interface MaritalProps {
     selectedSuburb: string | null;
@@ -12,9 +15,9 @@ export default function Marital(props: MaritalProps) {
             <div className="flex flex-row flex-wrap">
                 <MarriedLineGraph selectedSuburb={props.selectedSuburb} />
                 <SeparatedLineGraph selectedSuburb={props.selectedSuburb} />
-                {/* <Divorced LineGraph selectedSuburb={props.selectedSuburb} />
+                <DivorcedLineGraph selectedSuburb={props.selectedSuburb} />
                 <WidowedLineGraph selectedSuburb={props.selectedSuburb} />
-                <NeverMarriedLineGraph selectedSuburb={props.selectedSuburb} /> */}
+                <NeverMarriedLineGraph selectedSuburb={props.selectedSuburb} />
             </div>
         </div>
     );
