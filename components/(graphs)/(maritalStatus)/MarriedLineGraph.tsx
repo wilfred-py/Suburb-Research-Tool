@@ -10,10 +10,6 @@ interface MarriedProps {
     selectedSuburb: string | null;
 }
 
-interface IncomeDataItem {
-    income_data: any;
-}
-
 export default function MarriedLineGraph(props: MarriedProps) {
     const [selectedSuburb, setSelectedSuburb] = useState<string | null>("");
     const [selectedState, setSelectedState] = useState<string | null>("");
@@ -21,9 +17,9 @@ export default function MarriedLineGraph(props: MarriedProps) {
     const [deconstructedSuburb, setDeconstructedSuburb] = useState<string | null>(null);
     const [deconstructedState, setDeconstructedState] = useState<string | null>(null);
 
-    const [suburbMarried, setSuburbMarried] = useState<(number | null)[]>([null, null, null, null, null]);
-    const [stateMarried, setStateMarried] = useState<(number | null)[]>([null, null, null, null, null]);
-    const [australiaMarried, setAustraliaMarried] = useState<(number | null)[]>([null, null, null, null, null]);
+    const [suburbMarried, setSuburbMarried] = useState<(number | null)[]>([null, null, null]);
+    const [stateMarried, setStateMarried] = useState<(number | null)[]>([null, null, null]);
+    const [australiaMarried, setAustraliaMarried] = useState<(number | null)[]>([null, null, null]);
 
     // States to manage instances where data does not exist
     const [insufficientSuburbData, setInsufficientSuburbData] = useState(false);
@@ -326,6 +322,10 @@ export default function MarriedLineGraph(props: MarriedProps) {
         minMax(suburbMarried, stateMarried, australiaMarried);
     }, [suburbMarried, stateMarried, australiaMarried]);
 
+    console.log(suburbMarried);
+    console.log(stateMarried);
+    console.log(australiaMarried);
+
     // * <Recharts />
 
     const data = [
@@ -374,9 +374,7 @@ export default function MarriedLineGraph(props: MarriedProps) {
                 <div className="mx-auto -mt-4">
                     {insufficientSuburbData ? (
                         <div className="flex flex-col justify-center">
-                            <span className="mt-2 text-center italic">
-                                Insufficient data in suburb to populate full-time employment trends.
-                            </span>
+                            <span className="mt-2 text-center italic">Insufficient data in suburb to populate marriage trends.</span>
                             {insufficientDataLineChart}
                         </div>
                     ) : (

@@ -9,10 +9,6 @@ interface PartTimeEmploymentProps {
     selectedSuburb: string | null;
 }
 
-interface IncomeDataItem {
-    income_data: any;
-}
-
 interface EmploymentDataItem {
     employment_data: any;
 }
@@ -379,9 +375,6 @@ export default function PartTimeEmploymentLineGraph(props: PartTimeEmploymentPro
 
     // ! CONSOLE LOGS OUTSIDE useEffect hooks ************
 
-    // console.log(`suburbPartTime: ${suburbPartTime}`);
-    // console.log(`statePartTime: ${statePartTime}`);
-    // console.log(`australiaPartTime: ${australiaPartTime}`);
     // console.log(`dataMin: ${dataMin}`);
     // console.log(`dataMax: ${dataMax}`);
 
