@@ -11,10 +11,6 @@ interface FullTimeEmploymentProps {
     selectedSuburb: string | null;
 }
 
-interface IncomeDataItem {
-    income_data: any;
-}
-
 interface EmploymentDataItem {
     employment_data: any;
 }

@@ -10,10 +10,6 @@ interface PersonalIncomeProps {
     selectedSuburb: string | null;
 }
 
-interface IncomeDataItem {
-    income_data: any;
-}
-
 export default function PersonalMedianWeeklyIncome(props: PersonalIncomeProps) {
     const [selectedSuburb, setSelectedSuburb] = useState<string | null>("");
     const [selectedState, setSelectedState] = useState<string | null>("");
@@ -429,7 +425,7 @@ export default function PersonalMedianWeeklyIncome(props: PersonalIncomeProps) {
                     {insufficientSuburbData ? (
                         <div className="flex flex-col justify-center">
                             <span className="mt-2 text-center italic">
-                                Insufficient data in suburb to populate full-time employment trends.
+                                Insufficient data in suburb to populate personal median weekly income trends.
                             </span>
                             {insufficientDataLineChart}
                         </div>

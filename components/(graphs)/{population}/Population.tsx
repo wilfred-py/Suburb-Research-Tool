@@ -278,6 +278,8 @@ export default function Population(props: PopulationProps) {
     // console.log(dataMin);
     // console.log(dataMax);
 
+    // console.log(suburbPopulation);
+
     // * <Recharts />
     const data = [
         { name: "2001", Suburb: suburbPopulation[0] },
