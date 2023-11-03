@@ -322,9 +322,9 @@ export default function MarriedLineGraph(props: MarriedProps) {
         minMax(suburbMarried, stateMarried, australiaMarried);
     }, [suburbMarried, stateMarried, australiaMarried]);
 
-    console.log(suburbMarried);
-    console.log(stateMarried);
-    console.log(australiaMarried);
+    // console.log(suburbMarried);
+    // console.log(stateMarried);
+    // console.log(australiaMarried);
 
     // * <Recharts />
 
