@@ -219,9 +219,9 @@ export default function AncestryChart(props: AncestryChartProps) {
                         <SelectValue placeholder="2021" />
                     </SelectTrigger>
                     <SelectContent>
-                        <SelectItem value="2011">2011</SelectItem>
-                        <SelectItem value="2016">2016</SelectItem>
                         <SelectItem value="2021">2021</SelectItem>
+                        <SelectItem value="2016">2016</SelectItem>
+                        <SelectItem value="2011">2011</SelectItem>
                     </SelectContent>
                 </Select>
 
