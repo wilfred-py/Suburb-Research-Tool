@@ -21,7 +21,6 @@ export default function FullTimeEmploymentLineGraph(props: FullTimeEmploymentPro
 
     const [deconstructedSuburb, setDeconstructedSuburb] = useState<string | null>(null);
     const [deconstructedState, setDeconstructedState] = useState<string | null>(null);
-    const [incomeData, setIncomeData] = useState<IncomeDataItem[]>([]);
     const [employmentData, setEmploymentData] = useState<EmploymentDataItem[]>([]);
 
     const [suburbFullTime, setSuburbFullTime] = useState<(number | null)[]>([null, null, null, null, null]);
