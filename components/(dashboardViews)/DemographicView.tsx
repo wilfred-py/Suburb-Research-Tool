@@ -4,6 +4,7 @@ import Population from "../(graphs)/{population}/Population";
 import Age from "../Age";
 
 import Employment from "../Employment";
+import FamilyComposition from "../FamilyComposition";
 import Income from "../Income";
 import Marital from "../MaritalStatus";
 
@@ -16,6 +17,7 @@ export default function DemographicView(props: DemographicProps) {
 
     return (
         <div className="max-w-screen max-h-screen flex flex-wrap">
+            <FamilyComposition selectedSuburb={props.selectedSuburb} />
             <ReligionChart selectedSuburb={props.selectedSuburb} />
             <Marital selectedSuburb={props.selectedSuburb} />
             <Ancestry selectedSuburb={props.selectedSuburb} />
