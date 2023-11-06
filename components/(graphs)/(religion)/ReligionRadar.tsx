@@ -10,7 +10,7 @@ interface ReligionChartProps {
 export default function ReligionChart(props: ReligionChartProps) {
     const [selectedSuburb, setSelectedSuburb] = useState<string | null>("");
     const [suburbReligion, setSuburbReligion] = useState<{ key: string; value: number }[]>([]);
-    const [selectedYear, setSelectedYear] = useState<string | null>("2021");
+    const [selectedYear, setSelectedYear] = useState<string | undefined>("2021");
 
     const [twoThousandAndOneData, setTwoThousandAndOneData] = useState<{ key: string; value: number }[]>([]);
     const [twoThousandAndSixData, setTwoThousandAndSixData] = useState<{ key: string; value: number }[]>([]);
@@ -325,9 +325,8 @@ export default function ReligionChart(props: ReligionChartProps) {
     }
 
     // ! CONSOLE LOGS
-    console.log(suburbReligion);
-    console.log(suburbReligion.length);
-    console.log(twoThousandAndOneDataExist);
+    // console.log(suburbReligion);
+    // console.log(selectedYear);
     // ! CONSOLE LOGS
 
     return (
@@ -336,7 +335,7 @@ export default function ReligionChart(props: ReligionChartProps) {
                 <h1 className="text-2xl font-bold mx-auto">Religion</h1>
                 <div className="flex flex-row flex-wrap">
                     <div>
-                        <Select onValueChange={handleYearChange}>
+                        <Select value={selectedYear} onValueChange={handleYearChange}>
                             <SelectTrigger className="w-[180px]">
                                 <SelectValue placeholder="2021" />
                             </SelectTrigger>
@@ -359,7 +358,7 @@ export default function ReligionChart(props: ReligionChartProps) {
                                     <Legend />
                                     <Tooltip offset={50} />
                                 </RadarChart>
-                                <p>Note: all religions shown will not sum to 100% as these are the top responses from census respondents</p>
+                                <p>Note: all religions will not sum to 100% as these are the top responses from census respondents</p>
                             </div>
                         )}
 
@@ -373,7 +372,7 @@ export default function ReligionChart(props: ReligionChartProps) {
                                     <Legend />
                                     <Tooltip offset={50} />
                                 </RadarChart>
-                                <p>Note: all religions shown will not sum to 100% as these are the top responses from census respondents</p>
+                                <p>Note: all religions will not sum to 100% as these are the top responses from census respondents</p>
                             </div>
                         )}
 
@@ -388,7 +387,7 @@ export default function ReligionChart(props: ReligionChartProps) {
                                     <Legend />
                                     <Tooltip offset={50} />
                                 </RadarChart>
-                                <p>Note: all religions shown will not sum to 100% as these are the top responses from census respondents</p>
+                                <p>Note: all religions will not sum to 100% as these are the top responses from census respondents</p>
                             </div>
                         )}
 
@@ -403,7 +402,7 @@ export default function ReligionChart(props: ReligionChartProps) {
                                     <Legend />
                                     <Tooltip offset={50} />
                                 </RadarChart>
-                                <p>Note: all religions shown will not sum to 100% as these are the top responses from census respondents</p>
+                                <p>Note: all religions will not sum to 100% as these are the top responses from census respondents</p>
                             </div>
                         )}
 
@@ -418,7 +417,7 @@ export default function ReligionChart(props: ReligionChartProps) {
                                     <Legend />
                                     <Tooltip offset={50} />
                                 </RadarChart>
-                                <p>Note: all religions shown will not sum to 100% as these are the top responses from census respondents</p>
+                                <p>Note: all religions will not sum to 100% as these are the top responses from census respondents</p>
                             </div>
                         )}
                     </div>
