@@ -12,6 +12,12 @@ export default function ReligionChart(props: ReligionChartProps) {
     const [suburbReligion, setSuburbReligion] = useState<{ key: string; value: number }[]>([]);
     const [selectedYear, setSelectedYear] = useState<string | null>("2021");
 
+    const [twoThousandAndOneData, setTwoThousandAndOneData] = useState<{ key: string; value: number }[]>([]);
+    const [twoThousandAndSixData, setTwoThousandAndSixData] = useState<{ key: string; value: number }[]>([]);
+    const [twentyElevenData, setTwentyElevenData] = useState<{ key: string; value: number }[]>([]);
+    const [twentySixteenData, setTwentySixteenData] = useState<{ key: string; value: number }[]>([]);
+    const [twentyTwentyOneData, setTwentyTwentyOneData] = useState<{ key: string; value: number }[]>([]);
+
     // use state to manage whether 2001 data exists or not
     const [twoThousandAndOneDataExist, setTwoThousandAndOneDataExist] = useState(false);
 
@@ -117,6 +123,7 @@ export default function ReligionChart(props: ReligionChartProps) {
                         });
 
                         setSuburbReligion(newSuburbReligion);
+                        setTwoThousandAndOneDataExist(true);
                     }
 
                     // * 2006
@@ -239,60 +246,79 @@ export default function ReligionChart(props: ReligionChartProps) {
         }
     }, [props.selectedSuburb]);
 
-    // * Create arrays for each year
-    const twoThousandAndOneData: any = [];
-    const twoThousandAndSixData: any = [];
-    const twentyElevenData: any = [];
-    const twentySixteenData: any = [];
-    const twentyTwentyOneData: any = [];
+    // * Create Radar Chart objects whenever suburbReligion state changes
+    useEffect(() => {
+        async function createRadarObjects() {
+            // * Create arrays for each year
+            const newTwoThousandAndOneData: any = [];
+            const newTwoThousandAndSixData: any = [];
+            const newTwentyElevenData: any = [];
+            const newTwentySixteenData: any = [];
+            const newTwentyTwentyOneData: any = [];
 
-    // * If only 20 data points, then data for one year must not be available. If the data is not available for that suburb, it must mean the suburb didn't exist.
-    // >> For there to be only 20 data points must mean 2001 is the year when the suburb didn't exist.
+            // * If only 20 data points, then data for one year must not be available. If the data is not available for that suburb, it must mean the suburb didn't exist.
+            // >> For there to be only 20 data points must mean 2001 is the year when the suburb didn't exist.
 
-    if (suburbReligion.length == 20) {
-        // >> 2006
-        for (let i = 0; i < 5; i++) {
-            twoThousandAndSixData.push(suburbReligion[i]);
-        }
+            if (suburbReligion.length == 20) {
+                // >> 2006
+                for (let i = 0; i < 5; i++) {
+                    newTwoThousandAndSixData.push(suburbReligion[i]);
+                }
+                setTwoThousandAndSixData(newTwoThousandAndSixData);
 
-        // >> 2011
-        for (let i = 5; i < 10; i++) {
-            twentyElevenData.push(suburbReligion[i]);
-        }
+                // >> 2011
+                for (let i = 5; i < 10; i++) {
+                    newTwentyElevenData.push(suburbReligion[i]);
+                }
+                setTwentyElevenData(newTwentyElevenData);
 
-        // >> 2016
-        for (let i = 10; i < 15; i++) {
-            twentySixteenData.push(suburbReligion[i]);
-        }
+                // >> 2016
+                for (let i = 10; i < 15; i++) {
+                    newTwentySixteenData.push(suburbReligion[i]);
+                }
+                setTwentySixteenData(newTwentySixteenData);
 
-        // >> 2021
-        for (let i = 15; i < 20; i++) {
-            twentyTwentyOneData.push(suburbReligion[i]);
+                // >> 2021
+                for (let i = 15; i < 20; i++) {
+                    newTwentyTwentyOneData.push(suburbReligion[i]);
+                }
+                setTwentyTwentyOneData(newTwentyTwentyOneData);
+            }
+            // * If 25 data points, then data for all 5 years exists
+            else if (suburbReligion.length == 25) {
+                // >> 2001
+                for (let i = 0; i < 5; i++) {
+                    newTwoThousandAndOneData.push(suburbReligion[i]);
+                }
+                setTwoThousandAndOneData(newTwoThousandAndOneData);
+
+                // >> 2006
+                for (let i = 5; i < 10; i++) {
+                    newTwoThousandAndSixData.push(suburbReligion[i]);
+                }
+                setTwoThousandAndSixData(newTwoThousandAndSixData);
+
+                // >> 2011
+                for (let i = 10; i < 15; i++) {
+                    newTwentyElevenData.push(suburbReligion[i]);
+                }
+                setTwentyElevenData(newTwentyElevenData);
+
+                // >> 2016
+                for (let i = 15; i < 20; i++) {
+                    newTwentySixteenData.push(suburbReligion[i]);
+                }
+                setTwentySixteenData(newTwentySixteenData);
+
+                // >> 2021
+                for (let i = 20; i < 25; i++) {
+                    newTwentyTwentyOneData.push(suburbReligion[i]);
+                }
+                setTwentyTwentyOneData(newTwentyTwentyOneData);
+            }
         }
-    }
-    // * If 25 data points, then data for all 5 years exists
-    else if (suburbReligion.length == 25) {
-        // >> 2001
-        for (let i = 0; i < 5; i++) {
-            twoThousandAndOneData.push(suburbReligion[i]);
-        }
-        // >> 2006
-        for (let i = 5; i < 10; i++) {
-            twoThousandAndSixData.push(suburbReligion[i]);
-        }
-        // >> 2011
-        for (let i = 10; i < 15; i++) {
-            twentyElevenData.push(suburbReligion[i]);
-        }
-        // >> 2016
-        for (let i = 15; i < 20; i++) {
-            twentySixteenData.push(suburbReligion[i]);
-        }
-        // >> 2021
-        for (let i = 20; i < 25; i++) {
-            twentyTwentyOneData.push(suburbReligion[i]);
-        }
-    }
+        createRadarObjects();
+    }, [suburbReligion]);
 
     function handleYearChange(value: string) {
         setSelectedYear(value);
@@ -333,7 +359,7 @@ export default function ReligionChart(props: ReligionChartProps) {
                                     <Legend />
                                     <Tooltip offset={50} />
                                 </RadarChart>
-                                <p>Note: all religions will not sum to 100%</p>
+                                <p>Note: all religions shown will not sum to 100% as these are the top responses from census respondents</p>
                             </div>
                         )}
 
@@ -347,10 +373,7 @@ export default function ReligionChart(props: ReligionChartProps) {
                                     <Legend />
                                     <Tooltip offset={50} />
                                 </RadarChart>
-                                <p>
-                                    Note: all religions shown will not sum to 100% as these are the top responses from the census
-                                    questionnaire
-                                </p>
+                                <p>Note: all religions shown will not sum to 100% as these are the top responses from census respondents</p>
                             </div>
                         )}
 
@@ -365,10 +388,7 @@ export default function ReligionChart(props: ReligionChartProps) {
                                     <Legend />
                                     <Tooltip offset={50} />
                                 </RadarChart>
-                                <p>
-                                    Note: all religions shown will not sum to 100% as these are the top responses from the census
-                                    questionnaire
-                                </p>
+                                <p>Note: all religions shown will not sum to 100% as these are the top responses from census respondents</p>
                             </div>
                         )}
 
@@ -383,10 +403,7 @@ export default function ReligionChart(props: ReligionChartProps) {
                                     <Legend />
                                     <Tooltip offset={50} />
                                 </RadarChart>
-                                <p>
-                                    Note: all religions shown will not sum to 100% as these are the top responses from the census
-                                    questionnaire
-                                </p>
+                                <p>Note: all religions shown will not sum to 100% as these are the top responses from census respondents</p>
                             </div>
                         )}
 
@@ -401,10 +418,7 @@ export default function ReligionChart(props: ReligionChartProps) {
                                     <Legend />
                                     <Tooltip offset={50} />
                                 </RadarChart>
-                                <p>
-                                    Note: all religions shown will not sum to 100% as these are the top responses from the census
-                                    questionnaire
-                                </p>
+                                <p>Note: all religions shown will not sum to 100% as these are the top responses from census respondents</p>
                             </div>
                         )}
                     </div>
