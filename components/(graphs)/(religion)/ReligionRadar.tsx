@@ -12,6 +12,9 @@ export default function ReligionChart(props: ReligionChartProps) {
     const [suburbReligion, setSuburbReligion] = useState<{ key: string; value: number }[]>([]);
     const [selectedYear, setSelectedYear] = useState<string | null>("2021");
 
+    // use state to manage whether 2001 data exists or not
+    const [twoThousandAndOneDataExist, setTwoThousandAndOneDataExist] = useState(false);
+
     const supabase = createClientComponentClient();
 
     // * Function that deconstructs the passed down props.selectedSuburb
@@ -215,6 +218,7 @@ export default function ReligionChart(props: ReligionChartProps) {
 
                     if (year === "2001") {
                         console.log(`2001 data not available for ${selectedSuburb}`);
+                        setTwoThousandAndOneDataExist(false);
                     } else if (year === "2006") {
                         console.log(`2006 data not available for ${selectedSuburb}`);
                     } else if (year === "2011") {
@@ -246,40 +250,45 @@ export default function ReligionChart(props: ReligionChartProps) {
     // >> For there to be only 20 data points must mean 2001 is the year when the suburb didn't exist.
 
     if (suburbReligion.length == 20) {
-        // >> 2001
-
+        // >> 2006
         for (let i = 0; i < 5; i++) {
             twoThousandAndSixData.push(suburbReligion[i]);
         }
 
+        // >> 2011
         for (let i = 5; i < 10; i++) {
             twentyElevenData.push(suburbReligion[i]);
         }
 
+        // >> 2016
         for (let i = 10; i < 15; i++) {
             twentySixteenData.push(suburbReligion[i]);
         }
 
+        // >> 2021
         for (let i = 15; i < 20; i++) {
             twentyTwentyOneData.push(suburbReligion[i]);
         }
-    } else if (suburbReligion.length == 25) {
+    }
+    // * If 25 data points, then data for all 5 years exists
+    else if (suburbReligion.length == 25) {
+        // >> 2001
         for (let i = 0; i < 5; i++) {
             twoThousandAndOneData.push(suburbReligion[i]);
         }
-
+        // >> 2006
         for (let i = 5; i < 10; i++) {
             twoThousandAndSixData.push(suburbReligion[i]);
         }
-
+        // >> 2011
         for (let i = 10; i < 15; i++) {
             twentyElevenData.push(suburbReligion[i]);
         }
-
+        // >> 2016
         for (let i = 15; i < 20; i++) {
             twentySixteenData.push(suburbReligion[i]);
         }
-
+        // >> 2021
         for (let i = 20; i < 25; i++) {
             twentyTwentyOneData.push(suburbReligion[i]);
         }
@@ -292,7 +301,7 @@ export default function ReligionChart(props: ReligionChartProps) {
     // ! CONSOLE LOGS
     console.log(suburbReligion);
     console.log(suburbReligion.length);
-
+    console.log(twoThousandAndOneDataExist);
     // ! CONSOLE LOGS
 
     return (
@@ -310,7 +319,7 @@ export default function ReligionChart(props: ReligionChartProps) {
                                 <SelectItem value="2016">2016</SelectItem>
                                 <SelectItem value="2011">2011</SelectItem>
                                 <SelectItem value="2006">2006</SelectItem>
-                                <SelectItem value="2001">2001</SelectItem>
+                                {twoThousandAndOneDataExist ? <SelectItem value="2001">2001</SelectItem> : ""}
                             </SelectContent>
                         </Select>
 
@@ -324,6 +333,7 @@ export default function ReligionChart(props: ReligionChartProps) {
                                     <Legend />
                                     <Tooltip offset={50} />
                                 </RadarChart>
+                                <p>Note: all religions will not sum to 100%</p>
                             </div>
                         )}
 
@@ -337,6 +347,10 @@ export default function ReligionChart(props: ReligionChartProps) {
                                     <Legend />
                                     <Tooltip offset={50} />
                                 </RadarChart>
+                                <p>
+                                    Note: all religions shown will not sum to 100% as these are the top responses from the census
+                                    questionnaire
+                                </p>
                             </div>
                         )}
 
@@ -351,6 +365,10 @@ export default function ReligionChart(props: ReligionChartProps) {
                                     <Legend />
                                     <Tooltip offset={50} />
                                 </RadarChart>
+                                <p>
+                                    Note: all religions shown will not sum to 100% as these are the top responses from the census
+                                    questionnaire
+                                </p>
                             </div>
                         )}
 
@@ -365,6 +383,10 @@ export default function ReligionChart(props: ReligionChartProps) {
                                     <Legend />
                                     <Tooltip offset={50} />
                                 </RadarChart>
+                                <p>
+                                    Note: all religions shown will not sum to 100% as these are the top responses from the census
+                                    questionnaire
+                                </p>
                             </div>
                         )}
 
@@ -379,6 +401,10 @@ export default function ReligionChart(props: ReligionChartProps) {
                                     <Legend />
                                     <Tooltip offset={50} />
                                 </RadarChart>
+                                <p>
+                                    Note: all religions shown will not sum to 100% as these are the top responses from the census
+                                    questionnaire
+                                </p>
                             </div>
                         )}
                     </div>
