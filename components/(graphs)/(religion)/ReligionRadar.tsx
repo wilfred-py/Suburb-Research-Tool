@@ -83,7 +83,7 @@ export default function ReligionChart(props: ReligionChartProps) {
             // set selected year to 2021 from previous search
             setSelectedYear("2021");
 
-            console.log(`selectedSuburb: ${props.selectedSuburb}`);
+            // console.log(`selectedSuburb: ${props.selectedSuburb}`);
             const years = ["2001", "2006", "2011", "2016", "2021"];
             const dataPromises = years.map((year) => fetchReligionDataByYear(year, `data_${year}`, props.selectedSuburb));
 
@@ -108,7 +108,7 @@ export default function ReligionChart(props: ReligionChartProps) {
                         // console.log(religionData);
 
                         Object.entries(religionData).forEach(([key, value]) => {
-                            console.log(`Key: ${key}, Value: ${value}`);
+                            // console.log(`Key: ${key}, Value: ${value}`);
 
                             // >> Suburb Religion
                             const suburbReligionObject = {

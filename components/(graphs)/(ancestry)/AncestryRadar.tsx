@@ -10,7 +10,11 @@ interface AncestryChartProps {
 export default function AncestryChart(props: AncestryChartProps) {
     const [selectedSuburb, setSelectedSuburb] = useState<string | null>("");
     const [suburbAncestry, setSuburbAncestry] = useState<{ key: string; value: number }[]>([]);
-    const [selectedYear, setSelectedYear] = useState<string | null>("2021");
+    const [selectedYear, setSelectedYear] = useState<string | undefined>("2021");
+
+    const [twentyElevenData, setTwentyElevenData] = useState<{ key: string; value: number }[]>([]);
+    const [twentySixteenData, setTwentySixteenData] = useState<{ key: string; value: number }[]>([]);
+    const [twentyTwentyOneData, setTwentyTwentyOneData] = useState<{ key: string; value: number }[]>([]);
 
     const supabase = createClientComponentClient();
 
@@ -71,7 +75,10 @@ export default function AncestryChart(props: AncestryChartProps) {
             // Clear old array values from previous search
             setSuburbAncestry([]);
 
-            console.log(`selectedSuburb: ${props.selectedSuburb}`);
+            // set selected year to 2021 from previous search
+            setSelectedYear("2021");
+
+            // console.log(`selectedSuburb: ${props.selectedSuburb}`);
             const years = ["2011", "2016", "2021"];
             const dataPromises = years.map((year) => fetchAncestryDataByYear(year, `data_${year}`, props.selectedSuburb));
 
@@ -89,7 +96,7 @@ export default function AncestryChart(props: AncestryChartProps) {
                 const { year, data } = result;
 
                 try {
-                    // Ancestry not recorded 2011, 2016, 2021
+                    // Ancestry not recorded 2001, 2006
                     // * 2001
                     // * 2006
 
@@ -185,21 +192,35 @@ export default function AncestryChart(props: AncestryChartProps) {
         }
     }, [props.selectedSuburb]);
 
-    // * Create arrays for each year
-    const twentyElevenData: any = [];
-    const twentySixteenData: any = [];
-    const twentyTwentyOneData: any = [];
-    for (let i = 0; i < 5; i++) {
-        twentyElevenData.push(suburbAncestry[i]);
-    }
+    // * Create Radar Chart objects whenever suburbReligion state changes
+    useEffect(() => {
+        async function createRadarObjects() {
+            // * Create arrays for each year
+            const newTwentyElevenData: any = [];
+            const newTwentySixteenData: any = [];
+            const newTwentyTwentyOneData: any = [];
 
-    for (let i = 5; i < 10; i++) {
-        twentySixteenData.push(suburbAncestry[i]);
-    }
+            // >> 2011
+            for (let i = 0; i < 5; i++) {
+                newTwentyElevenData.push(suburbAncestry[i]);
+            }
+            setTwentyElevenData(newTwentyElevenData);
 
-    for (let i = 10; i < 15; i++) {
-        twentyTwentyOneData.push(suburbAncestry[i]);
-    }
+            // >> 2016
+            for (let i = 5; i < 10; i++) {
+                newTwentySixteenData.push(suburbAncestry[i]);
+            }
+            setTwentySixteenData(newTwentySixteenData);
+
+            // >> 2021
+            for (let i = 10; i < 15; i++) {
+                newTwentyTwentyOneData.push(suburbAncestry[i]);
+            }
+            setTwentyTwentyOneData(newTwentyTwentyOneData);
+        }
+
+        createRadarObjects();
+    }, [suburbAncestry]);
 
     function handleYearChange(value: string) {
         setSelectedYear(value);
@@ -212,7 +233,7 @@ export default function AncestryChart(props: AncestryChartProps) {
     return (
         <>
             <div>
-                <Select onValueChange={handleYearChange}>
+                <Select value={selectedYear} onValueChange={handleYearChange}>
                     <SelectTrigger className="w-[180px]">
                         <SelectValue placeholder="2021" />
                     </SelectTrigger>
