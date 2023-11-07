@@ -200,7 +200,7 @@ export default function ReligionChart(props: ReligionChartProps) {
                     // * 2021
                     else if (year == "2021") {
                         const religionData = data[0]["cultural_data"]["Religious affiliation, top responses"];
-                        console.log(religionData);
+                        // console.log(religionData);
 
                         Object.entries(religionData).forEach(([key, value]) => {
                             // console.log(`Key: ${key}, Value: ${value}`);

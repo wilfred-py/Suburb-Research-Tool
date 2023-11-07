@@ -381,9 +381,9 @@ export default function OtherFamilyLineGraph(props: OtherFamilyProps) {
     }, [suburbOtherFamily, stateOtherFamily, australiaOtherFamily]);
 
     // ! CONSOLE LOGS
-    console.log(suburbOtherFamily);
-    console.log(stateOtherFamily);
-    console.log(australiaOtherFamily);
+    // console.log(suburbOtherFamily);
+    // console.log(stateOtherFamily);
+    // console.log(australiaOtherFamily);
     // ! CONSOLE LOGS
 
     // * <Recharts />

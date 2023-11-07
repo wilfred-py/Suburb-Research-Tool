@@ -115,10 +115,6 @@ export default function AncestryChart(props: AncestryChartProps) {
                                 state: parseFloat(ancestryData[key]["% of state"]),
                             };
                             newSuburbAncestry.push(suburbAncestryObject);
-
-                            // >> State Ancestry
-                            const stateAncestryObject = { key: key, value: parseFloat(ancestryData[key]["% of state"]) };
-                            newStateAncestry.push(stateAncestryObject);
                         });
 
                         setSuburbAncestry(newSuburbAncestry);
@@ -139,10 +135,6 @@ export default function AncestryChart(props: AncestryChartProps) {
                                 state: parseFloat(ancestryData[key]["% of state"]),
                             };
                             newSuburbAncestry.push(suburbAncestryObject);
-
-                            // >> State Ancestry
-                            const stateAncestryObject = { key: key, value: parseFloat(ancestryData[key]["% of state"]) };
-                            newStateAncestry.push(stateAncestryObject);
                         });
 
                         setSuburbAncestry(newSuburbAncestry);
@@ -163,10 +155,6 @@ export default function AncestryChart(props: AncestryChartProps) {
                                 state: parseFloat(ancestryData[key]["% of state"]),
                             };
                             newSuburbAncestry.push(suburbAncestryObject);
-
-                            // >> State Ancestry
-                            const stateAncestryObject = { key: key, value: parseFloat(ancestryData[key]["% of state"]) };
-                            newStateAncestry.push(stateAncestryObject);
                         });
 
                         setSuburbAncestry(newSuburbAncestry);
