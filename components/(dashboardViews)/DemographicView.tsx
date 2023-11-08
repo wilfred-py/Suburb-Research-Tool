@@ -1,10 +1,7 @@
 import Ancestry from "../(graphs)/(ancestry)/Ancestry";
-import DwellingChart from "../(graphs)/(dwelling)/DwellingRadar";
-import DwellingStackedAreaChart from "../(graphs)/(dwelling)/DwellingStackedAreaChart";
 import ReligionChart from "../(graphs)/(religion)/ReligionRadar";
 import Population from "../(graphs)/{population}/Population";
 import Age from "../Age";
-
 import Employment from "../Employment";
 import FamilyComposition from "../FamilyComposition";
 import Income from "../Income";
@@ -19,8 +16,6 @@ export default function DemographicView(props: DemographicProps) {
 
     return (
         <div className="max-w-screen max-h-screen flex flex-wrap">
-            <DwellingStackedAreaChart selectedSuburb={props.selectedSuburb} />
-            <DwellingChart selectedSuburb={props.selectedSuburb} />
             <FamilyComposition selectedSuburb={props.selectedSuburb} />
             <ReligionChart selectedSuburb={props.selectedSuburb} />
             <Marital selectedSuburb={props.selectedSuburb} />
