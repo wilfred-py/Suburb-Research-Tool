@@ -1,3 +1,5 @@
+import DwellingStackedAreaChart from "../(graphs)/(dwelling)/DwellingStackedAreaChart";
+
 interface HousingDetailsProps {
     selectedSuburb: string | null;
 }
@@ -9,12 +11,8 @@ export default function HousingDetailsView(props: HousingDetailsProps) {
     // Works for OverviewView. Possibly because it's showing data?
 
     return (
-        <div className="bg-green-500 max-w-screen max-h-screen">
-            <div>
-                <h1>HousingDetails View</h1>
-
-                <span>{props.selectedSuburb}</span>
-            </div>
+        <div className="max-w-screen max-h-screen flex flex-wrap">
+            <DwellingStackedAreaChart selectedSuburb={props.selectedSuburb} />
         </div>
     );
 }
