@@ -113,7 +113,7 @@ export default function DwellingStackedAreaChart(props: DwellingStackedAreaChart
                                 const twoThousandAndOneSuburbObject = {
                                     year: "2001",
                                     "Separate House": separateHouseInSuburb,
-                                    "Semi-detached": semiDetachedInSuburb,
+                                    "Semi-detached / Townhouse": semiDetachedInSuburb,
                                     "Flat, unit or apartment": flatUnitApartmentInSuburb,
                                     "Other dwelling": otherDwellingInSuburb + dwellingNotStatedInSuburb,
                                 };
@@ -162,7 +162,7 @@ export default function DwellingStackedAreaChart(props: DwellingStackedAreaChart
                                 const twoThousandAndSixSuburbObject = {
                                     year: "2006",
                                     "Separate House": separateHouseInSuburb,
-                                    "Semi-detached": semiDetachedInSuburb,
+                                    "Semi-detached / Townhouse": semiDetachedInSuburb,
                                     "Flat, unit or apartment": flatUnitApartmentInSuburb,
                                     "Other dwelling": otherDwellingInSuburb + dwellingNotStatedInSuburb,
                                 };
@@ -210,7 +210,7 @@ export default function DwellingStackedAreaChart(props: DwellingStackedAreaChart
                                 const twentyElevenSuburbObject = {
                                     year: "2011",
                                     "Separate House": separateHouseInSuburb,
-                                    "Semi-detached": semiDetachedInSuburb,
+                                    "Semi-detached / Townhouse": semiDetachedInSuburb,
                                     "Flat, unit or apartment": flatUnitApartmentInSuburb,
                                     "Other dwelling": otherDwellingInSuburb,
                                 };
@@ -260,7 +260,7 @@ export default function DwellingStackedAreaChart(props: DwellingStackedAreaChart
                                 const twentySixteenSuburbObject = {
                                     year: "2016",
                                     "Separate House": separateHouseInSuburb,
-                                    "Semi-detached": semiDetachedInSuburb,
+                                    "Semi-detached / Townhouse": semiDetachedInSuburb,
                                     "Flat, unit or apartment": flatUnitApartmentInSuburb,
                                     "Other dwelling": otherDwellingInSuburb,
                                 };
@@ -310,7 +310,7 @@ export default function DwellingStackedAreaChart(props: DwellingStackedAreaChart
                                 const twentyTwentyOneSuburbObject = {
                                     year: "2021",
                                     "Separate House": separateHouseInSuburb,
-                                    "Semi-detached": semiDetachedInSuburb,
+                                    "Semi-detached / Townhouse": semiDetachedInSuburb,
                                     "Flat, unit or apartment": flatUnitApartmentInSuburb,
                                     "Other dwelling": otherDwellingInSuburb,
                                 };
@@ -372,26 +372,33 @@ export default function DwellingStackedAreaChart(props: DwellingStackedAreaChart
 
     return (
         <>
-            <AreaChart
-                width={500}
-                height={500}
-                data={suburbDwelling}
-                margin={{
-                    top: 20,
-                    right: 20,
-                    left: 20,
-                    bottom: 20,
-                }}
-            >
-                <CartesianGrid strokeDasharray="3 3" />
-                <XAxis dataKey="year" />
-                <YAxis domain={[0, 100]} tickCount={10} />
-                <Tooltip />
-                <Area type="monotone" dataKey="Separate House" stackId="1" stroke="#8884d8" fill="#8884d8" />
-                <Area type="monotone" dataKey="Semi-detached" stackId="1" stroke="#82ca9d" fill="#82ca9d" />
-                <Area type="monotone" dataKey="Flat, unit or apartment" stackId="1" stroke="#ffc658" fill="#ffc658" />
-                <Area type="monotone" dataKey="Other dwelling" stackId="1" stroke="#85CDFD" fill="#85CDFD" />
-            </AreaChart>
+            <div>
+                <div className="flex flex-col justify-center">
+                    <h1 className="mt-4 mb-4 text-lg text-center font-bold">Types of Dwellings in {selectedSuburb}</h1>
+                    <div className="mx-auto -mt-4">
+                        <AreaChart
+                            width={500}
+                            height={500}
+                            data={suburbDwelling}
+                            margin={{
+                                top: 20,
+                                right: 20,
+                                left: 20,
+                                bottom: 20,
+                            }}
+                        >
+                            <CartesianGrid strokeDasharray="3 3" />
+                            <XAxis dataKey="year" />
+                            <YAxis domain={[0, 100]} tickCount={10} />
+                            <Tooltip />
+                            <Area type="monotone" dataKey="Separate House" stackId="1" stroke="#8884d8" fill="#8884d8" />
+                            <Area type="monotone" dataKey="Semi-detached / Townhouse" stackId="1" stroke="#B8621B" fill="#B8621B" />
+                            <Area type="monotone" dataKey="Flat, unit or apartment" stackId="1" stroke="#ffc658" fill="#ffc658" />
+                            <Area type="monotone" dataKey="Other dwelling" stackId="1" stroke="#28544B" fill="#28544B" />
+                        </AreaChart>
+                    </div>
+                </div>
+            </div>
         </>
     );
 }
