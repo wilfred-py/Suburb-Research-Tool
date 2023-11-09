@@ -1,6 +1,6 @@
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 import React, { PureComponent, useEffect, useState } from "react";
-import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from "recharts";
+import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Legend } from "recharts";
 
 interface DwellingStackedAreaChartProps {
     selectedSuburb: string | null;
@@ -11,6 +11,8 @@ export default function DwellingStackedAreaChart(props: DwellingStackedAreaChart
     const [suburbDwelling, setSuburbDwelling] = useState<{ key: string; value: number }[]>([]);
     const [stateDwelling, setStateDwelling] = useState<{ key: string; value: number }[]>([]);
     const [australiaDwelling, setAustraliaDwelling] = useState<{ key: string; value: number }[]>([]);
+
+    const [twoThousandAndOneDataAvailable, setTwoThousandAndOneDataAvailable] = useState(true);
 
     const supabase = createClientComponentClient();
 
@@ -71,9 +73,6 @@ export default function DwellingStackedAreaChart(props: DwellingStackedAreaChart
         let isMounted = true;
 
         async function fetchData() {
-            // Clear old array values from previous search
-            setSuburbDwelling([]);
-
             // console.log(`selectedSuburb: ${props.selectedSuburb}`);
             const years = ["2001", "2006", "2011", "2016", "2021"];
             const dataPromises = years.map((year) => fetchDwellingDataByYear(year, `data_${year}`, props.selectedSuburb));
@@ -92,38 +91,21 @@ export default function DwellingStackedAreaChart(props: DwellingStackedAreaChart
                     try {
                         // * 2001
                         if (year == "2001") {
-                            setSuburbDwelling((prevSuburbDwelling) => {
-                                const newSuburbDwelling: any[] = [...prevSuburbDwelling];
+                            const newSuburbDwelling: any[] = [];
 
-                                // >> 5 categories of dwelling structures
-                                // Separate House
-                                const separateHouseInSuburb = parseFloat(data[0]["percentage_separate_house_in_suburb"]);
+                            // >> 5 categories of dwelling structures
+                            // Separate House
+                            const separateHouseInSuburb = parseFloat(data[0]["percentage_separate_house_in_suburb"]);
 
-                                // Semi-detached, row or terrace house, townhouse etc
-                                const semiDetachedInSuburb = parseFloat(data[0]["percentage_semi_detached_in_suburb"]);
+                            // Semi-detached, row or terrace house, townhouse etc
+                            const semiDetachedInSuburb = parseFloat(data[0]["percentage_semi_detached_in_suburb"]);
 
-                                // Flat, unit or apartment
-                                const flatUnitApartmentInSuburb = parseFloat(data[0]["percentage_flat_unit_or_apartment_in_suburb"]);
+                            // Flat, unit or apartment
+                            const flatUnitApartmentInSuburb = parseFloat(data[0]["percentage_flat_unit_or_apartment_in_suburb"]);
 
-                                // Other dwelling / not stated
-                                const otherDwellingInSuburb = parseFloat(data[0]["percentage_other_dwelling_in_suburb"]);
-                                const dwellingNotStatedInSuburb = parseFloat(data[0]["percentage_dwelling_type_not_stated_in_suburb"]);
-
-                                // Push 2001 object
-                                const twoThousandAndOneSuburbObject = {
-                                    year: "2001",
-                                    "Separate House": separateHouseInSuburb,
-                                    "Semi-detached / Townhouse": semiDetachedInSuburb,
-                                    "Flat, unit or apartment": flatUnitApartmentInSuburb,
-                                    "Other dwelling": otherDwellingInSuburb + dwellingNotStatedInSuburb,
-                                };
-
-                                console.log(twoThousandAndOneSuburbObject);
-
-                                newSuburbDwelling.push(twoThousandAndOneSuburbObject);
-
-                                return newSuburbDwelling;
-                            });
+                            // Other dwelling / not stated
+                            const otherDwellingInSuburb = parseFloat(data[0]["percentage_other_dwelling_in_suburb"]);
+                            const dwellingNotStatedInSuburb = parseFloat(data[0]["percentage_dwelling_type_not_stated_in_suburb"]);
 
                             const separateHouseInAustralia = parseFloat(data[0]["percentage_separate_house_in_australia"]);
 
@@ -137,6 +119,29 @@ export default function DwellingStackedAreaChart(props: DwellingStackedAreaChart
 
                             const newStateDwelling: any[] = [...stateDwelling];
                             const newStateAustralia: any[] = [...australiaDwelling];
+
+                            // Push 2001 object
+                            if (
+                                separateHouseInSuburb &&
+                                semiDetachedInSuburb &&
+                                flatUnitApartmentInSuburb &&
+                                otherDwellingInSuburb &&
+                                dwellingNotStatedInSuburb
+                            ) {
+                            }
+                            const twoThousandAndOneSuburbObject = {
+                                year: "2001",
+                                "Separate House": separateHouseInSuburb,
+                                "Semi-detached / Townhouse": semiDetachedInSuburb,
+                                "Flat, unit or apartment": flatUnitApartmentInSuburb,
+                                "Other dwelling": otherDwellingInSuburb + dwellingNotStatedInSuburb,
+                            };
+
+                            console.log(twoThousandAndOneSuburbObject);
+
+                            newSuburbDwelling.push(twoThousandAndOneSuburbObject);
+
+                            setSuburbDwelling(newSuburbDwelling);
                         }
 
                         // * 2006
@@ -340,6 +345,7 @@ export default function DwellingStackedAreaChart(props: DwellingStackedAreaChart
 
                         if (year === "2001") {
                             console.log(`2001 data not available for ${selectedSuburb}`);
+                            setTwoThousandAndOneDataAvailable(false);
                         } else if (year === "2006") {
                             console.log(`2006 data not available for ${selectedSuburb}`);
                         } else if (year === "2011") {
@@ -355,6 +361,7 @@ export default function DwellingStackedAreaChart(props: DwellingStackedAreaChart
         }
 
         if (props.selectedSuburb) {
+            // Clear old array values from previous search
             fetchData();
         } else {
             setSuburbDwelling([]);
@@ -362,7 +369,7 @@ export default function DwellingStackedAreaChart(props: DwellingStackedAreaChart
 
         return () => {
             isMounted = false;
-            // setSuburbDwelling([]);
+            setSuburbDwelling([]);
         };
     }, [props.selectedSuburb]);
 
@@ -390,6 +397,7 @@ export default function DwellingStackedAreaChart(props: DwellingStackedAreaChart
                             <CartesianGrid strokeDasharray="3 3" />
                             <XAxis dataKey="year" />
                             <YAxis domain={[0, 100]} tickCount={10} />
+                            <Legend />
                             <Tooltip />
                             <Area type="monotone" dataKey="Separate House" stackId="1" stroke="#8884d8" fill="#8884d8" />
                             <Area type="monotone" dataKey="Semi-detached / Townhouse" stackId="1" stroke="#B8621B" fill="#B8621B" />

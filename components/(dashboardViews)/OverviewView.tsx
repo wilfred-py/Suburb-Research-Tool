@@ -1,5 +1,4 @@
 import Map from "../Map";
-import RecentSales from "../RecentSales";
 import SummaryData from "../SummaryData";
 
 interface OverviewProps {
@@ -16,9 +15,6 @@ export default function OverviewView(props: OverviewProps) {
                 <div className="flex flex-row">
                     <div className="w-7/12">
                         <Map selectedSuburb={props.selectedSuburb} />
-                    </div>
-                    <div className="w-5/12">
-                        <RecentSales selectedSuburb={props.selectedSuburb} />
                     </div>
                 </div>
             </div>
