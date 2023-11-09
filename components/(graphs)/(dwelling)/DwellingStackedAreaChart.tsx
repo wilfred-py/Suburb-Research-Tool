@@ -8,6 +8,7 @@ interface DwellingStackedAreaChartProps {
 
 export default function DwellingStackedAreaChart(props: DwellingStackedAreaChartProps) {
     const [selectedSuburb, setSelectedSuburb] = useState<string | null>("");
+    const [selectedState, setSelectedState] = useState<string | null>("");
     const [suburbDwelling, setSuburbDwelling] = useState<{ key: string; value: number }[]>([]);
     const [stateDwelling, setStateDwelling] = useState<{ key: string; value: number }[]>([]);
     const [australiaDwelling, setAustraliaDwelling] = useState<{ key: string; value: number }[]>([]);
@@ -49,6 +50,7 @@ export default function DwellingStackedAreaChart(props: DwellingStackedAreaChart
         try {
             const { suburbName, stateName } = deconstructSuburb(selectedSuburb);
             setSelectedSuburb(suburbName);
+            setSelectedState(stateName);
 
             const { data, error } = await supabase
                 .from(tableName)
@@ -68,6 +70,7 @@ export default function DwellingStackedAreaChart(props: DwellingStackedAreaChart
         }
     }
 
+    // * Suburb dataFetch
     useEffect(() => {
         // Handle useEffect cleanup
         let isMounted = true;
@@ -117,9 +120,6 @@ export default function DwellingStackedAreaChart(props: DwellingStackedAreaChart
 
                             const dwellingNotStatedInAustralia = parseFloat(data[0]["percentage_dwelling_type_not_stated_in_australia"]);
 
-                            const newStateDwelling: any[] = [...stateDwelling];
-                            const newStateAustralia: any[] = [...australiaDwelling];
-
                             // Push 2001 object
                             if (
                                 separateHouseInSuburb &&
@@ -137,7 +137,7 @@ export default function DwellingStackedAreaChart(props: DwellingStackedAreaChart
                                 "Other dwelling": otherDwellingInSuburb + dwellingNotStatedInSuburb,
                             };
 
-                            console.log(twoThousandAndOneSuburbObject);
+                            // console.log(twoThousandAndOneSuburbObject);
 
                             newSuburbDwelling.push(twoThousandAndOneSuburbObject);
 
@@ -172,7 +172,7 @@ export default function DwellingStackedAreaChart(props: DwellingStackedAreaChart
                                     "Other dwelling": otherDwellingInSuburb + dwellingNotStatedInSuburb,
                                 };
 
-                                console.log(twoThousandAndSixSuburbObject);
+                                // console.log(twoThousandAndSixSuburbObject);
 
                                 newSuburbDwelling.push(twoThousandAndSixSuburbObject);
 
@@ -190,11 +190,11 @@ export default function DwellingStackedAreaChart(props: DwellingStackedAreaChart
                             const dwellingNotStatedInAustralia = parseFloat(data[0]["percentage_dwelling_type_not_stated_in_australia"]);
 
                             const newStateDwelling: any[] = [...stateDwelling];
-                            const newStateAustralia: any[] = [...australiaDwelling];
                         }
 
                         // * 2011
                         else if (year == "2011") {
+                            // >> Suburb
                             setSuburbDwelling((prevSuburbDwelling) => {
                                 const newSuburbDwelling: any[] = [...prevSuburbDwelling];
 
@@ -220,25 +220,39 @@ export default function DwellingStackedAreaChart(props: DwellingStackedAreaChart
                                     "Other dwelling": otherDwellingInSuburb,
                                 };
 
-                                console.log(twentyElevenSuburbObject);
+                                // console.log(twentyElevenSuburbObject);
 
                                 newSuburbDwelling.push(twentyElevenSuburbObject);
 
                                 return newSuburbDwelling;
                             });
 
+                            // >> State
+                            setStateDwelling((prevStateDwelling) => {
+                                const newStateDwelling: any[] = [];
+
+                                const separateHouseInState = parseFloat(data[0]["percentage_separate_house_in_state"]);
+                                const semiDetachedInState = parseFloat(data[0]["percentage_semi_detached_in_state"]);
+                                const flatUnitApartmentInState = parseFloat(data[0]["percentage_flat_unit_or_apartment_in_state"]);
+                                const otherDwellingInState = parseFloat(data[0]["percentage_other_dwelling_in_state"]);
+
+                                // >> State
+                                const twentyElevenStateObject = {
+                                    year: "2011",
+                                    "Separate House": separateHouseInState,
+                                    "Semi-detached / Townhouse": semiDetachedInState,
+                                    "Flat, unit or apartment": flatUnitApartmentInState,
+                                    "Other dwelling": otherDwellingInState,
+                                };
+
+                                newStateDwelling.push(twentyElevenStateObject);
+
+                                return newStateDwelling;
+                            });
                             const separateHouseInAustralia = parseFloat(data[0]["percentage_separate_house_in_australia"]);
-
                             const semiDetachedInAustralia = parseFloat(data[0]["percentage_semi_detached_in_australia"]);
-
                             const flatUnitApartmentInAustralia = parseFloat(data[0]["percentage_flat_unit_or_apartment_in_australia"]);
-
                             const otherDwellingInAustralia = parseFloat(data[0]["percentage_other_dwelling_in_australia"]);
-
-                            const dwellingNotStatedInAustralia = parseFloat(data[0]["percentage_dwelling_type_not_stated_in_australia"]);
-
-                            const newStateDwelling: any[] = [...stateDwelling];
-                            const newStateAustralia: any[] = [...australiaDwelling];
                         }
 
                         // * 2016
@@ -256,7 +270,7 @@ export default function DwellingStackedAreaChart(props: DwellingStackedAreaChart
                                 // Flat, unit or apartment
                                 const flatUnitApartmentInSuburb = parseFloat(data[0]["percentage_flat_or_apartment_in_suburb"]);
 
-                                console.log(`2016: flat, unit, apartment ${flatUnitApartmentInSuburb}`);
+                                // console.log(`2016: flat, unit, apartment ${flatUnitApartmentInSuburb}`);
 
                                 // Other dwelling
                                 const otherDwellingInSuburb = parseFloat(data[0]["percentage_other_dwelling_in_suburb"]);
@@ -270,25 +284,40 @@ export default function DwellingStackedAreaChart(props: DwellingStackedAreaChart
                                     "Other dwelling": otherDwellingInSuburb,
                                 };
 
-                                console.log(twentySixteenSuburbObject);
+                                // console.log(twentySixteenSuburbObject);
 
                                 newSuburbDwelling.push(twentySixteenSuburbObject);
 
                                 return newSuburbDwelling;
                             });
 
+                            // >> State
+                            setStateDwelling((prevStateDwelling) => {
+                                const newStateDwelling: any[] = [...prevStateDwelling];
+
+                                const separateHouseInState = parseFloat(data[0]["percentage_separate_house_in_state"]);
+                                const semiDetachedInState = parseFloat(data[0]["percentage_semi_detached_in_state"]);
+                                const flatUnitApartmentInState = parseFloat(data[0]["percentage_flat_or_apartment_in_state"]);
+                                const otherDwellingInState = parseFloat(data[0]["percentage_other_dwelling_in_state"]);
+
+                                // >> State
+                                const twentySixteenStateObject = {
+                                    year: "2016",
+                                    "Separate House": separateHouseInState,
+                                    "Semi-detached / Townhouse": semiDetachedInState,
+                                    "Flat, unit or apartment": flatUnitApartmentInState,
+                                    "Other dwelling": otherDwellingInState,
+                                };
+
+                                newStateDwelling.push(twentySixteenStateObject);
+
+                                return newStateDwelling;
+                            });
+
                             const separateHouseInAustralia = parseFloat(data[0]["percentage_separate_house_in_australia"]);
-
                             const semiDetachedInAustralia = parseFloat(data[0]["percentage_semi_detached_in_australia"]);
-
                             const flatUnitApartmentInAustralia = parseFloat(data[0]["percentage_flat_or_apartment_in_australia"]);
-
                             const otherDwellingInAustralia = parseFloat(data[0]["percentage_other_dwelling_in_australia"]);
-
-                            const dwellingNotStatedInAustralia = parseFloat(data[0]["percentage_dwelling_type_not_stated_in_australia"]);
-
-                            const newStateDwelling: any[] = [...stateDwelling];
-                            const newStateAustralia: any[] = [...australiaDwelling];
                         }
 
                         // * 2021
@@ -306,7 +335,7 @@ export default function DwellingStackedAreaChart(props: DwellingStackedAreaChart
                                 // Flat, unit or apartment
                                 const flatUnitApartmentInSuburb = parseFloat(data[0]["percentage_flat_or_apartment_in_suburb"]);
 
-                                console.log(`2021: flat, unit, apartment ${flatUnitApartmentInSuburb}`);
+                                // console.log(`2021: flat, unit, apartment ${flatUnitApartmentInSuburb}`);
 
                                 // Other dwelling
                                 const otherDwellingInSuburb = parseFloat(data[0]["percentage_other_dwelling_in_suburb"]);
@@ -320,25 +349,39 @@ export default function DwellingStackedAreaChart(props: DwellingStackedAreaChart
                                     "Other dwelling": otherDwellingInSuburb,
                                 };
 
-                                console.log(twentyTwentyOneSuburbObject);
+                                // console.log(twentyTwentyOneSuburbObject);
 
                                 newSuburbDwelling.push(twentyTwentyOneSuburbObject);
 
                                 return newSuburbDwelling;
                             });
 
+                            // >> State
+                            setStateDwelling((prevStateDwelling) => {
+                                const newStateDwelling: any[] = [...prevStateDwelling];
+
+                                const separateHouseInState = parseFloat(data[0]["percentage_separate_house_in_state"]);
+                                const semiDetachedInState = parseFloat(data[0]["percentage_semi_detached_in_state"]);
+                                const flatUnitApartmentInState = parseFloat(data[0]["percentage_flat_or_apartment_in_state"]);
+                                const otherDwellingInState = parseFloat(data[0]["percentage_other_dwelling_in_state"]);
+
+                                // >> State
+                                const twentyTwentyOneStateObject = {
+                                    year: "2021",
+                                    "Separate House": separateHouseInState,
+                                    "Semi-detached / Townhouse": semiDetachedInState,
+                                    "Flat, unit or apartment": flatUnitApartmentInState,
+                                    "Other dwelling": otherDwellingInState,
+                                };
+
+                                newStateDwelling.push(twentyTwentyOneStateObject);
+
+                                return newStateDwelling;
+                            });
                             const separateHouseInAustralia = parseFloat(data[0]["percentage_separate_house_in_australia"]);
-
                             const semiDetachedInAustralia = parseFloat(data[0]["percentage_semi_detached_in_australia"]);
-
                             const flatUnitApartmentInAustralia = parseFloat(data[0]["percentage_flat_or_apartment_in_australia"]);
-
                             const otherDwellingInAustralia = parseFloat(data[0]["percentage_other_dwelling_in_australia"]);
-
-                            const dwellingNotStatedInAustralia = parseFloat(data[0]["percentage_dwelling_type_not_stated_in_australia"]);
-
-                            const newStateDwelling: any[] = [...stateDwelling];
-                            const newStateAustralia: any[] = [...australiaDwelling];
                         }
                     } catch (error) {
                         console.error(`Error processing data for ${year}`, error);
@@ -375,6 +418,7 @@ export default function DwellingStackedAreaChart(props: DwellingStackedAreaChart
 
     // ! CONSOLE LOGS
     console.log(suburbDwelling);
+    console.log(stateDwelling);
     // ! CONSOLE LOGS
 
     return (
@@ -387,6 +431,31 @@ export default function DwellingStackedAreaChart(props: DwellingStackedAreaChart
                             width={500}
                             height={500}
                             data={suburbDwelling}
+                            margin={{
+                                top: 20,
+                                right: 20,
+                                left: 20,
+                                bottom: 20,
+                            }}
+                        >
+                            <CartesianGrid strokeDasharray="3 3" />
+                            <XAxis dataKey="year" />
+                            <YAxis domain={[0, 100]} tickCount={10} />
+                            <Legend />
+                            <Tooltip />
+                            <Area type="monotone" dataKey="Separate House" stackId="1" stroke="#8884d8" fill="#8884d8" />
+                            <Area type="monotone" dataKey="Semi-detached / Townhouse" stackId="1" stroke="#B8621B" fill="#B8621B" />
+                            <Area type="monotone" dataKey="Flat, unit or apartment" stackId="1" stroke="#ffc658" fill="#ffc658" />
+                            <Area type="monotone" dataKey="Other dwelling" stackId="1" stroke="#28544B" fill="#28544B" />
+                        </AreaChart>
+                    </div>
+
+                    <h1 className="mt-4 mb-4 text-lg text-center font-bold">Types of Dwellings in {selectedState}</h1>
+                    <div className="mx-auto -mt-4">
+                        <AreaChart
+                            width={500}
+                            height={500}
+                            data={stateDwelling}
                             margin={{
                                 top: 20,
                                 right: 20,
