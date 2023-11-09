@@ -143,6 +143,8 @@ export default function CoupleWithChildrenLineGraph(props: CoupleWithChildrenPro
                         const suburbCoupleWithChildren = data[0]["percentage_couple_family_with_children_in_suburb"];
                         const australiaCoupleWithChildren = data[0]["percentage_couple_family_with_children_in_australia"];
 
+                        console.log(suburbCoupleWithChildren);
+
                         // >> Suburb
                         if (suburbCoupleWithChildren) {
                             newSuburbCoupleWithChildren[0] = suburbCoupleWithChildren;
