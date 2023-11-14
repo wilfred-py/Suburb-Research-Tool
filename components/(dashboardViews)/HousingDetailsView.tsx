@@ -1,3 +1,4 @@
+import BedroomsStackedAreaChart from "../(graphs)/(dwelling)/Bedrooms";
 import DwellingStackedAreaChart from "../(graphs)/(dwelling)/DwellingStackedAreaChart";
 
 interface HousingDetailsProps {
@@ -13,6 +14,7 @@ export default function HousingDetailsView(props: HousingDetailsProps) {
     return (
         <div className="max-w-screen max-h-screen flex flex-wrap">
             <DwellingStackedAreaChart selectedSuburb={props.selectedSuburb} />
+            <BedroomsStackedAreaChart selectedSuburb={props.selectedSuburb} />
         </div>
     );
 }
