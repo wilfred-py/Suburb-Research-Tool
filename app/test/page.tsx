@@ -1,85 +1,57 @@
 "use client";
 
 import React, { PureComponent } from "react";
-import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from "recharts";
+import { BarChart, Bar, Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from "recharts";
 import NavBar from "../NavBar";
-
-// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 const data = [
     {
-        year: "2011",
-        separateHouse: 28.6,
-        semiDetached: 39.5,
-        flatUnitApartment: 31.2,
-        otherDwelling: 0.5,
+        name: "Page A",
+        uv: 4000,
+        pv: 2400,
+        amt: 2400,
     },
     {
-        year: "2016",
-        separateHouse: 13.0,
-        semiDetached: 26.2,
-        flatUnitApartment: 59.6,
-        otherDwelling: 0.6,
+        name: "Page B",
+        uv: 3000,
+        pv: 1398,
+        amt: 2210,
     },
     {
-        year: "2021",
-        separateHouse: 10.2,
-        semiDetached: 23.9,
-        flatUnitApartment: 62.8,
-        otherDwelling: 3.0,
+        name: "Page C",
+        uv: 2000,
+        pv: 9800,
+        amt: 2290,
+    },
+    {
+        name: "Page D",
+        uv: 2780,
+        pv: 3908,
+        amt: 2000,
+    },
+    {
+        name: "Page E",
+        uv: 1890,
+        pv: 4800,
+        amt: 2181,
+    },
+    {
+        name: "Page F",
+        uv: 2390,
+        pv: 3800,
+        amt: 2500,
+    },
+    {
+        name: "Page G",
+        uv: 3490,
+        pv: 4300,
+        amt: 2100,
     },
 ];
 
-const toPercent = (decimal: number, fixed = 0) => `${(decimal * 100).toFixed(fixed)}%`;
-
-const getPercent = (value: number, total: number) => {
-    const ratio = total > 0 ? value / total : 0;
-
-    return toPercent(ratio, 2);
-};
-
-const renderTooltipContent = (o: any) => {
-    const { payload, label } = o;
-    const total = payload.reduce((result: any, entry: any) => result + entry.value, 0);
-
-    return (
-        <div className="customized-tooltip-content">
-            <p className="total">{`${label} (Total: ${total})`}</p>
-            <ul className="list">
-                {payload.map((entry: any, index: any) => (
-                    <li key={`item-${index}`} style={{ color: entry.color }}>
-                        {`${entry.name}: ${entry.value}(${getPercent(entry.value, total)})`}
-                    </li>
-                ))}
-            </ul>
-        </div>
-    );
-};
-
-export default function Test() {
-    return (
-        <>
-            <NavBar />
-            <AreaChart
-                width={500}
-                height={400}
-                data={data}
-                margin={{
-                    top: 30,
-                    right: 30,
-                    left: 30,
-                    bottom: 30,
-                }}
-            >
-                <CartesianGrid strokeDasharray="3 3" />
-                <XAxis dataKey="year" />
-                <YAxis />
-                <Tooltip />
-                <Area type="monotone" dataKey="separateHouse" stackId="1" stroke="#8884d8" fill="#8884d8" />
-                <Area type="monotone" dataKey="semiDetached" stackId="1" stroke="#82ca9d" fill="#82ca9d" />
-                <Area type="monotone" dataKey="flatUnitApartment" stackId="1" stroke="#ffc658" fill="#ffc658" />
-                <Area type="monotone" dataKey="otherDwelling" stackId="1" stroke="#39A7FF" fill="#39A7FF" />
-            </AreaChart>
-        </>
-    );
+export default function TestPage() {
+    <>
+        <NavBar />
+        <h1>Hello</h1>
+    </>;
 }
