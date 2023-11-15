@@ -9,9 +9,9 @@ export default function DashboardSelector(props: DashboardSelectorProps) {
     // * Build className conditionally
     const getButtonCSS = (viewName: string) => {
         if (viewName === props.selectedView) {
-            return `p-0.5 border-2 bg-white rounded rounded-md hover:cursor-pointer select-none shadow-lg`;
+            return `font-semibold p-0.5 border-2 bg-white rounded rounded-md hover:cursor-pointer select-none shadow-lg`;
         } else {
-            return `border-2 border-gray-200 rounded rounded-md p-0.5 hover:cursor-pointer select-none`;
+            return `border-2 border-gray-200 rounded rounded-md p-1 hover:bg-gray-300 hover:cursor-pointer select-none`;
         }
     };
 
@@ -21,7 +21,7 @@ export default function DashboardSelector(props: DashboardSelectorProps) {
     };
 
     return (
-        <div className="flex flex-row justify-evenly items-center w-[400px] h-10 font-roboto border-0 border-gray-200 rounded-md bg-gray-200">
+        <div className="flex flex-row justify-evenly items-center w-[400px] h-10 font-roboto border-2 border-gray-200 rounded-md bg-gray-200 ">
             <div className={getButtonCSS("Overview")}>
                 <button onClick={() => handleViewClick("Overview")}>Overview</button>
             </div>

@@ -323,7 +323,7 @@ export default function HouseholdCompositionChart(props: HouseholdCompositionCha
                                 <RadarChart outerRadius="80%" width={730} height={450} data={twentySixteenData}>
                                     <PolarGrid />
                                     <PolarAngleAxis dataKey="label" />
-                                    <PolarRadiusAxis angle={30} />
+                                    <PolarRadiusAxis angle={30} domain={[0, 100]} />
                                     <Radar name="% of suburb" dataKey="suburb" stroke="#219C90" fill="#219C90" fillOpacity={0.5} />
                                     <Radar name="% of state" dataKey="state" stroke="#068FFF" fill="#068FFF" fillOpacity={0.15} />
                                     <Legend />
@@ -341,7 +341,7 @@ export default function HouseholdCompositionChart(props: HouseholdCompositionCha
                                 <RadarChart outerRadius="80%" width={730} height={450} data={twentyTwentyOneData}>
                                     <PolarGrid />
                                     <PolarAngleAxis dataKey="label" />
-                                    <PolarRadiusAxis angle={30} />
+                                    <PolarRadiusAxis angle={30} domain={[0, 100]} />
                                     <Radar name="% of suburb" dataKey="suburb" stroke="#219C90" fill="#219C90" fillOpacity={0.5} />
                                     <Radar name="% of state" dataKey="state" stroke="#068FFF" fill="#068FFF" fillOpacity={0.15} />
                                     <Legend />

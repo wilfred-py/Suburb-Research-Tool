@@ -1,3 +1,5 @@
+import { Progress } from "@/components/ui/progress";
+
 interface LifestyleProps {
     selectedSuburb: string | null;
 }
@@ -9,12 +11,15 @@ export default function LifestyleView(props: LifestyleProps) {
     // Works for OverviewView. Possibly because it's showing data?
 
     return (
-        <div className="bg-green-500 max-w-screen max-h-screen">
-            <div>
-                <h1>Lifestyle View</h1>
-
-                <span>{props.selectedSuburb}</span>
+        <>
+            <div className="max-h-screen">
+                <div>
+                    <h1 className="text-lg">Coming soon...</h1>
+                </div>
             </div>
-        </div>
+            <div className="w-1/4">
+                <Progress value={33} className="" />
+            </div>
+        </>
     );
 }

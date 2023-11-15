@@ -24,27 +24,43 @@ export default function Dashboard() {
 
     return (
         <>
-            <NavBar />
-            <div className="max-h-screen w-full xl:px-40 lg:pl-40 lg:mr-auto md:pl-32 md:mr-auto sm:pl-32 sm:mr-auto mt-4">
-                <h1 className="text-4xl font-semibold">Dashboard</h1>
-                <div className="flex flex-col">
-                    <div className="mt-6">
-                        <SearchBar setSelectedSuburb={setSelectedSuburb} />
+            <div className="h-screen max-h-screen overflow-hidden">
+                <NavBar />
+                {/* Initial layout*/}
+                {!selectedSuburb && (
+                    <div className="w-full h-full xl:px-40 lg:pl-40 lg:mr-auto md:pl-32 md:mr-auto sm:pl-32 sm:mr-auto mt-4">
+                        <div className="h-2/5 flex flex-col justify-end items-center pb-20">
+                            <h1 className="text-xl font-semibold mb-4">Search a suburb or postcode below</h1>
+                            <SearchBar setSelectedSuburb={setSelectedSuburb} />
+                        </div>
+
+                        <div className="h-3/5 "></div>
                     </div>
+                )}
 
-                    {/* Dashboard selector */}
-                    <div className="my-4">
-                        <DashboardSelector selectedView={selectedView} onChangeView={handleViewChange} />
+                {/* Post-search layout */}
+                {selectedSuburb && (
+                    <div className="w-full xl:px-40 lg:pl-40 lg:mr-auto md:pl-32 md:mr-auto sm:pl-32 sm:mr-auto mt-4">
+                        <h1 className="text-4xl font-semibold">Dashboard</h1>
+                        <div className="flex flex-col">
+                            <div className="mt-6">
+                                <SearchBar setSelectedSuburb={setSelectedSuburb} />
+                            </div>
+
+                            {/* Dashboard selector */}
+                            <div className="my-4">
+                                <DashboardSelector selectedView={selectedView} onChangeView={handleViewChange} />
+                            </div>
+
+                            {/* Dashboard <div> */}
+                            {/* Conditionally render Overview/Housing Details/Demographic/Lifestyle depending on selectedView state */}
+                            {selectedView == "Overview" ? <OverviewView selectedSuburb={selectedSuburb} /> : ""}
+                            {selectedView == "Demographic" ? <DemographicView selectedSuburb={selectedSuburb} /> : ""}
+                            {selectedView == "Housing Details" ? <HousingDetailsView selectedSuburb={selectedSuburb} /> : ""}
+                            {selectedView == "Lifestyle" ? <LifestyleView selectedSuburb={selectedSuburb} /> : ""}
+                        </div>
                     </div>
-
-                    {/* Dashboard <div> */}
-                    {/* Conditionally render Overview/Housing Details/Demographic/Lifestyle depending on selectedView state */}
-
-                    {selectedView == "Overview" ? <OverviewView selectedSuburb={selectedSuburb} /> : ""}
-                    {selectedView == "Demographic" ? <DemographicView selectedSuburb={selectedSuburb} /> : ""}
-                    {selectedView == "Housing Details" ? <HousingDetailsView selectedSuburb={selectedSuburb} /> : ""}
-                    {selectedView == "Lifestyle" ? <LifestyleView selectedSuburb={selectedSuburb} /> : ""}
-                </div>
+                )}
             </div>
         </>
     );

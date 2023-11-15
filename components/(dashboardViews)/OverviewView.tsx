@@ -13,9 +13,11 @@ export default function OverviewView(props: OverviewProps) {
             <div className="max-h-screen w-full ">
                 <SummaryData selectedSuburb={props.selectedSuburb} />
                 <div className="flex flex-row">
-                    <div className="w-7/12">
-                        <Map selectedSuburb={props.selectedSuburb} />
-                    </div>
+                    {props.selectedSuburb && (
+                        <div className="w-7/12">
+                            <Map selectedSuburb={props.selectedSuburb} />
+                        </div>
+                    )}
                 </div>
             </div>
         </div>
