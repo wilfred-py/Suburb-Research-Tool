@@ -186,7 +186,7 @@ export default function SearchBar(props: SearchBarProps) {
                                         <div
                                             key={index}
                                             onClick={() => handleResultsClick(suburb)}
-                                            className="hover:bg-hoverBlue h-8 align-middle"
+                                            className="hover:bg-slate-200 hover:font-semibold hover:cursor-pointer h-8 align-middle rounded-sm pl-2 select-none"
                                         >
                                             {suburb}
                                         </div>

@@ -3,6 +3,7 @@
 import { GetSummarySuburbData } from "@/app/database.types";
 import { supaClient } from "@/app/supa-client";
 import { useEffect, useState } from "react";
+import Population from "./(graphs)/{population}/Population";
 
 interface SummaryDataProps {
     selectedSuburb: string | null;
@@ -85,14 +86,11 @@ export default function SummaryData(props: SummaryDataProps) {
                             </span>
                         )}
                     </div>
-                    <div className="flex flex-row flex-wrap space-x-6">
-                        <div id="people" className="border border-gray-200 rounded-md shadow-lg">
+                    <div className="flex flex-row flex-wrap space-x-6 ">
+                        <div id="people" className="border border-gray-200 rounded-md shadow-lg hover:shadow-xl">
+                            <Population selectedSuburb={props.selectedSuburb} />
                             <ul className="flex flex-col border-opacity-0 rounded-md p-4">
                                 <li className="text-xl font-bold">People</li>
-                                <li>
-                                    <span className="font-semibold">Population: </span>
-                                    {data.people}
-                                </li>
                                 <li>
                                     <span className="font-semibold">Median Age: </span>
                                     {data.median_age}
@@ -110,7 +108,7 @@ export default function SummaryData(props: SummaryDataProps) {
                             </ul>
                         </div>
                         <div id="families" className="border border-gray-200 rounded-md">
-                            <ul className="flex flex-col border-opacity-0 rounded-md p-4 shadow-lg">
+                            <ul className="flex flex-col border-opacity-0 rounded-md p-4 shadow-lg hover:shadow-xl">
                                 <li className="text-xl font-bold">Families</li>
                                 <li>
                                     <span className="font-semibold">Number of Families: </span>
@@ -130,8 +128,8 @@ export default function SummaryData(props: SummaryDataProps) {
                                 </li>
                             </ul>
                         </div>
-                        <div id="homes" className="border border-gray-200 rounded-md">
-                            <ul className="flex flex-col border-opacity-0 rounded-md p-4 shadow-lg">
+                        <div id="homes" className="border border-gray-200 rounded-md hover:shadow-xl">
+                            <ul className="flex flex-col border-opacity-0 rounded-md p-4 shadow-lg ">
                                 <li className="text-xl font-bold">Homes</li>
                                 <li>
                                     <span className="font-semibold">Median weekly household income: </span>$
@@ -151,7 +149,7 @@ export default function SummaryData(props: SummaryDataProps) {
                             </ul>
                         </div>
                         <div id="owners-and-renters" className="border border-gray-200 rounded-md">
-                            <ul className="flex flex-col border-opacity-0 rounded-md p-4 shadow-lg">
+                            <ul className="flex flex-col border-opacity-0 rounded-md p-4 shadow-lg hover:shadow-xl">
                                 <li className="text-xl font-bold">Owners and Renters</li>
                                 <li>
                                     <span className="font-semibold">Median weekly household income: </span>$
