@@ -4,6 +4,10 @@ import { GetSummarySuburbData } from "@/app/database.types";
 import { supaClient } from "@/app/supa-client";
 import { useEffect, useState } from "react";
 import Population from "./(graphs)/{population}/Population";
+import Map from "./Map";
+import MedianAgeLineGraph from "./(graphs)/(age)/MedianAge";
+import AncestryChart from "./(graphs)/(ancestry)/AncestryRadar";
+import FullTimeEmploymentLineGraph from "./(graphs)/(employment)/FullTimeEmploymentLineGraph";
 
 interface SummaryDataProps {
     selectedSuburb: string | null;
@@ -69,7 +73,7 @@ export default function SummaryData(props: SummaryDataProps) {
         <>
             {summaryData?.map((data) => (
                 <div className="font-inter">
-                    <div className="my-4">
+                    <div className="w-7/12 my-4">
                         {String(data.post_code).startsWith("8") ? (
                             <span>
                                 Snapshot of{" "}
@@ -86,87 +90,42 @@ export default function SummaryData(props: SummaryDataProps) {
                             </span>
                         )}
                     </div>
-                    <div className="flex flex-row flex-wrap space-x-6 ">
-                        <div id="people" className="border border-gray-200 rounded-md shadow-lg hover:shadow-xl">
-                            <Population selectedSuburb={props.selectedSuburb} />
-                            <ul className="flex flex-col border-opacity-0 rounded-md p-4">
-                                <li className="text-xl font-bold">People</li>
-                                <li>
-                                    <span className="font-semibold">Median Age: </span>
-                                    {data.median_age}
-                                </li>
-                                <li>
-                                    <span className="font-semibold">Male: </span>
-                                    <span>{(parseFloat(data.male) * 100).toFixed(2)}</span>
-                                    <span className="ml-[2px]">%</span>
-                                </li>
-                                <li>
-                                    <span className="font-semibold">Female: </span>
-                                    <span>{(parseFloat(data.female) * 100).toFixed(2)}</span>
-                                    <span className="ml-[2px]">%</span>
-                                </li>
-                            </ul>
+
+                    <div className="flex flex-row ">
+                        <div className="w-7/12 flex flex-col">
+                            <div className="border border-gray-200 rounded-md shadow-lg hover:shadow-xl">
+                                <div className="w-">
+                                    <Map selectedSuburb={props.selectedSuburb} />
+                                </div>
+                                <Population selectedSuburb={props.selectedSuburb} />
+
+                                <ul className="flex flex-col border-opacity-0 rounded-md p-4">
+                                    <li className="text-xl font-bold">People</li>
+                                    <li>
+                                        <span className="font-semibold">Median Age: </span>
+                                        {data.median_age}
+                                    </li>
+                                    <li>
+                                        <span className="font-semibold">Male: </span>
+                                        <span>{(parseFloat(data.male) * 100).toFixed(2)}</span>
+                                        <span className="ml-[2px]">%</span>
+                                    </li>
+                                    <li>
+                                        <span className="font-semibold">Female: </span>
+                                        <span>{(parseFloat(data.female) * 100).toFixed(2)}</span>
+                                        <span className="ml-[2px]">%</span>
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
-                        <div id="families" className="border border-gray-200 rounded-md">
-                            <ul className="flex flex-col border-opacity-0 rounded-md p-4 shadow-lg hover:shadow-xl">
-                                <li className="text-xl font-bold">Families</li>
-                                <li>
-                                    <span className="font-semibold">Number of Families: </span>
-                                    {data.families}
-                                </li>
-                                <li>
-                                    <span className="font-semibold">Homes: </span>
-                                    {data.all_private_dwellings}
-                                </li>
-                                <li>
-                                    <span className="font-semibold">Average number of people per household: </span>
-                                    {data.average_number_of_people_per_household}
-                                </li>
-                                <li>
-                                    <span className="font-semibold">Average number of children per family: </span>
-                                    {parseFloat(data.for_families_with_children)}
-                                </li>
-                            </ul>
-                        </div>
-                        <div id="homes" className="border border-gray-200 rounded-md hover:shadow-xl">
-                            <ul className="flex flex-col border-opacity-0 rounded-md p-4 shadow-lg ">
-                                <li className="text-xl font-bold">Homes</li>
-                                <li>
-                                    <span className="font-semibold">Median weekly household income: </span>$
-                                    {data.median_weekly_household_income}
-                                </li>
-                                <li>
-                                    <span className="font-semibold">Median monthly mortgage repayments: </span>$
-                                    {data.median_monthly_mortgage_repayments}
-                                </li>
-                                <li>
-                                    <span className="font-semibold">Median weekly rent: </span>${data.median_weekly_rent_b}
-                                </li>
-                                <li>
-                                    <span className="font-semibold">Average number of mortor vehicles per home: </span>
-                                    {data.average_number_of_motor_vehicles_per_dwelling}
-                                </li>
-                            </ul>
-                        </div>
-                        <div id="owners-and-renters" className="border border-gray-200 rounded-md">
-                            <ul className="flex flex-col border-opacity-0 rounded-md p-4 shadow-lg hover:shadow-xl">
-                                <li className="text-xl font-bold">Owners and Renters</li>
-                                <li>
-                                    <span className="font-semibold">Median weekly household income: </span>$
-                                    {data.median_weekly_household_income}
-                                </li>
-                                <li>
-                                    <span className="font-semibold">Median monthly mortgage repayments: </span>$
-                                    {data.median_monthly_mortgage_repayments}
-                                </li>
-                                <li>
-                                    <span className="font-semibold">Median weekly rent: </span>${data.median_weekly_rent_b}
-                                </li>
-                                <li>
-                                    <span className="font-semibold">Average number of mortor vehicles per home: </span>
-                                    {data.average_number_of_motor_vehicles_per_dwelling}
-                                </li>
-                            </ul>
+
+                        <div className="w-5/12 flex flex-col">
+                            <div>
+                                <FullTimeEmploymentLineGraph selectedSuburb={props.selectedSuburb} />
+                            </div>
+                            <div>
+                                <AncestryChart selectedSuburb={props.selectedSuburb} />
+                            </div>
                         </div>
                     </div>
                 </div>
