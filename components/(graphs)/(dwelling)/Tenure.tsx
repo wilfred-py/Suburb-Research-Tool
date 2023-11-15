@@ -401,16 +401,16 @@ export default function TenureStackedAreaChart(props: TenureStackedAreaChartProp
     }, [props.selectedSuburb]);
 
     // ! CONSOLE LOGS
-    console.log(suburbTenure);
-    console.log(stateTenure);
+    // console.log(suburbTenure);
+    // console.log(stateTenure);
     // ! CONSOLE LOGS
 
     return (
         <>
             <div>
-                <div className="flex flex-col justify-center">
-                    <h1 className="mt-4 mb-4 text-lg text-center font-bold">Tenure in {selectedSuburb}</h1>
+                <div className="flex flex-row justify-center">
                     <div className="mx-auto -mt-4">
+                        <h1 className="mt-4 mb-4 text-lg text-center font-bold">Tenure in {selectedSuburb}</h1>
                         {/* Suburb Chart */}
                         <AreaChart
                             width={500}
@@ -436,8 +436,8 @@ export default function TenureStackedAreaChart(props: TenureStackedAreaChartProp
                         </AreaChart>
                     </div>
 
-                    <h1 className="mt-4 mb-4 text-lg text-center font-bold">Tenure in {selectedState}</h1>
                     <div className="mx-auto -mt-4">
+                        <h1 className="mt-4 mb-4 text-lg text-center font-bold">Tenure in {selectedState}</h1>
                         {/* State Chart */}
                         <AreaChart
                             width={500}

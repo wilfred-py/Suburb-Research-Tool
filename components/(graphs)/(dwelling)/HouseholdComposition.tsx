@@ -10,10 +10,8 @@ interface HouseholdCompositionChartProps {
 export default function HouseholdCompositionChart(props: HouseholdCompositionChartProps) {
     const [selectedSuburb, setSelectedSuburb] = useState<string | null>("");
     const [suburbHouseholdComposition, setSuburbHouseholdComposition] = useState<{ key: string; value: number }[]>([]);
-    const [stateHouseholdComposition, setStateHouseholdComposition] = useState<{ key: string; value: number }[]>([]);
     const [selectedYear, setSelectedYear] = useState<string | undefined>("2021");
 
-    const [twoThousandAndOneData, setTwoThousandAndOneData] = useState<{ key: string; value: number }[]>([]);
     const [twoThousandAndSixData, setTwoThousandAndSixData] = useState<{ key: string; value: number }[]>([]);
     const [twentyElevenData, setTwentyElevenData] = useState<{ key: string; value: number }[]>([]);
     const [twentySixteenData, setTwentySixteenData] = useState<{ key: string; value: number }[]>([]);
