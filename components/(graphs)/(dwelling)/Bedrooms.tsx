@@ -362,9 +362,9 @@ export default function BedroomsStackedAreaChart(props: BedroomsStackedAreaChart
     return (
         <>
             <div>
-                <div className="flex flex-col justify-center">
-                    <h1 className="mt-4 mb-4 text-lg text-center font-bold">Number of Bedrooms in {selectedSuburb} dwellings</h1>
+                <div className="flex flex-row justify-center">
                     <div className="mx-auto -mt-4">
+                        <h1 className="mt-4 mb-4 text-lg text-center font-bold">Number of Bedrooms in {selectedSuburb} dwellings</h1>
                         {/* Suburb Chart */}
                         <AreaChart
                             width={500}
@@ -391,8 +391,8 @@ export default function BedroomsStackedAreaChart(props: BedroomsStackedAreaChart
                         </AreaChart>
                     </div>
 
-                    <h1 className="mt-4 mb-4 text-lg text-center font-bold">Number of Bedrooms in {selectedState} dwellings</h1>
                     <div className="mx-auto -mt-4">
+                        <h1 className="mt-4 mb-4 text-lg text-center font-bold">Number of Bedrooms in {selectedState} dwellings</h1>
                         {/* State Chart */}
                         <AreaChart
                             width={500}
