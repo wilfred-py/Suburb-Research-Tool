@@ -6,7 +6,6 @@ import HousingDetailsView from "@/components/(dashboardViews)/HousingDetailsView
 import LifestyleView from "@/components/(dashboardViews)/Lifestyle";
 import OverviewView from "@/components/(dashboardViews)/OverviewView";
 import DashboardSelector from "@/components/DashboardSelector";
-import Map from "@/components/Map";
 import RecentSales from "@/components/RecentSales";
 import SearchBar from "@/components/SearchBar";
 import { useState } from "react";
@@ -24,11 +23,12 @@ export default function Dashboard() {
 
     return (
         <>
-            <div className="h-screen max-h-screen overflow-hidden">
+            {/* <div className="h-screen max-h-screen overflow-hidden"> */}
+            <div className="h-screen">
                 <NavBar />
                 {/* Initial layout*/}
                 {!selectedSuburb && (
-                    <div className="w-full h-full xl:px-40 lg:pl-40 lg:mr-auto md:pl-32 md:mr-auto sm:pl-32 sm:mr-auto mt-4">
+                    <div className="w-full h-full xl:px-32 lg:px-32 lg:mr-auto md:pl-32 md:mr-auto sm:pl-32 sm:mr-auto mt-4">
                         <div className="h-2/5 flex flex-col justify-end items-center pb-20">
                             <h1 className="text-xl font-semibold mb-4">Search a suburb or postcode below</h1>
                             <SearchBar setSelectedSuburb={setSelectedSuburb} />
@@ -40,7 +40,7 @@ export default function Dashboard() {
 
                 {/* Post-search layout */}
                 {selectedSuburb && (
-                    <div className="w-full xl:px-40 lg:pl-40 lg:mr-auto md:pl-32 md:mr-auto sm:pl-32 sm:mr-auto mt-4">
+                    <div className="w-full xl:px-56 lg:pl-px-56 lg:mr-auto md:pl-32 md:mr-auto sm:pl-32 sm:mr-auto mt-4">
                         <h1 className="text-4xl font-semibold">Dashboard</h1>
                         <div className="flex flex-col">
                             <div className="mt-6">

@@ -11,7 +11,7 @@ export default function DashboardSelector(props: DashboardSelectorProps) {
         if (viewName === props.selectedView) {
             return `font-semibold p-0.5 border-2 bg-white rounded rounded-md hover:cursor-pointer select-none shadow-lg`;
         } else {
-            return `border-2 border-gray-200 rounded rounded-md p-1 hover:bg-gray-300 hover:cursor-pointer select-none`;
+            return `border-2 border-gray-200 rounded rounded-md p-1 hover:bg-gray-300 hover:font-semibold hover:cursor-pointer select-none`;
         }
     };
 
