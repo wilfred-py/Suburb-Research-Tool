@@ -221,20 +221,23 @@ export default function AncestryChart(props: AncestryChartProps) {
     return (
         <>
             <div>
-                <Select value={selectedYear} onValueChange={handleYearChange}>
-                    <SelectTrigger className="w-[180px]">
-                        <SelectValue placeholder="2021" />
-                    </SelectTrigger>
-                    <SelectContent>
-                        <SelectItem value="2021">2021</SelectItem>
-                        <SelectItem value="2016">2016</SelectItem>
-                        <SelectItem value="2011">2011</SelectItem>
-                    </SelectContent>
-                </Select>
+                <h1 className="mt-4 mb-4 text-lg text-center font-bold select-none">Ancestry</h1>
+                <div className="ml-6">
+                    <Select value={selectedYear} onValueChange={handleYearChange}>
+                        <SelectTrigger className="w-[180px]">
+                            <SelectValue placeholder="2021" />
+                        </SelectTrigger>
+                        <SelectContent>
+                            <SelectItem value="2021">2021</SelectItem>
+                            <SelectItem value="2016">2016</SelectItem>
+                            <SelectItem value="2011">2011</SelectItem>
+                        </SelectContent>
+                    </Select>
+                </div>
 
                 {selectedYear === "2011" && (
                     <div>
-                        <RadarChart outerRadius="80%" width={730} height={450} data={twentyElevenData}>
+                        <RadarChart outerRadius="80%" width={730} height={350} data={twentyElevenData}>
                             <PolarGrid />
                             <PolarAngleAxis dataKey="ancestry" />
                             <PolarRadiusAxis angle={30} />
@@ -248,7 +251,7 @@ export default function AncestryChart(props: AncestryChartProps) {
 
                 {selectedYear === "2016" && (
                     <div>
-                        <RadarChart outerRadius="80%" width={730} height={450} data={twentySixteenData}>
+                        <RadarChart outerRadius="80%" width={730} height={350} data={twentySixteenData}>
                             <PolarGrid />
                             <PolarAngleAxis dataKey="ancestry" />
                             <PolarRadiusAxis angle={30} />
@@ -262,7 +265,7 @@ export default function AncestryChart(props: AncestryChartProps) {
 
                 {selectedYear === "2021" && (
                     <div>
-                        <RadarChart outerRadius="80%" width={730} height={450} data={twentyTwentyOneData}>
+                        <RadarChart outerRadius="80%" width={730} height={350} data={twentyTwentyOneData}>
                             <PolarGrid />
                             <PolarAngleAxis dataKey="ancestry" />
                             <PolarRadiusAxis angle={30} />

@@ -5,8 +5,6 @@ interface OverviewProps {
 }
 
 export default function OverviewView(props: OverviewProps) {
-    // console.log(`selectedSuburb: ${props.selectedSuburb}`);
-
     return (
         <div className="flex flex-row justify-center">
             <div className="max-h-screen w-full ">
