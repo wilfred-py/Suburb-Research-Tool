@@ -91,7 +91,7 @@ export default function Adolescents(props: AdolescentsProps) {
 
         // If only one year of data available or no data available at all
         if ((numberCount === 1 && nullCount === 4) || nullCount === 5) {
-            console.log("insufficient data");
+            // console.log("insufficient data");
             setInsufficientSuburbData(true);
         }
         return (numberCount === 1 && nullCount === 4) || nullCount === 5;
@@ -295,15 +295,15 @@ export default function Adolescents(props: AdolescentsProps) {
                     console.error(`Error processing data for ${year}`, error);
 
                     if (year === "2011") {
-                        console.log(`2011 data not available for ${selectedSuburb}`);
+                        // console.log(`2011 data not available for ${selectedSuburb}`);
                         newSuburbAdolescents[0] = null;
                         setSuburbAdolescents(newSuburbAdolescents);
                     } else if (year === "2016") {
-                        console.log(`2016 data not available for ${selectedSuburb}`);
+                        // console.log(`2016 data not available for ${selectedSuburb}`);
                         newSuburbAdolescents[1] = null;
                         setSuburbAdolescents(newSuburbAdolescents);
                     } else if (year === "2021") {
-                        console.log(`2021 data not available for ${selectedSuburb}`);
+                        // console.log(`2021 data not available for ${selectedSuburb}`);
                         newSuburbAdolescents[2] = null;
                         setSuburbAdolescents(newSuburbAdolescents);
 
