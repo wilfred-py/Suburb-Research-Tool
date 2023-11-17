@@ -77,24 +77,6 @@ export default function SummaryData(props: SummaryDataProps) {
                 ?.filter((data) => data.suburb_name == suburbName)
                 .map((data) => (
                     <div className="w-full">
-                        <div className="w-6/12 my-4">
-                            {String(data.post_code).startsWith("8") ? (
-                                <span>
-                                    Snapshot of{" "}
-                                    <span>
-                                        {data.suburb_name}, {data.state_name}, 0{data.post_code}
-                                    </span>
-                                </span>
-                            ) : (
-                                <span>
-                                    Snapshot of{" "}
-                                    <span className="font-semibold">
-                                        {data.suburb_name}, {data.state_name}, {data.post_code}
-                                    </span>
-                                </span>
-                            )}
-                        </div>
-
                         <div className="flex flex-row space-x-2">
                             <div className="mb-2 w-6/12 flex flex-col ">
                                 <div className="h-3/6 border border-gray-200 rounded-md shadow-lg hover:shadow-xl">
