@@ -444,7 +444,7 @@ export default function FullTimeEmploymentLineGraph(props: FullTimeEmploymentPro
                         </div>
                     ) : (
                         // * <Recharts />
-                        <div>{renderLineChart}</div>
+                        <div className="select-none">{renderLineChart}</div>
                     )}
                 </div>
             </div>

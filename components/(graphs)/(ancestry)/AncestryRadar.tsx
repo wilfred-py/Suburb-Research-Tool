@@ -222,7 +222,7 @@ export default function AncestryChart(props: AncestryChartProps) {
 
     return (
         <>
-            <div>
+            <div className="select-none">
                 <h1 className="mt-4 mb-4 text-lg text-center font-bold select-none">Ancestry</h1>
                 <div className="ml-6">
                     <Select value={selectedYear} onValueChange={handleYearChange}>
