@@ -22,11 +22,11 @@ export default function NavBar() {
                             Features
                         </Link>
                     </li>
-                    <li>
+                    {/* <li>
                         <Link href={"/test"} className="text-purple-500 font-bold text-2xl">
                             Test
                         </Link>
-                    </li>
+                    </li> */}
                 </ul>
             </div>
 

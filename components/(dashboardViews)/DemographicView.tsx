@@ -1,4 +1,4 @@
-import Ancestry from "../(graphs)/(ancestry)/Ancestry";
+import AncestryChart from "../(graphs)/(ancestry)/AncestryRadar";
 import ReligionChart from "../(graphs)/(religion)/ReligionRadar";
 import Population from "../(graphs)/{population}/Population";
 import Age from "../Age";
@@ -19,7 +19,7 @@ export default function DemographicView(props: DemographicProps) {
             <FamilyComposition selectedSuburb={props.selectedSuburb} />
             <ReligionChart selectedSuburb={props.selectedSuburb} />
             <Marital selectedSuburb={props.selectedSuburb} />
-            <Ancestry selectedSuburb={props.selectedSuburb} />
+            <AncestryChart selectedSuburb={props.selectedSuburb} />
             <Population selectedSuburb={props.selectedSuburb} />
             <Age selectedSuburb={props.selectedSuburb} />
             <Employment selectedSuburb={props.selectedSuburb} />

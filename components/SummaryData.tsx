@@ -76,8 +76,8 @@ export default function SummaryData(props: SummaryDataProps) {
             {summaryData
                 ?.filter((data) => data.suburb_name == suburbName)
                 .map((data) => (
-                    <div className="font-inter">
-                        <div className="w-7/12 my-4">
+                    <div className="w-full">
+                        <div className="w-6/12 my-4">
                             {String(data.post_code).startsWith("8") ? (
                                 <span>
                                     Snapshot of{" "}
@@ -95,39 +95,21 @@ export default function SummaryData(props: SummaryDataProps) {
                             )}
                         </div>
 
-                        <div className="flex flex-row ">
-                            <div className="w-7/12 flex flex-col">
-                                <div className="border border-gray-200 rounded-md shadow-lg hover:shadow-xl">
-                                    <div className="w-">
-                                        <Map selectedSuburb={props.selectedSuburb} />
-                                    </div>
+                        <div className="flex flex-row space-x-2">
+                            <div className="mb-2 w-6/12 flex flex-col ">
+                                <div className="h-3/6 border border-gray-200 rounded-md shadow-lg hover:shadow-xl">
+                                    <Map selectedSuburb={props.selectedSuburb} />
+                                </div>
+                                <div className="h-3/6 mt-2 border border-gray-200 rounded-md shadow-lg hover:shadow-xl">
                                     <Population selectedSuburb={props.selectedSuburb} />
-
-                                    <ul className="flex flex-col border-opacity-0 rounded-md p-4">
-                                        <li className="text-xl font-bold">People</li>
-                                        <li>
-                                            <span className="font-semibold">Median Age: </span>
-                                            {data.median_age}
-                                        </li>
-                                        <li>
-                                            <span className="font-semibold">Male: </span>
-                                            <span>{(parseFloat(data.male) * 100).toFixed(2)}</span>
-                                            <span className="ml-[2px]">%</span>
-                                        </li>
-                                        <li>
-                                            <span className="font-semibold">Female: </span>
-                                            <span>{(parseFloat(data.female) * 100).toFixed(2)}</span>
-                                            <span className="ml-[2px]">%</span>
-                                        </li>
-                                    </ul>
                                 </div>
                             </div>
 
-                            <div className="w-5/12 flex flex-col">
-                                <div>
+                            <div className="mb-2 w-6/12 flex flex-col">
+                                <div className="w-full h-3/6 border border-gray-200 rounded-md shadow-lg hover:shadow-xl">
                                     <FullTimeEmploymentLineGraph selectedSuburb={props.selectedSuburb} />
                                 </div>
-                                <div>
+                                <div className="w-full h-3/6 mt-2 border border-gray-200 rounded-md shadow-lg hover:shadow-xl">
                                     <AncestryChart selectedSuburb={props.selectedSuburb} />
                                 </div>
                             </div>

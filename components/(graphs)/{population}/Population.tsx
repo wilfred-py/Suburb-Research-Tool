@@ -290,7 +290,7 @@ export default function Population(props: PopulationProps) {
     ];
 
     const renderLineChart = (
-        <LineChart width={600} height={400} data={data} margin={{ top: 30, right: 30, bottom: 30, left: 30 }}>
+        <LineChart width={600} height={400} data={data} margin={{ top: 15, right: 35, bottom: 30, left: 10 }}>
             <Line type="natural" dataKey="Suburb" stroke="#219C90" strokeWidth={2.4} />
             <CartesianGrid stroke="#ccc" strokeDasharray="5 5" />
             <XAxis dataKey="name">

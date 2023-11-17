@@ -398,7 +398,7 @@ export default function FullTimeEmploymentLineGraph(props: FullTimeEmploymentPro
     ];
 
     const renderLineChart = (
-        <LineChart width={600} height={400} data={data} margin={{ top: 30, right: 30, bottom: 30, left: 30 }}>
+        <LineChart width={600} height={400} data={data} margin={{ top: 30, right: 30, bottom: 30, left: 5 }}>
             <Line type="natural" dataKey="Suburb" stroke="#219C90" strokeWidth={2.8} />
             <Line type="natural" dataKey="State" stroke="#068FFF" strokeWidth={1.2} />
             <Line type="natural" dataKey="Australia" stroke="#A90076" strokeWidth={1.2} />
@@ -433,7 +433,7 @@ export default function FullTimeEmploymentLineGraph(props: FullTimeEmploymentPro
     return (
         <div>
             <div className="flex flex-col justify-center">
-                <h1 className="mt-4 mb-4 text-lg text-center font-bold">Full-time employment (%)</h1>
+                <h1 className="mt-4 mb-4 text-lg text-center font-bold select-none">Full-time employment (%)</h1>
                 <div className="mx-auto -mt-4">
                     {insufficientSuburbData ? (
                         <div className="flex flex-col justify-center">
