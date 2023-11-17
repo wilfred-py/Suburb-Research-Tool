@@ -149,7 +149,7 @@ const Map: NextPage<MapProps> = (props: MapProps) => {
     }
 
     return (
-        <div className="border-4 border-blue-500 w-[800px] h-[450px] z-0 pl-4 flex place-items-center">
+        <div className="border-4 border-blue-500 w-full h-[450px] z-0 pl-4 flex place-items-center">
             {/* {isLoaded ? (
                 geocodeFetched ? (
                     <GoogleMap

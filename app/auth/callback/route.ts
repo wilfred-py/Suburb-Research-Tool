@@ -20,7 +20,7 @@ export async function GET(request: Request) {
             error,
         } = await supabase.auth.getSession();
 
-        console.log("Proof Key for Code Exchange successful\nSigned in with oAuth");
+        // console.log("Proof Key for Code Exchange successful\nSigned in with oAuth");
         // console.log(session);
 
         supabase.auth.onAuthStateChange((event, session) => {
