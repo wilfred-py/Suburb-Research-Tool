@@ -30,7 +30,7 @@ export default function Dashboard() {
                 <NavBar />
                 {/* Initial layout*/}
                 {!selectedSuburb && (
-                    <div className="w-screen h-full xl:px-32 lg:px-32 md:px-32 md:mr-auto sm:px-32 sm:mr-auto mt-4">
+                    <div className="w-screen h-screen overflow-y-hidden xl:px-32 lg:px-32 md:px-32 md:mr-auto sm:px-32 sm:mr-auto mt-4">
                         <div className="h-2/5 flex flex-col justify-end items-center pb-20">
                             <h1 className="text-xl font-semibold mb-4">Search a suburb or postcode below</h1>
                             <SearchBar setSelectedSuburb={setSelectedSuburb} />
@@ -46,8 +46,12 @@ export default function Dashboard() {
                         <h1 className="text-4xl font-semibold">Dashboard</h1>
 
                         <div className="flex flex-col">
-                            <div className="mt-6">
+                            <div className="my-6 z-50">
                                 <SearchBar setSelectedSuburb={setSelectedSuburb} />
+                            </div>
+
+                            <div>
+                                <h1 className="font-bold pl-1">{selectedSuburb}</h1>
                             </div>
 
                             {/* Dashboard selector */}
