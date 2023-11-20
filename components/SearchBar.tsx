@@ -175,9 +175,9 @@ export default function SearchBar(props: SearchBarProps) {
                         <div>
                             <div
                                 ref={resultsRef}
-                                className="absolute z-10 flex flex-col first-line:absolute w-[632px] mt-1 p-2 bg-gray-50 border border-gray-300 rounded-lg shadow-lg rounded-bl rounded-br overflow-y-hidden"
+                                className="absolute flex flex-col first-line:absolute w-[632px] mt-1 pt-2 bg-white border border-gray-300 rounded-lg shadow-lg rounded-bl rounded-br overflow-y-hidden"
                             >
-                                <span className="pb-2 font-semibold">Suggested Locations</span>
+                                <span className="pl-2 pb-2 font-semibold">Suggested Locations</span>
                                 {searchResults.map((suburb, index) => {
                                     const commasRemovedSearchQuery = suburb.replaceAll(",", "");
                                     const searchedSuburb = commasRemovedSearchQuery.replaceAll(/\s+/g, "+");
@@ -186,7 +186,7 @@ export default function SearchBar(props: SearchBarProps) {
                                         <div
                                             key={index}
                                             onClick={() => handleResultsClick(suburb)}
-                                            className="hover:bg-slate-200 hover:font-semibold hover:cursor-pointer h-8 align-middle rounded-sm pl-2 select-none"
+                                            className="hover:bg-hoverBlue hover:font-semibold hover:cursor-pointer h-8 align-middle rounded-sm pl-2 select-none"
                                         >
                                             {suburb}
                                         </div>

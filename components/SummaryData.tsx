@@ -78,19 +78,21 @@ export default function SummaryData(props: SummaryDataProps) {
                 .map((data) => (
                     <div className="w-full">
                         <div className="flex flex-row space-x-2">
-                            <div className="mb-2 w-6/12 flex flex-col ">
-                                <div className="h-3/6 border border-gray-200 rounded-md shadow-lg hover:shadow-xl">
+                            <div className="w-6/12 flex flex-col">
+                                <div className="w-full h-3/6 border border-gray-200 rounded-md shadow-lg hover:shadow-xl">
                                     <Map selectedSuburb={props.selectedSuburb} />
                                 </div>
-                                <div className="h-3/6 mt-2 border border-gray-200 rounded-md shadow-lg hover:shadow-xl">
+
+                                <div className="w-full h-3/6 mt-2 border border-gray-200 rounded-md shadow-lg hover:shadow-xl">
                                     <Population selectedSuburb={props.selectedSuburb} />
                                 </div>
                             </div>
 
-                            <div className="mb-2 w-6/12 flex flex-col">
+                            <div className="w-6/12 flex flex-col">
                                 <div className="w-full h-3/6 border border-gray-200 rounded-md shadow-lg hover:shadow-xl">
                                     <FullTimeEmploymentLineGraph selectedSuburb={props.selectedSuburb} />
                                 </div>
+
                                 <div className="w-full h-3/6 mt-2 border border-gray-200 rounded-md shadow-lg hover:shadow-xl">
                                     <AncestryChart selectedSuburb={props.selectedSuburb} />
                                 </div>

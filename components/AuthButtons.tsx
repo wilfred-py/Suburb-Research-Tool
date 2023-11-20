@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
+import { Button } from "./ui/button";
 
 export interface Session {
     aud: string;
@@ -102,10 +103,10 @@ export function SignInButton() {
             <div>
                 <Link
                     href="/dashboard/sign-in"
-                    className="flex flex-row border-2 border-black rounded-md p-2 hover:bg-hoverBlue hover:shadow-xl hover:shadow-slate-200 hover:text-black"
+                    className="flex flex-row border-2 border-white rounded-md p-2 hover:bg-hoverBlue hover:shadow-sm hover:text-black"
                 >
-                    <div className="flex items-center space-x-2">
-                        <span className="-mr-1">Sign In</span>
+                    <div className="flex items-center space-x-2 hover:underline hover:underline-offset-1">
+                        <span className="-mr-1 ">Sign In</span>
                         <div className="w-4 h-4 transition-transform duration-300 transform hover:translate-x-1 hover:text-black">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7"></path>
@@ -134,8 +135,8 @@ export function SignOutButton() {
     }
 
     return (
-        <button onClick={LogOut} className="border-2 border-black rounded-md p-2 shadow-md hover:shadow-sm hover:shadow-slate-300">
-            Sign Out
-        </button>
+        <Button onClick={LogOut} variant="secondary" className="hover:underline hover:underline-offset-1 shadow-lg">
+            Sign Out{" "}
+        </Button>
     );
 }
