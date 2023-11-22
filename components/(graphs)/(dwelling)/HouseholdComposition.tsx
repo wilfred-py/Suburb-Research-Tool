@@ -267,91 +267,122 @@ export default function HouseholdCompositionChart(props: HouseholdCompositionCha
 
     return (
         <>
-            <div className="flex flex-col border-2 border-blue-400 my-4">
-                <h1 className="text-2xl font-bold mx-auto">Household Composition</h1>
+            <div className="flex flex-col border border-gray-200 rounded-md shadow-lg hover:shadow-xl my-4 ">
+                <h1 className="text-2xl font-bold mx-auto mt-4">Household Composition</h1>
 
-                <div className="mx-auto">
-                    <Select value={selectedYear} onValueChange={handleYearChange}>
-                        <SelectTrigger className="w-[180px]">
-                            <SelectValue placeholder="2021" />
-                        </SelectTrigger>
-                        <SelectContent>
-                            <SelectItem value="2021">2021</SelectItem>
-                            <SelectItem value="2016">2016</SelectItem>
-                            <SelectItem value="2011">2011</SelectItem>
-                            <SelectItem value="2006">2006</SelectItem>
-                        </SelectContent>
-                    </Select>
+                <div className="flex flex-col justify-center mx-auto">
+                    <div>
+                        <Select value={selectedYear} onValueChange={handleYearChange}>
+                            <SelectTrigger className="w-[180px]">
+                                <SelectValue placeholder="2021" />
+                            </SelectTrigger>
+                            <SelectContent>
+                                <SelectItem value="2021">2021</SelectItem>
+                                <SelectItem value="2016">2016</SelectItem>
+                                <SelectItem value="2011">2011</SelectItem>
+                                <SelectItem value="2006">2006</SelectItem>
+                            </SelectContent>
+                        </Select>
+                    </div>
 
                     {selectedYear === "2006" && (
-                        <div>
-                            <RadarChart outerRadius="80%" width={730} height={450} data={twoThousandAndSixData}>
-                                <PolarGrid />
-                                <PolarAngleAxis dataKey="label" />
-                                <PolarRadiusAxis angle={30} />
-                                <Radar name="% of suburb" dataKey="suburb" stroke="#219C90" fill="#219C90" fillOpacity={0.5} />
-                                <Legend />
-                                <Tooltip offset={50} />
-                            </RadarChart>
-                            <p>
-                                Note: group households consist of two or more unrelated people aged 15 and older i.e. no couple
-                                relationships, parent-child relationships, or blood relationships.
-                            </p>
-                        </div>
-                    )}
-
-                    {selectedYear === "2011" && (
-                        <div>
-                            <RadarChart outerRadius="80%" width={730} height={450} data={twentyElevenData}>
-                                <PolarGrid />
-                                <PolarAngleAxis dataKey="label" />
-                                <PolarRadiusAxis angle={30} />
-                                <Radar name="% of suburb" dataKey="suburb" stroke="#219C90" fill="#219C90" fillOpacity={0.5} />
-                                <Radar name="% of state" dataKey="state" stroke="#068FFF" fill="#068FFF" fillOpacity={0.15} />
-                                <Legend />
-                                <Tooltip offset={50} />
-                            </RadarChart>
-                            <p>
-                                Note: group households consist of two or more unrelated people aged 15 and older i.e. no couple
-                                relationships, parent-child relationships, or blood relationships.
-                            </p>
-                        </div>
-                    )}
-
-                    {selectedYear === "2016" && (
-                        <div>
-                            <RadarChart outerRadius="80%" width={730} height={450} data={twentySixteenData}>
-                                <PolarGrid />
-                                <PolarAngleAxis dataKey="label" />
-                                <PolarRadiusAxis angle={30} domain={[0, 100]} />
-                                <Radar name="% of suburb" dataKey="suburb" stroke="#219C90" fill="#219C90" fillOpacity={0.5} />
-                                <Radar name="% of state" dataKey="state" stroke="#068FFF" fill="#068FFF" fillOpacity={0.15} />
-                                <Legend />
-                                <Tooltip offset={50} />
-                            </RadarChart>
-                            <p>
-                                Note: group households consist of two or more unrelated people aged 15 and older i.e. no couple
-                                relationships, parent-child relationships, or blood relationships.
-                            </p>
-                        </div>
-                    )}
-
-                    {selectedYear === "2021" && (
-                        <div className="w-full flex flex-col ">
-                            <div>
-                                <RadarChart outerRadius="80%" width={730} height={450} data={twentyTwentyOneData}>
+                        <div className="w-[800px] h-[600px] select-none">
+                            <ResponsiveContainer>
+                                <RadarChart
+                                    cx="50%"
+                                    cy="50%"
+                                    outerRadius="80%"
+                                    width={1000}
+                                    height={1000}
+                                    margin={{ top: 0, right: 20, bottom: 100, left: 20 }}
+                                    data={twoThousandAndSixData}
+                                >
                                     <PolarGrid />
                                     <PolarAngleAxis dataKey="label" />
                                     <PolarRadiusAxis angle={30} domain={[0, 100]} />
                                     <Radar name="% of suburb" dataKey="suburb" stroke="#219C90" fill="#219C90" fillOpacity={0.5} />
                                     <Radar name="% of state" dataKey="state" stroke="#068FFF" fill="#068FFF" fillOpacity={0.15} />
-                                    <Legend />
+                                    <Legend align="center" margin={{ top: 10, left: 0, right: 0, bottom: 0 }} />
                                     <Tooltip offset={50} />
                                 </RadarChart>
-                            </div>
-                            <p className="max-w-min w-full">
-                                Note: group households consist of two or more unrelated people aged 15 and older i.e. no couple
-                                relationships, parent-child relationships, or blood relationships.
+                            </ResponsiveContainer>
+                            <p className="text-center">Note: group households consist of two or more unrelated people aged 15 and older</p>
+                        </div>
+                    )}
+
+                    {selectedYear === "2011" && (
+                        <div className="w-[800px] h-[600px] select-none">
+                            <ResponsiveContainer>
+                                <RadarChart
+                                    cx="50%"
+                                    cy="50%"
+                                    outerRadius="80%"
+                                    width={1000}
+                                    height={1000}
+                                    margin={{ top: 0, right: 20, bottom: 100, left: 20 }}
+                                    data={twentyElevenData}
+                                >
+                                    <PolarGrid />
+                                    <PolarAngleAxis dataKey="label" />
+                                    <PolarRadiusAxis angle={30} domain={[0, 100]} />
+                                    <Radar name="% of suburb" dataKey="suburb" stroke="#219C90" fill="#219C90" fillOpacity={0.5} />
+                                    <Radar name="% of state" dataKey="state" stroke="#068FFF" fill="#068FFF" fillOpacity={0.15} />
+                                    <Legend align="center" margin={{ top: 10, left: 0, right: 0, bottom: 0 }} />
+                                    <Tooltip offset={50} />
+                                </RadarChart>
+                            </ResponsiveContainer>
+                            <p className="text-center">Note: group households consist of two or more unrelated people aged 15 and older</p>
+                        </div>
+                    )}
+
+                    {selectedYear === "2016" && (
+                        <div className="w-[800px] h-[600px] select-none">
+                            <ResponsiveContainer>
+                                <RadarChart
+                                    cx="50%"
+                                    cy="50%"
+                                    outerRadius="80%"
+                                    width={1000}
+                                    height={1000}
+                                    margin={{ top: 0, right: 20, bottom: 100, left: 20 }}
+                                    data={twentySixteenData}
+                                >
+                                    <PolarGrid />
+                                    <PolarAngleAxis dataKey="label" />
+                                    <PolarRadiusAxis angle={30} domain={[0, 100]} />
+                                    <Radar name="% of suburb" dataKey="suburb" stroke="#219C90" fill="#219C90" fillOpacity={0.5} />
+                                    <Radar name="% of state" dataKey="state" stroke="#068FFF" fill="#068FFF" fillOpacity={0.15} />
+                                    <Legend align="center" margin={{ top: 10, left: 0, right: 0, bottom: 0 }} />
+                                    <Tooltip offset={50} />
+                                </RadarChart>
+                            </ResponsiveContainer>
+                            <p className="text-center">Note: group households consist of two or more unrelated people aged 15 and older</p>
+                        </div>
+                    )}
+
+                    {selectedYear === "2021" && (
+                        <div className="w-[800px] h-[600px] select-none">
+                            <ResponsiveContainer>
+                                <RadarChart
+                                    cx="50%"
+                                    cy="60%"
+                                    outerRadius="80%"
+                                    width={1000}
+                                    height={1000}
+                                    margin={{ top: 0, right: 20, bottom: 50, left: 20 }}
+                                    data={twentyTwentyOneData}
+                                >
+                                    <PolarGrid />
+                                    <PolarAngleAxis dataKey="label" />
+                                    <PolarRadiusAxis angle={30} domain={[0, 100]} />
+                                    <Radar name="% of suburb" dataKey="suburb" stroke="#219C90" fill="#219C90" fillOpacity={0.5} />
+                                    <Radar name="% of state" dataKey="state" stroke="#068FFF" fill="#068FFF" fillOpacity={0.15} />
+                                    <Legend align="center" margin={{ top: 10, left: 0, right: 0, bottom: 0 }} />
+                                    <Tooltip offset={50} />
+                                </RadarChart>
+                            </ResponsiveContainer>
+                            <p className="mb-2 text-center">
+                                Note: group households consist of two or more unrelated people aged 15 and older
                             </p>
                         </div>
                     )}
