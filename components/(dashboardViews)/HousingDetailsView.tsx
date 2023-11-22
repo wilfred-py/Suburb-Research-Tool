@@ -9,11 +9,15 @@ interface HousingDetailsProps {
 
 export default function HousingDetailsView(props: HousingDetailsProps) {
     return (
-        <div className="max-w-screen max-h-screen flex flex-wrap">
-            <DwellingStackedAreaChart selectedSuburb={props.selectedSuburb} />
-            <BedroomsStackedAreaChart selectedSuburb={props.selectedSuburb} />
-            <TenureStackedAreaChart selectedSuburb={props.selectedSuburb} />
-            <HouseholdCompositionChart selectedSuburb={props.selectedSuburb} />
-        </div>
+        <>
+            <div className="max-w-full flex flex-row justify-evenly mt-4">
+                <DwellingStackedAreaChart selectedSuburb={props.selectedSuburb} />
+                <BedroomsStackedAreaChart selectedSuburb={props.selectedSuburb} />
+                <TenureStackedAreaChart selectedSuburb={props.selectedSuburb} />
+            </div>
+            <div>
+                <HouseholdCompositionChart selectedSuburb={props.selectedSuburb} />
+            </div>
+        </>
     );
 }

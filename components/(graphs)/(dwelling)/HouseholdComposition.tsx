@@ -269,74 +269,75 @@ export default function HouseholdCompositionChart(props: HouseholdCompositionCha
         <>
             <div className="flex flex-col border-2 border-blue-400 my-4">
                 <h1 className="text-2xl font-bold mx-auto">Household Composition</h1>
-                <div className="flex flex-row flex-wrap">
-                    <div>
-                        <Select value={selectedYear} onValueChange={handleYearChange}>
-                            <SelectTrigger className="w-[180px]">
-                                <SelectValue placeholder="2021" />
-                            </SelectTrigger>
-                            <SelectContent>
-                                <SelectItem value="2021">2021</SelectItem>
-                                <SelectItem value="2016">2016</SelectItem>
-                                <SelectItem value="2011">2011</SelectItem>
-                                <SelectItem value="2006">2006</SelectItem>
-                            </SelectContent>
-                        </Select>
 
-                        {selectedYear === "2006" && (
-                            <div>
-                                <RadarChart outerRadius="80%" width={730} height={450} data={twoThousandAndSixData}>
-                                    <PolarGrid />
-                                    <PolarAngleAxis dataKey="label" />
-                                    <PolarRadiusAxis angle={30} />
-                                    <Radar name="% of suburb" dataKey="suburb" stroke="#219C90" fill="#219C90" fillOpacity={0.5} />
-                                    <Legend />
-                                    <Tooltip offset={50} />
-                                </RadarChart>
-                                <p>
-                                    Note: group households consist of two or more unrelatd people aged 15 and older i.e. no couple
-                                    relationships, parent-child relationships, or blood relationships.
-                                </p>
-                            </div>
-                        )}
+                <div className="mx-auto">
+                    <Select value={selectedYear} onValueChange={handleYearChange}>
+                        <SelectTrigger className="w-[180px]">
+                            <SelectValue placeholder="2021" />
+                        </SelectTrigger>
+                        <SelectContent>
+                            <SelectItem value="2021">2021</SelectItem>
+                            <SelectItem value="2016">2016</SelectItem>
+                            <SelectItem value="2011">2011</SelectItem>
+                            <SelectItem value="2006">2006</SelectItem>
+                        </SelectContent>
+                    </Select>
 
-                        {selectedYear === "2011" && (
-                            <div>
-                                <RadarChart outerRadius="80%" width={730} height={450} data={twentyElevenData}>
-                                    <PolarGrid />
-                                    <PolarAngleAxis dataKey="label" />
-                                    <PolarRadiusAxis angle={30} />
-                                    <Radar name="% of suburb" dataKey="suburb" stroke="#219C90" fill="#219C90" fillOpacity={0.5} />
-                                    <Radar name="% of state" dataKey="state" stroke="#068FFF" fill="#068FFF" fillOpacity={0.15} />
-                                    <Legend />
-                                    <Tooltip offset={50} />
-                                </RadarChart>
-                                <p>
-                                    Note: group households consist of two or more unrelatd people aged 15 and older i.e. no couple
-                                    relationships, parent-child relationships, or blood relationships.
-                                </p>
-                            </div>
-                        )}
+                    {selectedYear === "2006" && (
+                        <div>
+                            <RadarChart outerRadius="80%" width={730} height={450} data={twoThousandAndSixData}>
+                                <PolarGrid />
+                                <PolarAngleAxis dataKey="label" />
+                                <PolarRadiusAxis angle={30} />
+                                <Radar name="% of suburb" dataKey="suburb" stroke="#219C90" fill="#219C90" fillOpacity={0.5} />
+                                <Legend />
+                                <Tooltip offset={50} />
+                            </RadarChart>
+                            <p>
+                                Note: group households consist of two or more unrelated people aged 15 and older i.e. no couple
+                                relationships, parent-child relationships, or blood relationships.
+                            </p>
+                        </div>
+                    )}
 
-                        {selectedYear === "2016" && (
-                            <div>
-                                <RadarChart outerRadius="80%" width={730} height={450} data={twentySixteenData}>
-                                    <PolarGrid />
-                                    <PolarAngleAxis dataKey="label" />
-                                    <PolarRadiusAxis angle={30} domain={[0, 100]} />
-                                    <Radar name="% of suburb" dataKey="suburb" stroke="#219C90" fill="#219C90" fillOpacity={0.5} />
-                                    <Radar name="% of state" dataKey="state" stroke="#068FFF" fill="#068FFF" fillOpacity={0.15} />
-                                    <Legend />
-                                    <Tooltip offset={50} />
-                                </RadarChart>
-                                <p>
-                                    Note: group households consist of two or more unrelatd people aged 15 and older i.e. no couple
-                                    relationships, parent-child relationships, or blood relationships.
-                                </p>
-                            </div>
-                        )}
+                    {selectedYear === "2011" && (
+                        <div>
+                            <RadarChart outerRadius="80%" width={730} height={450} data={twentyElevenData}>
+                                <PolarGrid />
+                                <PolarAngleAxis dataKey="label" />
+                                <PolarRadiusAxis angle={30} />
+                                <Radar name="% of suburb" dataKey="suburb" stroke="#219C90" fill="#219C90" fillOpacity={0.5} />
+                                <Radar name="% of state" dataKey="state" stroke="#068FFF" fill="#068FFF" fillOpacity={0.15} />
+                                <Legend />
+                                <Tooltip offset={50} />
+                            </RadarChart>
+                            <p>
+                                Note: group households consist of two or more unrelated people aged 15 and older i.e. no couple
+                                relationships, parent-child relationships, or blood relationships.
+                            </p>
+                        </div>
+                    )}
 
-                        {selectedYear === "2021" && (
+                    {selectedYear === "2016" && (
+                        <div>
+                            <RadarChart outerRadius="80%" width={730} height={450} data={twentySixteenData}>
+                                <PolarGrid />
+                                <PolarAngleAxis dataKey="label" />
+                                <PolarRadiusAxis angle={30} domain={[0, 100]} />
+                                <Radar name="% of suburb" dataKey="suburb" stroke="#219C90" fill="#219C90" fillOpacity={0.5} />
+                                <Radar name="% of state" dataKey="state" stroke="#068FFF" fill="#068FFF" fillOpacity={0.15} />
+                                <Legend />
+                                <Tooltip offset={50} />
+                            </RadarChart>
+                            <p>
+                                Note: group households consist of two or more unrelated people aged 15 and older i.e. no couple
+                                relationships, parent-child relationships, or blood relationships.
+                            </p>
+                        </div>
+                    )}
+
+                    {selectedYear === "2021" && (
+                        <div className="w-full flex flex-col ">
                             <div>
                                 <RadarChart outerRadius="80%" width={730} height={450} data={twentyTwentyOneData}>
                                     <PolarGrid />
@@ -347,13 +348,13 @@ export default function HouseholdCompositionChart(props: HouseholdCompositionCha
                                     <Legend />
                                     <Tooltip offset={50} />
                                 </RadarChart>
-                                <p>
-                                    Note: group households consist of two or more unrelatd people aged 15 and older i.e. no couple
-                                    relationships, parent-child relationships, or blood relationships.
-                                </p>
                             </div>
-                        )}
-                    </div>
+                            <p className="max-w-min w-full">
+                                Note: group households consist of two or more unrelated people aged 15 and older i.e. no couple
+                                relationships, parent-child relationships, or blood relationships.
+                            </p>
+                        </div>
+                    )}
                 </div>
             </div>
         </>

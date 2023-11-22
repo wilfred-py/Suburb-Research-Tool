@@ -6,7 +6,7 @@ module.exports = {
         colors: {
             navigationBarBlue: "#112D4E",
             dashboardSelectorBlue: "#0174BE",
-            hoverBlue: "#F5FEFF",
+            hoverBlue: "#DBE2EF",
             white: "#fff",
             offwhite: "#F8F5F1",
             black: "#000",
