@@ -9,7 +9,7 @@ export default function NavBar() {
                 <ul className="flex flex-row space-x-7 place-items-center mr-7 list-none font-semibold">
                     <li>
                         <Link className="text-2xl font-bold m-2" href={"/"}>
-                            Suburbly
+                            Suburb IQ
                         </Link>
                     </li>
                     {/* <li>

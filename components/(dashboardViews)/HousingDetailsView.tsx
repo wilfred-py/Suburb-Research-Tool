@@ -10,12 +10,12 @@ interface HousingDetailsProps {
 export default function HousingDetailsView(props: HousingDetailsProps) {
     return (
         <>
-            <div className="max-w-full flex flex-row justify-evenly mt-4">
+            <div className="max-w-full flex flex-row justify-evenly mt-4 border border-gray-200 rounded-md shadow-lg hover:shadow-xl overflow-hidden">
                 <DwellingStackedAreaChart selectedSuburb={props.selectedSuburb} />
                 <BedroomsStackedAreaChart selectedSuburb={props.selectedSuburb} />
                 <TenureStackedAreaChart selectedSuburb={props.selectedSuburb} />
             </div>
-            <div>
+            <div className="max-h-full overflow-y-hidden">
                 <HouseholdCompositionChart selectedSuburb={props.selectedSuburb} />
             </div>
         </>
