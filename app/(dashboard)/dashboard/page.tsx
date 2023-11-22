@@ -26,27 +26,30 @@ export default function Dashboard() {
     return (
         <>
             {/* <div className="h-screen max-h-screen overflow-hidden"> */}
-            <div className="h-screen">
+            <div className="h-screen max-h-screen overflow-x-hidden">
                 <NavBar />
                 {/* Initial layout*/}
                 {!selectedSuburb && (
-                    <div className="w-screen h-screen overflow-y-hidden xl:px-32 lg:px-32 md:px-32 md:mr-auto sm:px-32 sm:mr-auto mt-4">
-                        <div className="h-2/5 flex flex-col justify-end items-center pb-20">
-                            <h1 className="text-xl font-semibold mb-4">Search a suburb or postcode below</h1>
-                            <SearchBar setSelectedSuburb={setSelectedSuburb} />
+                    <div>
+                        <div className="h-screen max-h-screen overflow-x-hidden overflow-y-hidden xl:px-24 lg:px-24 md:px-24 bg-black">
+                            <div className="h-2/5 flex flex-col justify-end items-center pb-20">
+                                <h1 className="text-xl font-semibold mb-4">Search a suburb or postcode below</h1>
+                                <SearchBar setSelectedSuburb={setSelectedSuburb} />
+                            </div>
                         </div>
-
-                        <div className="h-3/5 "></div>
+                        <div className="bg-dashboardSelectorBlue xl:px-24 lg:px-24 md:px-24">
+                            <h1>Hello</h1>
+                        </div>
                     </div>
                 )}
 
                 {/* Post-search layout */}
                 {selectedSuburb && (
-                    <div className="w-screen overflow-x-hidden xl:px-32 lg:px-32 md:px-32 md:mr-auto sm:px-32 sm:mr-auto mt-4">
-                        <h1 className="text-4xl font-semibold">Dashboard</h1>
+                    <div className="overflow-x-hidden xl:px-24 lg:px-24 md:px-24">
+                        <h1 className="text-4xl font-semibold mt-4">Dashboard</h1>
 
                         <div className="flex flex-col">
-                            <div className="my-6 z-50">
+                            <div className="my-6 z-40">
                                 <SearchBar setSelectedSuburb={setSelectedSuburb} />
                             </div>
 

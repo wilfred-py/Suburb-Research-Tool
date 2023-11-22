@@ -105,7 +105,7 @@ export function SignInButton() {
                     href="/dashboard/sign-in"
                     className="flex flex-row border-2 border-white rounded-md p-2 hover:bg-hoverBlue hover:shadow-sm hover:text-black"
                 >
-                    <div className="flex items-center space-x-2 hover:underline hover:underline-offset-1">
+                    <div className="flex items-center space-x-2 hover:underline hover:underline-offset-1 transform delay-300">
                         <span className="-mr-1 ">Sign In</span>
                         <div className="w-4 h-4 transition-transform duration-300 transform hover:translate-x-1 hover:text-black">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">

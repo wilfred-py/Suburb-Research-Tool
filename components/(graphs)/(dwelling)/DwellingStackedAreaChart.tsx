@@ -424,7 +424,7 @@ export default function DwellingStackedAreaChart(props: DwellingStackedAreaChart
     return (
         <>
             <div>
-                <div className="flex flex-row justify-center">
+                <div className="flex flex-col justify-center">
                     <div className="mx-auto -mt-4">
                         <h1 className="mt-4 mb-4 text-lg text-center font-bold">Types of Dwellings in {selectedSuburb}</h1>
                         <AreaChart
@@ -433,8 +433,8 @@ export default function DwellingStackedAreaChart(props: DwellingStackedAreaChart
                             data={suburbDwelling}
                             margin={{
                                 top: 20,
-                                right: 20,
-                                left: 20,
+                                right: 25,
+                                left: -15,
                                 bottom: 20,
                             }}
                         >
@@ -450,7 +450,7 @@ export default function DwellingStackedAreaChart(props: DwellingStackedAreaChart
                         </AreaChart>
                     </div>
 
-                    <div className="mx-auto -mt-4">
+                    <div className="mt-4">
                         <h1 className="mt-4 mb-4 text-lg text-center font-bold">Types of Dwellings in {selectedState}</h1>
                         <AreaChart
                             width={500}
@@ -458,8 +458,8 @@ export default function DwellingStackedAreaChart(props: DwellingStackedAreaChart
                             data={stateDwelling}
                             margin={{
                                 top: 20,
-                                right: 20,
-                                left: 20,
+                                right: 25,
+                                left: -15,
                                 bottom: 20,
                             }}
                         >
