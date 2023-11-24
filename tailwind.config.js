@@ -11,12 +11,17 @@ module.exports = {
             offwhite: "#F8F5F1",
             black: "#000",
             orange: "#ffa500",
+            buttonYellow: "#FFC436",
+            buttonBlue: "#144272",
+            hoverButtonBlue: "#43638f",
+            buttonPressShadowWhite: "#F0F0F0",
         },
         container: {
             center: true,
             padding: "2rem",
             screens: {
                 "2xl": "1400px",
+                "8xl": "1792px",
             },
         },
         extend: {

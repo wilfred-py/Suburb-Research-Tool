@@ -425,7 +425,7 @@ export default function DwellingStackedAreaChart(props: DwellingStackedAreaChart
         <>
             <div>
                 <div className="flex flex-col justify-center">
-                    <div className="mx-auto -mt-4">
+                    <div className="mx-auto">
                         <h1 className="mt-4 mb-4 text-lg text-center font-bold">Types of Dwellings in {selectedSuburb}</h1>
                         <AreaChart
                             width={500}
@@ -441,7 +441,7 @@ export default function DwellingStackedAreaChart(props: DwellingStackedAreaChart
                             <CartesianGrid strokeDasharray="3 3" />
                             <XAxis dataKey="year" />
                             <YAxis domain={[0, 100]} tickCount={10} />
-                            <Legend />
+                            <Legend align={"center"} verticalAlign="bottom" />
                             <Tooltip />
                             <Area type="monotone" dataKey="Separate House" stackId="1" stroke="#8884d8" fill="#8884d8" />
                             <Area type="monotone" dataKey="Semi-detached / Townhouse" stackId="1" stroke="#B8621B" fill="#B8621B" />
@@ -466,7 +466,7 @@ export default function DwellingStackedAreaChart(props: DwellingStackedAreaChart
                             <CartesianGrid strokeDasharray="3 3" />
                             <XAxis dataKey="year" />
                             <YAxis domain={[0, 100]} tickCount={10} />
-                            <Legend />
+                            <Legend align={"center"} />
                             <Tooltip />
                             <Area type="monotone" dataKey="Separate House" stackId="1" stroke="#8884d8" fill="#8884d8" />
                             <Area type="monotone" dataKey="Semi-detached / Townhouse" stackId="1" stroke="#B8621B" fill="#B8621B" />

@@ -41,6 +41,7 @@
         "class-variance-authority": "^0.7.0",
         "clsx": "^2.0.0",
         "fs": "^0.0.1-security",
+        "hamburger-react": "^2.5.0",
         "lucide-react": "^0.263.1",
         "next": "^14.0.1",
         "papaparse": "^5.4.1",

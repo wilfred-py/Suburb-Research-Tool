@@ -363,7 +363,7 @@ export default function BedroomsStackedAreaChart(props: BedroomsStackedAreaChart
         <>
             <div>
                 <div className="flex flex-col justify-center">
-                    <div className="mx-auto -mt-4">
+                    <div className="mx-auto">
                         <h1 className="mt-4 mb-4 text-lg text-center font-bold">Number of Bedrooms in {selectedSuburb} dwellings</h1>
                         {/* Suburb Chart */}
                         <AreaChart
