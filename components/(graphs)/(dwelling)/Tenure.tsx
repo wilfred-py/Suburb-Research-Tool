@@ -409,7 +409,7 @@ export default function TenureStackedAreaChart(props: TenureStackedAreaChartProp
         <>
             <div>
                 <div className="flex flex-col justify-center">
-                    <div className="mx-auto -mt-4">
+                    <div className="mx-auto">
                         <h1 className="mt-4 mb-4 text-lg text-center font-bold">Tenure in {selectedSuburb}</h1>
                         {/* Suburb Chart */}
                         <AreaChart
