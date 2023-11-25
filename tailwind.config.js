@@ -11,6 +11,8 @@ module.exports = {
             offwhite: "#F8F5F1",
             black: "#000",
             orange: "#ffa500",
+            red: "#ff0000",
+            pastelPink: "#ED9ED6",
             buttonYellow: "#FFC436",
             buttonBlue: "#144272",
             hoverButtonBlue: "#43638f",
