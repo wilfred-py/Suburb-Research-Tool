@@ -8,8 +8,10 @@ import NavBar from "./NavBar";
 export default async function Home() {
     return (
         <div>
-            <main>
+            <header className="relative z-[999]">
                 <NavBar />
+            </header>
+            <main>
                 <section id="About">
                     <About />
                 </section>

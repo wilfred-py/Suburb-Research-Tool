@@ -3,8 +3,8 @@ import Link from "next/link";
 export default function About() {
     return (
         <div className="flex flex-col place-items-center h-[600px] ">
-            <div className="flex flex-col place-items-center sm:mt-32 sm:text-6xl mt-10 w-full">
-                <h1 className="w-10/12 font-roboto font-extrabold text-center tracking-normal ">
+            <div className="mt-20 flex flex-col place-items-center sm:mt-32 sm:text-6xl w-full">
+                <h1 className="mt-auto w-10/12 font-roboto font-extrabold text-center tracking-normal ">
                     Visualising demographic trends in Australian suburbs
                 </h1>
                 <p className="m-4 min-w-min max-w-[65%] font-inter font-normal sm:text-lg text-center tracking-normal ">

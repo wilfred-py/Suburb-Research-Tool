@@ -1,5 +1,4 @@
 import "./globals.css";
-import NavBar from "./NavBar";
 import { Roboto, Inter } from "next/font/google";
 
 const roboto = Roboto({
