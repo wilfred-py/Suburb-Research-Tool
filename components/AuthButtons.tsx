@@ -97,14 +97,12 @@ export function SignInButton() {
     if (isEmailVerified === true) {
         return <Image src={`${userPicture}`} alt="Profile Picture" width={32} height={32} />;
     }
+
     // Delay rendering of Link component to allow component to check if user is signed in or not
     return renderSignIn ? (
         <>
             <div>
-                <Link
-                    href="/dashboard/sign-in"
-                    className="flex flex-row border-2 border-white rounded-md p-2 hover:bg-hoverBlue hover:shadow-sm hover:text-black"
-                >
+                <Link href="/dashboard/sign-in" className="flex flex-row">
                     <div className="flex items-center space-x-2 hover:underline hover:underline-offset-1 transform delay-300">
                         <span className="-mr-1 ">Sign In</span>
                         <div className="w-4 h-4 transition-transform duration-300 transform hover:translate-x-1 hover:text-black">
