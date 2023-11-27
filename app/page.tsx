@@ -1,3 +1,5 @@
+import { config } from "@fortawesome/fontawesome-svg-core";
+import "@fortawesome/fontawesome-svg-core/styles.css";
 import About from "@/components/About";
 import CallToAction from "@/components/CallToAction";
 import Footer from "@/components/Footer";
