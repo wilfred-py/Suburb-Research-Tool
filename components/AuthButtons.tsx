@@ -97,17 +97,15 @@ export function SignInButton() {
     if (isEmailVerified === true) {
         return <Image src={`${userPicture}`} alt="Profile Picture" width={32} height={32} />;
     }
+
     // Delay rendering of Link component to allow component to check if user is signed in or not
     return renderSignIn ? (
         <>
             <div>
-                <Link
-                    href="/dashboard/sign-in"
-                    className="flex flex-row border-2 border-white rounded-md p-2 hover:bg-hoverBlue hover:shadow-sm hover:text-black"
-                >
+                <Link href="/dashboard/sign-in" className="flex flex-row">
                     <div className="flex items-center space-x-2 hover:underline hover:underline-offset-1 transform delay-300">
                         <span className="-mr-1 ">Sign In</span>
-                        <div className="w-4 h-4 transition-transform duration-300 transform hover:translate-x-1 hover:text-black">
+                        <div className="w-4 h-4 transition-transform duration-300 transform hover:translate-x-1 ">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7"></path>
                             </svg>
@@ -121,7 +119,7 @@ export function SignInButton() {
     );
 }
 
-export function SignOutButton() {
+export function HamburgerSignOutButton() {
     const router = useRouter();
     const supabase = createClientComponentClient();
 
@@ -135,7 +133,27 @@ export function SignOutButton() {
     }
 
     return (
-        <Button onClick={LogOut} variant="secondary" className="hover:underline hover:underline-offset-1 shadow-lg">
+        <Button onClick={LogOut} className="h-10 w-full bg-black hover:underline hover:underline-offset-1 shadow-lg">
+            Sign Out{" "}
+        </Button>
+    );
+}
+
+export function NavSignOutButton() {
+    const router = useRouter();
+    const supabase = createClientComponentClient();
+
+    async function LogOut() {
+        let { error } = await supabase.auth.signOut();
+        if (!error) {
+            console.log("Signing Out...");
+            console.log(error);
+            router.push("/");
+        }
+    }
+
+    return (
+        <Button onClick={LogOut} className="bg-white text-black hover:bg-hoverBlue hover:underline shadow-lg">
             Sign Out{" "}
         </Button>
     );
