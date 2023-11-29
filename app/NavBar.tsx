@@ -70,7 +70,7 @@ export default function NavBar() {
         <>
             <nav className="fixed w-full top-0 left-0 z-40">
                 <div
-                    className={`mx-auto w-full px-5 sm:px-9 md:px-10 xl:px-12 h-16 border-b ${
+                    className={`mx-auto w-full px-5 sm:px-9 md:px-10 lg:px-12 h-16 border-b ${
                         isOpen ? "bg-white" : "bg-navigationBarBlue"
                     }`}
                 >
