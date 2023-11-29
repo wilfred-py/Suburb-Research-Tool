@@ -33,6 +33,7 @@ module.exports = {
                 input: "hsl(var(--input))",
                 ring: "hsl(var(--ring))",
                 background: "hsl(var(--background))",
+
                 foreground: "hsl(var(--foreground))",
                 primary: {
                     DEFAULT: "hsl(var(--primary))",
@@ -81,6 +82,21 @@ module.exports = {
             animation: {
                 "accordion-down": "accordion-down 0.2s ease-out",
                 "accordion-up": "accordion-up 0.2s ease-out",
+            },
+            fontFamily: {
+                sans: ["var(--font-inter)"],
+            },
+            fontWeight: {
+                inter100: "100",
+                inter200: "200",
+                inter300: "300",
+                inter400: "400",
+                inter500: "500",
+                inter600: "600",
+                inter700: "700",
+            },
+            maxWidth: {
+                "7/10": "70%",
             },
         },
     },

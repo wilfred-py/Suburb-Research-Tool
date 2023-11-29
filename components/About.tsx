@@ -2,27 +2,22 @@ import Link from "next/link";
 
 export default function About() {
     return (
-        <div className="flex flex-col place-items-center h-[600px] ">
-            <div className="mt-20 flex flex-col place-items-center sm:mt-32 sm:text-6xl w-full">
-                <h1 className="mt-auto w-10/12 font-roboto font-extrabold text-center tracking-normal ">
-                    Visualising demographic trends in Australian suburbs
-                </h1>
-                <p className="m-4 min-w-min max-w-[65%] font-inter font-normal sm:text-lg text-center tracking-normal ">
-                    Whether you're planning to <span className="font-bold">relocate, invest, or simply explore</span>, our mission is to
-                    provide insightful details about Australian suburbs -{" "}
-                    <span className="bg-slate-100 underline underline-offset-4 decoration-1 hover:bg-hoverBlue hover:decoration-2 hover:font-bold">
-                        all in one spot.
-                    </span>
-                </p>
-            </div>
-            <div className="mt-10">
-                <Link
-                    href={"/dashboard/sign-up"}
-                    className="border border-black bg-buttonBlue 
-                    text-white  hover:bg-hoverButtonBlue font-semibold rounded-md p-2 hover:shadow-2xl hover:shadow-buttonPressShadowWhite"
-                >
-                    Get Started For Free
-                </Link>
+        <div className="pt-16">
+            <div className="flex flex-col place-items-center w-full h-[600px] mx-auto px-5 sm:px-9 md:px-10 lg:px-12">
+                <div className="w-full mx-auto max-w-8xl py-16 md:pt-28">
+                    <div className="flex flex-col w-full gap-8">
+                        <h1 className="w-full max-w-[70%] mr-auto font-inter600 tracking-tighter text-5xl leading-tight">
+                            Visualising demographic trends across Australian suburbs
+                        </h1>
+                        <h2 className="min-w-min max-w-[65%] font-inter font-normal sm:text-lg  tracking-normal ">
+                            Whether you're planning to <span className="font-bold">relocate, invest, or simply explore</span>, our mission
+                            is to provide insightful details about Australian suburbs -{" "}
+                            <span className="bg-slate-100 underline underline-offset-4 decoration-1 hover:bg-hoverBlue hover:decoration-2 hover:font-bold">
+                                all in one spot.
+                            </span>
+                        </h2>
+                    </div>
+                </div>
             </div>
         </div>
     );
