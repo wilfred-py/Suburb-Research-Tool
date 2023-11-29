@@ -46,7 +46,7 @@ export default function Dashboard() {
                 {/* Post-search layout */}
                 {selectedSuburb && (
                     <div className="overflow-x-hidden xl:px-24 lg:px-24 md:px-24">
-                        <h1 className="text-4xl font-semibold mt-4">Dashboard</h1>
+                        <h1 className="mt-20 text-4xl font-semibold">Dashboard</h1>
 
                         <div className="flex flex-col">
                             <div className="my-6 z-40">
