@@ -17,15 +17,15 @@ export default async function Home() {
                 <section id="About">
                     <About />
                 </section>
-                <section id="Suburb-Highlights">
+                {/* <section id="Suburb-Highlights">
                     <Highlights />
-                </section>
-                <section id="Call-To-Action">
+                </section> */}
+                {/* <section id="Call-To-Action">
                     <CallToAction />
                 </section>
                 <section id="Footer">
                     <Footer />
-                </section>
+                </section> */}
             </main>
         </div>
     );

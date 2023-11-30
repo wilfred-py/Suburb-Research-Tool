@@ -361,7 +361,7 @@ export default function HouseholdCompositionChart(props: HouseholdCompositionCha
                     )}
 
                     {selectedYear === "2021" && (
-                        <div className="w-full max-w-screen-2xl h-[600px] select-none bg-black content-center">
+                        <div className="w-full max-w-screen-2xl h-[600px] select-none content-center">
                             <ResponsiveContainer>
                                 <RadarChart
                                     cx="50%"

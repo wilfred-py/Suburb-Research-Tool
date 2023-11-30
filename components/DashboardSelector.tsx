@@ -9,9 +9,9 @@ export default function DashboardSelector(props: DashboardSelectorProps) {
     // * Build className conditionally
     const getButtonCSS = (viewName: string) => {
         if (viewName === props.selectedView) {
-            return `bg-navigationBarBlue text-white font-semibold p-0.5 my-2 border-2 border-navigationBarBlue rounded rounded-md hover:cursor-pointer select-none shadow-lg transition hover:delay-200`;
+            return `bg-navigationBarBlue text-white font-medium p-0.5 my-2 border-1 border-navigationBarBlue rounded rounded-md hover:cursor-pointer select-none shadow-sm shadow-navigationBarBlue transition hover:delay-200`;
         } else {
-            return `bg-white  rounded rounded-md p-1 my-2 hover:bg-navigationBarBlue hover:text-white hover:font-semibold hover:cursor-pointer select-none transition hover:delay-200`;
+            return `bg-white  rounded rounded-md p-0.5 my-2 hover:bg-navigationBarBlue hover:text-white hover:font-medium hover:cursor-pointer select-none transition hover:delay-200`;
         }
     };
 

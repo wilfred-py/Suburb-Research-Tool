@@ -417,8 +417,8 @@ export default function DwellingStackedAreaChart(props: DwellingStackedAreaChart
     }, [props.selectedSuburb]);
 
     // ! CONSOLE LOGS
-    // console.log(suburbDwelling);
-    // console.log(stateDwelling);
+    console.log(suburbDwelling);
+    console.log(stateDwelling);
     // ! CONSOLE LOGS
 
     return (
