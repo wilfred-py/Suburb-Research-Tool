@@ -9,20 +9,17 @@ export default function About() {
                         <h1 className="w-full max-w-[95%] mr-auto mb-6 font-inter600 tracking-tighter text-5xl leading-tight">
                             Visualising demographic trends across Australian suburbs
                         </h1>
-                        <h2 className="min-w-min max-w-[85%] font-inter font-normal sm:text-lg tracking-normal ">
-                            Whether you're planning to <span className="font-bold">relocate, invest, or simply explore</span>, our mission
-                            is to provide insightful details about Australian suburbs -{" "}
-                            <span className="bg-slate-100 underline underline-offset-4 decoration-1 hover:bg-hoverBlue hover:decoration-2 hover:font-bold">
-                                all in one spot.
-                            </span>
+                        <h2 className="min-w-min max-w-[85%] mb-6 font-inter font-normal sm:text-lg tracking-normal ">
+                            Providing investors historical socioeconomic data in digestable graphs.
                         </h2>
                     </div>
+                    <hr></hr>
                     <div className="flex md:flex-row flex-col">
                         <div className="flex flex-col md:mx-4">
-                            <h1 className="mt-10 font-inter700">Discover employment trends in a suburb</h1>
+                            <h1 className="mt-6 mb-4 font-inter700">Discover employment trends in a suburb</h1>
                         </div>
 
-                        <div className="">
+                        <div className="border border-gray-200 rounded-md shadow-lg hover:shadow-xl">
                             <ExampleFTE selectedSuburb={""}></ExampleFTE>
                         </div>
                     </div>
