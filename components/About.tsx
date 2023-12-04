@@ -1,4 +1,6 @@
-import ExampleFTE from "./(graphs)/(employment)/ExampleFTE";
+import ExampleFTE from "./(graphs)/(employment)/(examples)/ExampleFTE";
+import ExamplePartTimeEmploymentLineGraph from "./(graphs)/(employment)/(examples)/ExamplePartTimeEmploymentLineGraph";
+import ExampleUnemploymentLineGraph from "./(graphs)/(employment)/(examples)/ExampleUnemploymentLineGraph";
 
 export default function About() {
     return (
@@ -10,17 +12,23 @@ export default function About() {
                             Visualising demographic trends across Australian suburbs
                         </h1>
                         <h2 className="min-w-min max-w-[85%] mb-6 font-inter font-normal sm:text-lg tracking-normal ">
-                            Providing investors historical socioeconomic data in digestable graphs.
+                            Providing investors historical socioeconomic data in digestable graphs
                         </h2>
                     </div>
-                    <hr></hr>
-                    <div className="flex md:flex-row flex-col">
-                        <div className="flex flex-col md:mx-4">
-                            <h1 className="mt-6 mb-4 font-inter700">Discover employment trends in a suburb</h1>
+                    <div className="flex md:flex-row flex-col my-2">
+                        <hr></hr>
+                        <div className="flex flex-col md:mx-4 md:justify-center">
+                            <h1 className="mt-6 mb-4 font-inter700 text-center">Discover and compare employment trends in a suburb</h1>
                         </div>
 
-                        <div className="border border-gray-200 rounded-md shadow-lg hover:shadow-xl">
+                        <div className="border border-gray-200 rounded-md shadow-lg hover:shadow-xl mb-4">
                             <ExampleFTE selectedSuburb={""}></ExampleFTE>
+                        </div>
+                        <div className="border border-gray-200 rounded-md shadow-lg hover:shadow-xl mb-4">
+                            <ExamplePartTimeEmploymentLineGraph selectedSuburb={""}></ExamplePartTimeEmploymentLineGraph>
+                        </div>
+                        <div className="border border-gray-200 rounded-md shadow-lg hover:shadow-xl mb-4">
+                            <ExampleUnemploymentLineGraph selectedSuburb={""}></ExampleUnemploymentLineGraph>
                         </div>
                     </div>
                 </div>

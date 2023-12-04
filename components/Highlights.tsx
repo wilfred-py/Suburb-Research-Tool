@@ -1,7 +1,7 @@
 "use client";
 
 import DwellingStackedAreaChart from "./(graphs)/(dwelling)/DwellingStackedAreaChart";
-import ExampleFTE from "./(graphs)/(employment)/ExampleFTE";
+import ExampleFTE from "./(graphs)/(employment)/(examples)/ExampleFTE";
 
 export default function Highlights() {
     return (
