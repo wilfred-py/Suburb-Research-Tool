@@ -15,19 +15,21 @@ export default function About() {
                             Providing investors historical socioeconomic data in digestable graphs
                         </h2>
                     </div>
-                    <div className="flex lg:flex-row lg:flex-wrap flex-col my-2">
-                        <hr></hr>
-                        <div className="flex flex-col md:mx-4 md:justify-center">
-                            <h1 className="mt-6 mb-4 font-inter700 text-center">Discover and compare employment trends in a suburb</h1>
-                        </div>
-
-                        <div className="border border-gray-200 rounded-md shadow-lg hover:shadow-xl mb-4">
+                    <hr></hr>
+                    <div className="flex flex-col md:justify-center">
+                        <h1 className="mt-6 mb-1 font-inter700 text-2xl text-center lg:text-left">Employment</h1>
+                        <h3 className="mb-4 font-inter400">
+                            Discover and compare employment rates in a suburb against the state and Australia
+                        </h3>
+                    </div>
+                    <div className="flex lg:flex-row flex-col my-2 lg:space-x-4">
+                        <div className="lg:w-1/3 border border-gray-200 rounded-md shadow-lg hover:shadow-xl mb-4">
                             <ExampleFTE selectedSuburb={""}></ExampleFTE>
                         </div>
-                        <div className="border border-gray-200 rounded-md shadow-lg hover:shadow-xl mb-4">
+                        <div className="lg:w-1/3 border border-gray-200 rounded-md shadow-lg hover:shadow-xl mb-4">
                             <ExamplePartTimeEmploymentLineGraph selectedSuburb={""}></ExamplePartTimeEmploymentLineGraph>
                         </div>
-                        <div className="border border-gray-200 rounded-md shadow-lg hover:shadow-xl mb-4">
+                        <div className="lg:w-1/3 border border-gray-200 rounded-md shadow-lg hover:shadow-xl mb-4">
                             <ExampleUnemploymentLineGraph selectedSuburb={""}></ExampleUnemploymentLineGraph>
                         </div>
                     </div>
