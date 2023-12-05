@@ -15,7 +15,7 @@ export default function About() {
                             Providing investors historical socioeconomic data in digestable graphs
                         </h2>
                     </div>
-                    <div className="flex md:flex-row flex-col my-2">
+                    <div className="flex lg:flex-row lg:flex-wrap flex-col my-2">
                         <hr></hr>
                         <div className="flex flex-col md:mx-4 md:justify-center">
                             <h1 className="mt-6 mb-4 font-inter700 text-center">Discover and compare employment trends in a suburb</h1>
