@@ -1,6 +1,8 @@
 "use client";
 
-import ExampleDwellingStackedAreaChart from "./(graphs)/(dwelling)/(examples)/ExampleDwellingStackedAreaChart";
+import ExampleStateDwellingStackedAreaChart from "./(graphs)/(dwelling)/(examples)/ExampleStateDwellingStackedAreaChart";
+import ExampleSuburbDwellingStackedAreaChart from "./(graphs)/(dwelling)/(examples)/ExampleSuburbDwellingStackedAreaChart";
+import ExampleDwellingStackedAreaChart from "./(graphs)/(dwelling)/(examples)/ExampleSuburbDwellingStackedAreaChart";
 import DwellingStackedAreaChart from "./(graphs)/(dwelling)/DwellingStackedAreaChart";
 import ExampleFTE from "./(graphs)/(employment)/(examples)/ExampleFTE";
 import ExamplePartTimeEmploymentLineGraph from "./(graphs)/(employment)/(examples)/ExamplePartTimeEmploymentLineGraph";
@@ -43,14 +45,13 @@ export default function About() {
                         <h1 className="mt-4 mb-1 font-inter700 text-2xl text-center lg:text-left">Dwelling Structure</h1>
                         <h3 className="mb-4 font-inter400 text-center lg:text-left">Discover the types of homes that exist over time</h3>
                     </div>
-                    <div className="flex lg:flex-row flex-col my-2 lg:space-x-4">
-                        <div className="lg:w-1/3 border border-gray-200 rounded-md shadow-lg hover:shadow-xl mb-4">
-                            <DwellingStackedAreaChart selectedSuburb={"Abbotsford, VIC, 3067"}></DwellingStackedAreaChart>
+                    <div className="flex lg:flex-row flex-col my-2 lg:space-x-4 ">
+                        <div className="lg:w-1/2 h-[420px] border border-gray-200 rounded-md shadow-lg hover:shadow-xl mb-4">
+                            <ExampleSuburbDwellingStackedAreaChart selectedSuburb={""}></ExampleSuburbDwellingStackedAreaChart>
                         </div>
-                        <div className="lg:w-1/3 border border-gray-200 rounded-md shadow-lg hover:shadow-xl mb-4">
-                            <ExampleDwellingStackedAreaChart selectedSuburb={""}></ExampleDwellingStackedAreaChart>
+                        <div className="lg:w-1/2 h-[420px] border border-gray-200 rounded-md shadow-lg hover:shadow-xl mb-4">
+                            <ExampleStateDwellingStackedAreaChart selectedSuburb={""}></ExampleStateDwellingStackedAreaChart>
                         </div>
-                        <div className="lg:w-1/3 border border-gray-200 rounded-md shadow-lg hover:shadow-xl mb-4"></div>
                     </div>
                 </div>
             </div>
