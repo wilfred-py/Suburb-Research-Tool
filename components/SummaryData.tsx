@@ -49,7 +49,7 @@ export default function SummaryData(props: SummaryDataProps) {
                 const suburbNameQuery = String(suburbName);
                 const stateNameQuery = stateName;
 
-                console.log(suburbNameQuery);
+                // console.log(suburbNameQuery);
                 setSuburbName(suburbNameQuery);
 
                 if (suburbName) {
@@ -69,7 +69,7 @@ export default function SummaryData(props: SummaryDataProps) {
         fetchSuburbData();
     }, [props.selectedSuburb]);
 
-    console.log(summaryData);
+    // console.log(summaryData);
 
     return (
         <>
