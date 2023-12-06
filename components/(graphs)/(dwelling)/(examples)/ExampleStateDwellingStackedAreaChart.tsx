@@ -41,7 +41,7 @@ export default function ExampleStateDwellingStackedAreaChart(props: DwellingStac
     return (
         <>
             <div>
-                <div className="w-72 h-[360px] sm:w-[460px] sm:h-[400px] md:w-80 md:h-80 mx-auto pr-6">
+                <div className="w-72 h-[360px] sm:w-[460px] sm:h-[400px] md:w-[560px] md:h-[440px] lg:w-[440px] mx-auto pr-6">
                     <h1 className="mt-4 mx-4 px-2 text-base text-center font-bold">Types of Dwellings in Victoria</h1>
                     <ResponsiveContainer>
                         <AreaChart
