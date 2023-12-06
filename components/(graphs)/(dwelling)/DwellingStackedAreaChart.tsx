@@ -1,6 +1,6 @@
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 import React, { PureComponent, useEffect, useState } from "react";
-import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Legend } from "recharts";
+import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Legend, Label } from "recharts";
 
 interface DwellingStackedAreaChartProps {
     selectedSuburb: string | null;
@@ -434,13 +434,15 @@ export default function DwellingStackedAreaChart(props: DwellingStackedAreaChart
                             margin={{
                                 top: 20,
                                 right: 25,
-                                left: -15,
+                                left: -1,
                                 bottom: 20,
                             }}
                         >
                             <CartesianGrid strokeDasharray="3 3" />
                             <XAxis dataKey="year" />
-                            <YAxis domain={[0, 100]} tickCount={10} />
+                            <YAxis domain={[0, 100]} tickCount={10}>
+                                <Label value="%" position="insideTopLeft"></Label>
+                            </YAxis>
                             <Legend align={"center"} verticalAlign="bottom" />
                             <Tooltip />
                             <Area type="monotone" dataKey="Separate House" stackId="1" stroke="#8884d8" fill="#8884d8" />
@@ -459,13 +461,15 @@ export default function DwellingStackedAreaChart(props: DwellingStackedAreaChart
                             margin={{
                                 top: 20,
                                 right: 25,
-                                left: -15,
+                                left: -1,
                                 bottom: 20,
                             }}
                         >
                             <CartesianGrid strokeDasharray="3 3" />
                             <XAxis dataKey="year" />
-                            <YAxis domain={[0, 100]} tickCount={10} />
+                            <YAxis domain={[0, 100]} tickCount={10}>
+                                <Label value="%" position="insideTopLeft"></Label>
+                            </YAxis>
                             <Legend align={"center"} />
                             <Tooltip />
                             <Area type="monotone" dataKey="Separate House" stackId="1" stroke="#8884d8" fill="#8884d8" />
