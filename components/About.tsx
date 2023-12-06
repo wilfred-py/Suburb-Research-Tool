@@ -7,6 +7,8 @@ import DwellingStackedAreaChart from "./(graphs)/(dwelling)/DwellingStackedAreaC
 import ExampleFTE from "./(graphs)/(employment)/(examples)/ExampleFTE";
 import ExamplePartTimeEmploymentLineGraph from "./(graphs)/(employment)/(examples)/ExamplePartTimeEmploymentLineGraph";
 import ExampleUnemploymentLineGraph from "./(graphs)/(employment)/(examples)/ExampleUnemploymentLineGraph";
+import ExampleHouseholdMedianWeeklyIncome from "./(graphs)/(income)/(example)/ExampleHouseholdMedianWeeklyIncome";
+import ExamplePersonalMedianWeeklyIncome from "./(graphs)/(income)/(example)/ExamplePersonalMedianWeeklyIncome";
 
 export default function About() {
     return (
@@ -28,6 +30,7 @@ export default function About() {
                             Compare suburb employment rates to a suburb's state and Australia
                         </h3>
                     </div>
+
                     <div className="flex lg:flex-row flex-col my-2 lg:space-x-4">
                         <div className="lg:w-1/3 border border-gray-200 rounded-md shadow-lg hover:shadow-xl mb-4">
                             <ExampleFTE selectedSuburb={""}></ExampleFTE>
@@ -53,6 +56,21 @@ export default function About() {
                         </div>
                         <div className="lg:w-1/2 h-[430px] sm:h-[450px] md:h-[480px] border border-gray-200 rounded-md shadow-lg hover:shadow-xl mb-4">
                             <ExampleStateDwellingStackedAreaChart selectedSuburb={""}></ExampleStateDwellingStackedAreaChart>
+                        </div>
+                    </div>
+
+                    <hr className="mt-10"></hr>
+                    <div className="flex flex-col md:justify-center">
+                        <h1 className="mt-4 mb-1 font-inter700 text-2xl text-center lg:text-left">Income</h1>
+                        <h3 className="mb-4 font-inter400 text-center lg:text-left">Analyse personal and household income trends</h3>
+                    </div>
+
+                    <div className="flex lg:flex-row flex-col my-2 lg:space-x-4">
+                        <div className="lg:w-1/2 sm:h-[350px] md:h-[380px] border border-gray-200 rounded-md shadow-lg hover:shadow-xl mb-4">
+                            <ExamplePersonalMedianWeeklyIncome selectedSuburb={""}></ExamplePersonalMedianWeeklyIncome>
+                        </div>
+                        <div className="lg:w-1/2 sm:h-[350px] md:h-[380px] border border-gray-200 rounded-md shadow-lg hover:shadow-xl mb-4">
+                            <ExampleHouseholdMedianWeeklyIncome selectedSuburb={""}></ExampleHouseholdMedianWeeklyIncome>
                         </div>
                     </div>
                 </div>
