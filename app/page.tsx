@@ -1,11 +1,10 @@
-import { config } from "@fortawesome/fontawesome-svg-core";
 import "@fortawesome/fontawesome-svg-core/styles.css";
 import About from "@/components/About";
-import CallToAction from "@/components/CallToAction";
 import Footer from "@/components/Footer";
 
 import Highlights from "@/components/Highlights";
 import NavBar from "./NavBar";
+import FAQs from "@/components/FAQs";
 
 export default async function Home() {
     return (
@@ -20,13 +19,13 @@ export default async function Home() {
                 <section id="Suburb-Highlights">
                     <Highlights />
                 </section>
-                {/* <section id="Call-To-Action">
-                    <CallToAction />
-                </section> */}
+                <section id="Frequent-Asked-Questions">
+                    <FAQs />
+                </section>
             </main>
-            {/* <footer>
+            <footer>
                 <Footer />
-            </footer> */}
+            </footer>
         </div>
     );
 }
