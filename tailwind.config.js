@@ -7,6 +7,7 @@ module.exports = {
             navigationBarBlue: "#112D4E",
             dashboardSelectorBlue: "#0174BE",
             hoverBlue: "#DBE2EF",
+            footerBlue: "#F0F0FA",
             white: "#fff",
             offWhite: "#F8F5F1",
             black: "#000",
