@@ -30,6 +30,20 @@ export default function FAQs() {
                             and it will get fixed as soon as possible!
                         </AccordionContent>
                     </AccordionItem>
+                    <AccordionItem value="item-3">
+                        <AccordionTrigger>How can I get in touch?</AccordionTrigger>
+                        <AccordionContent>
+                            Please feel free to drop a note to us at{" "}
+                            <a
+                                href="mailto:suburb.iq.feedback@gmail.com?subject=Feedback&body=Hi Suburb IQ team, "
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="font-bold"
+                            >
+                                suburb.iq.feedback@gmail.com
+                            </a>
+                        </AccordionContent>
+                    </AccordionItem>
                 </Accordion>
             </div>
         </div>
