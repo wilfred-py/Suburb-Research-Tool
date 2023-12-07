@@ -25,7 +25,7 @@ module.exports = {
             padding: "2rem",
             screens: {
                 "2xl": "1400px",
-                "8xl": "1792px",
+                "3xl": "2000px",
             },
         },
         extend: {
@@ -99,6 +99,19 @@ module.exports = {
             maxWidth: {
                 "7/10": "70%",
             },
+        },
+        screens: {
+            sm: "640px",
+            md: "768px",
+            lg: "1024px",
+            xl: "1280px",
+            "2xl": "1536px",
+            "3xl": "2000px",
+            "4xl": "2200px",
+            "5xl": "2500px",
+            "6xl": "2800px",
+            "7xl": "3000px",
+            "8xl": "3200px",
         },
     },
     plugins: [require("tailwindcss-animate")],

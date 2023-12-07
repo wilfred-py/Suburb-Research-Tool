@@ -12,9 +12,9 @@ export default function Highlights() {
     return (
         <>
             {/* Employment */}
-            <div className="flex flex-col md:justify-center w-full h-full mx-auto px-5 sm:px-9 md:px-10 lg:px-12">
+            <div className="flex flex-col md:justify-center w-full h-full mx-auto px-5 sm:px-9 md:px-10 lg:px-12 xl:px-24 2xl:px-40 3xl:px-52 4xl:px-72 5xl:px-96 6xl:px-[440px] 7xl:px-[500px] 8xl:px-[600px]">
                 <div className="flex flex-row justify-center lg:justify-start">
-                    <h1 className="mt-4 mb-1 font-inter700 text-2xl text-center lg:text-left">Employment</h1>
+                    <h1 className="mb-1 font-inter700 text-2xl text-center lg:text-left">Employment</h1>
                     <div className="flex flex-col justify-center mt-2 ml-2">
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
@@ -38,7 +38,7 @@ export default function Highlights() {
                 </h3>
             </div>
 
-            <div className="flex lg:flex-row flex-col my-2 lg:space-x-4 mx-auto px-5 sm:px-9 md:px-10 lg:px-12">
+            <div className="flex lg:flex-row flex-col my-2 lg:space-x-4 mx-auto px-5 sm:px-9 md:px-10 lg:px-12 xl:px-24 2xl:px-40 3xl:px-52 4xl:px-72 5xl:px-96 6xl:px-[440px] 7xl:px-[500px] 8xl:px-[600px]">
                 <div className="lg:w-1/3 border border-gray-200 rounded-md shadow-lg hover:shadow-xl mb-4">
                     <ExampleFTE selectedSuburb={""}></ExampleFTE>
                 </div>
@@ -52,7 +52,7 @@ export default function Highlights() {
 
             {/* Dwelling */}
             <hr className="mt-10 mx-6 sm:mx-10 lg:mx-12"></hr>
-            <div className="flex flex-col md:justify-center w-full h-full mx-auto px-5 sm:px-9 md:px-10 lg:px-12">
+            <div className="flex flex-col md:justify-center w-full h-full mx-auto px-5 sm:px-9 md:px-10 lg:px-12 xl:px-24 2xl:px-40 3xl:px-52 4xl:px-72 5xl:px-96 6xl:px-[440px] 7xl:px-[500px] 8xl:px-[600px]">
                 <div className="flex flex-row justify-center lg:justify-start">
                     <h1 className="mt-4 mb-1 font-inter700 text-2xl text-center lg:text-left">Dwelling Structure</h1>
                     <div className="flex flex-col justify-center mt-2 ml-2">
@@ -77,7 +77,7 @@ export default function Highlights() {
                     Discover the types of homes that exist in a suburb and its state over time
                 </h3>
             </div>
-            <div className="flex lg:flex-row flex-col my-2 lg:space-x-4 mx-auto px-5 sm:px-9 md:px-10 lg:px-12">
+            <div className="flex lg:flex-row flex-col my-2 lg:space-x-4 mx-auto px-5 sm:px-9 md:px-10 lg:px-12 xl:px-24 2xl:px-40 3xl:px-52 4xl:px-72 5xl:px-96 6xl:px-[440px] 7xl:px-[500px] 8xl:px-[600px]">
                 <div className="lg:w-1/2 h-[430px] sm:h-[450px] md:h-[480px] border border-gray-200 rounded-md shadow-lg hover:shadow-xl mb-4">
                     <ExampleSuburbDwellingStackedAreaChart selectedSuburb={""}></ExampleSuburbDwellingStackedAreaChart>
                 </div>
@@ -88,7 +88,7 @@ export default function Highlights() {
 
             {/* Income */}
             <hr className="mt-10 mx-6 sm:mx-10 lg:mx-12"></hr>
-            <div className="flex flex-col md:justify-center w-full h-full mx-auto px-5 sm:px-9 md:px-10 lg:px-12">
+            <div className="flex flex-col md:justify-center w-full h-full mx-auto px-5 sm:px-9 md:px-10 lg:px-12 xl:px-24 2xl:px-40 3xl:px-52 4xl:px-72 5xl:px-96 6xl:px-[440px] 7xl:px-[500px] 8xl:px-[600px]">
                 <div className="flex flex-row justify-center lg:justify-start">
                     <h1 className="mt-4 mb-1 font-inter700 text-2xl text-center lg:text-left">Income</h1>
                     <div className="flex flex-col justify-center mt-2 ml-2">
@@ -112,7 +112,7 @@ export default function Highlights() {
                 <h3 className="mb-4 font-inter400 text-center lg:text-left">Analyse personal and household income trends</h3>
             </div>
 
-            <div className="flex lg:flex-row flex-col my-2 lg:space-x-4 mx-auto px-5 sm:px-9 md:px-10 lg:px-12">
+            <div className="flex lg:flex-row flex-col my-2 lg:space-x-4 mx-auto px-5 sm:px-9 md:px-10 lg:px-12 xl:px-24 2xl:px-40 3xl:px-52 4xl:px-72 5xl:px-96 6xl:px-[440px] 7xl:px-[500px] 8xl:px-[600px]">
                 <div className="lg:w-1/2 sm:h-[350px] md:h-[380px] border border-gray-200 rounded-md shadow-lg hover:shadow-xl mb-4">
                     <ExamplePersonalMedianWeeklyIncome selectedSuburb={""}></ExamplePersonalMedianWeeklyIncome>
                 </div>
