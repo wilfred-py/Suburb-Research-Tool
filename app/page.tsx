@@ -14,19 +14,19 @@ export default async function Home() {
                 <NavBar />
             </header>
             <main>
-                <section id="About">
+                <section id="About" className="relative">
                     <About />
                 </section>
-                {/* <section id="Suburb-Highlights">
+                <section id="Suburb-Highlights">
                     <Highlights />
-                </section> */}
+                </section>
                 {/* <section id="Call-To-Action">
                     <CallToAction />
-                </section>
-                <section id="Footer">
-                    <Footer />
                 </section> */}
             </main>
+            {/* <footer>
+                <Footer />
+            </footer> */}
         </div>
     );
 }
