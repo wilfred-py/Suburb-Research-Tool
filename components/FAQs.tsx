@@ -16,7 +16,10 @@ export default function FAQs() {
                     <AccordionItem value="item-2">
                         <AccordionTrigger className="font-semibold">Where does the data come from?</AccordionTrigger>
                         <AccordionContent>
-                            All data are sourced from publicly available data on the Australian Bureau of Statistics (ABS) website.
+                            All data are sourced from publicly available data on the Australian Bureau of Statistics website:{" "}
+                            <a href="https://www.abs.gov.au/" target="_blank" className="font-bold underline">
+                                https://www.abs.gov.au
+                            </a>
                         </AccordionContent>
                     </AccordionItem>
                     <AccordionItem value="item-3">
@@ -38,7 +41,7 @@ export default function FAQs() {
                                 href="mailto:suburb.iq.feedback@gmail.com?subject=Feedback&body=Hi Suburb IQ team, "
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="font-bold"
+                                className="font-bold underline"
                             >
                                 suburb.iq.feedback@gmail.com
                             </a>

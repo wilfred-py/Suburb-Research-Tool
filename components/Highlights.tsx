@@ -51,7 +51,7 @@ export default function Highlights() {
             </div>
 
             {/* Dwelling */}
-            <hr className="mt-10 mx-6 sm:mx-10 lg:mx-12"></hr>
+            <hr className="mt-10 mx-6 sm:mx-10 lg:mx-12 xl:mx-24 2xl:mx-40 3xl:mx-52 4xl:mx-72"></hr>
             <div className="flex flex-col md:justify-center w-full h-full mx-auto px-5 sm:px-9 md:px-10 lg:px-12 xl:px-24 2xl:px-40 3xl:px-52 4xl:px-72 5xl:px-96 6xl:px-[440px] 7xl:px-[500px] 8xl:px-[600px]">
                 <div className="flex flex-row justify-center lg:justify-start">
                     <h1 className="mt-4 mb-1 font-inter700 text-2xl text-center lg:text-left">Dwelling Structure</h1>
@@ -87,7 +87,7 @@ export default function Highlights() {
             </div>
 
             {/* Income */}
-            <hr className="mt-10 mx-6 sm:mx-10 lg:mx-12"></hr>
+            <hr className="mt-10 mx-6 sm:mx-10 lg:mx-12 xl:mx-24 2xl:mx-40 3xl:mx-52 4xl:mx-72"></hr>
             <div className="flex flex-col md:justify-center w-full h-full mx-auto px-5 sm:px-9 md:px-10 lg:px-12 xl:px-24 2xl:px-40 3xl:px-52 4xl:px-72 5xl:px-96 6xl:px-[440px] 7xl:px-[500px] 8xl:px-[600px]">
                 <div className="flex flex-row justify-center lg:justify-start">
                     <h1 className="mt-4 mb-1 font-inter700 text-2xl text-center lg:text-left">Income</h1>

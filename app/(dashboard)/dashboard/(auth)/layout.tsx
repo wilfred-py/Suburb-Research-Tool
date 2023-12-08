@@ -6,7 +6,7 @@ export default function AuthLayout({ children }: { children: React.ReactNode }) 
             <div id="left-panel" className="flex flex-col xl:w-1/3 w-full border-r border-gray-500">
                 <div id="logo" className="xl:px-auto bg-authLeftGreen p-10">
                     <Link className="text-2xl font-bold" href={"/"}>
-                        Suburbly
+                        SuburbIQ
                     </Link>
                 </div>
 
