@@ -5,12 +5,12 @@ import Link from "next/link";
 
 export default function FAQs() {
     return (
-        <div className="flex flex-col w-full h-full mx-auto px-5 sm:px-9 md:px-10 lg:px-12 xl:px-24 2xl:px-60 3xl:px-72 4xl:px-96 5xl:px-[440px] 6xl:px-[500px] 7xl:px-[600px] 8xl:px-[720px] mt-14 mb-20">
+        <div className="flex flex-col w-full h-full mx-auto px-5 sm:px-9 md:px-10 lg:px-12 xl:px-24 2xl:px-40 3xl:px-52 4xl:px-72 5xl:px-96 6xl:px-[440px] 7xl:px-[500px] 8xl:px-[600px] mt-14 mb-20">
             <h1 className="text-2xl font-inter600">FAQs</h1>
             <div>
                 <Accordion type="multiple">
                     <AccordionItem value="item-1">
-                        <AccordionTrigger className="font-semibold ">Is this free to use?</AccordionTrigger>
+                        <AccordionTrigger className="font-semibold">Is this free to use?</AccordionTrigger>
                         <AccordionContent>Yes - accessing all graphs is 100% free. All you need is an email.</AccordionContent>
                     </AccordionItem>
                     <AccordionItem value="item-2">
