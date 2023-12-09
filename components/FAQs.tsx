@@ -26,7 +26,7 @@ export default function FAQs() {
                         <AccordionTrigger className="font-semibold">I spotted a bug. How do I report it?</AccordionTrigger>
                         <AccordionContent>
                             Thanks - your sharp eye is kindly appreciated. Please leave your feedback
-                            <a href={"https://suburb-iq.canny.io/bug-reports"} target="_blank">
+                            <a href={"https://suburb-iq.canny.io/bug-reports-features-requests"} target="_blank">
                                 {" "}
                                 <span className="font-bold underline">here</span>
                             </a>{" "}
@@ -34,6 +34,18 @@ export default function FAQs() {
                         </AccordionContent>
                     </AccordionItem>
                     <AccordionItem value="item-4">
+                        <AccordionTrigger className="font-semibold">How can I request new features?</AccordionTrigger>
+                        <AccordionContent>
+                            We're always looking for ways to implement new features that are useful to the community. There may be a chance
+                            that you have a great idea we haven't thought of yet! Let us know
+                            <a href={"https://suburb-iq.canny.io/bug-reports-features-requests"} target="_blank">
+                                {" "}
+                                <span className="font-bold underline">here</span>
+                            </a>{" "}
+                            and we'll get back to you.
+                        </AccordionContent>
+                    </AccordionItem>
+                    <AccordionItem value="item-5">
                         <AccordionTrigger className="font-semibold">How can I get in touch?</AccordionTrigger>
                         <AccordionContent>
                             Please feel free to drop a note to us at{" "}
