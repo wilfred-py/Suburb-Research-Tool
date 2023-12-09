@@ -8,12 +8,12 @@ export default function Footer() {
                     <h1 className="font-inter700 text-2xl">Suburb IQ</h1>
                 </div>
 
-                <div className="flex flex-col sm:max-lg:mt-4 space-y-2">
+                <div className="flex flex-col mobile-s:max-lg:mt-4 space-y-2">
                     <h1 className="font-inter600">Get started</h1>
-                    <Link href="/dashboard/sign-in" className="inline-block w-1/4">
+                    <Link href="/dashboard/sign-in" className="inline-block w-14">
                         Sign in
                     </Link>
-                    <Link href="/dashboard/sign-up" className="w-1/4">
+                    <Link href="/dashboard/sign-up" className="w-16">
                         Sign up
                     </Link>
                 </div>
