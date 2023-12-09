@@ -5,7 +5,7 @@ import Link from "next/link";
 
 export default function FAQs() {
     return (
-        <div className="flex flex-col w-full h-96 mx-auto px-5 sm:px-9 md:px-10 lg:px-12 xl:px-24 2xl:px-60 3xl:px-72 4xl:px-96 5xl:px-[440px] 6xl:px-[500px] 7xl:px-[600px] 8xl:px-[720px] mt-16 mb-20">
+        <div className="flex flex-col w-full h-full mx-auto px-5 sm:px-9 md:px-10 lg:px-12 xl:px-24 2xl:px-60 3xl:px-72 4xl:px-96 5xl:px-[440px] 6xl:px-[500px] 7xl:px-[600px] 8xl:px-[720px] mt-14 mb-20">
             <h1 className="text-2xl font-inter600">FAQs</h1>
             <div>
                 <Accordion type="multiple">
@@ -36,8 +36,8 @@ export default function FAQs() {
                     <AccordionItem value="item-4">
                         <AccordionTrigger className="font-semibold">How can I request new features?</AccordionTrigger>
                         <AccordionContent>
-                            We're always looking for ways to implement new features that are useful to the community. There may be a chance
-                            that you have a great idea we haven't thought of yet! Let us know
+                            We're always looking for ways to implement new features that are useful to the community. If you have a great
+                            idea, let us know
                             <a href={"https://suburb-iq.canny.io/bug-reports-features-requests"} target="_blank">
                                 {" "}
                                 <span className="font-bold underline">here</span>
