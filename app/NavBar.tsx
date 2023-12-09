@@ -77,7 +77,7 @@ export default function NavBar() {
                     <div className={`h-16 mx-auto max-w-8xl flex items-center justify-between ${isOpen ? "text-black" : "text-offWhite"}`}>
                         <div className="flex flex-1 gap-8 font-semibold ">
                             <Link className="text-2xl font-bold m-2" href={"/"}>
-                                SuburbIQ
+                                Suburb IQ
                             </Link>
                             {/* <li>
                         <Link href={"/test"} className="text-purple-500 font-bold text-2xl">
