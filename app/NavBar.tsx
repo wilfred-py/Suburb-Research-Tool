@@ -10,13 +10,10 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 
 export default function NavBar() {
-    // Handle hamburger open state
-    const [isOpen, setOpen] = useState(false);
-
+    // * Check auth
     // Handle auth state
     const [isEmailVerified, setIsEmailVerified] = useState<boolean | null>(false);
 
-    // * Check auth
     useEffect(() => {
         const supabase = createClientComponentClient();
 
@@ -48,6 +45,9 @@ export default function NavBar() {
     }
 
     // * Close hamburger menu if width > 1024px
+    // Handle hamburger open state
+    const [isOpen, setOpen] = useState(false);
+
     useEffect(() => {
         let resizeTimer: any;
 
@@ -66,13 +66,32 @@ export default function NavBar() {
         };
     }, [isOpen]);
 
+    // * Handle vertical scroll color change
+    const [scrolled, setScrolled] = useState(false);
+    useEffect(() => {
+        const handleScroll = () => {
+            const scrollPosition = window.scrollY;
+            if (scrollPosition > 372) {
+                setScrolled(true);
+            } else {
+                setScrolled(false);
+            }
+        };
+
+        window.addEventListener("scroll", handleScroll);
+
+        return () => {
+            window.removeEventListener("scroll", handleScroll);
+        };
+    }, []);
+
     return (
         <>
             <nav className="fixed w-full top-0 left-0 z-40">
                 <div
                     className={`mx-auto w-full px-5 sm:px-9 md:px-10 lg:px-12 xl:px-24 2xl:px-40 3xl:px-52 4xl:px-72 5xl:px-96 6xl:px-[440px] 7xl:px-[500px] 8xl:px-[600px] h-16 ${
                         isOpen ? "bg-white" : "bg-navigationBarBlue"
-                    }`}
+                    } `}
                 >
                     <div className={`h-16 mx-auto max-w-8xl flex items-center justify-between ${isOpen ? "text-black" : "text-offWhite"}`}>
                         <div className="flex flex-1 gap-8 font-semibold ">
@@ -101,8 +120,7 @@ export default function NavBar() {
                                 {!isEmailVerified && (
                                     <li className="hidden lg:block">
                                         <Button className="rounded-sm py-2 px-5 bg-white text-navigationBarBlue hover:bg-hoverBlue hover:shadow-sm hover:text-black">
-                                            Get Started
-                                            <Link href={"/dashboard/sign-up"}></Link>
+                                            <Link href={"/dashboard/sign-up"}>Get Started</Link>
                                         </Button>
                                     </li>
                                 )}
@@ -157,10 +175,10 @@ export default function NavBar() {
                         </ul>
                         {!isEmailVerified && (
                             <div className="mb-20 mt-auto flex flex-col items-center gap-3 p-5 md:flex-row md:gap-6 md:p-6 md:px-9">
-                                <Button className="h-10 w-full px-4 py-3 bg-gray text-black">
+                                <Button className="h-10 w-10/12 mobile-l:w-84  px-4 py-3 bg-gray text-black">
                                     <Link href="/dashboard/sign-in">Sign in</Link>
                                 </Button>
-                                <Button className="h-10 w-full px-4 py-3 bg-navigationBarBlue">
+                                <Button className="h-10 w-10/12 mobile-l:w-84  px-4 py-3 bg-navigationBarBlue">
                                     <Link href="/dashboard/sign-up"> Get started</Link>
                                 </Button>
                             </div>

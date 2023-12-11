@@ -5,6 +5,7 @@ module.exports = {
     theme: {
         colors: {
             navigationBarBlue: "#112D4E",
+            navigationBarBlueSecondary: "#273b52",
             dashboardSelectorBlue: "#0174BE",
             hoverBlue: "#DBE2EF",
             footerBlue: "#F0F0FA",
