@@ -20,6 +20,7 @@ module.exports = {
             buttonBlue: "#144272",
             hoverButtonBlue: "#43638f",
             buttonPressShadowWhite: "#F0F0F0",
+            gray: "#9E9E9E",
         },
         container: {
             center: true,
