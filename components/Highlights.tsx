@@ -13,7 +13,7 @@ export default function Highlights() {
         <>
             {/* Employment */}
             <div className="flex flex-col md:justify-center w-full h-full mx-auto px-5 sm:px-9 md:px-10 lg:px-12 xl:px-24 2xl:px-40 3xl:px-52 4xl:px-72 5xl:px-96 6xl:px-[440px] 7xl:px-[500px] 8xl:px-[600px] ">
-                <div className="flex flex-row justify-center lg:justify-start">
+                <div className="flex flex-row justify-center lg:justify-start mt-10">
                     <h1 className="mb-1 mt-4 font-inter700 text-2xl text-center lg:text-left">Employment</h1>
                     <div className="flex flex-col justify-center mt-2 ml-2">
                         <svg
