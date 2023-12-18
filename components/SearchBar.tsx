@@ -141,10 +141,10 @@ export default function SearchBar(props: SearchBarProps) {
     };
 
     return (
-        <div>
+        <div className="w-full">
             <div className="relative">
                 <form className="" onSubmit={onSearch}>
-                    <div className="relative w-[632px]">
+                    <div className="relative ">
                         <input
                             id="landing-page-searchbar"
                             type="search"
@@ -175,7 +175,7 @@ export default function SearchBar(props: SearchBarProps) {
                         <div>
                             <div
                                 ref={resultsRef}
-                                className="absolute flex flex-col first-line:absolute w-[632px] mt-1 pt-2 bg-white border border-gray-300 rounded-lg shadow-lg rounded-bl rounded-br overflow-y-hidden"
+                                className="absolute flex flex-col w-full first-line:absolute mt-1 pt-2 bg-white border border-gray-300 rounded-lg shadow-lg rounded-bl rounded-br overflow-y-hidden"
                             >
                                 <span className="pl-2 pb-2 font-semibold">Suggested Locations</span>
                                 {searchResults.map((suburb, index) => {
