@@ -141,7 +141,7 @@ export default function SearchBar(props: SearchBarProps) {
     };
 
     return (
-        <div className="w-full md:max-w-2xl">
+        <div className="w-full">
             <div className="relative">
                 <form className="" onSubmit={onSearch}>
                     <div className="relative ">
@@ -186,7 +186,7 @@ export default function SearchBar(props: SearchBarProps) {
                                         <div
                                             key={index}
                                             onClick={() => handleResultsClick(suburb)}
-                                            className="hover:bg-hoverBlue hover:font-semibold hover:cursor-pointer h-8 align-middle rounded-sm pl-2 select-none"
+                                            className="hover:bg-hoverBlue hover:font-semibold hover:cursor-pointer h-8 mobile-s:max-mobile-l:w-max-[240px] overflow-x-hidden whitespace-nowrap overflow-ellipsis align-middle rounded-sm pl-2 select-none"
                                         >
                                             {suburb}
                                         </div>
