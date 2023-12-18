@@ -34,7 +34,7 @@ export default function Dashboard() {
                         <div className="h-screen max-h-screen overflow-x-hidden overflow-y-hidden px-5 sm:px-9 md:px-10 lg:px-12 xl:px-24 2xl:px-40 3xl:px-52 4xl:px-72 5xl:px-96 6xl:px-[440px] 7xl:px-[500px] 8xl:px-[600px]">
                             <div className="h-2/5 flex flex-col justify-end items-center pb-20">
                                 <h1 className="mb-4 text-xl font-semibold text-center">Search a suburb or postcode below</h1>
-                                <div className="w-10/12">
+                                <div className="w-10/12 md:max-w-2xl">
                                     <SearchBar setSelectedSuburb={setSelectedSuburb} />
                                 </div>
                             </div>
