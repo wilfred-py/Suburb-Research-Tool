@@ -1,6 +1,6 @@
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 import { useEffect, useState } from "react";
-import { CartesianGrid, Label, Legend, Line, LineChart, Tooltip, XAxis, YAxis } from "recharts";
+import { CartesianGrid, Label, Legend, Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
 
 interface PopulationProps {
     selectedSuburb: string | null;
@@ -290,34 +290,42 @@ export default function Population(props: PopulationProps) {
     ];
 
     const renderLineChart = (
-        <LineChart width={600} height={400} data={data} margin={{ top: 15, right: 35, bottom: 30, left: 10 }}>
-            <Line type="natural" dataKey="Suburb" stroke="#219C90" strokeWidth={2.4} />
-            <CartesianGrid stroke="#ccc" strokeDasharray="5 5" />
-            <XAxis dataKey="name">
-                <Label value="year" position="bottom" />
-            </XAxis>
-            <YAxis tickCount={6} domain={[dataMin, dataMax]} padding={{ bottom: 30 }}>
-                <Label value="" position="insideLeft" />
-            </YAxis>
-            <Tooltip offset={50} cursor={false} />
-            <Legend verticalAlign="top" height={36} align="center" />
-            <CartesianGrid y={40}></CartesianGrid>
-        </LineChart>
+        <div className="w-64 h-64 sm:w-72 sm:h-72 md:w-80 md:h-80">
+            <ResponsiveContainer>
+                <LineChart data={data} margin={{ top: 15, right: 35, bottom: 30, left: 10 }}>
+                    <Line type="natural" dataKey="Suburb" stroke="#219C90" strokeWidth={2.4} />
+                    <CartesianGrid stroke="#ccc" strokeDasharray="5 5" />
+                    <XAxis dataKey="name">
+                        <Label value="year" position="bottom" />
+                    </XAxis>
+                    <YAxis tickCount={6} domain={[dataMin, dataMax]} padding={{ bottom: 30 }}>
+                        <Label value="" position="insideLeft" />
+                    </YAxis>
+                    <Tooltip offset={50} cursor={false} />
+                    <Legend verticalAlign="top" height={36} align="center" />
+                    <CartesianGrid y={40}></CartesianGrid>
+                </LineChart>
+            </ResponsiveContainer>
+        </div>
     );
 
     const insufficientDataLineChart = (
-        <LineChart width={600} height={400} data={data} margin={{ right: 30, bottom: 30, left: 30 }}>
-            <CartesianGrid stroke="#ccc" strokeDasharray="5 5" />
-            <XAxis dataKey="name">
-                <Label value="year" position="bottom" />
-            </XAxis>
-            <YAxis tickCount={10} domain={[35, 75]} padding={{ bottom: 30 }}>
-                <Label value="number of people" position="insideLeft" />
-            </YAxis>
-            <Tooltip offset={50} cursor={false} />
-            <Legend verticalAlign="top" height={36} align="center" />
-            <CartesianGrid y={40}></CartesianGrid>
-        </LineChart>
+        <div className="w-64 h-64 sm:w-72 sm:h-72 md:w-80 md:h-80">
+            <ResponsiveContainer>
+                <LineChart width={600} height={400} data={data} margin={{ right: 30, bottom: 30, left: 30 }}>
+                    <CartesianGrid stroke="#ccc" strokeDasharray="5 5" />
+                    <XAxis dataKey="name">
+                        <Label value="year" position="bottom" />
+                    </XAxis>
+                    <YAxis tickCount={10} domain={[35, 75]} padding={{ bottom: 30 }}>
+                        <Label value="number of people" position="insideLeft" />
+                    </YAxis>
+                    <Tooltip offset={50} cursor={false} />
+                    <Legend verticalAlign="top" height={36} align="center" />
+                    <CartesianGrid y={40}></CartesianGrid>
+                </LineChart>
+            </ResponsiveContainer>
+        </div>
     );
 
     return (

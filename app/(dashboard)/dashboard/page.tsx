@@ -57,7 +57,7 @@ export default function Dashboard() {
                             </div>
 
                             {/* Dashboard selector */}
-                            <div className="my-4 w-6/12">
+                            <div className="my-4 w-6/12 mobile-s:max-mobile-l:">
                                 <DashboardSelector selectedView={selectedView} onChangeView={handleViewChange} />
                             </div>
 

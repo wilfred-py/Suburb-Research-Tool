@@ -398,36 +398,44 @@ export default function FullTimeEmploymentLineGraph(props: FullTimeEmploymentPro
     ];
 
     const renderLineChart = (
-        <LineChart width={600} height={400} data={data} margin={{ top: 30, right: 30, bottom: 30, left: 5 }}>
-            <Line type="natural" dataKey="Suburb" stroke="#219C90" strokeWidth={2.8} />
-            <Line type="natural" dataKey="State" stroke="#068FFF" strokeWidth={1.2} />
-            <Line type="natural" dataKey="Australia" stroke="#A90076" strokeWidth={1.2} />
-            <CartesianGrid stroke="#ccc" strokeDasharray="5 5" />
-            <XAxis dataKey="name">
-                <Label value="year" position="bottom" />
-            </XAxis>
-            <YAxis tickCount={10} domain={[dataMin - 2, dataMax + 2]} padding={{ bottom: 15 }}>
-                <Label value="%" position="insideLeft" />
-            </YAxis>
-            <Tooltip offset={50} cursor={false} />
-            <Legend verticalAlign="top" height={36} align="center" />
-            <CartesianGrid y={40}></CartesianGrid>
-        </LineChart>
+        <div className="w-64 h-64 sm:w-72 sm:h-72 md:w-80 md:h-80">
+            <ResponsiveContainer>
+                <LineChart width={600} height={400} data={data} margin={{ top: 30, right: 30, bottom: 30, left: 5 }}>
+                    <Line type="natural" dataKey="Suburb" stroke="#219C90" strokeWidth={2.8} />
+                    <Line type="natural" dataKey="State" stroke="#068FFF" strokeWidth={1.2} />
+                    <Line type="natural" dataKey="Australia" stroke="#A90076" strokeWidth={1.2} />
+                    <CartesianGrid stroke="#ccc" strokeDasharray="5 5" />
+                    <XAxis dataKey="name">
+                        <Label value="year" position="bottom" />
+                    </XAxis>
+                    <YAxis tickCount={10} domain={[dataMin - 2, dataMax + 2]} padding={{ bottom: 15 }}>
+                        <Label value="%" position="insideLeft" />
+                    </YAxis>
+                    <Tooltip offset={50} cursor={false} />
+                    <Legend verticalAlign="top" height={36} align="center" />
+                    <CartesianGrid y={40}></CartesianGrid>
+                </LineChart>
+            </ResponsiveContainer>
+        </div>
     );
 
     const insufficientDataLineChart = (
-        <LineChart width={600} height={400} data={data} margin={{ right: 30, bottom: 30, left: 30 }}>
-            <CartesianGrid stroke="#ccc" strokeDasharray="5 5" />
-            <XAxis dataKey="name">
-                <Label value="year" position="bottom" />
-            </XAxis>
-            <YAxis tickCount={10} domain={[35, 75]}>
-                <Label value="%" position="insideLeft" />
-            </YAxis>
-            <Tooltip offset={50} cursor={false} />
-            <Legend verticalAlign="top" height={36} align="center" />
-            <CartesianGrid y={40}></CartesianGrid>
-        </LineChart>
+        <div className="w-64 h-64 sm:w-72 sm:h-72 md:w-80 md:h-80">
+            <ResponsiveContainer>
+                <LineChart width={600} height={400} data={data} margin={{ right: 30, bottom: 30, left: 30 }}>
+                    <CartesianGrid stroke="#ccc" strokeDasharray="5 5" />
+                    <XAxis dataKey="name">
+                        <Label value="year" position="bottom" />
+                    </XAxis>
+                    <YAxis tickCount={10} domain={[35, 75]}>
+                        <Label value="%" position="insideLeft" />
+                    </YAxis>
+                    <Tooltip offset={50} cursor={false} />
+                    <Legend verticalAlign="top" height={36} align="center" />
+                    <CartesianGrid y={40}></CartesianGrid>
+                </LineChart>
+            </ResponsiveContainer>
+        </div>
     );
 
     return (
