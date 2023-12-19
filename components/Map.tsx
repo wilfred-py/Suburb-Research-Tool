@@ -10,40 +10,6 @@ interface MapProps {
     selectedSuburb: string | null;
 }
 
-// !!! Deprecated Function (suburb is now passed in through prop) Get Suburb Name from URL
-// function getSuburbDetails() {
-//     const url = new URL(window.location.href);
-//     const pathname = url.pathname;
-
-//     // State Regex
-//     const stateRegex = /^(.*?)(VIC|NSW|ACT|WA|SA)/;
-
-//     // String in URL
-//     const stringInURL = pathname.replace("/suburb/", "");
-
-//     // ! Suburb Name
-//     // Create substrings based on stateRegex
-//     const suburbMatch = stringInURL.match(stateRegex);
-
-//     // If it exists, return first match in suburbName
-//     const suburbName = suburbMatch ? suburbMatch[1] : null;
-
-//     // Replace "+" and remove leading and trailing white spaces
-//     const formattedSuburbName = suburbName ? suburbName.replaceAll("+", " ").trim() : null;
-
-//     // ! State Name
-//     const stateName = suburbMatch ? suburbMatch[2] : null;
-
-//     // ! Post Code
-//     const postcode = stringInURL.slice(-4);
-
-//     return {
-//         suburbName: formattedSuburbName,
-//         stateName,
-//         postcode,
-//     };
-// }
-
 function deconstructSuburb(suburb: string | null) {
     // State Regex
     const stateRegex = /^(.*?),\s*(VIC|NSW|ACT|WA|SA|TAS|NT|QLD|Other Territories)/;
@@ -149,15 +115,15 @@ const Map: NextPage<MapProps> = (props: MapProps) => {
     }
 
     return (
-        <div className="w-full z-0 flex place-items-center">
-            {/* {isLoaded ? (
+        <div className="z-0 flex place-items-center w-full h-full">
+            {isLoaded ? (
                 geocodeFetched ? (
                     <GoogleMap
                         options={mapOptions}
                         zoom={13}
                         center={mapCenter}
                         mapTypeId={google.maps.MapTypeId.ROADMAP}
-                        mapContainerStyle={{ width: "800px", height: "450px" }}
+                        mapContainerStyle={{ width: "800px", height: "407px" }}
                         onLoad={() => console.log("Map Component Loaded...")}
                     >
                         {geocodeData && <MarkerF position={mapCenter} onLoad={() => console.log("Marker Loaded")} />}
@@ -167,7 +133,7 @@ const Map: NextPage<MapProps> = (props: MapProps) => {
                 )
             ) : (
                 <p>Loading...</p>
-            )} */}
+            )}
         </div>
     );
 };
