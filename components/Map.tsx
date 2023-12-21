@@ -123,7 +123,7 @@ const Map: NextPage<MapProps> = (props: MapProps) => {
                         zoom={13}
                         center={mapCenter}
                         mapTypeId={google.maps.MapTypeId.ROADMAP}
-                        mapContainerStyle={{ width: "800px", height: "407px" }}
+                        mapContainerStyle={{ width: "800px", height: "364px" }}
                         onLoad={() => console.log("Map Component Loaded...")}
                     >
                         {geocodeData && <MarkerF position={mapCenter} onLoad={() => console.log("Marker Loaded")} />}

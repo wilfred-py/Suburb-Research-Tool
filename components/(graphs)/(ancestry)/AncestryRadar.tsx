@@ -236,44 +236,50 @@ export default function AncestryChart(props: AncestryChartProps) {
                 </div>
 
                 {selectedYear === "2011" && (
-                    <div>
-                        <RadarChart outerRadius="80%" width={730} height={350} data={twentyElevenData}>
-                            <PolarGrid />
-                            <PolarAngleAxis dataKey="ancestry" />
-                            <PolarRadiusAxis angle={30} />
-                            <Radar name="% of suburb" dataKey="suburb" stroke="#219C90" fill="#219C90" fillOpacity={0.28} />
-                            <Radar name="% of state" dataKey="state" stroke="#068FFF" fill="#068FFF" fillOpacity={0.28} />
-                            <Legend />
-                            <Tooltip offset={50} />
-                        </RadarChart>
+                    <div className="w-64 h-64 sm:w-72 sm:h-72 md:w-80 md:h-80">
+                        <ResponsiveContainer>
+                            <RadarChart outerRadius="80%" data={twentyElevenData}>
+                                <PolarGrid />
+                                <PolarAngleAxis dataKey="ancestry" />
+                                <PolarRadiusAxis angle={30} />
+                                <Radar name="% of suburb" dataKey="suburb" stroke="#219C90" fill="#219C90" fillOpacity={0.28} />
+                                <Radar name="% of state" dataKey="state" stroke="#068FFF" fill="#068FFF" fillOpacity={0.28} />
+                                <Legend />
+                                <Tooltip offset={50} />
+                            </RadarChart>
+                        </ResponsiveContainer>
                     </div>
                 )}
 
                 {selectedYear === "2016" && (
-                    <div>
-                        <RadarChart outerRadius="80%" width={730} height={350} data={twentySixteenData}>
-                            <PolarGrid />
-                            <PolarAngleAxis dataKey="ancestry" />
-                            <PolarRadiusAxis angle={30} />
-                            <Radar name="% of suburb" dataKey="suburb" stroke="#219C90" fill="#219C90" fillOpacity={0.28} />
-                            <Radar name="% of state" dataKey="state" stroke="#068FFF" fill="#068FFF" fillOpacity={0.28} />
-                            <Legend />
-                            <Tooltip offset={50} />
-                        </RadarChart>
+                    <div className="w-64 h-64 sm:w-72 sm:h-72 md:w-80 md:h-80">
+                        <ResponsiveContainer>
+                            <RadarChart outerRadius="80%" data={twentySixteenData}>
+                                <PolarGrid />
+                                <PolarAngleAxis dataKey="ancestry" />
+                                <PolarRadiusAxis angle={30} />
+                                <Radar name="% of suburb" dataKey="suburb" stroke="#219C90" fill="#219C90" fillOpacity={0.28} />
+                                <Radar name="% of state" dataKey="state" stroke="#068FFF" fill="#068FFF" fillOpacity={0.28} />
+                                <Legend />
+                                <Tooltip offset={50} />
+                            </RadarChart>
+                        </ResponsiveContainer>
                     </div>
                 )}
 
                 {selectedYear === "2021" && (
-                    <div>
-                        <RadarChart outerRadius="80%" width={730} height={350} data={twentyTwentyOneData}>
-                            <PolarGrid />
-                            <PolarAngleAxis dataKey="ancestry" />
-                            <PolarRadiusAxis angle={30} />
-                            <Radar name="% of suburb" dataKey="suburb" stroke="#219C90" fill="#219C90" fillOpacity={0.28} />
-                            <Radar name="% of state" dataKey="state" stroke="#068FFF" fill="#068FFF" fillOpacity={0.28} />
-                            <Legend />
-                            <Tooltip offset={50} />
-                        </RadarChart>
+                    <div className="w-full h-full">
+                        <ResponsiveContainer>
+                            <RadarChart outerRadius="80%" data={twentyTwentyOneData}>
+                                <PolarGrid />
+                                <PolarAngleAxis dataKey="ancestry" />
+                                <PolarRadiusAxis angle={30} />
+                                <Radar name="% of suburb" dataKey="suburb" stroke="#219C90" fill="#219C90" fillOpacity={0.28} />
+                                <Radar name="% of state" dataKey="state" stroke="#068FFF" fill="#068FFF" fillOpacity={0.28} />
+                                <Legend />
+                                <Tooltip offset={50} />
+                            </RadarChart>
+                        </ResponsiveContainer>
                     </div>
                 )}
             </div>
