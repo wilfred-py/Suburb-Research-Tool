@@ -7,7 +7,7 @@ interface OverviewProps {
 export default function OverviewView(props: OverviewProps) {
     return (
         <div className="flex flex-row justify-center">
-            <div className="min-h-screen w-full">
+            <div className="min-h-full w-full">
                 <SummaryData selectedSuburb={props.selectedSuburb} />
             </div>
         </div>
