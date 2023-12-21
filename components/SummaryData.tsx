@@ -77,7 +77,7 @@ export default function SummaryData(props: SummaryDataProps) {
                 ?.filter((data) => data.suburb_name == suburbName)
                 .map((data) => (
                     <div className="">
-                        <div className="w-full flex mobile-s:max-md:flex-col flex-row">
+                        <div className="w-full flex flex-row mobile-s:max-md:flex-col">
                             <div className="w-6/12 h-3/6 mobile-s:max-md:w-full flex flex-col mr-2">
                                 <div className="w-full h-3/6 border border-gray-200 rounded-md shadow-lg hover:shadow-xl">
                                     <Map selectedSuburb={props.selectedSuburb} />
@@ -88,7 +88,7 @@ export default function SummaryData(props: SummaryDataProps) {
                                 </div>
                             </div>
 
-                            <div className="w-6/12 h-3/6 mobile-s:max-md:mt-2 mobile-s:max-md:w-full flex flex-col">
+                            <div className="w-6/12 h-3/6 mobile-s:max-md:mt-2 mobile-s:max-md:w-full flex flex-col bg-buttonYellow">
                                 <div className="w-full h-3/6 border border-gray-200 rounded-md shadow-lg hover:shadow-xl">
                                     <FullTimeEmploymentLineGraph selectedSuburb={props.selectedSuburb} />
                                 </div>
