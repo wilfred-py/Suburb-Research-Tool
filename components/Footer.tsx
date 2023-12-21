@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export default function Footer() {
     return (
-        <div className="w-full h-full pt-10 pb-32 lg:pt-16 mx-auto px-5 sm:px-9 md:px-10 lg:px-12 xl:px-24 2xl:px-40 3xl:px-52 4xl:px-72 5xl:px-96 6xl:px-[440px] 7xl:px-[500px] 8xl:px-[600px] bg-footerBlue">
+        <div className="w-full h-full mt-4 pt-10 pb-32 lg:pt-16 mx-auto px-5 sm:px-9 md:px-10 lg:px-12 xl:px-24 2xl:px-40 3xl:px-52 4xl:px-72 5xl:px-96 6xl:px-[440px] 7xl:px-[500px] 8xl:px-[600px] bg-footerBlue">
             <div className="flex flex-col lg:flex-row">
                 <div className="flex flex-col w-48 ">
                     <h1 className="font-inter700 text-2xl">Suburb IQ</h1>

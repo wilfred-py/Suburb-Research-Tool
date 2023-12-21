@@ -1,3 +1,4 @@
+import Footer from "@/components/Footer";
 import "./globals.css";
 import { Roboto, Inter } from "next/font/google";
 
@@ -30,6 +31,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 {}
 
                 {children}
+                <footer>
+                    <Footer />
+                </footer>
             </body>
         </html>
     );

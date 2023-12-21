@@ -222,7 +222,7 @@ export default function AncestryChart(props: AncestryChartProps) {
 
     return (
         <>
-            <div className="select-none">
+            <div className="w-full h-full select-none">
                 <h1 className="mt-4 mb-4 text-lg text-center font-bold select-none">Ancestry</h1>
                 <div className="ml-6">
                     <Select value={selectedYear} onValueChange={handleYearChange}>
@@ -238,7 +238,7 @@ export default function AncestryChart(props: AncestryChartProps) {
                 </div>
 
                 {selectedYear === "2011" && (
-                    <div className="w-64 h-64 sm:w-72 sm:h-72 md:w-80 md:h-80">
+                    <div className="w-full h-[300px]">
                         <ResponsiveContainer>
                             <RadarChart outerRadius="80%" data={twentyElevenData}>
                                 <PolarGrid />
@@ -254,7 +254,7 @@ export default function AncestryChart(props: AncestryChartProps) {
                 )}
 
                 {selectedYear === "2016" && (
-                    <div className="w-64 h-64 sm:w-72 sm:h-72 md:w-80 md:h-80">
+                    <div className="w-full h-[300px]">
                         <ResponsiveContainer>
                             <RadarChart outerRadius="80%" data={twentySixteenData}>
                                 <PolarGrid />
@@ -270,7 +270,7 @@ export default function AncestryChart(props: AncestryChartProps) {
                 )}
 
                 {selectedYear === "2021" && (
-                    <div className="w-full h-full">
+                    <div className="w-full h-[300px]">
                         <ResponsiveContainer>
                             <RadarChart outerRadius="80%" data={twentyTwentyOneData}>
                                 <PolarGrid />

@@ -23,9 +23,6 @@ export default async function Home() {
                     <FAQs />
                 </section>
             </main>
-            <footer>
-                <Footer />
-            </footer>
         </div>
     );
 }
