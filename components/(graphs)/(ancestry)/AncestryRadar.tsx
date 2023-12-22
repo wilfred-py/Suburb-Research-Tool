@@ -221,18 +221,20 @@ export default function AncestryChart(props: AncestryChartProps) {
     return (
         <>
             <div className="w-full h-full select-none">
-                <h1 className="mt-4 mb-4 text-lg text-center font-bold select-none">Ancestry</h1>
-                <div className="ml-6">
-                    <Select value={selectedYear} onValueChange={handleYearChange}>
-                        <SelectTrigger className="w-[180px]">
-                            <SelectValue placeholder="2021" />
-                        </SelectTrigger>
-                        <SelectContent>
-                            <SelectItem value="2021">2021</SelectItem>
-                            <SelectItem value="2016">2016</SelectItem>
-                            <SelectItem value="2011">2011</SelectItem>
-                        </SelectContent>
-                    </Select>
+                <h1 className="mt-4 text-lg text-center font-bold select-none">Ancestry</h1>
+                <div className="flex flex-col items-center lg:items-start mobile-l:ml-6 pt-6">
+                    <div>
+                        <Select value={selectedYear} onValueChange={handleYearChange}>
+                            <SelectTrigger className="w-[180px]">
+                                <SelectValue placeholder="2021" />
+                            </SelectTrigger>
+                            <SelectContent>
+                                <SelectItem value="2021">2021</SelectItem>
+                                <SelectItem value="2016">2016</SelectItem>
+                                <SelectItem value="2011">2011</SelectItem>
+                            </SelectContent>
+                        </Select>
+                    </div>
                 </div>
 
                 {selectedYear === "2011" && (
@@ -268,7 +270,7 @@ export default function AncestryChart(props: AncestryChartProps) {
                 )}
 
                 {selectedYear === "2021" && (
-                    <div className="w-full h-[300px]">
+                    <div className="w-full mobile-s:max-sm:h-[240px] sm:max-md:h-[280px] md:max-lg: h-[240px] lg:h-[280px] mobile-s:max-sm:mt-20 md:mt-10">
                         <ResponsiveContainer>
                             <RadarChart outerRadius="80%" data={twentyTwentyOneData}>
                                 <PolarGrid />
