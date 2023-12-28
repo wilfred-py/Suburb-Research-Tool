@@ -290,9 +290,9 @@ export default function Population(props: PopulationProps) {
     ];
 
     const renderLineChart = (
-        <div className="w-64 h-64 sm:w-72 sm:h-72 md:w-80 md:h-80">
+        <div className="mobile-s:max-mobile-l:w-[260px] mobile-s:max-mobile-l:h-[440px] mobile-l:max-md:w-[360px] sm:max-md:h-[420px] md:max-md-l:w-[300px] md-l:h-[440px] md-l:max-lg:w-[360px] mobile-s:max-sm:mt-10 sm:max-md:mt-12 md:mt-6">
             <ResponsiveContainer>
-                <LineChart data={data} margin={{ top: 15, right: 35, bottom: 30, left: 10 }}>
+                <LineChart data={data} margin={{ top: 0, right: 30, bottom: 60, left: 5 }}>
                     <Line type="natural" dataKey="Suburb" stroke="#219C90" strokeWidth={2.4} />
                     <CartesianGrid stroke="#ccc" strokeDasharray="5 5" />
                     <XAxis dataKey="name">
@@ -302,7 +302,13 @@ export default function Population(props: PopulationProps) {
                         <Label value="" position="insideLeft" />
                     </YAxis>
                     <Tooltip offset={50} cursor={false} />
-                    <Legend verticalAlign="top" height={36} align="center" />
+                    <Legend
+                        height={70}
+                        layout="horizontal"
+                        verticalAlign="top"
+                        align="center"
+                        margin={{ top: 0, right: 0, bottom: 0, left: 0 }}
+                    />
                     <CartesianGrid y={40}></CartesianGrid>
                 </LineChart>
             </ResponsiveContainer>
@@ -310,9 +316,9 @@ export default function Population(props: PopulationProps) {
     );
 
     const insufficientDataLineChart = (
-        <div className="w-64 h-64 sm:w-72 sm:h-72 md:w-80 md:h-80">
+        <div className="mobile-s:max-mobile-l:w-[260px] mobile-s:max-mobile-l:h-[440px] mobile-l:max-md:w-[360px] sm:max-md:h-[420px] md:max-md-l:w-[300px] md-l:h-[440px] md-l:max-lg:w-[360px] mobile-s:max-sm:mt-10 sm:max-md:mt-12 md:mt-6">
             <ResponsiveContainer>
-                <LineChart width={600} height={400} data={data} margin={{ right: 30, bottom: 30, left: 30 }}>
+                <LineChart data={data} margin={{ right: 30, bottom: 30, left: 30 }}>
                     <CartesianGrid stroke="#ccc" strokeDasharray="5 5" />
                     <XAxis dataKey="name">
                         <Label value="year" position="bottom" />
@@ -321,7 +327,13 @@ export default function Population(props: PopulationProps) {
                         <Label value="number of people" position="insideLeft" />
                     </YAxis>
                     <Tooltip offset={50} cursor={false} />
-                    <Legend verticalAlign="top" height={36} align="center" />
+                    <Legend
+                        height={70}
+                        layout="horizontal"
+                        verticalAlign="top"
+                        align="center"
+                        margin={{ top: 0, right: 0, bottom: 0, left: 0 }}
+                    />
                     <CartesianGrid y={40}></CartesianGrid>
                 </LineChart>
             </ResponsiveContainer>
