@@ -88,7 +88,7 @@ export default function SummaryData(props: SummaryDataProps) {
                         </div>
 
                         <div className="w-6/12 h-full flex flex-col mobile-s:max-md:mt-2 mobile-s:max-md:w-full mb-10 pr-1 pb-1">
-                            <div className="w-full h-[520px] border border-gray-200 rounded-md shadow-lg hover:shadow-xl">
+                            <div className="w-full h-[520px] border border-gray-200 rounded-md shadow-lg hover:shadow-xl ">
                                 <FullTimeEmploymentLineGraph selectedSuburb={props.selectedSuburb} />
                             </div>
 

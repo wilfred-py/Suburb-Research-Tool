@@ -103,7 +103,7 @@ module.exports = {
             },
         },
         screens: {
-            "mobile-s": "200px",
+            "mobile-s": "360px",
             "mobile-l": "425px",
             sm: "640px",
             md: "768px",
