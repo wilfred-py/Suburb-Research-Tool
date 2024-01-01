@@ -115,25 +115,27 @@ const Map: NextPage<MapProps> = (props: MapProps) => {
     }
 
     return (
-        <div className="z-0 flex place-items-center w-full h-full">
-            {isLoaded ? (
-                geocodeFetched ? (
-                    <GoogleMap
-                        options={mapOptions}
-                        zoom={13}
-                        center={mapCenter}
-                        mapTypeId={google.maps.MapTypeId.ROADMAP}
-                        mapContainerStyle={{ width: "800px", height: "364px" }}
-                        onLoad={() => console.log("Map Component Loaded...")}
-                    >
-                        {geocodeData && <MarkerF position={mapCenter} onLoad={() => console.log("Marker Loaded")} />}
-                    </GoogleMap>
+        <div className="mobile-s:max-mobile-l:w-[260px] mobile-s:max-mobile-l:h-[440px] mobile-l:max-md:w-[360px] sm:max-md:h-[420px] md:max-md-l:w-[300px] md-l:h-[440px] md-l:w-[360px] mobile-s:max-sm:mt-10 sm:max-md:mt-12 md:mt-6">
+            <div className="z-0 flex place-items-center w-full h-full">
+                {isLoaded ? (
+                    geocodeFetched ? (
+                        <GoogleMap
+                            options={mapOptions}
+                            zoom={13}
+                            center={mapCenter}
+                            mapTypeId={google.maps.MapTypeId.ROADMAP}
+                            mapContainerStyle={{ width: "800px", height: "364px" }}
+                            onLoad={() => console.log("Map Component Loaded...")}
+                        >
+                            {geocodeData && <MarkerF position={mapCenter} onLoad={() => console.log("Marker Loaded")} />}
+                        </GoogleMap>
+                    ) : (
+                        <p>Loading...</p>
+                    )
                 ) : (
                     <p>Loading...</p>
-                )
-            ) : (
-                <p>Loading...</p>
-            )}
+                )}
+            </div>
         </div>
     );
 };

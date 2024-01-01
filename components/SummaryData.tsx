@@ -78,11 +78,11 @@ export default function SummaryData(props: SummaryDataProps) {
                 .map((data) => (
                     <div className="w-full h-full flex flex-row mobile-s:max-md:flex-col">
                         <div className="w-6/12 h-full flex flex-col mobile-s:max-md:w-full mb-10 px-1 pb-1">
-                            <div className="max-w-[520px] h-1/2 border border-gray-200 rounded-md shadow-lg hover:shadow-xl">
+                            <div className="max-w-[520px] h-[520px] border border-gray-200 rounded-md shadow-lg hover:shadow-xl">
                                 <Map selectedSuburb={props.selectedSuburb} />
                             </div>
 
-                            <div className="max-w-[520px] h-[520px] border border-gray-200 rounded-md shadow-lg hover:shadow-xl">
+                            <div className="max-w-[520px] h-[520px] mt-2 border border-gray-200 rounded-md shadow-lg hover:shadow-xl">
                                 <Population selectedSuburb={props.selectedSuburb} />
                             </div>
                         </div>
