@@ -56,7 +56,7 @@ export default function Dashboard() {
                             </div>
                         </div>
 
-                        <div className="max-w-[1280px] mx-auto mt-8">
+                        <div className="max-w-[2108px] mt-8">
                             <div className="w-full flex flex-col md:flex-row">
                                 {/* Dashboard selector */}
                                 <div className="">
