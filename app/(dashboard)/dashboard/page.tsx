@@ -47,25 +47,30 @@ export default function Dashboard() {
                         <h1 className="mt-20 text-4xl font-semibold">Dashboard</h1>
 
                         <div className="h-full flex flex-col">
-                            <div className="max-w-[712px] my-6 z-40">
+                            <div className=" max-w-[528px] my-6 z-40">
                                 <SearchBar setSelectedSuburb={setSelectedSuburb} />
                             </div>
 
                             <div>
                                 <h1 className="font-bold pl-1">{selectedSuburb}</h1>
                             </div>
+                        </div>
 
-                            {/* Dashboard selector */}
-                            <div className="my-4 w-6/12 mobile-s:max-mobile-l:">
-                                <DashboardSelector selectedView={selectedView} onChangeView={handleViewChange} />
+                        <div className="max-w-[1280px] mx-auto mt-8">
+                            <div className="w-full flex flex-col md:flex-row">
+                                {/* Dashboard selector */}
+                                <div className="mx-auto">
+                                    <DashboardSelector selectedView={selectedView} onChangeView={handleViewChange} />
+                                </div>
+
+                                <div className="flex-1 md:pl-10 py-2">
+                                    {/* Conditionally render Overview/Housing Details/Demographic/Lifestyle depending on selectedView state */}
+                                    {selectedView == "Overview" ? <OverviewView selectedSuburb={selectedSuburb} /> : ""}
+                                    {selectedView == "Demographic" ? <DemographicView selectedSuburb={selectedSuburb} /> : ""}
+                                    {selectedView == "Housing Details" ? <HousingDetailsView selectedSuburb={selectedSuburb} /> : ""}
+                                    {selectedView == "Lifestyle" ? <LifestyleView selectedSuburb={selectedSuburb} /> : ""}
+                                </div>
                             </div>
-
-                            {/* Dashboard <div> */}
-                            {/* Conditionally render Overview/Housing Details/Demographic/Lifestyle depending on selectedView state */}
-                            {selectedView == "Overview" ? <OverviewView selectedSuburb={selectedSuburb} /> : ""}
-                            {selectedView == "Demographic" ? <DemographicView selectedSuburb={selectedSuburb} /> : ""}
-                            {selectedView == "Housing Details" ? <HousingDetailsView selectedSuburb={selectedSuburb} /> : ""}
-                            {selectedView == "Lifestyle" ? <LifestyleView selectedSuburb={selectedSuburb} /> : ""}
                         </div>
                     </div>
                 )}
