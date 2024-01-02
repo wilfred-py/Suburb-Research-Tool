@@ -59,7 +59,7 @@ export default function Dashboard() {
                         <div className="max-w-[1280px] mx-auto mt-8">
                             <div className="w-full flex flex-col md:flex-row">
                                 {/* Dashboard selector */}
-                                <div className="mx-auto">
+                                <div className="">
                                     <DashboardSelector selectedView={selectedView} onChangeView={handleViewChange} />
                                 </div>
 
