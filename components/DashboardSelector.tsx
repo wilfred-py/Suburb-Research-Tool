@@ -21,7 +21,7 @@ export default function DashboardSelector(props: DashboardSelectorProps) {
     };
 
     return (
-        <div className="flex flex-row  md:flex-col min-w-[10rem] h-1/4 md:space-y-1 md:py-2.5 md:mx-0 mb-6 md:mb-0 md:top-[4.5rem] md:sticky justify-evenly">
+        <div className="flex flex-row md:flex-col min-w-[10rem] h-1/4 md:space-y-1 md:py-2.5 md:mx-0 mb-6 md:mb-0 md:top-[4.5rem] md:sticky ">
             <button className={getButtonCSS("Overview")} onClick={() => handleViewClick("Overview")}>
                 {props.selectedView == "Overview" ? (
                     <span className="hidden md:block absolute w-0.5 h-full -left-2.5 top-0 bg-buttonBlue"></span>
