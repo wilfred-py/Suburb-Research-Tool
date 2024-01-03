@@ -47,7 +47,7 @@ export default function Dashboard() {
                         <h1 className="mt-20 text-4xl font-semibold">Dashboard</h1>
 
                         <div className="h-full flex flex-col">
-                            <div className=" max-w-[528px] my-6 z-40">
+                            <div className="max-w-[528px] my-6 z-40">
                                 <SearchBar setSelectedSuburb={setSelectedSuburb} />
                             </div>
 
@@ -56,14 +56,14 @@ export default function Dashboard() {
                             </div>
                         </div>
 
-                        <div className="max-w-[2108px] mt-8">
+                        <div className="w-full max-w-[2108px] mt-8">
                             <div className="w-full flex flex-col md:flex-row">
                                 {/* Dashboard selector */}
                                 <div className="">
                                     <DashboardSelector selectedView={selectedView} onChangeView={handleViewChange} />
                                 </div>
 
-                                <div className="flex-1 md:pl-10 py-2">
+                                <div className="w-full flex-1 md:pl-10 py-2">
                                     {/* Conditionally render Overview/Housing Details/Demographic/Lifestyle depending on selectedView state */}
                                     {selectedView == "Overview" ? <OverviewView selectedSuburb={selectedSuburb} /> : ""}
                                     {selectedView == "Demographic" ? <DemographicView selectedSuburb={selectedSuburb} /> : ""}
