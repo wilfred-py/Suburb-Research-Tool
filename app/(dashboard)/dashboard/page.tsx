@@ -47,7 +47,7 @@ export default function Dashboard() {
                         <h1 className="mt-20 text-4xl font-semibold">Dashboard</h1>
 
                         <div className="h-full flex flex-col">
-                            <div className="max-w-[528px] my-6 z-40">
+                            <div className="max-w-[528px] my-6">
                                 <SearchBar setSelectedSuburb={setSelectedSuburb} />
                             </div>
 

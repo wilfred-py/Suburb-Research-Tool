@@ -141,7 +141,7 @@ export default function SearchBar(props: SearchBarProps) {
     };
 
     return (
-        <div className="w-full ">
+        <div className="w-full">
             <div className="relative">
                 <form className="" onSubmit={onSearch}>
                     <div className="relative ">
