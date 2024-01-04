@@ -269,7 +269,7 @@ export default function HouseholdCompositionChart(props: HouseholdCompositionCha
         <>
             <div className="w-full select-none">
                 <h1 className="mt-4 text-lg text-center font-bold select-none">Household Composition</h1>
-                <div className="flex flex-col items-center lg:items-start pt-6">
+                <div className="flex flex-col items-center lg:items-start lg:pl-8 pt-6">
                     <div>
                         <Select value={selectedYear} onValueChange={handleYearChange}>
                             <SelectTrigger className="w-[180px]">
@@ -357,7 +357,7 @@ export default function HouseholdCompositionChart(props: HouseholdCompositionCha
                     )}
 
                     {selectedYear === "2021" && (
-                        <div className="w-full mobile-s:max-sm:h-[240px] sm:max-md:h-[400px] md:max-lg:h-[240px] lg:h-[400px] select-none">
+                        <div className="w-full mobile-s:max-sm:h-[240px] sm:max-lg:h-[400px] lg:max-3xl:h-[400px] 3xl:h-full 3xl:w-full select-none">
                             <ResponsiveContainer>
                                 <RadarChart outerRadius="80%" data={twentyTwentyOneData}>
                                     <PolarGrid />
