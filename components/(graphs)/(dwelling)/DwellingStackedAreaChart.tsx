@@ -387,16 +387,16 @@ export default function DwellingStackedAreaChart(props: DwellingStackedAreaChart
                         console.error(`Error processing data for ${year}`, error);
 
                         if (year === "2001") {
-                            console.log(`2001 data not available for ${selectedSuburb}`);
+                            // console.log(`2001 data not available for ${selectedSuburb}`);
                             setTwoThousandAndOneDataAvailable(false);
                         } else if (year === "2006") {
-                            console.log(`2006 data not available for ${selectedSuburb}`);
+                            // console.log(`2006 data not available for ${selectedSuburb}`);
                         } else if (year === "2011") {
-                            console.log(`2011 data not available for ${selectedSuburb}`);
+                            // console.log(`2011 data not available for ${selectedSuburb}`);
                         } else if (year === "2016") {
-                            console.log(`2016 data not available for ${selectedSuburb}`);
+                            // console.log(`2016 data not available for ${selectedSuburb}`);
                         } else if (year === "2021") {
-                            console.log(`2021 data not available for ${selectedSuburb}`);
+                            // console.log(`2021 data not available for ${selectedSuburb}`);
                         }
                     }
                 }
@@ -417,69 +417,83 @@ export default function DwellingStackedAreaChart(props: DwellingStackedAreaChart
     }, [props.selectedSuburb]);
 
     // ! CONSOLE LOGS
-    console.log(suburbDwelling);
-    console.log(stateDwelling);
+    // console.log(suburbDwelling);
+    // console.log(stateDwelling);
     // ! CONSOLE LOGS
 
     return (
-        <>
-            <div>
-                <div className="flex flex-col justify-center">
-                    <div className="mx-auto">
-                        <h1 className="mt-4 mb-4 text-lg text-center font-bold">Types of Dwellings in {selectedSuburb}</h1>
-                        <AreaChart
-                            width={500}
-                            height={500}
-                            data={suburbDwelling}
-                            margin={{
-                                top: 20,
-                                right: 25,
-                                left: -1,
-                                bottom: 20,
-                            }}
-                        >
-                            <CartesianGrid strokeDasharray="3 3" />
-                            <XAxis dataKey="year" />
-                            <YAxis domain={[0, 100]} tickCount={10}>
-                                <Label value="%" position="insideTopLeft"></Label>
-                            </YAxis>
-                            <Legend align={"center"} verticalAlign="bottom" />
-                            <Tooltip />
-                            <Area type="monotone" dataKey="Separate House" stackId="1" stroke="#8884d8" fill="#8884d8" />
-                            <Area type="monotone" dataKey="Semi-detached / Townhouse" stackId="1" stroke="#B8621B" fill="#B8621B" />
-                            <Area type="monotone" dataKey="Flat, unit or apartment" stackId="1" stroke="#ffc658" fill="#ffc658" />
-                            <Area type="monotone" dataKey="Other dwelling" stackId="1" stroke="#28544B" fill="#28544B" />
-                        </AreaChart>
-                    </div>
-
-                    <div className="mt-4">
-                        <h1 className="mt-4 mb-4 text-lg text-center font-bold">Types of Dwellings in {selectedState}</h1>
-                        <AreaChart
-                            width={500}
-                            height={500}
-                            data={stateDwelling}
-                            margin={{
-                                top: 20,
-                                right: 25,
-                                left: -1,
-                                bottom: 20,
-                            }}
-                        >
-                            <CartesianGrid strokeDasharray="3 3" />
-                            <XAxis dataKey="year" />
-                            <YAxis domain={[0, 100]} tickCount={10}>
-                                <Label value="%" position="insideTopLeft"></Label>
-                            </YAxis>
-                            <Legend align={"center"} />
-                            <Tooltip />
-                            <Area type="monotone" dataKey="Separate House" stackId="1" stroke="#8884d8" fill="#8884d8" />
-                            <Area type="monotone" dataKey="Semi-detached / Townhouse" stackId="1" stroke="#B8621B" fill="#B8621B" />
-                            <Area type="monotone" dataKey="Flat, unit or apartment" stackId="1" stroke="#ffc658" fill="#ffc658" />
-                            <Area type="monotone" dataKey="Other dwelling" stackId="1" stroke="#28544B" fill="#28544B" />
-                        </AreaChart>
-                    </div>
-                </div>
+        <div className="flex flex-col place-items-center">
+            <div className="flex flex-col mobile-s:max-mobile-l:w-[260px] mobile-s:max-mobile-l:h-[440px] mobile-l:max-md:w-[360px] sm:max-md:h-[420px] md:max-md-l:w-[300px] md-l:h-[440px] md-l:w-[360px]">
+                <h1 className="mt-4 mb-4 text-lg text-center font-bold">Types of Dwellings in {selectedSuburb}</h1>
+                <ResponsiveContainer>
+                    <AreaChart
+                        width={500}
+                        height={500}
+                        data={suburbDwelling}
+                        margin={{
+                            top: 20,
+                            right: 25,
+                            left: -1,
+                            bottom: 20,
+                        }}
+                    >
+                        <CartesianGrid strokeDasharray="3 3" />
+                        <XAxis dataKey="year" />
+                        <YAxis domain={[0, 100]} tickCount={10}>
+                            <Label value="%" position="insideTopLeft"></Label>
+                        </YAxis>
+                        <Legend
+                            height={100}
+                            width={300}
+                            layout="horizontal"
+                            verticalAlign="bottom"
+                            align="center"
+                            margin={{ top: 0, right: 0, bottom: 0, left: 0 }}
+                        />
+                        <Tooltip />
+                        <Area type="monotone" dataKey="Separate House" stackId="1" stroke="#8884d8" fill="#8884d8" />
+                        <Area type="monotone" dataKey="Semi-detached / Townhouse" stackId="1" stroke="#B8621B" fill="#B8621B" />
+                        <Area type="monotone" dataKey="Flat, unit or apartment" stackId="1" stroke="#ffc658" fill="#ffc658" />
+                        <Area type="monotone" dataKey="Other dwelling" stackId="1" stroke="#28544B" fill="#28544B" />
+                    </AreaChart>
+                </ResponsiveContainer>
             </div>
-        </>
+
+            <div className="mobile-s:max-mobile-l:w-[260px] mobile-s:max-mobile-l:h-[440px] mobile-l:max-md:w-[360px] sm:max-md:h-[420px] md:max-md-l:w-[300px] md-l:h-[440px] md-l:w-[360px] mobile-s:max-sm:mt-14 mobile-s:max-sm:mb-20 sm:max-md:mt-12 md:mt-6">
+                <h1 className="mt-4 mb-4 text-lg text-center font-bold">Types of Dwellings in {selectedState}</h1>
+                <ResponsiveContainer>
+                    <AreaChart
+                        width={500}
+                        height={500}
+                        data={stateDwelling}
+                        margin={{
+                            top: 20,
+                            right: 25,
+                            left: -1,
+                            bottom: 20,
+                        }}
+                    >
+                        <CartesianGrid strokeDasharray="3 3" />
+                        <XAxis dataKey="year" />
+                        <YAxis domain={[0, 100]} tickCount={10}>
+                            <Label value="%" position="insideTopLeft"></Label>
+                        </YAxis>
+                        <Legend
+                            height={100}
+                            width={300}
+                            layout="horizontal"
+                            verticalAlign="bottom"
+                            align="center"
+                            margin={{ top: 0, right: 0, bottom: 0, left: 0 }}
+                        />
+                        <Tooltip />
+                        <Area type="monotone" dataKey="Separate House" stackId="1" stroke="#8884d8" fill="#8884d8" />
+                        <Area type="monotone" dataKey="Semi-detached / Townhouse" stackId="1" stroke="#B8621B" fill="#B8621B" />
+                        <Area type="monotone" dataKey="Flat, unit or apartment" stackId="1" stroke="#ffc658" fill="#ffc658" />
+                        <Area type="monotone" dataKey="Other dwelling" stackId="1" stroke="#28544B" fill="#28544B" />
+                    </AreaChart>
+                </ResponsiveContainer>
+            </div>
+        </div>
     );
 }
