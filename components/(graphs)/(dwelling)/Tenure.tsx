@@ -406,64 +406,76 @@ export default function TenureStackedAreaChart(props: TenureStackedAreaChartProp
     // ! CONSOLE LOGS
 
     return (
-        <>
-            <div>
-                <div className="flex flex-col justify-center">
-                    <div className="mx-auto">
-                        <h1 className="mt-4 mb-4 text-lg text-center font-bold">Tenure in {selectedSuburb}</h1>
-                        {/* Suburb Chart */}
-                        <AreaChart
-                            width={500}
-                            height={500}
-                            data={suburbTenure}
-                            margin={{
-                                top: 20,
-                                right: 25,
-                                left: -15,
-                                bottom: 20,
-                            }}
-                        >
-                            <CartesianGrid strokeDasharray="3 3" />
-                            <XAxis dataKey="year" />
-                            <YAxis label="%" domain={[0, 100]} tickCount={10} allowDecimals={false} />
-                            <Legend />
-                            <Tooltip offset={60} cursor={false} allowEscapeViewBox={{ x: true, y: true }} />
-                            <Area type="monotone" dataKey="Owned Outright" stackId="1" stroke="#186F65" fill="#186F65" />
-                            <Area type="monotone" dataKey="Owned with a mortgage" stackId="1" stroke="#B5CB99" fill="#B5CB99" />
-                            <Area type="monotone" dataKey="Rented" stackId="1" stroke="#FCE09B" fill="#FCE09B" />
-                            <Area type="monotone" dataKey="Other tenure type" stackId="1" stroke="#B2533E" fill="#B2533E" />
-                            <Area type="monotone" dataKey="Tenure type not stated" stackId="1" stroke="#A27B5C" fill="#A27B5C" />
-                        </AreaChart>
-                    </div>
-
-                    <div className="mt-4">
-                        <h1 className="mt-4 mb-4 text-lg text-center font-bold">Tenure in {selectedState}</h1>
-                        {/* State Chart */}
-                        <AreaChart
-                            width={500}
-                            height={500}
-                            data={stateTenure}
-                            margin={{
-                                top: 20,
-                                right: 25,
-                                left: -15,
-                                bottom: 20,
-                            }}
-                        >
-                            <CartesianGrid strokeDasharray="3 3" />
-                            <XAxis dataKey="year" />
-                            <YAxis label="%" domain={[0, 100]} tickCount={10} allowDecimals={false} />
-                            <Legend />
-                            <Tooltip offset={60} cursor={false} allowEscapeViewBox={{ x: true, y: true }} />
-                            <Area type="monotone" dataKey="Owned Outright" stackId="1" stroke="#186F65" fill="#186F65" />
-                            <Area type="monotone" dataKey="Owned with a mortgage" stackId="1" stroke="#B5CB99" fill="#B5CB99" />
-                            <Area type="monotone" dataKey="Rented" stackId="1" stroke="#FCE09B" fill="#FCE09B" />
-                            <Area type="monotone" dataKey="Other tenure type" stackId="1" stroke="#B2533E" fill="#B2533E" />
-                            <Area type="monotone" dataKey="Tenure type not stated" stackId="1" stroke="#A27B5C" fill="#A27B5C" />
-                        </AreaChart>
-                    </div>
-                </div>
+        <div className="flex flex-col place-items-center">
+            <div className="flex flex-col mobile-s:max-mobile-l:w-[260px] mobile-s:max-mobile-l:h-[440px] mobile-l:max-md:w-[360px] sm:max-md:h-[420px] md:max-md-l:w-[300px] md-l:h-[440px] md-l:w-[360px] mobile-s:max-mobile-l:mb-6 mb-2">
+                <h1 className="mt-10 mb-4 text-lg text-center font-bold">Tenure in {selectedSuburb}</h1>
+                {/* Suburb Chart */}
+                <ResponsiveContainer>
+                    <AreaChart
+                        width={500}
+                        height={500}
+                        data={suburbTenure}
+                        margin={{
+                            top: 20,
+                            right: 25,
+                            left: -15,
+                            bottom: 20,
+                        }}
+                    >
+                        <CartesianGrid strokeDasharray="3 3" />
+                        <XAxis dataKey="year" />
+                        <YAxis label="%" domain={[0, 100]} tickCount={10} allowDecimals={false} />
+                        <Legend
+                            height={80}
+                            layout="horizontal"
+                            verticalAlign="bottom"
+                            align="center"
+                            margin={{ top: 0, right: 0, bottom: 0, left: 0 }}
+                        />
+                        <Tooltip offset={60} cursor={false} allowEscapeViewBox={{ x: true, y: true }} />
+                        <Area type="monotone" dataKey="Owned Outright" stackId="1" stroke="#186F65" fill="#186F65" />
+                        <Area type="monotone" dataKey="Owned with a mortgage" stackId="1" stroke="#B5CB99" fill="#B5CB99" />
+                        <Area type="monotone" dataKey="Rented" stackId="1" stroke="#FCE09B" fill="#FCE09B" />
+                        <Area type="monotone" dataKey="Other tenure type" stackId="1" stroke="#B2533E" fill="#B2533E" />
+                        <Area type="monotone" dataKey="Tenure type not stated" stackId="1" stroke="#A27B5C" fill="#A27B5C" />
+                    </AreaChart>
+                </ResponsiveContainer>
             </div>
-        </>
+
+            <div className="flex flex-col mobile-s:max-mobile-l:w-[260px] mobile-s:max-mobile-l:h-[440px] mobile-l:max-md:w-[360px] sm:max-md:h-[420px] md:max-md-l:w-[300px] md-l:h-[440px] md-l:w-[360px] mobile-s:max-mobile-l:mt-4 mt-2 mobile-s:max-mobile-l:mb-12 mobile-l:mb-10">
+                <h1 className="mt-4 mb-4 text-lg text-center font-bold">Tenure in {selectedState}</h1>
+                {/* State Chart */}
+                <ResponsiveContainer>
+                    <AreaChart
+                        width={500}
+                        height={500}
+                        data={stateTenure}
+                        margin={{
+                            top: 20,
+                            right: 25,
+                            left: -15,
+                            bottom: 20,
+                        }}
+                    >
+                        <CartesianGrid strokeDasharray="3 3" />
+                        <XAxis dataKey="year" />
+                        <YAxis label="%" domain={[0, 100]} tickCount={10} allowDecimals={false} />
+                        <Legend
+                            height={80}
+                            layout="horizontal"
+                            verticalAlign="bottom"
+                            align="center"
+                            margin={{ top: 0, right: 0, bottom: 0, left: 0 }}
+                        />
+                        <Tooltip offset={60} cursor={false} allowEscapeViewBox={{ x: true, y: true }} />
+                        <Area type="monotone" dataKey="Owned Outright" stackId="1" stroke="#186F65" fill="#186F65" />
+                        <Area type="monotone" dataKey="Owned with a mortgage" stackId="1" stroke="#B5CB99" fill="#B5CB99" />
+                        <Area type="monotone" dataKey="Rented" stackId="1" stroke="#FCE09B" fill="#FCE09B" />
+                        <Area type="monotone" dataKey="Other tenure type" stackId="1" stroke="#B2533E" fill="#B2533E" />
+                        <Area type="monotone" dataKey="Tenure type not stated" stackId="1" stroke="#A27B5C" fill="#A27B5C" />
+                    </AreaChart>
+                </ResponsiveContainer>
+            </div>
+        </div>
     );
 }
