@@ -423,7 +423,7 @@ export default function DwellingStackedAreaChart(props: DwellingStackedAreaChart
 
     return (
         <div className="flex flex-col place-items-center">
-            <div className="flex flex-col mobile-s:max-mobile-l:w-[260px] mobile-s:max-mobile-l:h-[440px] mobile-l:max-md:w-[360px] sm:max-md:h-[420px] md:max-md-l:w-[300px] md-l:h-[440px] md-l:w-[360px]">
+            <div className="flex flex-col mobile-s:max-mobile-l:w-[260px] mobile-s:max-mobile-l:h-[440px] mobile-l:max-md:w-[360px] sm:max-md:h-[420px] md:max-md-l:w-[300px] md-l:h-[440px] md-l:w-[360px] mb-6">
                 <h1 className="mt-4 mb-4 text-lg text-center font-bold">Types of Dwellings in {selectedSuburb}</h1>
                 <ResponsiveContainer>
                     <AreaChart
@@ -444,7 +444,6 @@ export default function DwellingStackedAreaChart(props: DwellingStackedAreaChart
                         </YAxis>
                         <Legend
                             height={100}
-                            width={300}
                             layout="horizontal"
                             verticalAlign="bottom"
                             align="center"
@@ -459,7 +458,7 @@ export default function DwellingStackedAreaChart(props: DwellingStackedAreaChart
                 </ResponsiveContainer>
             </div>
 
-            <div className="mobile-s:max-mobile-l:w-[260px] mobile-s:max-mobile-l:h-[440px] mobile-l:max-md:w-[360px] sm:max-md:h-[420px] md:max-md-l:w-[300px] md-l:h-[440px] md-l:w-[360px] mobile-s:max-sm:mt-14 mobile-s:max-sm:mb-20 sm:max-md:mt-12 md:mt-6">
+            <div className="mobile-s:max-mobile-l:w-[260px] mobile-s:max-mobile-l:h-[440px] mobile-l:max-md:w-[360px] sm:max-md:h-[420px] md:max-md-l:w-[300px] md-l:h-[440px] md-l:w-[360px] mt-4 mobile-s:mb-20">
                 <h1 className="mt-4 mb-4 text-lg text-center font-bold">Types of Dwellings in {selectedState}</h1>
                 <ResponsiveContainer>
                     <AreaChart
@@ -480,7 +479,6 @@ export default function DwellingStackedAreaChart(props: DwellingStackedAreaChart
                         </YAxis>
                         <Legend
                             height={100}
-                            width={300}
                             layout="horizontal"
                             verticalAlign="bottom"
                             align="center"
