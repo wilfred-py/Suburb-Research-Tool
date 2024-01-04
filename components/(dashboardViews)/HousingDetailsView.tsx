@@ -20,10 +20,10 @@ export default function HousingDetailsView(props: HousingDetailsProps) {
                 <div className="flex-1 max-w-[720px] mt-2 border border-gray-200 rounded-md shadow-lg hover:shadow-xl">
                     <TenureStackedAreaChart selectedSuburb={props.selectedSuburb} />
                 </div>
+                <div className="flex-1 max-w-[720px] mt-2 border border-gray-200 rounded-md shadow-lg hover:shadow-xl">
+                    <HouseholdCompositionChart selectedSuburb={props.selectedSuburb} />
+                </div>
             </div>
-            {/* <div className="">
-                <HouseholdCompositionChart selectedSuburb={props.selectedSuburb} />
-            </div> */}
         </>
     );
 }
