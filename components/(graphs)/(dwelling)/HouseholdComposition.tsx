@@ -1,6 +1,6 @@
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 import React, { PureComponent, useEffect, useState } from "react";
-import { Radar, RadarChart, PolarGrid, Legend, PolarAngleAxis, PolarRadiusAxis, ResponsiveContainer, Tooltip } from "recharts";
+import { Radar, RadarChart, PolarGrid, Legend, PolarAngleAxis, PolarRadiusAxis, ResponsiveContainer, Tooltip, Label } from "recharts";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 
 interface HouseholdCompositionChartProps {
@@ -119,7 +119,7 @@ export default function HouseholdCompositionChart(props: HouseholdCompositionCha
                             suburb: parseFloat(data[0]["percentage_group_households_in_suburb"]),
                         };
 
-                        newSuburbHouseholdComposition.push(suburbFamilyHouseholds, suburbSingleHouseholds, suburbGroupHouseholds);
+                        newSuburbHouseholdComposition.push(suburbSingleHouseholds, suburbGroupHouseholds, suburbFamilyHouseholds);
                         setSuburbHouseholdComposition(newSuburbHouseholdComposition);
                     }
 
@@ -144,7 +144,7 @@ export default function HouseholdCompositionChart(props: HouseholdCompositionCha
                             state: parseFloat(data[0]["percentage_group_households_in_state"]),
                         };
 
-                        newSuburbHouseholdComposition.push(suburbFamilyHouseholds, suburbSingleHouseholds, suburbGroupHouseholds);
+                        newSuburbHouseholdComposition.push(suburbSingleHouseholds, suburbGroupHouseholds, suburbFamilyHouseholds);
                         setSuburbHouseholdComposition(newSuburbHouseholdComposition);
                     }
 
@@ -169,7 +169,7 @@ export default function HouseholdCompositionChart(props: HouseholdCompositionCha
                             state: parseFloat(data[0]["percentage_group_households_in_state"]),
                         };
 
-                        newSuburbHouseholdComposition.push(suburbFamilyHouseholds, suburbSingleHouseholds, suburbGroupHouseholds);
+                        newSuburbHouseholdComposition.push(suburbSingleHouseholds, suburbGroupHouseholds, suburbFamilyHouseholds);
                         setSuburbHouseholdComposition(newSuburbHouseholdComposition);
                     }
 
@@ -194,7 +194,7 @@ export default function HouseholdCompositionChart(props: HouseholdCompositionCha
                             state: parseFloat(data[0]["percentage_group_households_in_state"]),
                         };
 
-                        newSuburbHouseholdComposition.push(suburbFamilyHouseholds, suburbSingleHouseholds, suburbGroupHouseholds);
+                        newSuburbHouseholdComposition.push(suburbSingleHouseholds, suburbGroupHouseholds, suburbFamilyHouseholds);
                         setSuburbHouseholdComposition(newSuburbHouseholdComposition);
                     }
                 } catch (error) {
@@ -267,9 +267,9 @@ export default function HouseholdCompositionChart(props: HouseholdCompositionCha
 
     return (
         <>
-            <div className="w-full h-full select-none">
+            <div className="w-full select-none">
                 <h1 className="mt-4 text-lg text-center font-bold select-none">Household Composition</h1>
-                <div className="h-full flex flex-col items-center lg:items-start pt-6">
+                <div className="flex flex-col items-center lg:items-start lg:pl-8 pt-6">
                     <div>
                         <Select value={selectedYear} onValueChange={handleYearChange}>
                             <SelectTrigger className="w-[180px]">
@@ -357,15 +357,17 @@ export default function HouseholdCompositionChart(props: HouseholdCompositionCha
                     )}
 
                     {selectedYear === "2021" && (
-                        <div className="w-full mobile-s:max-sm:h-[240px] sm:max-md:h-[280px] md:max-lg:h-[240px] lg:h-[400px] mobile-s:max-sm:mt-10 sm:mt-12 select-none">
+                        <div className="w-full mobile-s:max-sm:h-[240px] sm:max-lg:h-[400px] lg:max-3xl:h-[400px] 3xl:h-full 3xl:w-full select-none">
                             <ResponsiveContainer>
                                 <RadarChart outerRadius="80%" data={twentyTwentyOneData}>
                                     <PolarGrid />
-                                    <PolarAngleAxis dataKey="label" />
+                                    <PolarAngleAxis dataKey="label">
+                                        <Label position={"inside"} />
+                                    </PolarAngleAxis>
                                     <PolarRadiusAxis angle={30} domain={[0, 100]} />
                                     <Radar name="% of suburb" dataKey="suburb" stroke="#219C90" fill="#219C90" fillOpacity={0.5} />
                                     <Radar name="% of state" dataKey="state" stroke="#068FFF" fill="#068FFF" fillOpacity={0.15} />
-                                    <Legend />
+                                    <Legend height={60} />
                                     <Tooltip offset={50} />
                                 </RadarChart>
                             </ResponsiveContainer>
