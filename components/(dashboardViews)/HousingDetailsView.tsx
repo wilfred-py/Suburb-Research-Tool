@@ -10,18 +10,18 @@ interface HousingDetailsProps {
 export default function HousingDetailsView(props: HousingDetailsProps) {
     return (
         <>
-            <div className="w-full min-h-full flex flex-col">
-                <div className="w-full mt-2 border border-gray-200 rounded-md shadow-lg hover:shadow-xl">
+            <div className="w-full min-h-full flex flex-col 3xl:flex-row 3xl:space-x-2">
+                <div className="flex-1 max-w-[720px] mt-2 border border-gray-200 rounded-md shadow-lg hover:shadow-xl">
                     <DwellingStackedAreaChart selectedSuburb={props.selectedSuburb} />
                 </div>
-                <div className="w-full mt-2 border border-gray-200 rounded-md shadow-lg hover:shadow-xl">
+                <div className="flex-1 max-w-[720px] mt-2 border border-gray-200 rounded-md shadow-lg hover:shadow-xl">
                     <BedroomsStackedAreaChart selectedSuburb={props.selectedSuburb} />
                 </div>
-                <div className="w-full mt-2 border border-gray-200 rounded-md shadow-lg hover:shadow-xl">
+                <div className="flex-1 max-w-[720px] mt-2 border border-gray-200 rounded-md shadow-lg hover:shadow-xl">
                     <TenureStackedAreaChart selectedSuburb={props.selectedSuburb} />
                 </div>
             </div>
-            {/* <div className="max-h-full overflow-y-hidden">
+            {/* <div className="">
                 <HouseholdCompositionChart selectedSuburb={props.selectedSuburb} />
             </div> */}
         </>
