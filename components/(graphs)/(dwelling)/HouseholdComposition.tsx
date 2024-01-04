@@ -267,11 +267,10 @@ export default function HouseholdCompositionChart(props: HouseholdCompositionCha
 
     return (
         <>
-            <div className="flex flex-col border border-gray-200 rounded-md shadow-lg hover:shadow-xl my-4">
-                <h1 className="text-2xl font-bold mx-auto mt-4">Household Composition</h1>
-
-                <div className="w-full flex flex-col justify-center mx-auto">
-                    <div className="content-start">
+            <div className="w-full h-full select-none">
+                <h1 className="mt-4 text-lg text-center font-bold select-none">Household Composition</h1>
+                <div className="h-full flex flex-col items-center lg:items-start pt-6">
+                    <div>
                         <Select value={selectedYear} onValueChange={handleYearChange}>
                             <SelectTrigger className="w-[180px]">
                                 <SelectValue placeholder="2021" />
@@ -286,7 +285,7 @@ export default function HouseholdCompositionChart(props: HouseholdCompositionCha
                     </div>
 
                     {selectedYear === "2006" && (
-                        <div className="w-[800px] h-[600px] select-none">
+                        <div className="w-full mobile-s:max-sm:h-[240px] sm:max-md:h-[280px] md:max-lg: h-[240px] lg:h-[280px] mobile-s:max-sm:mt-10 sm:mt-12 select-none">
                             <ResponsiveContainer>
                                 <RadarChart
                                     cx="50%"
@@ -306,12 +305,11 @@ export default function HouseholdCompositionChart(props: HouseholdCompositionCha
                                     <Tooltip offset={50} />
                                 </RadarChart>
                             </ResponsiveContainer>
-                            <p className="text-center">Note: group households consist of two or more unrelated people aged 15 and older</p>
                         </div>
                     )}
 
                     {selectedYear === "2011" && (
-                        <div className="w-[800px] h-[600px] select-none">
+                        <div className="w-full mobile-s:max-sm:h-[240px] sm:max-md:h-[280px] md:max-lg: h-[240px] lg:h-[280px] mobile-s:max-sm:mt-10 sm:mt-12 select-none">
                             <ResponsiveContainer>
                                 <RadarChart
                                     cx="50%"
@@ -331,12 +329,11 @@ export default function HouseholdCompositionChart(props: HouseholdCompositionCha
                                     <Tooltip offset={50} />
                                 </RadarChart>
                             </ResponsiveContainer>
-                            <p className="text-center">Note: group households consist of two or more unrelated people aged 15 and older</p>
                         </div>
                     )}
 
                     {selectedYear === "2016" && (
-                        <div className="w-[800px] h-[600px] select-none">
+                        <div className="w-full mobile-s:max-sm:h-[240px] sm:max-md:h-[280px] md:max-lg: h-[240px] lg:h-[280px] mobile-s:max-sm:mt-10 sm:mt-12 select-none">
                             <ResponsiveContainer>
                                 <RadarChart
                                     cx="50%"
@@ -356,32 +353,22 @@ export default function HouseholdCompositionChart(props: HouseholdCompositionCha
                                     <Tooltip offset={50} />
                                 </RadarChart>
                             </ResponsiveContainer>
-                            <p className="text-center">Note: group households consist of two or more unrelated people aged 15 and older</p>
                         </div>
                     )}
 
                     {selectedYear === "2021" && (
-                        <div className="w-full max-w-screen-2xl h-[600px] select-none content-center">
+                        <div className="w-full mobile-s:max-sm:h-[240px] sm:max-md:h-[280px] md:max-lg:h-[240px] lg:h-[400px] mobile-s:max-sm:mt-10 sm:mt-12 select-none">
                             <ResponsiveContainer>
-                                <RadarChart
-                                    cx="50%"
-                                    cy="60%"
-                                    outerRadius="80%"
-                                    margin={{ top: -180, right: 20, bottom: 50, left: 20 }}
-                                    data={twentyTwentyOneData}
-                                >
+                                <RadarChart outerRadius="80%" data={twentyTwentyOneData}>
                                     <PolarGrid />
                                     <PolarAngleAxis dataKey="label" />
                                     <PolarRadiusAxis angle={30} domain={[0, 100]} />
                                     <Radar name="% of suburb" dataKey="suburb" stroke="#219C90" fill="#219C90" fillOpacity={0.5} />
                                     <Radar name="% of state" dataKey="state" stroke="#068FFF" fill="#068FFF" fillOpacity={0.15} />
-                                    <Legend align="center" margin={{ top: 10, left: 0, right: 0, bottom: 0 }} />
+                                    <Legend />
                                     <Tooltip offset={50} />
                                 </RadarChart>
                             </ResponsiveContainer>
-                            <p className="mb-2 text-center">
-                                Note: group households consist of two or more unrelated people aged 15 and older
-                            </p>
                         </div>
                     )}
                 </div>
