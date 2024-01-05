@@ -33,30 +33,19 @@ export default function DemographicView(props: DemographicProps) {
     // state to manage selected filters
     const [selectedFilters, setSelectedFilters] = useState<String>([]);
 
-    const handleFilterSelection = (filter: string) => {
-        // Toggle selected filters
-        if (selectedFilters.includes(filter)) {
-            setSelectedFilters(selectedFilters.filter((f) => f !== filter));
-        } else {
-            setSelectedFilters([...selectedFilters, filter]);
-        }
+    // Use a single handler for checkbox clicks
+    const handleCheckboxClick = (filter) => {
+        setSelectedFilters((prevFilters) => {
+            // Toggle selected filters
+            if (prevFilters.includes(filter)) {
+                return prevFilters.filter((f) => f !== filter);
+            } else {
+                return [...prevFilters, filter];
+            }
+        });
     };
 
-    const renderFilteredComponents = () => {
-        // Return components based on selected filters
-        return (
-            <div className="w-full">
-                {selectedFilters.includes("Family Composition") ? <FamilyComposition selectedSuburb={props.selectedSuburb} /> : ""}
-                {selectedFilters.includes("Religion") ? <ReligionChart selectedSuburb={props.selectedSuburb} /> : ""}
-                {selectedFilters.includes("Marriage") ? <Marital selectedSuburb={props.selectedSuburb} /> : ""}
-                {selectedFilters.includes("Ancestry") ? <AncestryChart selectedSuburb={props.selectedSuburb} /> : ""}
-                {selectedFilters.includes("Population") ? <Population selectedSuburb={props.selectedSuburb} /> : ""}
-                {selectedFilters.includes("Age") ? <Age selectedSuburb={props.selectedSuburb} /> : ""}
-                {selectedFilters.includes("Employment") ? <Employment selectedSuburb={props.selectedSuburb} /> : ""}
-                {selectedFilters.includes("Income") ? <Income selectedSuburb={props.selectedSuburb} /> : ""}
-            </div>
-        );
-    };
+    console.log(selectedFilters);
 
     return (
         <div className="max-w-screen max-h-screen flex flex-wrap">
@@ -70,7 +59,7 @@ export default function DemographicView(props: DemographicProps) {
                         <DrawerDescription>Select data to be shown/hidden</DrawerDescription>
                     </DrawerHeader>
                     <div className="items-top flex space-x-2">
-                        <Checkbox id="FamilyComposition" />
+                        <Checkbox id="FamilyComposition" onClick={() => handleCheckboxClick("Family Composition")} />
                         <div className="grid gap-1.5 leading-none">
                             <label
                                 htmlFor="FamilyComposition"
@@ -81,7 +70,7 @@ export default function DemographicView(props: DemographicProps) {
                         </div>
                     </div>
                     <div className="items-top flex space-x-2">
-                        <Checkbox id="Religion" />
+                        <Checkbox id="Religion" onClick={() => handleCheckboxClick("Religion")} />
                         <div className="grid gap-1.5 leading-none">
                             <label
                                 htmlFor="Religion"
@@ -92,7 +81,7 @@ export default function DemographicView(props: DemographicProps) {
                         </div>
                     </div>
                     <div className="items-top flex space-x-2">
-                        <Checkbox id="Marriage" />
+                        <Checkbox id="Marriage" onClick={() => handleCheckboxClick("Marriage")} />
                         <div className="grid gap-1.5 leading-none">
                             <label
                                 htmlFor="Marriage"
@@ -103,7 +92,7 @@ export default function DemographicView(props: DemographicProps) {
                         </div>
                     </div>
                     <div className="items-top flex space-x-2">
-                        <Checkbox id="Ancestry" />
+                        <Checkbox id="Ancestry" onClick={() => handleCheckboxClick("Ancestry")} />
                         <div className="grid gap-1.5 leading-none">
                             <label
                                 htmlFor="Ancestry"
@@ -114,7 +103,7 @@ export default function DemographicView(props: DemographicProps) {
                         </div>
                     </div>
                     <div className="items-top flex space-x-2">
-                        <Checkbox id="Population" />
+                        <Checkbox id="Population" onClick={() => handleCheckboxClick("Population")} />
                         <div className="grid gap-1.5 leading-none">
                             <label
                                 htmlFor="Population"
@@ -125,7 +114,7 @@ export default function DemographicView(props: DemographicProps) {
                         </div>
                     </div>
                     <div className="items-top flex space-x-2">
-                        <Checkbox id="Age" />
+                        <Checkbox id="Age" onClick={() => handleCheckboxClick("Age")} />
                         <div className="grid gap-1.5 leading-none">
                             <label
                                 htmlFor="Age"
@@ -136,7 +125,7 @@ export default function DemographicView(props: DemographicProps) {
                         </div>
                     </div>
                     <div className="items-top flex space-x-2">
-                        <Checkbox id="Employment" />
+                        <Checkbox id="Employment" onClick={() => handleCheckboxClick("Employment")} />
                         <div className="grid gap-1.5 leading-none">
                             <label
                                 htmlFor="Employment"
@@ -147,7 +136,7 @@ export default function DemographicView(props: DemographicProps) {
                         </div>
                     </div>
                     <div className="items-top flex space-x-2">
-                        <Checkbox id="Income" />
+                        <Checkbox id="Income" onClick={() => handleCheckboxClick("Income")} />
                         <div className="grid gap-1.5 leading-none">
                             <label
                                 htmlFor="Income"
@@ -166,14 +155,25 @@ export default function DemographicView(props: DemographicProps) {
                 </DrawerContent>
             </Drawer>
 
-            <FamilyComposition selectedSuburb={props.selectedSuburb} />
+            <div className="w-full">
+                {selectedFilters.includes("Family Composition") ? <FamilyComposition selectedSuburb={props.selectedSuburb} /> : ""}
+                {selectedFilters.includes("Religion") ? <ReligionChart selectedSuburb={props.selectedSuburb} /> : ""}
+                {selectedFilters.includes("Marriage") ? <Marital selectedSuburb={props.selectedSuburb} /> : ""}
+                {selectedFilters.includes("Ancestry") ? <AncestryChart selectedSuburb={props.selectedSuburb} /> : ""}
+                {selectedFilters.includes("Population") ? <Population selectedSuburb={props.selectedSuburb} /> : ""}
+                {selectedFilters.includes("Age") ? <Age selectedSuburb={props.selectedSuburb} /> : ""}
+                {selectedFilters.includes("Employment") ? <Employment selectedSuburb={props.selectedSuburb} /> : ""}
+                {selectedFilters.includes("Income") ? <Income selectedSuburb={props.selectedSuburb} /> : ""}
+            </div>
+
+            {/* <FamilyComposition selectedSuburb={props.selectedSuburb} />
             <ReligionChart selectedSuburb={props.selectedSuburb} />
             <Marital selectedSuburb={props.selectedSuburb} />
             <AncestryChart selectedSuburb={props.selectedSuburb} />
             <Population selectedSuburb={props.selectedSuburb} />
             <Age selectedSuburb={props.selectedSuburb} />
             <Employment selectedSuburb={props.selectedSuburb} />
-            <Income selectedSuburb={props.selectedSuburb} />
+            <Income selectedSuburb={props.selectedSuburb} /> */}
         </div>
     );
 }
