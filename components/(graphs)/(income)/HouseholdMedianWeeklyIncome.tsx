@@ -353,9 +353,9 @@ export default function HouseholdMedianWeeklyIncome(props: HouseholdIncomeProps)
         minMax(suburbHouseholdIncome, stateHouseholdIncome, australiaHouseholdIncome);
     }, [suburbHouseholdIncome, stateHouseholdIncome, australiaHouseholdIncome]);
 
-    console.log(`suburbHouseholdIncome: ${suburbHouseholdIncome}`);
-    console.log(`stateHouseholdIncome: ${stateHouseholdIncome}`);
-    console.log(`australiaHouseholdIncome: ${australiaHouseholdIncome}`);
+    // console.log(`suburbHouseholdIncome: ${suburbHouseholdIncome}`);
+    // console.log(`stateHouseholdIncome: ${stateHouseholdIncome}`);
+    // console.log(`australiaHouseholdIncome: ${australiaHouseholdIncome}`);
 
     // console.log(`insufficientData: ${insufficientSuburbData}`);
 
