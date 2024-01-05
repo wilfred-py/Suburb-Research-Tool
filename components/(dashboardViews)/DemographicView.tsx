@@ -23,6 +23,8 @@ import {
 } from "@/components/ui/drawer";
 import { Button } from "@/components/ui/button";
 
+import { Checkbox } from "@/components/ui/checkbox";
+
 interface DemographicProps {
     selectedSuburb: string | null;
 }
@@ -64,11 +66,99 @@ export default function DemographicView(props: DemographicProps) {
                 </DrawerTrigger>
                 <DrawerContent>
                     <DrawerHeader>
-                        <DrawerTitle>Are you sure absolutely sure?</DrawerTitle>
-                        <DrawerDescription>This action cannot be undone.</DrawerDescription>
+                        <DrawerTitle>Filter</DrawerTitle>
+                        <DrawerDescription>Select data to be shown/hidden</DrawerDescription>
                     </DrawerHeader>
+                    <div className="items-top flex space-x-2">
+                        <Checkbox id="FamilyComposition" />
+                        <div className="grid gap-1.5 leading-none">
+                            <label
+                                htmlFor="FamilyComposition"
+                                className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                            >
+                                Family Composition
+                            </label>
+                        </div>
+                    </div>
+                    <div className="items-top flex space-x-2">
+                        <Checkbox id="Religion" />
+                        <div className="grid gap-1.5 leading-none">
+                            <label
+                                htmlFor="Religion"
+                                className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                            >
+                                Religion
+                            </label>
+                        </div>
+                    </div>
+                    <div className="items-top flex space-x-2">
+                        <Checkbox id="Marriage" />
+                        <div className="grid gap-1.5 leading-none">
+                            <label
+                                htmlFor="Marriage"
+                                className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                            >
+                                Marriage
+                            </label>
+                        </div>
+                    </div>
+                    <div className="items-top flex space-x-2">
+                        <Checkbox id="Ancestry" />
+                        <div className="grid gap-1.5 leading-none">
+                            <label
+                                htmlFor="Ancestry"
+                                className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                            >
+                                Ancestry
+                            </label>
+                        </div>
+                    </div>
+                    <div className="items-top flex space-x-2">
+                        <Checkbox id="Population" />
+                        <div className="grid gap-1.5 leading-none">
+                            <label
+                                htmlFor="Population"
+                                className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                            >
+                                Population
+                            </label>
+                        </div>
+                    </div>
+                    <div className="items-top flex space-x-2">
+                        <Checkbox id="Age" />
+                        <div className="grid gap-1.5 leading-none">
+                            <label
+                                htmlFor="Age"
+                                className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                            >
+                                Age
+                            </label>
+                        </div>
+                    </div>
+                    <div className="items-top flex space-x-2">
+                        <Checkbox id="Employment" />
+                        <div className="grid gap-1.5 leading-none">
+                            <label
+                                htmlFor="Employment"
+                                className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                            >
+                                Employment
+                            </label>
+                        </div>
+                    </div>
+                    <div className="items-top flex space-x-2">
+                        <Checkbox id="Income" />
+                        <div className="grid gap-1.5 leading-none">
+                            <label
+                                htmlFor="Income"
+                                className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                            >
+                                Income
+                            </label>
+                        </div>
+                    </div>
                     <DrawerFooter>
-                        <Button>Submit</Button>
+                        <Button>Confirm</Button>
                         <DrawerClose>
                             <Button variant="outline">Cancel</Button>
                         </DrawerClose>
