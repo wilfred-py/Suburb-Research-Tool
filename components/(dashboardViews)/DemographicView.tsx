@@ -6,6 +6,7 @@ import Employment from "../Employment";
 import FamilyComposition from "../FamilyComposition";
 import Income from "../Income";
 import Marital from "../MaritalStatus";
+import * as React from "react";
 
 interface DemographicProps {
     selectedSuburb: string | null;
