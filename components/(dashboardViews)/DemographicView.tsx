@@ -30,8 +30,14 @@ interface DemographicProps {
 }
 
 export default function DemographicView(props: DemographicProps) {
-    // state to manage selected filters
-    const [selectedFilters, setSelectedFilters] = useState<String>([]);
+    // Retrieve previously selected filters from local storage
+    const storedFilters = localStorage.getItem("selectedFilters");
+
+    // Default filters
+    const defaultFilters = ["Family Composition", "Religion", "Marriage", "Ancestry", "Population", "Age", "Employment", "Income"];
+
+    // State to manage selected filters
+    const [selectedFilters, setSelectedFilters] = useState<String>(defaultFilters);
 
     // Use a single handler for checkbox clicks
     const handleCheckboxClick = (filter) => {
@@ -45,10 +51,15 @@ export default function DemographicView(props: DemographicProps) {
         });
     };
 
+    // Update the selected filters in the local storage whenever it changes
+    useEffect(() => {
+        localStorage.setItem("selectedFilters", JSON.stringify(selectedFilters));
+    }, [selectedFilters]);
+
     console.log(selectedFilters);
 
     return (
-        <div className="max-w-screen max-h-screen flex flex-wrap">
+        <div className="w-full flex flex-wrap">
             <Drawer>
                 <DrawerTrigger asChild>
                     <Button variant="outline">Filter</Button>
@@ -59,7 +70,12 @@ export default function DemographicView(props: DemographicProps) {
                         <DrawerDescription>Select data to be shown/hidden</DrawerDescription>
                     </DrawerHeader>
                     <div className="items-top flex space-x-2">
-                        <Checkbox id="FamilyComposition" onClick={() => handleCheckboxClick("Family Composition")} />
+                        <Checkbox
+                            id="FamilyComposition"
+                            onCheckedChange={() => handleCheckboxClick("Family Composition")}
+                            checked={selectedFilters.includes("Family Composition")}
+                        />
+
                         <div className="grid gap-1.5 leading-none">
                             <label
                                 htmlFor="FamilyComposition"
@@ -70,7 +86,11 @@ export default function DemographicView(props: DemographicProps) {
                         </div>
                     </div>
                     <div className="items-top flex space-x-2">
-                        <Checkbox id="Religion" onClick={() => handleCheckboxClick("Religion")} />
+                        <Checkbox
+                            id="Religion"
+                            onClick={() => handleCheckboxClick("Religion")}
+                            checked={selectedFilters.includes("Religion")}
+                        />
                         <div className="grid gap-1.5 leading-none">
                             <label
                                 htmlFor="Religion"
@@ -81,7 +101,11 @@ export default function DemographicView(props: DemographicProps) {
                         </div>
                     </div>
                     <div className="items-top flex space-x-2">
-                        <Checkbox id="Marriage" onClick={() => handleCheckboxClick("Marriage")} />
+                        <Checkbox
+                            id="Marriage"
+                            onClick={() => handleCheckboxClick("Marriage")}
+                            checked={selectedFilters.includes("Marriage")}
+                        />
                         <div className="grid gap-1.5 leading-none">
                             <label
                                 htmlFor="Marriage"
@@ -92,7 +116,11 @@ export default function DemographicView(props: DemographicProps) {
                         </div>
                     </div>
                     <div className="items-top flex space-x-2">
-                        <Checkbox id="Ancestry" onClick={() => handleCheckboxClick("Ancestry")} />
+                        <Checkbox
+                            id="Ancestry"
+                            onClick={() => handleCheckboxClick("Ancestry")}
+                            checked={selectedFilters.includes("Ancestry")}
+                        />
                         <div className="grid gap-1.5 leading-none">
                             <label
                                 htmlFor="Ancestry"
@@ -103,7 +131,11 @@ export default function DemographicView(props: DemographicProps) {
                         </div>
                     </div>
                     <div className="items-top flex space-x-2">
-                        <Checkbox id="Population" onClick={() => handleCheckboxClick("Population")} />
+                        <Checkbox
+                            id="Population"
+                            onClick={() => handleCheckboxClick("Population")}
+                            checked={selectedFilters.includes("Population")}
+                        />
                         <div className="grid gap-1.5 leading-none">
                             <label
                                 htmlFor="Population"
@@ -114,7 +146,7 @@ export default function DemographicView(props: DemographicProps) {
                         </div>
                     </div>
                     <div className="items-top flex space-x-2">
-                        <Checkbox id="Age" onClick={() => handleCheckboxClick("Age")} />
+                        <Checkbox id="Age" onClick={() => handleCheckboxClick("Age")} checked={selectedFilters.includes("Age")} />
                         <div className="grid gap-1.5 leading-none">
                             <label
                                 htmlFor="Age"
@@ -125,7 +157,11 @@ export default function DemographicView(props: DemographicProps) {
                         </div>
                     </div>
                     <div className="items-top flex space-x-2">
-                        <Checkbox id="Employment" onClick={() => handleCheckboxClick("Employment")} />
+                        <Checkbox
+                            id="Employment"
+                            onClick={() => handleCheckboxClick("Employment")}
+                            checked={selectedFilters.includes("Employment")}
+                        />
                         <div className="grid gap-1.5 leading-none">
                             <label
                                 htmlFor="Employment"
@@ -136,7 +172,7 @@ export default function DemographicView(props: DemographicProps) {
                         </div>
                     </div>
                     <div className="items-top flex space-x-2">
-                        <Checkbox id="Income" onClick={() => handleCheckboxClick("Income")} />
+                        <Checkbox id="Income" onClick={() => handleCheckboxClick("Income")} checked={selectedFilters.includes("Income")} />
                         <div className="grid gap-1.5 leading-none">
                             <label
                                 htmlFor="Income"
