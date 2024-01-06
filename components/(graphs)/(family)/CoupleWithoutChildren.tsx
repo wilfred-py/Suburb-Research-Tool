@@ -422,36 +422,56 @@ export default function CoupleWithoutChildrenLineGraph(props: CoupleWithoutChild
     ];
 
     const renderLineChart = (
-        <LineChart width={600} height={400} data={data} margin={{ top: 30, right: 30, bottom: 30, left: 30 }}>
-            <Line type="natural" dataKey="Suburb" stroke="#219C90" strokeWidth={2.4} />
-            <Line type="natural" dataKey="State" stroke="#068FFF" strokeWidth={1.4} />
-            <Line type="natural" dataKey="Australia" stroke="#A90076" strokeWidth={1.4} />
-            <CartesianGrid stroke="#ccc" strokeDasharray="5 5" />
-            <XAxis dataKey="name">
-                <Label value="year" position="bottom" />
-            </XAxis>
-            <YAxis tickCount={6} domain={[dataMin - 3, dataMax + 3]} padding={{ bottom: 30 }}>
-                <Label value="%" position="insideLeft" />
-            </YAxis>
-            <Tooltip offset={50} cursor={false} />
-            <Legend verticalAlign="top" height={36} align="center" />
-            <CartesianGrid y={40}></CartesianGrid>
-        </LineChart>
+        <div className="mobile-s:max-mobile-l:w-[260px] mobile-s:max-mobile-l:h-[440px] mobile-l:max-md:w-[360px] sm:max-md:h-[420px] md:max-md-l:w-[300px] md-l:h-[440px] md-l:w-[360px] mobile-s:max-sm:mt-10 sm:max-md:mt-12 md:mt-6">
+            <ResponsiveContainer>
+                <LineChart data={data} margin={{ top: 30, right: 30, bottom: 30, left: 30 }}>
+                    <Line type="natural" dataKey="Suburb" stroke="#219C90" strokeWidth={2.4} />
+                    <Line type="natural" dataKey="State" stroke="#068FFF" strokeWidth={1.4} />
+                    <Line type="natural" dataKey="Australia" stroke="#A90076" strokeWidth={1.4} />
+                    <CartesianGrid stroke="#ccc" strokeDasharray="5 5" />
+                    <XAxis dataKey="name">
+                        <Label value="year" position="bottom" />
+                    </XAxis>
+                    <YAxis tickCount={6} domain={[dataMin - 3, dataMax + 3]} padding={{ bottom: 30 }}>
+                        <Label value="%" position="insideLeft" />
+                    </YAxis>
+                    <Tooltip offset={50} cursor={false} />
+                    <Legend
+                        height={70}
+                        layout="horizontal"
+                        verticalAlign="top"
+                        align="center"
+                        margin={{ top: 0, right: 0, bottom: 0, left: 0 }}
+                    />
+                    <CartesianGrid y={40}></CartesianGrid>
+                </LineChart>
+            </ResponsiveContainer>
+        </div>
     );
 
     const insufficientDataLineChart = (
-        <LineChart width={600} height={400} data={data} margin={{ right: 30, bottom: 30, left: 30 }}>
-            <CartesianGrid stroke="#ccc" strokeDasharray="5 5" />
-            <XAxis dataKey="name">
-                <Label value="year" position="bottom" />
-            </XAxis>
-            <YAxis tickCount={10} domain={[35, 75]}>
-                <Label value="$" position="insideLeft" />
-            </YAxis>
-            <Tooltip offset={50} cursor={false} />
-            <Legend verticalAlign="top" height={36} align="center" />
-            <CartesianGrid y={40}></CartesianGrid>
-        </LineChart>
+        <div className="mobile-s:max-mobile-l:w-[260px] mobile-s:max-mobile-l:h-[440px] mobile-l:max-md:w-[360px] sm:max-md:h-[420px] md:max-md-l:w-[300px] md-l:h-[440px] md-l:w-[360px] mobile-s:max-sm:mt-10 sm:max-md:mt-12 md:mt-6">
+            <ResponsiveContainer>
+                <LineChart data={data} margin={{ right: 30, bottom: 30, left: 30 }}>
+                    <CartesianGrid stroke="#ccc" strokeDasharray="5 5" />
+                    <XAxis dataKey="name">
+                        <Label value="year" position="bottom" />
+                    </XAxis>
+                    <YAxis tickCount={10} domain={[35, 75]}>
+                        <Label value="$" position="insideLeft" />
+                    </YAxis>
+                    <Tooltip offset={50} cursor={false} />
+                    <Legend
+                        height={70}
+                        layout="horizontal"
+                        verticalAlign="top"
+                        align="center"
+                        margin={{ top: 0, right: 0, bottom: 0, left: 0 }}
+                    />
+                    <CartesianGrid y={40}></CartesianGrid>
+                </LineChart>
+            </ResponsiveContainer>
+        </div>
     );
 
     return (

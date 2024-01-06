@@ -191,15 +191,63 @@ export default function DemographicView(props: DemographicProps) {
                 </DrawerContent>
             </Drawer>
 
-            <div className="w-full">
-                {selectedFilters.includes("Family Composition") ? <FamilyComposition selectedSuburb={props.selectedSuburb} /> : ""}
-                {selectedFilters.includes("Religion") ? <ReligionChart selectedSuburb={props.selectedSuburb} /> : ""}
-                {selectedFilters.includes("Marriage") ? <Marital selectedSuburb={props.selectedSuburb} /> : ""}
-                {selectedFilters.includes("Ancestry") ? <AncestryChart selectedSuburb={props.selectedSuburb} /> : ""}
-                {selectedFilters.includes("Population") ? <Population selectedSuburb={props.selectedSuburb} /> : ""}
-                {selectedFilters.includes("Age") ? <Age selectedSuburb={props.selectedSuburb} /> : ""}
-                {selectedFilters.includes("Employment") ? <Employment selectedSuburb={props.selectedSuburb} /> : ""}
-                {selectedFilters.includes("Income") ? <Income selectedSuburb={props.selectedSuburb} /> : ""}
+            <div className="flex flex-col w-full">
+                {selectedFilters.includes("Family Composition") ? (
+                    <div className="flex-1 max-w-[720px] mt-2 border border-gray-200 rounded-md shadow-lg hover:shadow-xl">
+                        <FamilyComposition selectedSuburb={props.selectedSuburb} />
+                    </div>
+                ) : (
+                    ""
+                )}
+                {selectedFilters.includes("Religion") ? (
+                    <div className="flex-1 max-w-[720px] mt-2 border border-gray-200 rounded-md shadow-lg hover:shadow-xl">
+                        <ReligionChart selectedSuburb={props.selectedSuburb} />
+                    </div>
+                ) : (
+                    ""
+                )}
+                {selectedFilters.includes("Marriage") ? (
+                    <div className="flex-1 max-w-[720px] mt-2 border border-gray-200 rounded-md shadow-lg hover:shadow-xl">
+                        <Marital selectedSuburb={props.selectedSuburb} />
+                    </div>
+                ) : (
+                    ""
+                )}
+                {selectedFilters.includes("Ancestry") ? (
+                    <div className="flex-1 max-w-[720px] mt-2 border border-gray-200 rounded-md shadow-lg hover:shadow-xl">
+                        <AncestryChart selectedSuburb={props.selectedSuburb} />
+                    </div>
+                ) : (
+                    ""
+                )}
+                {selectedFilters.includes("Population") ? (
+                    <div className="flex-1 max-w-[720px] mt-2 border border-gray-200 rounded-md shadow-lg hover:shadow-xl">
+                        <Population selectedSuburb={props.selectedSuburb} />
+                    </div>
+                ) : (
+                    ""
+                )}
+                {selectedFilters.includes("Age") ? (
+                    <div className="flex-1 max-w-[720px] mt-2 border border-gray-200 rounded-md shadow-lg hover:shadow-xl">
+                        <Age selectedSuburb={props.selectedSuburb} />
+                    </div>
+                ) : (
+                    ""
+                )}
+                {selectedFilters.includes("Employment") ? (
+                    <div className="flex-1 max-w-[720px] mt-2 border border-gray-200 rounded-md shadow-lg hover:shadow-xl">
+                        <Employment selectedSuburb={props.selectedSuburb} />
+                    </div>
+                ) : (
+                    ""
+                )}
+                {selectedFilters.includes("Income") ? (
+                    <div className="flex-1 max-w-[720px] mt-2 border border-gray-200 rounded-md shadow-lg hover:shadow-xl">
+                        <Income selectedSuburb={props.selectedSuburb} />
+                    </div>
+                ) : (
+                    ""
+                )}
             </div>
 
             {/* <FamilyComposition selectedSuburb={props.selectedSuburb} />
