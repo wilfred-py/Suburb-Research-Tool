@@ -4,7 +4,20 @@ import * as React from "react";
 import { useEffect, useState } from "react";
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 
-import { LineChart, Line, CartesianGrid, XAxis, YAxis, Tooltip, Legend, ResponsiveContainer, Label, CartesianAxis } from "recharts";
+import {
+    LineChart,
+    Line,
+    CartesianGrid,
+    XAxis,
+    YAxis,
+    Tooltip as RechartsTooltip,
+    Legend,
+    ResponsiveContainer,
+    Label,
+    CartesianAxis,
+} from "recharts";
+
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 
 interface OtherFamilyProps {
     selectedSuburb: string | null;
@@ -422,36 +435,56 @@ export default function OtherFamilyLineGraph(props: OtherFamilyProps) {
     ];
 
     const renderLineChart = (
-        <LineChart width={600} height={400} data={data} margin={{ top: 30, right: 30, bottom: 30, left: 30 }}>
-            <Line type="natural" dataKey="Suburb" stroke="#219C90" strokeWidth={2.4} />
-            <Line type="natural" dataKey="State" stroke="#068FFF" strokeWidth={1.4} />
-            <Line type="natural" dataKey="Australia" stroke="#A90076" strokeWidth={1.4} />
-            <CartesianGrid stroke="#ccc" strokeDasharray="5 5" />
-            <XAxis dataKey="name">
-                <Label value="year" position="bottom" />
-            </XAxis>
-            <YAxis tickCount={6} domain={[dataMin, dataMax + 0.25]} padding={{ bottom: 30 }}>
-                <Label value="%" position="insideLeft" />
-            </YAxis>
-            <Tooltip offset={50} cursor={false} />
-            <Legend verticalAlign="top" height={36} align="center" />
-            <CartesianGrid y={40}></CartesianGrid>
-        </LineChart>
+        <div className="mobile-s:max-mobile-l:w-[260px] mobile-s:max-mobile-l:h-[440px] mobile-l:max-md:w-[360px] sm:max-md:h-[420px] md:max-md-l:w-[300px] md-l:h-[440px] md-l:w-[360px] mobile-s:max-sm:mt-10 sm:max-md:mt-12 md:mt-6">
+            <ResponsiveContainer>
+                <LineChart width={600} height={400} data={data} margin={{ top: 30, right: 30, bottom: 30, left: 30 }}>
+                    <Line type="natural" dataKey="Suburb" stroke="#219C90" strokeWidth={2.4} />
+                    <Line type="natural" dataKey="State" stroke="#068FFF" strokeWidth={1.4} />
+                    <Line type="natural" dataKey="Australia" stroke="#A90076" strokeWidth={1.4} />
+                    <CartesianGrid stroke="#ccc" strokeDasharray="5 5" />
+                    <XAxis dataKey="name">
+                        <Label value="year" position="bottom" />
+                    </XAxis>
+                    <YAxis tickCount={6} domain={[dataMin, dataMax + 0.25]} padding={{ bottom: 30 }}>
+                        <Label value="%" position="insideLeft" />
+                    </YAxis>
+                    <RechartsTooltip offset={50} cursor={false} />
+                    <Legend
+                        height={70}
+                        layout="horizontal"
+                        verticalAlign="top"
+                        align="center"
+                        margin={{ top: 0, right: 0, bottom: 0, left: 0 }}
+                    />
+                    <CartesianGrid y={40}></CartesianGrid>
+                </LineChart>
+            </ResponsiveContainer>
+        </div>
     );
 
     const insufficientDataLineChart = (
-        <LineChart width={600} height={400} data={data} margin={{ right: 30, bottom: 30, left: 30 }}>
-            <CartesianGrid stroke="#ccc" strokeDasharray="5 5" />
-            <XAxis dataKey="name">
-                <Label value="year" position="bottom" />
-            </XAxis>
-            <YAxis tickCount={10} domain={[35, 75]}>
-                <Label value="$" position="insideLeft" />
-            </YAxis>
-            <Tooltip offset={50} cursor={false} />
-            <Legend verticalAlign="top" height={36} align="center" />
-            <CartesianGrid y={40}></CartesianGrid>
-        </LineChart>
+        <div className="mobile-s:max-mobile-l:w-[260px] mobile-s:max-mobile-l:h-[440px] mobile-l:max-md:w-[360px] sm:max-md:h-[420px] md:max-md-l:w-[300px] md-l:h-[440px] md-l:w-[360px] mobile-s:max-sm:mt-10 sm:max-md:mt-12 md:mt-6">
+            <ResponsiveContainer>
+                <LineChart width={600} height={400} data={data} margin={{ right: 30, bottom: 30, left: 30 }}>
+                    <CartesianGrid stroke="#ccc" strokeDasharray="5 5" />
+                    <XAxis dataKey="name">
+                        <Label value="year" position="bottom" />
+                    </XAxis>
+                    <YAxis tickCount={10} domain={[35, 75]}>
+                        <Label value="$" position="insideLeft" />
+                    </YAxis>
+                    <RechartsTooltip offset={50} cursor={false} />
+                    <Legend
+                        height={70}
+                        layout="horizontal"
+                        verticalAlign="top"
+                        align="center"
+                        margin={{ top: 0, right: 0, bottom: 0, left: 0 }}
+                    />
+                    <CartesianGrid y={40}></CartesianGrid>
+                </LineChart>
+            </ResponsiveContainer>
+        </div>
     );
 
     return (
@@ -460,6 +493,17 @@ export default function OtherFamilyLineGraph(props: OtherFamilyProps) {
                 <div className="flex flex-col justify-center">
                     <div className="flex flex-col justify-center -mt-4">
                         <h1 className="mt-4 mb-4 text-lg text-center font-bold">Other Family</h1>
+                        <TooltipProvider>
+                            <Tooltip>
+                                <TooltipTrigger>Definition</TooltipTrigger>
+                                <TooltipContent>
+                                    <p>
+                                        Other family is defined as a group of related individuals residing in the same household who cannot
+                                        be categorised as belonging to a couple or one parent family.
+                                    </p>
+                                </TooltipContent>
+                            </Tooltip>
+                        </TooltipProvider>
                         {insufficientSuburbData ? (
                             <div className="flex flex-col justify-center">
                                 <span className="mt-2 text-center italic">Insufficient data in suburb to populate trends.</span>
@@ -472,10 +516,6 @@ export default function OtherFamilyLineGraph(props: OtherFamilyProps) {
                     </div>
                 </div>
             </div>
-            <p className="mx-20">
-                Note: Other family is defined as a group of related individuals residing in the same household who cannot be categorised as
-                belonging to a couple or one parent family.
-            </p>
         </div>
     );
 }
