@@ -12,10 +12,18 @@ export default function FamilyComposition(props: FamilyCompositionProps) {
         <div className="flex flex-col my-4">
             <h1 className="text-2xl font-bold mx-auto">Family Composition</h1>
             <div className="flex flex-row flex-wrap">
-                <CoupleWithChildrenLineGraph selectedSuburb={props.selectedSuburb} />
-                <CoupleWithoutChildrenLineGraph selectedSuburb={props.selectedSuburb} />
-                <OneParentFamilyLineGraph selectedSuburb={props.selectedSuburb} />
-                <OtherFamilyLineGraph selectedSuburb={props.selectedSuburb} />
+                <div className="flex-1">
+                    <CoupleWithChildrenLineGraph selectedSuburb={props.selectedSuburb} />
+                </div>
+                <div className="flex-1">
+                    <CoupleWithoutChildrenLineGraph selectedSuburb={props.selectedSuburb} />
+                </div>
+                <div className="flex-1">
+                    <OneParentFamilyLineGraph selectedSuburb={props.selectedSuburb} />
+                </div>
+                <div className="flex-1">
+                    <OtherFamilyLineGraph selectedSuburb={props.selectedSuburb} />
+                </div>
             </div>
         </div>
     );
