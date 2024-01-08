@@ -492,7 +492,7 @@ export default function OtherFamilyLineGraph(props: OtherFamilyProps) {
             <div className="flex flex-col justify-center">
                 <div className="flex flex-row justify-center">
                     <h1 className="mt-4 mb-4 text-lg text-center font-bold mr-2">Other Family</h1>
-                    <TooltipProvider>
+                    <TooltipProvider delayDuration={350}>
                         <Tooltip>
                             <TooltipTrigger>
                                 <svg
@@ -510,11 +510,11 @@ export default function OtherFamilyLineGraph(props: OtherFamilyProps) {
                                     />
                                 </svg>
                             </TooltipTrigger>
-                            <TooltipContent>
-                                <p className="w-full h-full">
+                            <TooltipContent className="mobile-s:max-mobile-l:max-w-[260px] mobile-l:max-md:max-w-[360px] md:max-w-[400px] max-h-30">
+                                <h3 className="break-words">
                                     Other family is defined as a group of related individuals residing in the same household who cannot be
                                     categorised as belonging to a couple or one parent family.
-                                </p>
+                                </h3>
                             </TooltipContent>
                         </Tooltip>
                     </TooltipProvider>
