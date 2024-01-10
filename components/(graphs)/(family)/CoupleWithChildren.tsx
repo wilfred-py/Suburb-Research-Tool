@@ -399,7 +399,7 @@ export default function CoupleWithChildrenLineGraph(props: CoupleWithChildrenPro
     ];
 
     const renderLineChart = (
-        <div className="mobile-s:max-mobile-l:w-[260px] mobile-s:max-mobile-l:h-[440px] mobile-l:max-md:w-[360px] sm:max-md:h-[420px] md:max-md-l:w-[300px] md-l:h-[440px] md-l:w-[360px] sm:mt-2">
+        <div className="mobile-s:max-mobile-l:w-[260px] mobile-s:max-mobile-l:h-[440px] mobile-l:max-md:w-[360px] sm:max-md:h-[420px] md:max-md-l:w-[300px] md-l:h-[440px] md-l:w-[360px] sm:mt-2 mb-6">
             <ResponsiveContainer>
                 <LineChart data={data} margin={{ top: 30, right: 30, bottom: 30, left: 30 }}>
                     <Line type="natural" dataKey="Suburb" stroke="#219C90" strokeWidth={2.4} />
@@ -427,7 +427,7 @@ export default function CoupleWithChildrenLineGraph(props: CoupleWithChildrenPro
     );
 
     const insufficientDataLineChart = (
-        <div className="mobile-s:max-mobile-l:w-[260px] mobile-s:max-mobile-l:h-[440px] mobile-l:max-md:w-[360px] sm:max-md:h-[420px] md:max-md-l:w-[300px] md-l:h-[440px] md-l:w-[360px] sm:mt-2">
+        <div className="mobile-s:max-mobile-l:w-[260px] mobile-s:max-mobile-l:h-[440px] mobile-l:max-md:w-[360px] sm:max-md:h-[420px] md:max-md-l:w-[300px] md-l:h-[440px] md-l:w-[360px] sm:mt-2 mb-6">
             <ResponsiveContainer>
                 <LineChart data={data} margin={{ right: 30, bottom: 30, left: 30 }}>
                     <CartesianGrid stroke="#ccc" strokeDasharray="5 5" />
@@ -448,7 +448,7 @@ export default function CoupleWithChildrenLineGraph(props: CoupleWithChildrenPro
     return (
         <div>
             <div className="flex flex-col justify-center">
-                <h1 className="mt-4 mb-4 text-lg text-center font-bold">Couples With Children</h1>
+                <h1 className="mt-8 mb-4 text-lg text-center font-bold">Couples With Children</h1>
                 <div className="mx-auto -mt-4">
                     {insufficientSuburbData ? (
                         <div className="flex flex-col justify-center">
