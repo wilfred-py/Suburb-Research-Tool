@@ -285,23 +285,17 @@ export default function HouseholdCompositionChart(props: HouseholdCompositionCha
                     </div>
 
                     {selectedYear === "2006" && (
-                        <div className="w-full mobile-s:max-sm:h-[240px] sm:max-md:h-[280px] md:max-lg: h-[240px] lg:h-[280px] mobile-s:max-sm:mt-10 sm:mt-12 select-none">
+                        <div className="w-full mobile-s:max-sm:h-[240px] sm:max-lg:h-[400px] lg:max-3xl:h-[400px] 3xl:h-full 3xl:w-full select-none">
                             <ResponsiveContainer>
-                                <RadarChart
-                                    cx="50%"
-                                    cy="50%"
-                                    outerRadius="80%"
-                                    width={1000}
-                                    height={1000}
-                                    margin={{ top: 0, right: 20, bottom: 100, left: 20 }}
-                                    data={twoThousandAndSixData}
-                                >
+                                <RadarChart outerRadius="80%" data={twoThousandAndSixData}>
                                     <PolarGrid />
-                                    <PolarAngleAxis dataKey="label" />
+                                    <PolarAngleAxis dataKey="label">
+                                        <Label position={"inside"} />
+                                    </PolarAngleAxis>
                                     <PolarRadiusAxis angle={30} domain={[0, 100]} />
                                     <Radar name="% of suburb" dataKey="suburb" stroke="#219C90" fill="#219C90" fillOpacity={0.5} />
                                     <Radar name="% of state" dataKey="state" stroke="#068FFF" fill="#068FFF" fillOpacity={0.15} />
-                                    <Legend align="center" margin={{ top: 10, left: 0, right: 0, bottom: 0 }} />
+                                    <Legend height={60} />
                                     <Tooltip offset={50} />
                                 </RadarChart>
                             </ResponsiveContainer>
@@ -309,23 +303,17 @@ export default function HouseholdCompositionChart(props: HouseholdCompositionCha
                     )}
 
                     {selectedYear === "2011" && (
-                        <div className="w-full mobile-s:max-sm:h-[240px] sm:max-md:h-[280px] md:max-lg: h-[240px] lg:h-[280px] mobile-s:max-sm:mt-10 sm:mt-12 select-none">
+                        <div className="w-full mobile-s:max-sm:h-[240px] sm:max-lg:h-[400px] lg:max-3xl:h-[400px] 3xl:h-full 3xl:w-full select-none">
                             <ResponsiveContainer>
-                                <RadarChart
-                                    cx="50%"
-                                    cy="50%"
-                                    outerRadius="80%"
-                                    width={1000}
-                                    height={1000}
-                                    margin={{ top: 0, right: 20, bottom: 100, left: 20 }}
-                                    data={twentyElevenData}
-                                >
+                                <RadarChart outerRadius="80%" data={twentyElevenData}>
                                     <PolarGrid />
-                                    <PolarAngleAxis dataKey="label" />
+                                    <PolarAngleAxis dataKey="label">
+                                        <Label position={"inside"} />
+                                    </PolarAngleAxis>
                                     <PolarRadiusAxis angle={30} domain={[0, 100]} />
                                     <Radar name="% of suburb" dataKey="suburb" stroke="#219C90" fill="#219C90" fillOpacity={0.5} />
                                     <Radar name="% of state" dataKey="state" stroke="#068FFF" fill="#068FFF" fillOpacity={0.15} />
-                                    <Legend align="center" margin={{ top: 10, left: 0, right: 0, bottom: 0 }} />
+                                    <Legend height={60} />
                                     <Tooltip offset={50} />
                                 </RadarChart>
                             </ResponsiveContainer>
@@ -333,23 +321,17 @@ export default function HouseholdCompositionChart(props: HouseholdCompositionCha
                     )}
 
                     {selectedYear === "2016" && (
-                        <div className="w-full mobile-s:max-sm:h-[240px] sm:max-md:h-[280px] md:max-lg: h-[240px] lg:h-[280px] mobile-s:max-sm:mt-10 sm:mt-12 select-none">
+                        <div className="w-full mobile-s:max-sm:h-[240px] sm:max-lg:h-[400px] lg:max-3xl:h-[400px] 3xl:h-full 3xl:w-full select-none">
                             <ResponsiveContainer>
-                                <RadarChart
-                                    cx="50%"
-                                    cy="50%"
-                                    outerRadius="80%"
-                                    width={1000}
-                                    height={1000}
-                                    margin={{ top: 0, right: 20, bottom: 100, left: 20 }}
-                                    data={twentySixteenData}
-                                >
+                                <RadarChart outerRadius="80%" data={twentySixteenData}>
                                     <PolarGrid />
-                                    <PolarAngleAxis dataKey="label" />
+                                    <PolarAngleAxis dataKey="label">
+                                        <Label position={"inside"} />
+                                    </PolarAngleAxis>
                                     <PolarRadiusAxis angle={30} domain={[0, 100]} />
                                     <Radar name="% of suburb" dataKey="suburb" stroke="#219C90" fill="#219C90" fillOpacity={0.5} />
                                     <Radar name="% of state" dataKey="state" stroke="#068FFF" fill="#068FFF" fillOpacity={0.15} />
-                                    <Legend align="center" margin={{ top: 10, left: 0, right: 0, bottom: 0 }} />
+                                    <Legend height={60} />
                                     <Tooltip offset={50} />
                                 </RadarChart>
                             </ResponsiveContainer>
