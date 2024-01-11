@@ -60,189 +60,195 @@ export default function DemographicView(props: DemographicProps) {
 
     return (
         <div className="w-full flex flex-wrap">
-            <Drawer>
-                <DrawerTrigger asChild>
-                    <Button variant="outline">Filter</Button>
-                </DrawerTrigger>
-                <DrawerContent>
-                    <DrawerHeader>
-                        <DrawerTitle>Filter</DrawerTitle>
-                        <DrawerDescription>Select data to be shown/hidden</DrawerDescription>
-                    </DrawerHeader>
-                    <div className="items-top flex space-x-2">
-                        <Checkbox
-                            id="FamilyComposition"
-                            onCheckedChange={() => handleCheckboxClick("Family Composition")}
-                            checked={selectedFilters.includes("Family Composition")}
-                        />
+            <div>
+                <Drawer>
+                    <DrawerTrigger asChild>
+                        <Button variant="outline">Filter</Button>
+                    </DrawerTrigger>
+                    <DrawerContent>
+                        <DrawerHeader>
+                            <DrawerTitle>Filter</DrawerTitle>
+                            <DrawerDescription>Select data to be shown/hidden</DrawerDescription>
+                        </DrawerHeader>
+                        <div className="items-top flex space-x-2">
+                            <Checkbox
+                                id="FamilyComposition"
+                                onCheckedChange={() => handleCheckboxClick("Family Composition")}
+                                checked={selectedFilters.includes("Family Composition")}
+                            />
 
-                        <div className="grid gap-1.5 leading-none">
-                            <label
-                                htmlFor="FamilyComposition"
-                                className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                            >
-                                Family Composition
-                            </label>
+                            <div className="grid gap-1.5 leading-none">
+                                <label
+                                    htmlFor="FamilyComposition"
+                                    className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                                >
+                                    Family Composition
+                                </label>
+                            </div>
                         </div>
-                    </div>
-                    <div className="items-top flex space-x-2">
-                        <Checkbox
-                            id="Religion"
-                            onClick={() => handleCheckboxClick("Religion")}
-                            checked={selectedFilters.includes("Religion")}
-                        />
-                        <div className="grid gap-1.5 leading-none">
-                            <label
-                                htmlFor="Religion"
-                                className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                            >
-                                Religion
-                            </label>
+                        <div className="items-top flex space-x-2">
+                            <Checkbox
+                                id="Religion"
+                                onClick={() => handleCheckboxClick("Religion")}
+                                checked={selectedFilters.includes("Religion")}
+                            />
+                            <div className="grid gap-1.5 leading-none">
+                                <label
+                                    htmlFor="Religion"
+                                    className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                                >
+                                    Religion
+                                </label>
+                            </div>
                         </div>
-                    </div>
-                    <div className="items-top flex space-x-2">
-                        <Checkbox
-                            id="Marriage"
-                            onClick={() => handleCheckboxClick("Marriage")}
-                            checked={selectedFilters.includes("Marriage")}
-                        />
-                        <div className="grid gap-1.5 leading-none">
-                            <label
-                                htmlFor="Marriage"
-                                className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                            >
-                                Marriage
-                            </label>
+                        <div className="items-top flex space-x-2">
+                            <Checkbox
+                                id="Marriage"
+                                onClick={() => handleCheckboxClick("Marriage")}
+                                checked={selectedFilters.includes("Marriage")}
+                            />
+                            <div className="grid gap-1.5 leading-none">
+                                <label
+                                    htmlFor="Marriage"
+                                    className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                                >
+                                    Marriage
+                                </label>
+                            </div>
                         </div>
-                    </div>
-                    <div className="items-top flex space-x-2">
-                        <Checkbox
-                            id="Ancestry"
-                            onClick={() => handleCheckboxClick("Ancestry")}
-                            checked={selectedFilters.includes("Ancestry")}
-                        />
-                        <div className="grid gap-1.5 leading-none">
-                            <label
-                                htmlFor="Ancestry"
-                                className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                            >
-                                Ancestry
-                            </label>
+                        <div className="items-top flex space-x-2">
+                            <Checkbox
+                                id="Ancestry"
+                                onClick={() => handleCheckboxClick("Ancestry")}
+                                checked={selectedFilters.includes("Ancestry")}
+                            />
+                            <div className="grid gap-1.5 leading-none">
+                                <label
+                                    htmlFor="Ancestry"
+                                    className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                                >
+                                    Ancestry
+                                </label>
+                            </div>
                         </div>
-                    </div>
-                    <div className="items-top flex space-x-2">
-                        <Checkbox
-                            id="Population"
-                            onClick={() => handleCheckboxClick("Population")}
-                            checked={selectedFilters.includes("Population")}
-                        />
-                        <div className="grid gap-1.5 leading-none">
-                            <label
-                                htmlFor="Population"
-                                className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                            >
-                                Population
-                            </label>
+                        <div className="items-top flex space-x-2">
+                            <Checkbox
+                                id="Population"
+                                onClick={() => handleCheckboxClick("Population")}
+                                checked={selectedFilters.includes("Population")}
+                            />
+                            <div className="grid gap-1.5 leading-none">
+                                <label
+                                    htmlFor="Population"
+                                    className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                                >
+                                    Population
+                                </label>
+                            </div>
                         </div>
-                    </div>
-                    <div className="items-top flex space-x-2">
-                        <Checkbox id="Age" onClick={() => handleCheckboxClick("Age")} checked={selectedFilters.includes("Age")} />
-                        <div className="grid gap-1.5 leading-none">
-                            <label
-                                htmlFor="Age"
-                                className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                            >
-                                Age
-                            </label>
+                        <div className="items-top flex space-x-2">
+                            <Checkbox id="Age" onClick={() => handleCheckboxClick("Age")} checked={selectedFilters.includes("Age")} />
+                            <div className="grid gap-1.5 leading-none">
+                                <label
+                                    htmlFor="Age"
+                                    className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                                >
+                                    Age
+                                </label>
+                            </div>
                         </div>
-                    </div>
-                    <div className="items-top flex space-x-2">
-                        <Checkbox
-                            id="Employment"
-                            onClick={() => handleCheckboxClick("Employment")}
-                            checked={selectedFilters.includes("Employment")}
-                        />
-                        <div className="grid gap-1.5 leading-none">
-                            <label
-                                htmlFor="Employment"
-                                className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                            >
-                                Employment
-                            </label>
+                        <div className="items-top flex space-x-2">
+                            <Checkbox
+                                id="Employment"
+                                onClick={() => handleCheckboxClick("Employment")}
+                                checked={selectedFilters.includes("Employment")}
+                            />
+                            <div className="grid gap-1.5 leading-none">
+                                <label
+                                    htmlFor="Employment"
+                                    className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                                >
+                                    Employment
+                                </label>
+                            </div>
                         </div>
-                    </div>
-                    <div className="items-top flex space-x-2">
-                        <Checkbox id="Income" onClick={() => handleCheckboxClick("Income")} checked={selectedFilters.includes("Income")} />
-                        <div className="grid gap-1.5 leading-none">
-                            <label
-                                htmlFor="Income"
-                                className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                            >
-                                Income
-                            </label>
+                        <div className="items-top flex space-x-2">
+                            <Checkbox
+                                id="Income"
+                                onClick={() => handleCheckboxClick("Income")}
+                                checked={selectedFilters.includes("Income")}
+                            />
+                            <div className="grid gap-1.5 leading-none">
+                                <label
+                                    htmlFor="Income"
+                                    className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                                >
+                                    Income
+                                </label>
+                            </div>
                         </div>
-                    </div>
-                    <DrawerFooter>
-                        <Button>Confirm</Button>
-                        <DrawerClose>
-                            <Button variant="outline">Cancel</Button>
-                        </DrawerClose>
-                    </DrawerFooter>
-                </DrawerContent>
-            </Drawer>
+                        <DrawerFooter>
+                            <Button>Confirm</Button>
+                            <DrawerClose>
+                                <Button variant="outline">Cancel</Button>
+                            </DrawerClose>
+                        </DrawerFooter>
+                    </DrawerContent>
+                </Drawer>
+            </div>
 
             <div className="flex flex-col w-full">
                 {selectedFilters.includes("Family Composition") ? (
-                    <div className="flex-1 max-w-[720px] mt-2 border border-gray-200 rounded-md shadow-lg hover:shadow-xl">
+                    <div className="flex-1 max-w-[420px] mt-2 border border-gray-200 rounded-md shadow-lg hover:shadow-xl">
                         <FamilyComposition selectedSuburb={props.selectedSuburb} />
                     </div>
                 ) : (
                     ""
                 )}
                 {selectedFilters.includes("Religion") ? (
-                    <div className="flex-1 max-w-[720px] mt-2 border border-gray-200 rounded-md shadow-lg hover:shadow-xl">
+                    <div className="flex-1 max-w-[420px] mt-2 border border-gray-200 rounded-md shadow-lg hover:shadow-xl">
                         <ReligionChart selectedSuburb={props.selectedSuburb} />
                     </div>
                 ) : (
                     ""
                 )}
                 {selectedFilters.includes("Marriage") ? (
-                    <div className="flex-1 max-w-[720px] mt-2 border border-gray-200 rounded-md shadow-lg hover:shadow-xl">
+                    <div className="flex-1 max-w-[420px] mt-2 border border-gray-200 rounded-md shadow-lg hover:shadow-xl">
                         <Marital selectedSuburb={props.selectedSuburb} />
                     </div>
                 ) : (
                     ""
                 )}
                 {selectedFilters.includes("Ancestry") ? (
-                    <div className="flex-1 max-w-[720px] mt-2 border border-gray-200 rounded-md shadow-lg hover:shadow-xl">
+                    <div className="flex-1 max-w-[420px] mt-2 border border-gray-200 rounded-md shadow-lg hover:shadow-xl">
                         <AncestryChart selectedSuburb={props.selectedSuburb} />
                     </div>
                 ) : (
                     ""
                 )}
                 {selectedFilters.includes("Population") ? (
-                    <div className="flex-1 max-w-[720px] mt-2 border border-gray-200 rounded-md shadow-lg hover:shadow-xl">
+                    <div className="flex-1 max-w-[420px] mt-2 border border-gray-200 rounded-md shadow-lg hover:shadow-xl">
                         <Population selectedSuburb={props.selectedSuburb} />
                     </div>
                 ) : (
                     ""
                 )}
                 {selectedFilters.includes("Age") ? (
-                    <div className="flex-1 max-w-[720px] mt-2 border border-gray-200 rounded-md shadow-lg hover:shadow-xl">
+                    <div className="flex-1 max-w-[420px] mt-2 border border-gray-200 rounded-md shadow-lg hover:shadow-xl">
                         <Age selectedSuburb={props.selectedSuburb} />
                     </div>
                 ) : (
                     ""
                 )}
                 {selectedFilters.includes("Employment") ? (
-                    <div className="flex-1 max-w-[720px] mt-2 border border-gray-200 rounded-md shadow-lg hover:shadow-xl">
+                    <div className="flex-1 max-w-[420px] mt-2 border border-gray-200 rounded-md shadow-lg hover:shadow-xl">
                         <Employment selectedSuburb={props.selectedSuburb} />
                     </div>
                 ) : (
                     ""
                 )}
                 {selectedFilters.includes("Income") ? (
-                    <div className="flex-1 max-w-[720px] mt-2 border border-gray-200 rounded-md shadow-lg hover:shadow-xl">
+                    <div className="flex-1 max-w-[420px] mt-2 border border-gray-200 rounded-md shadow-lg hover:shadow-xl">
                         <Income selectedSuburb={props.selectedSuburb} />
                     </div>
                 ) : (
