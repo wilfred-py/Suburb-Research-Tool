@@ -13,7 +13,7 @@ export default function FamilyComposition(props: FamilyCompositionProps) {
             <div>
                 <h1 className="text-center text-2xl font-bold mx-auto">Family Composition</h1>
 
-                <div className="flex flex-col 3xl:flex-row min-h-full 3xl:space-x-2">
+                <div className="flex flex-col lg-m:flex-row lg-m:flex-wrap min-h-full 3xl:space-x-2">
                     <div className="flex-1">
                         <CoupleWithChildrenLineGraph selectedSuburb={props.selectedSuburb} />
                     </div>
