@@ -197,56 +197,56 @@ export default function DemographicView(props: DemographicProps) {
 
             <div className="flex flex-col w-full">
                 {selectedFilters.includes("Family Composition") ? (
-                    <div className="flex-1 w-full  mt-2 border border-gray-200 rounded-md shadow-lg hover:shadow-xl">
+                    <div className="flex-1 w-full mt-2 border rounded-md shadow-lg hover:shadow-xl">
                         <FamilyComposition selectedSuburb={props.selectedSuburb} />
                     </div>
                 ) : (
                     ""
                 )}
                 {selectedFilters.includes("Religion") ? (
-                    <div className="flex-1 w-full lg-m:max-w-[420px] mt-2 border border-gray-200 rounded-md shadow-lg hover:shadow-xl">
+                    <div className="flex-1 w-full mt-2 border rounded-md shadow-lg hover:shadow-xl">
                         <ReligionChart selectedSuburb={props.selectedSuburb} />
                     </div>
                 ) : (
                     ""
                 )}
                 {selectedFilters.includes("Marriage") ? (
-                    <div className="flex-1 w-full lg-m:max-w-[420px] mt-2 border border-gray-200 rounded-md shadow-lg hover:shadow-xl">
+                    <div className="flex-1 w-full mt-2 border rounded-md shadow-lg hover:shadow-xl">
                         <Marital selectedSuburb={props.selectedSuburb} />
                     </div>
                 ) : (
                     ""
                 )}
                 {selectedFilters.includes("Ancestry") ? (
-                    <div className="flex-1 w-full lg-m:max-w-[420px] mt-2 border border-gray-200 rounded-md shadow-lg hover:shadow-xl">
+                    <div className="flex-1 w-full mt-2 border rounded-md shadow-lg hover:shadow-xl">
                         <AncestryChart selectedSuburb={props.selectedSuburb} />
                     </div>
                 ) : (
                     ""
                 )}
                 {selectedFilters.includes("Population") ? (
-                    <div className="flex-1 w-full lg-m:max-w-[420px] mt-2 border border-gray-200 rounded-md shadow-lg hover:shadow-xl">
+                    <div className="flex-1 w-full mt-2 border rounded-md shadow-lg hover:shadow-xl">
                         <Population selectedSuburb={props.selectedSuburb} />
                     </div>
                 ) : (
                     ""
                 )}
                 {selectedFilters.includes("Age") ? (
-                    <div className="flex-1 w-full lg-m:max-w-[420px] mt-2 border border-gray-200 rounded-md shadow-lg hover:shadow-xl">
+                    <div className="flex-1 w-full mt-2 border rounded-md shadow-lg hover:shadow-xl">
                         <Age selectedSuburb={props.selectedSuburb} />
                     </div>
                 ) : (
                     ""
                 )}
                 {selectedFilters.includes("Employment") ? (
-                    <div className="flex-1 w-full lg-m:max-w-[420px] mt-2 border border-gray-200 rounded-md shadow-lg hover:shadow-xl">
+                    <div className="flex-1 w-full mt-2 border rounded-md shadow-lg hover:shadow-xl">
                         <Employment selectedSuburb={props.selectedSuburb} />
                     </div>
                 ) : (
                     ""
                 )}
                 {selectedFilters.includes("Income") ? (
-                    <div className="flex-1 w-full lg-m:max-w-[420px] mt-2 border border-gray-200 rounded-md shadow-lg hover:shadow-xl">
+                    <div className="flex-1 w-full mt-2 border rounded-md shadow-lg hover:shadow-xl">
                         <Income selectedSuburb={props.selectedSuburb} />
                     </div>
                 ) : (
