@@ -2,6 +2,7 @@ import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 import React, { PureComponent, useEffect, useState } from "react";
 import { Radar, RadarChart, PolarGrid, Legend, PolarAngleAxis, PolarRadiusAxis, ResponsiveContainer, Tooltip } from "recharts";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { RadarTooltip, RadarTooltipTrigger, RadarTooltipContent, RadarTooltipProvider } from "@/components/ui/tooltip-radar";
 
 interface ReligionChartProps {
     selectedSuburb: string | null;
@@ -331,8 +332,38 @@ export default function ReligionChart(props: ReligionChartProps) {
 
     return (
         <>
-            <div className="flex flex-col border-2 border-blue-400 my-4">
-                <h1 className="text-2xl font-bold mx-auto">Religion</h1>
+            <div className="flex flex-col place-items-center w-full my-4">
+                <div className="flex flex-row justify-center">
+                    <h1 className="text-2xl font-bold mx-auto">Religion</h1>
+                    <RadarTooltipProvider delayDuration={350}>
+                        <RadarTooltip>
+                            <RadarTooltipTrigger>
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    fill="none"
+                                    viewBox="0 0 24 24"
+                                    strokeWidth={1.5}
+                                    stroke="currentColor"
+                                    className="w-5 h-5"
+                                >
+                                    <path
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                        d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z"
+                                    />
+                                </svg>
+                            </RadarTooltipTrigger>
+                            <RadarTooltipContent
+                                side="bottom"
+                                className="mobile-s:max-mobile-l:max-w-[260px] mobile-l:max-md:max-w-[360px] md:max-w-[400px] max-h-30"
+                            >
+                                <h3 className="break-words">
+                                    Note: all religions will not sum to 100% as these are the top responses from census respondents
+                                </h3>
+                            </RadarTooltipContent>
+                        </RadarTooltip>
+                    </RadarTooltipProvider>
+                </div>
                 <div className="flex flex-row flex-wrap">
                     <div>
                         <Select value={selectedYear} onValueChange={handleYearChange}>
@@ -407,16 +438,18 @@ export default function ReligionChart(props: ReligionChartProps) {
                         )}
 
                         {selectedYear === "2021" && (
-                            <div>
-                                <RadarChart outerRadius="80%" width={730} height={450} data={twentyTwentyOneData}>
-                                    <PolarGrid />
-                                    <PolarAngleAxis dataKey="religion" />
-                                    <PolarRadiusAxis angle={30} />
-                                    <Radar name="% of suburb" dataKey="suburb" stroke="#219C90" fill="#219C90" fillOpacity={0.28} />
-                                    <Radar name="% of state" dataKey="state" stroke="#068FFF" fill="#068FFF" fillOpacity={0.28} />
-                                    <Legend />
-                                    <Tooltip offset={50} />
-                                </RadarChart>
+                            <div className="w-full mobile-s:max-sm:h-[240px] sm:max-md:h-[280px] md:max-lg:h-[240px] lg:h-[280px] mobile-s:max-sm:mt-10 sm:mt-12 select-none">
+                                <ResponsiveContainer>
+                                    <RadarChart outerRadius="80%" width={730} height={450} data={twentyTwentyOneData}>
+                                        <PolarGrid />
+                                        <PolarAngleAxis dataKey="religion" />
+                                        <PolarRadiusAxis angle={30} />
+                                        <Radar name="% of suburb" dataKey="suburb" stroke="#219C90" fill="#219C90" fillOpacity={0.28} />
+                                        <Radar name="% of state" dataKey="state" stroke="#068FFF" fill="#068FFF" fillOpacity={0.28} />
+                                        <Legend />
+                                        <Tooltip offset={50} />
+                                    </RadarChart>
+                                </ResponsiveContainer>
                                 <p>Note: all religions will not sum to 100% as these are the top responses from census respondents</p>
                             </div>
                         )}
