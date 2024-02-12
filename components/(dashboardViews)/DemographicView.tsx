@@ -56,6 +56,8 @@ export default function DemographicView(props: DemographicProps) {
         localStorage.setItem("selectedFilters", JSON.stringify(selectedFilters));
     }, [selectedFilters]);
 
+    console.log(selectedFilters);
+
     return (
         <div className="w-full flex flex-wrap">
             <div>
@@ -196,6 +198,8 @@ export default function DemographicView(props: DemographicProps) {
             </div>
 
             <div className="flex flex-col w-full">
+                {selectedFilters == "" && <div className="flex-1 absolute mt-4 pl-1">Please select data from filter</div>}
+
                 {selectedFilters.includes("Family Composition") ? (
                     <div className="flex-1 w-full mt-2 border rounded-md shadow-lg hover:shadow-xl">
                         <FamilyComposition selectedSuburb={props.selectedSuburb} />
@@ -253,15 +257,6 @@ export default function DemographicView(props: DemographicProps) {
                     ""
                 )}
             </div>
-
-            {/* <FamilyComposition selectedSuburb={props.selectedSuburb} />
-            <ReligionChart selectedSuburb={props.selectedSuburb} />
-            <Marital selectedSuburb={props.selectedSuburb} />
-            <AncestryChart selectedSuburb={props.selectedSuburb} />
-            <Population selectedSuburb={props.selectedSuburb} />
-            <Age selectedSuburb={props.selectedSuburb} />
-            <Employment selectedSuburb={props.selectedSuburb} />
-            <Income selectedSuburb={props.selectedSuburb} /> */}
         </div>
     );
 }
