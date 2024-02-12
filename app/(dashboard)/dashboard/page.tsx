@@ -62,16 +62,14 @@ export default function Dashboard() {
                         <div className="w-full max-w-[2108px] mt-8">
                             <div className="w-full flex flex-col md:flex-row">
                                 {/* Dashboard selector */}
-                                <div className="">
-                                    <DashboardSelector selectedView={selectedView} onChangeView={handleViewChange} />
-                                </div>
+                                <DashboardSelector selectedView={selectedView} onChangeView={handleViewChange} />
 
                                 <div className="w-full flex-1 md:pl-10 py-2">
                                     {/* Conditionally render Overview/Housing Details/Demographic/Lifestyle depending on selectedView state */}
                                     {selectedView == "Overview" ? <OverviewView selectedSuburb={selectedSuburb} /> : ""}
                                     {selectedView == "Demographic" ? <DemographicView selectedSuburb={selectedSuburb} /> : ""}
                                     {selectedView == "Housing Details" ? <HousingDetailsView selectedSuburb={selectedSuburb} /> : ""}
-                                    {selectedView == "Lifestyle" ? <LifestyleView selectedSuburb={selectedSuburb} /> : ""}
+                                    {/* {selectedView == "Lifestyle" ? <LifestyleView selectedSuburb={selectedSuburb} /> : ""} */}
                                 </div>
                             </div>
                         </div>
