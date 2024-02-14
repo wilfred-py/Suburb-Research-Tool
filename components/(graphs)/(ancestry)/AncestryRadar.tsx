@@ -242,7 +242,7 @@ export default function AncestryChart(props: AncestryChartProps) {
                         <ResponsiveContainer>
                             <RadarChart outerRadius="80%" data={twentyElevenData}>
                                 <PolarGrid />
-                                <PolarAngleAxis dataKey="ancestry" />
+                                <PolarAngleAxis dataKey="ancestry" width="50" />
                                 <PolarRadiusAxis angle={30} />
                                 <Radar name="% of suburb" dataKey="suburb" stroke="#219C90" fill="#219C90" fillOpacity={0.28} />
                                 <Radar name="% of state" dataKey="state" stroke="#068FFF" fill="#068FFF" fillOpacity={0.28} />
@@ -258,7 +258,7 @@ export default function AncestryChart(props: AncestryChartProps) {
                         <ResponsiveContainer>
                             <RadarChart outerRadius="80%" data={twentySixteenData}>
                                 <PolarGrid />
-                                <PolarAngleAxis dataKey="ancestry" />
+                                <PolarAngleAxis dataKey="ancestry" width="50" />
                                 <PolarRadiusAxis angle={30} />
                                 <Radar name="% of suburb" dataKey="suburb" stroke="#219C90" fill="#219C90" fillOpacity={0.28} />
                                 <Radar name="% of state" dataKey="state" stroke="#068FFF" fill="#068FFF" fillOpacity={0.28} />
@@ -274,7 +274,7 @@ export default function AncestryChart(props: AncestryChartProps) {
                         <ResponsiveContainer>
                             <RadarChart outerRadius="80%" data={twentyTwentyOneData}>
                                 <PolarGrid />
-                                <PolarAngleAxis dataKey="ancestry" />
+                                <PolarAngleAxis dataKey="ancestry" width="50" />
                                 <PolarRadiusAxis angle={30} />
                                 <Radar name="% of suburb" dataKey="suburb" stroke="#219C90" fill="#219C90" fillOpacity={0.28} />
                                 <Radar name="% of state" dataKey="state" stroke="#068FFF" fill="#068FFF" fillOpacity={0.28} />

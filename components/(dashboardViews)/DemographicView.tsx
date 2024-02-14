@@ -56,7 +56,7 @@ export default function DemographicView(props: DemographicProps) {
         localStorage.setItem("selectedFilters", JSON.stringify(selectedFilters));
     }, [selectedFilters]);
 
-    console.log(selectedFilters);
+    // console.log(selectedFilters);
 
     return (
         <div className="w-[99%] flex flex-wrap">
