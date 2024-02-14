@@ -223,18 +223,16 @@ export default function AncestryChart(props: AncestryChartProps) {
             <div className="w-full h-full select-none">
                 <h1 className="mt-4 text-lg text-center font-bold select-none">Ancestry</h1>
                 <div className="flex flex-col items-center lg:items-start mobile-l:ml-6 pt-6">
-                    <div>
-                        <Select value={selectedYear} onValueChange={handleYearChange}>
-                            <SelectTrigger className="w-[180px]">
-                                <SelectValue placeholder="2021" />
-                            </SelectTrigger>
-                            <SelectContent>
-                                <SelectItem value="2021">2021</SelectItem>
-                                <SelectItem value="2016">2016</SelectItem>
-                                <SelectItem value="2011">2011</SelectItem>
-                            </SelectContent>
-                        </Select>
-                    </div>
+                    <Select value={selectedYear} onValueChange={handleYearChange}>
+                        <SelectTrigger className="w-[180px]">
+                            <SelectValue placeholder="2021" />
+                        </SelectTrigger>
+                        <SelectContent>
+                            <SelectItem value="2021">2021</SelectItem>
+                            <SelectItem value="2016">2016</SelectItem>
+                            <SelectItem value="2011">2011</SelectItem>
+                        </SelectContent>
+                    </Select>
                 </div>
 
                 {selectedYear === "2011" && (

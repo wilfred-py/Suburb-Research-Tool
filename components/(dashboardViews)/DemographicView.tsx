@@ -59,7 +59,7 @@ export default function DemographicView(props: DemographicProps) {
     console.log(selectedFilters);
 
     return (
-        <div className="w-full flex flex-wrap">
+        <div className="w-[99%] flex flex-wrap">
             <div>
                 <Drawer>
                     <DrawerTrigger asChild>
