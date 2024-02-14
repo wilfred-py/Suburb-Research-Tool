@@ -102,7 +102,6 @@ export default function ReligionChart(props: ReligionChartProps) {
                 const { year, data } = result;
 
                 try {
-                    // Religion not recorded 2011, 2016, 2021
                     // * 2001
                     if (year == "2001") {
                         const religionData = data[0]["cultural_data"]["Religious affiliation, top responses"];
