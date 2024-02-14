@@ -200,7 +200,7 @@ export default function ReligionChart(props: ReligionChartProps) {
                     // * 2021
                     else if (year == "2021") {
                         const religionData = data[0]["cultural_data"]["Religious affiliation, top responses"];
-                        // console.log(religionData);
+                        console.log(religionData);
 
                         Object.entries(religionData).forEach(([key, value]) => {
                             // console.log(`Key: ${key}, Value: ${value}`);
@@ -325,8 +325,8 @@ export default function ReligionChart(props: ReligionChartProps) {
     }
 
     // ! CONSOLE LOGS
-    console.log(suburbReligion);
-    console.log(selectedYear);
+    // console.log(suburbReligion);
+    // console.log(selectedYear);
     // ! CONSOLE LOGS
 
     return (
@@ -387,55 +387,65 @@ export default function ReligionChart(props: ReligionChartProps) {
 
                 {selectedYear === "2001" && (
                     <div className="w-full mobile-s:max-sm:h-[240px] sm:max-md:h-[280px] md:max-lg:h-[240px] lg:h-[280px] mobile-s:max-sm:mt-10 sm:mt-12 select-none pb-10">
-                        <RadarChart outerRadius="80%" data={twoThousandAndOneData}>
-                            <PolarGrid />
-                            <PolarAngleAxis dataKey="religion" width="50" />
-                            <PolarRadiusAxis angle={30} />
-                            <Radar name="% of suburb" dataKey="suburb" stroke="#219C90" fill="#219C90" fillOpacity={0.28} />
-                            <Legend />
-                            <Tooltip offset={50} />
-                        </RadarChart>
+                        <ResponsiveContainer>
+                            <RadarChart outerRadius="80%" data={twoThousandAndOneData}>
+                                <PolarGrid />
+                                <PolarAngleAxis dataKey="religion" width="50" />
+                                <PolarRadiusAxis angle={30} />
+                                <Radar name="% of suburb" dataKey="suburb" stroke="#219C90" fill="#219C90" fillOpacity={0.28} />
+                                <Radar name="% of state" dataKey="state" stroke="#068FFF" fill="#068FFF" fillOpacity={0.28} />
+                                <Legend />
+                                <Tooltip offset={50} />
+                            </RadarChart>
+                        </ResponsiveContainer>
                     </div>
                 )}
 
                 {selectedYear === "2006" && (
                     <div className="w-full mobile-s:max-sm:h-[240px] sm:max-md:h-[280px] md:max-lg:h-[240px] lg:h-[280px] mobile-s:max-sm:mt-10 sm:mt-12 select-none pb-10">
-                        <RadarChart outerRadius="80%" data={twoThousandAndSixData}>
-                            <PolarGrid />
-                            <PolarAngleAxis dataKey="religion" width="50" />
-                            <PolarRadiusAxis angle={30} />
-                            <Radar name="% of suburb" dataKey="suburb" stroke="#219C90" fill="#219C90" fillOpacity={0.28} />
-                            <Legend />
-                            <Tooltip offset={50} />
-                        </RadarChart>
+                        <ResponsiveContainer>
+                            <RadarChart outerRadius="80%" data={twoThousandAndSixData}>
+                                <PolarGrid />
+                                <PolarAngleAxis dataKey="religion" width="50" />
+                                <PolarRadiusAxis angle={30} />
+                                <Radar name="% of suburb" dataKey="suburb" stroke="#219C90" fill="#219C90" fillOpacity={0.28} />
+                                <Radar name="% of state" dataKey="state" stroke="#068FFF" fill="#068FFF" fillOpacity={0.28} />
+                                <Legend />
+                                <Tooltip offset={50} />
+                            </RadarChart>
+                        </ResponsiveContainer>
                     </div>
                 )}
 
                 {selectedYear === "2011" && (
                     <div className="w-full mobile-s:max-sm:h-[240px] sm:max-md:h-[280px] md:max-lg:h-[240px] lg:h-[280px] mobile-s:max-sm:mt-10 sm:mt-12 select-none pb-10">
-                        <RadarChart outerRadius="80%" data={twentyElevenData}>
-                            <PolarGrid />
-                            <PolarAngleAxis dataKey="religion" width="50" />
-                            <PolarRadiusAxis angle={30} />
-                            <Radar name="% of suburb" dataKey="suburb" stroke="#219C90" fill="#219C90" fillOpacity={0.28} />
-                            <Radar name="% of state" dataKey="state" stroke="#068FFF" fill="#068FFF" fillOpacity={0.28} />
-                            <Legend />
-                            <Tooltip offset={50} />
-                        </RadarChart>
+                        <ResponsiveContainer>
+                            <RadarChart outerRadius="80%" data={twentyElevenData}>
+                                <PolarGrid />
+                                <PolarAngleAxis dataKey="religion" width="50" />
+                                <PolarRadiusAxis angle={30} />
+                                <Radar name="% of suburb" dataKey="suburb" stroke="#219C90" fill="#219C90" fillOpacity={0.28} />
+                                <Radar name="% of state" dataKey="state" stroke="#068FFF" fill="#068FFF" fillOpacity={0.28} />
+                                <Legend />
+                                <Tooltip offset={50} />
+                            </RadarChart>
+                        </ResponsiveContainer>
                     </div>
                 )}
 
                 {selectedYear === "2016" && (
                     <div className="w-full mobile-s:max-sm:h-[240px] sm:max-md:h-[280px] md:max-lg:h-[240px] lg:h-[280px] mobile-s:max-sm:mt-10 sm:mt-12 select-none pb-10">
-                        <RadarChart outerRadius="80%" data={twentySixteenData}>
-                            <PolarGrid />
-                            <PolarAngleAxis dataKey="religion" width="50" />
-                            <PolarRadiusAxis angle={30} />
-                            <Radar name="% of suburb" dataKey="suburb" stroke="#219C90" fill="#219C90" fillOpacity={0.28} />
-                            <Radar name="% of state" dataKey="state" stroke="#068FFF" fill="#068FFF" fillOpacity={0.28} />
-                            <Legend />
-                            <Tooltip offset={50} />
-                        </RadarChart>
+                        <ResponsiveContainer>
+                            <RadarChart outerRadius="80%" data={twentySixteenData}>
+                                <PolarGrid />
+                                <PolarAngleAxis dataKey="religion" width="50" />
+                                <PolarRadiusAxis angle={30} />
+                                <Radar name="% of suburb" dataKey="suburb" stroke="#219C90" fill="#219C90" fillOpacity={0.28} />
+                                <Radar name="% of state" dataKey="state" stroke="#068FFF" fill="#068FFF" fillOpacity={0.28} />
+                                <Legend />
+                                <Tooltip offset={50} />
+                            </RadarChart>
+                        </ResponsiveContainer>
                     </div>
                 )}
 
