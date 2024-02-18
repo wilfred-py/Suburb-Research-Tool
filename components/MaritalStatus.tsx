@@ -10,7 +10,7 @@ interface MaritalProps {
 
 export default function Marital(props: MaritalProps) {
     return (
-        <div className="flex flex-col my-4 w-[99%]">
+        <div className="flex flex-col my-4 w-[99%] bg-black">
             <h1 className="text-center text-2xl font-bold mx-auto">Registered Marital Status</h1>
             <div className="flex flex-col lg:flex-row min-h-full 3xl:space-x-2">
                 <div className="lg:w-1/2 h-full flex flex-col">
