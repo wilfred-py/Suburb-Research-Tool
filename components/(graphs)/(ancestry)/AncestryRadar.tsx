@@ -222,7 +222,7 @@ export default function AncestryChart(props: AncestryChartProps) {
 
     return (
         <>
-            <div className="w-full select-none bg-black">
+            <div className="w-full select-none">
                 <div className="flex flex-col place-items-center w-full my-4">
                     <h1 className="text-2xl font-bold mx-auto">Ancestry</h1>
                 </div>

@@ -10,14 +10,30 @@ interface AgeProps {
 
 export default function Age(props: AgeProps) {
     return (
-        <div className="flex flex-col border-2 border-blue-400 my-4">
-            <h1 className="text-2xl font-bold mx-auto">Age Groups</h1>
-            <div className="flex flex-row flex-wrap">
-                <Children selectedSuburb={props.selectedSuburb} />
-                <Adolescents selectedSuburb={props.selectedSuburb} />
-                <YoungAdults selectedSuburb={props.selectedSuburb} />
-                <MiddleAged selectedSuburb={props.selectedSuburb} />
-                <Seniors selectedSuburb={props.selectedSuburb} />
+        <div className="flex flex-col my-4 w-[99%]">
+            <h1 className="text-center text-2xl font-bold mx-auto">Age</h1>
+            <div className="flex flex-col lg:flex-row flex-wrap min-h-full ">
+                <div className="flex flex-col lg:w-1/2 h-full">
+                    <div className="flex-1">
+                        <Children selectedSuburb={props.selectedSuburb} />
+                    </div>
+                    <div className="flex-1">
+                        <Adolescents selectedSuburb={props.selectedSuburb} />
+                    </div>
+                </div>
+                <div className="flex flex-col lg:w-1/2 h-full">
+                    <div className="flex-1">
+                        <YoungAdults selectedSuburb={props.selectedSuburb} />
+                    </div>
+                    <div className="flex-1">
+                        <MiddleAged selectedSuburb={props.selectedSuburb} />
+                    </div>
+                </div>
+                <div className="flex flex-col lg:w-1/2">
+                    <div className="flex-1">
+                        <Seniors selectedSuburb={props.selectedSuburb} />
+                    </div>
+                </div>
             </div>
         </div>
     );
