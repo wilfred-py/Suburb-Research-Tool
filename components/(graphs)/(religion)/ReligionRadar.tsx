@@ -370,7 +370,7 @@ export default function ReligionChart(props: ReligionChartProps) {
                 </div>
 
                 {/* Year selector */}
-                <div className="flex flex-col items-center lg:items-start mobile-l:ml-6 pt-6">
+                <div className="flex flex-col items-center lg:items-start mobile-l:ml-6 pt-4">
                     <Select value={selectedYear} onValueChange={handleYearChange}>
                         <SelectTrigger className="w-[180px]">
                             <SelectValue placeholder="2021" />

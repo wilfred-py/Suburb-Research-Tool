@@ -226,7 +226,7 @@ export default function AncestryChart(props: AncestryChartProps) {
                 </div>
 
                 {/* Year selector */}
-                <div className="flex flex-col items-center lg:items-start mobile-l:ml-6 pt-6">
+                <div className="flex flex-col items-center lg:items-start mobile-l:ml-6 pt-4">
                     <Select value={selectedYear} onValueChange={handleYearChange}>
                         <SelectTrigger className="w-[180px]">
                             <SelectValue placeholder="2021" />
@@ -240,7 +240,7 @@ export default function AncestryChart(props: AncestryChartProps) {
                 </div>
 
                 {selectedYear === "2011" && (
-                    <div className="w-full mobile-s:max-sm:h-[240px] sm:max-md:h-[280px] md:max-lg:h-[240px] lg:h-[280px] mobile-s:max-sm:mt-10 sm:mt-12 select-none pb-10">
+                    <div className="w-full mobile-s:max-sm:h-[240px] sm:max-md:h-[280px] md:max-lg:h-[240px] lg:h-[280px] mt-8 sm:mt-12 select-none pb-10">
                         <ResponsiveContainer>
                             <RadarChart outerRadius="80%" data={twentyElevenData}>
                                 <PolarGrid />
@@ -256,7 +256,7 @@ export default function AncestryChart(props: AncestryChartProps) {
                 )}
 
                 {selectedYear === "2016" && (
-                    <div className="w-full mobile-s:max-sm:h-[240px] sm:max-md:h-[280px] md:max-lg:h-[240px] lg:h-[280px] mobile-s:max-sm:mt-10 sm:mt-12 select-none pb-10">
+                    <div className="w-full mobile-s:max-sm:h-[240px] sm:max-md:h-[280px] md:max-lg:h-[240px] lg:h-[280px] mt-8 sm:mt-12 select-none pb-10">
                         <ResponsiveContainer>
                             <RadarChart outerRadius="80%" data={twentySixteenData}>
                                 <PolarGrid />
@@ -272,7 +272,7 @@ export default function AncestryChart(props: AncestryChartProps) {
                 )}
 
                 {selectedYear === "2021" && (
-                    <div className="w-full mobile-s:max-sm:h-[240px] sm:max-md:h-[280px] md:max-lg:h-[240px] lg:h-[280px] mobile-s:max-sm:mt-10 sm:mt-12 select-none pb-10">
+                    <div className="w-full mobile-s:max-sm:h-[240px] sm:max-md:h-[280px] md:max-lg:h-[240px] lg:h-[280px] mt-8 sm:mt-12 select-none pb-10">
                         <ResponsiveContainer>
                             <RadarChart outerRadius="80%" data={twentyTwentyOneData}>
                                 <PolarGrid />
