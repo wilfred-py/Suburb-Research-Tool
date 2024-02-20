@@ -8,7 +8,7 @@ export default function FAQs() {
         <div className="flex flex-col w-full h-full mx-auto px-5 sm:px-9 md:px-10 lg:px-12 xl:px-24 2xl:px-40 3xl:px-52 4xl:px-72 5xl:px-96 6xl:px-[440px] 7xl:px-[500px] 8xl:px-[600px] mt-14 mb-20">
             <h1 className="text-2xl font-inter600">FAQs</h1>
             <div>
-                <Accordion type="multiple">
+                <Accordion type="single">
                     <AccordionItem value="item-1">
                         <AccordionTrigger className="font-semibold">Is this free to use?</AccordionTrigger>
                         <AccordionContent>Yes - accessing all graphs is 100% free. All you need is an email.</AccordionContent>
@@ -25,19 +25,19 @@ export default function FAQs() {
                     <AccordionItem value="item-3">
                         <AccordionTrigger className="font-semibold text-left">I spotted a bug. How do I report it?</AccordionTrigger>
                         <AccordionContent>
-                            Thanks - your sharp eye is kindly appreciated. Please leave your feedback
+                            Please report any issues{" "}
                             <a href={"https://suburb-iq.canny.io/bug-reports-features-requests"} target="_blank">
                                 {" "}
                                 <span className="text-left font-bold underline">here</span>
                             </a>{" "}
-                            and it will get fixed as soon as possible!
+                            and it will get fixed as soon as possible.
                         </AccordionContent>
                     </AccordionItem>
                     <AccordionItem value="item-4">
                         <AccordionTrigger className="font-semibold text-left">How can I request new features?</AccordionTrigger>
                         <AccordionContent>
-                            We're always looking for ways to implement new features that are useful to the community. If you have a great
-                            idea, let us know
+                            We're always looking to implement new features that are useful to the community. If you have a great idea, let
+                            us know
                             <a href={"https://suburb-iq.canny.io/bug-reports-features-requests"} target="_blank">
                                 {" "}
                                 <span className="text-left font-bold underline">here</span>
