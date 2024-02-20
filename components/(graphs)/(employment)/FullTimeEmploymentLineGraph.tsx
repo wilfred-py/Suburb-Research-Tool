@@ -424,6 +424,7 @@ export default function FullTimeEmploymentLineGraph(props: FullTimeEmploymentPro
             </ResponsiveContainer>
         </div>
     );
+
     const insufficientDataLineChart = (
         <div className="mobile-s:max-mobile-l:w-[260px] mobile-s:max-mobile-l:h-[440px] mobile-l:max-md:w-[360px] sm:max-md:h-[420px] md:max-md-l:w-[300px] md-l:h-[440px] md-l:w-[360px] mobile-s:max-sm:mt-10 sm:max-md:mt-12 md:mt-6">
             <ResponsiveContainer>
