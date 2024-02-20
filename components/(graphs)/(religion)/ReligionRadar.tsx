@@ -386,7 +386,7 @@ export default function ReligionChart(props: ReligionChartProps) {
                 </div>
 
                 {selectedYear === "2001" && (
-                    <div className="w-full mobile-s:max-sm:h-[240px] sm:max-md:h-[280px] md:max-lg:h-[240px] lg:h-[280px] mobile-s:max-sm:mt-10 sm:mt-12 select-none pb-10">
+                    <div className="w-full mobile-s:max-sm:h-[240px] sm:max-md:h-[280px] md:max-lg:h-[240px] lg:h-[280px] mt-8 sm:mt-12 select-none pb-10">
                         <ResponsiveContainer>
                             <RadarChart outerRadius="80%" data={twoThousandAndOneData}>
                                 <PolarGrid />
@@ -402,7 +402,7 @@ export default function ReligionChart(props: ReligionChartProps) {
                 )}
 
                 {selectedYear === "2006" && (
-                    <div className="w-full mobile-s:max-sm:h-[240px] sm:max-md:h-[280px] md:max-lg:h-[240px] lg:h-[280px] mobile-s:max-sm:mt-10 sm:mt-12 select-none pb-10">
+                    <div className="w-full mobile-s:max-sm:h-[240px] sm:max-md:h-[280px] md:max-lg:h-[240px] lg:h-[280px] mt-8 sm:mt-12 select-none pb-10">
                         <ResponsiveContainer>
                             <RadarChart outerRadius="80%" data={twoThousandAndSixData}>
                                 <PolarGrid />
@@ -418,7 +418,7 @@ export default function ReligionChart(props: ReligionChartProps) {
                 )}
 
                 {selectedYear === "2011" && (
-                    <div className="w-full mobile-s:max-sm:h-[240px] sm:max-md:h-[280px] md:max-lg:h-[240px] lg:h-[280px] mobile-s:max-sm:mt-10 sm:mt-12 select-none pb-10">
+                    <div className="w-full mobile-s:max-sm:h-[240px] sm:max-md:h-[280px] md:max-lg:h-[240px] lg:h-[280px] mt-8 sm:mt-12 select-none pb-10">
                         <ResponsiveContainer>
                             <RadarChart outerRadius="80%" data={twentyElevenData}>
                                 <PolarGrid />
@@ -434,7 +434,7 @@ export default function ReligionChart(props: ReligionChartProps) {
                 )}
 
                 {selectedYear === "2016" && (
-                    <div className="w-full mobile-s:max-sm:h-[240px] sm:max-md:h-[280px] md:max-lg:h-[240px] lg:h-[280px] mobile-s:max-sm:mt-10 sm:mt-12 select-none pb-10">
+                    <div className="w-full mobile-s:max-sm:h-[240px] sm:max-md:h-[280px] md:max-lg:h-[240px] lg:h-[280px] mt-8 sm:mt-12 select-none pb-10">
                         <ResponsiveContainer>
                             <RadarChart outerRadius="80%" data={twentySixteenData}>
                                 <PolarGrid />
@@ -450,7 +450,7 @@ export default function ReligionChart(props: ReligionChartProps) {
                 )}
 
                 {selectedYear === "2021" && (
-                    <div className="w-full mobile-s:max-sm:h-[240px] sm:max-md:h-[280px] md:max-lg:h-[240px] lg:h-[280px] mobile-s:max-sm:mt-10 sm:mt-12 select-none pb-10">
+                    <div className="w-full mobile-s:max-sm:h-[240px] sm:max-md:h-[280px] md:max-lg:h-[240px] lg:h-[280px] mt-8 select-none pb-10">
                         <ResponsiveContainer>
                             <RadarChart outerRadius="80%" data={twentyTwentyOneData}>
                                 <PolarGrid />
