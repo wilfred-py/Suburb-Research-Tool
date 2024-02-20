@@ -335,7 +335,7 @@ export default function ReligionChart(props: ReligionChartProps) {
                 {/* Heading and Tooltip */}
                 <div className="flex flex-col place-items-center w-full my-4">
                     <div className="flex flex-row justify-center">
-                        <h1 className="text-2xl font-bold mx-auto">Religion</h1>
+                        <h1 className="text-2xl font-bold mx-auto mr-2">Religion</h1>
 
                         {/* Tooltip with info on chart */}
                         <RadarTooltipProvider delayDuration={350}>
