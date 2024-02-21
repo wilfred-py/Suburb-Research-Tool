@@ -11,7 +11,7 @@ interface AgeProps {
 export default function Age(props: AgeProps) {
     return (
         <div className="flex flex-col my-4 w-[99%]">
-            <h1 className="text-center text-2xl font-bold mx-auto">Age</h1>
+            <h1 className="mx-auto my-4 text-center text-2xl font-bold">Age</h1>
             <div className="flex flex-col lg:flex-row flex-wrap min-h-full ">
                 <div className="flex flex-col lg:w-1/2 h-full">
                     <div className="flex-1">
