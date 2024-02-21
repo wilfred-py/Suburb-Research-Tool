@@ -7,11 +7,15 @@ interface IncomeProps {
 
 export default function Income(props: IncomeProps) {
     return (
-        <div className="flex flex-col border-2 border-blue-400 my-4">
-            <h1 className="text-2xl font-bold mx-auto">Income</h1>
-            <div className="flex flex-row flex-wrap">
-                <PersonalMedianWeeklyIncome selectedSuburb={props.selectedSuburb} />
-                <HouseholdMedianWeeklyIncome selectedSuburb={props.selectedSuburb} />
+        <div className="flex flex-col my-4 w-[99%]">
+            <h1 className="text-center text-2xl font-bold mx-auto">Employment</h1>
+            <div className="flex flex-col lg:flex-row min-h-full ">
+                <div className="flex-1">
+                    <PersonalMedianWeeklyIncome selectedSuburb={props.selectedSuburb} />
+                </div>
+                <div className="flex-1">
+                    <HouseholdMedianWeeklyIncome selectedSuburb={props.selectedSuburb} />
+                </div>
             </div>
         </div>
     );
