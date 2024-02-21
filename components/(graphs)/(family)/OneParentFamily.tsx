@@ -433,7 +433,7 @@ export default function OneParentFamilyLineGraph(props: OneParentFamilyProps) {
                         <Label value="year" position="bottom" />
                     </XAxis>
                     <YAxis tickCount={6} domain={[dataMin - 0.5, dataMax + 1]} padding={{ bottom: 30 }}>
-                        <Label value="%" position="insideLeft" />
+                        <Label value="%" position="insideLeft" offset={-5} />
                     </YAxis>
                     <Tooltip offset={50} cursor={false} />
                     <Legend
@@ -458,7 +458,7 @@ export default function OneParentFamilyLineGraph(props: OneParentFamilyProps) {
                         <Label value="year" position="bottom" />
                     </XAxis>
                     <YAxis tickCount={10} domain={[35, 75]}>
-                        <Label value="$" position="insideLeft" />
+                        <Label value="$" position="insideLeft" offset={-5} />
                     </YAxis>
                     <Tooltip offset={50} cursor={false} />
                     <Legend

@@ -446,7 +446,7 @@ export default function OtherFamilyLineGraph(props: OtherFamilyProps) {
                         <Label value="year" position="bottom" />
                     </XAxis>
                     <YAxis tickCount={6} domain={[dataMin, dataMax + 0.25]} padding={{ bottom: 30 }}>
-                        <Label value="%" position="insideLeft" />
+                        <Label value="%" position="insideLeft" offset={-5} />
                     </YAxis>
                     <RechartsTooltip offset={50} cursor={false} />
                     <Legend
@@ -471,7 +471,7 @@ export default function OtherFamilyLineGraph(props: OtherFamilyProps) {
                         <Label value="year" position="bottom" />
                     </XAxis>
                     <YAxis tickCount={10} domain={[35, 75]}>
-                        <Label value="$" position="insideLeft" />
+                        <Label value="$" position="insideLeft" offset={-5} />
                     </YAxis>
                     <RechartsTooltip offset={50} cursor={false} />
                     <Legend
