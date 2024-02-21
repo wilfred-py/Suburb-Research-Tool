@@ -384,7 +384,7 @@ export default function HouseholdMedianWeeklyIncome(props: HouseholdIncomeProps)
                         <Label value="year" position="bottom" />
                     </XAxis>
                     <YAxis tickCount={6} domain={[dataMin - 2, dataMax + 2]} padding={{ bottom: 30 }}>
-                        <Label value="$" position="insideLeft" />
+                        <Label value="$" position="insideLeft" offset={-5} />
                     </YAxis>
                     <Tooltip offset={50} cursor={false} />
                     <Legend
@@ -412,7 +412,7 @@ export default function HouseholdMedianWeeklyIncome(props: HouseholdIncomeProps)
                         <Label value="year" position="bottom" />
                     </XAxis>
                     <YAxis tickCount={6} domain={[dataMin - 2, dataMax + 2]} padding={{ bottom: 30 }}>
-                        <Label value="$" position="insideLeft" />
+                        <Label value="$" position="insideLeft" offset={-5} />
                     </YAxis>
                     <Tooltip offset={50} cursor={false} />
                     <Legend
@@ -433,7 +433,9 @@ export default function HouseholdMedianWeeklyIncome(props: HouseholdIncomeProps)
             <div className="flex flex-col justify-center">
                 <div className="flex flex-col place-items-center w-full my-4">
                     <div className="flex flex-row justify-center">
-                        <h1 className="text-lg font-bold mx-auto mr-2">Household Median Weekly Income</h1>
+                        <h1 className="text-lg font-bold mx-auto mr-2 mobile-s:max-mobile-l:max-w-[180px] mobile-s:max-mobile-l:text-center">
+                            Household Median Weekly Income
+                        </h1>
 
                         {/* Tooltip with info on chart */}
                         <RadarTooltipProvider delayDuration={350}>
