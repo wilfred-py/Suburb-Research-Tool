@@ -376,7 +376,7 @@ export default function Children(props: ChildrenProps) {
                         <Label value="year" position="bottom" />
                     </XAxis>
                     <YAxis tickCount={6} domain={[dataMin - 2, dataMax + 2]} padding={{ bottom: 30 }}>
-                        <Label value="%" position="insideLeft" />
+                        <Label value="%" position="insideLeft" offset={-5} />
                     </YAxis>
                     <Tooltip offset={50} cursor={false} />
                     <Legend
@@ -404,7 +404,7 @@ export default function Children(props: ChildrenProps) {
                         <Label value="year" position="bottom" />
                     </XAxis>
                     <YAxis tickCount={6} domain={[dataMin - 2, dataMax + 2]} padding={{ bottom: 30 }}>
-                        <Label value="%" position="insideLeft" />
+                        <Label value="%" position="insideLeft" offset={-5} />
                     </YAxis>
                     <Tooltip offset={50} cursor={false} />
                     <Legend
