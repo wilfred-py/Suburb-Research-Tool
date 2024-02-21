@@ -24,37 +24,28 @@ export default function Dashboard() {
         setSelectedView(newView);
     };
 
-    // Auth Check
     useEffect(() => {
         const supabase = createClientComponentClient();
 
-        // Set up an auth state change listener
-        supabase.auth.onAuthStateChange((event, session) => {
-            if (event === "SIGNED_OUT") {
+        const checkAuthState = (event: string, session: any) => {
+            // Set isEmailVerified state to false if user is not signed in or has not verified their email
+            if (event === "SIGNED_OUT" || !session?.user?.user_metadata?.email_verified) {
                 setIsEmailVerified(false);
-            } else if (event === "SIGNED_IN" && session?.user?.user_metadata?.email_verified) {
-                setIsEmailVerified(true);
             } else {
-                setIsEmailVerified(false);
+                setIsEmailVerified(true);
             }
-        });
+        };
 
-        // Initial check
-        checkEmailVerification();
+        const fetchSession = async () => {
+            const {
+                data: { session },
+            } = await supabase.auth.getSession();
+            checkAuthState("SIGNED_IN", session);
+        };
+
+        supabase.auth.onAuthStateChange(checkAuthState);
+        fetchSession();
     }, []);
-
-    // * Check if signed in user has verified their email
-    async function checkEmailVerification() {
-        const supabase = createClientComponentClient();
-        const {
-            data: { session },
-        } = await supabase.auth.getSession();
-        if (session?.user?.user_metadata.email_verified) {
-            setIsEmailVerified(true);
-        } else {
-            setIsEmailVerified(false);
-        }
-    }
 
     console.log(`Is Email Verified? ${isEmailVerified}`);
 
