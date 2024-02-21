@@ -10,7 +10,7 @@ interface FamilyCompositionProps {
 export default function FamilyComposition(props: FamilyCompositionProps) {
     return (
         <div className="flex flex-col my-4 w-full">
-            <h1 className="text-center text-2xl font-bold mx-auto">Family Composition</h1>
+            <h1 className="mx-auto my-4 text-center text-2xl font-bold">Family Composition</h1>
             <div className="flex flex-col lg:flex-row min-h-full 3xl:space-x-2">
                 <div className="lg:w-1/2 h-full flex flex-col">
                     <div className="flex-1">
