@@ -564,7 +564,7 @@ export default function Seniors(props: SeniorsProps) {
                 <p className="text-sm text-center font-normal">
                     {"("}60+ years old{")"}
                 </p>
-                <div className="mx-auto -mt-4">
+                <div className="mx-auto mt-1 mobile-s:max-md:-mt-4">
                     {insufficientSuburbData ? (
                         <div className="flex flex-col justify-center">
                             <span className="mt-2 text-center italic">Insufficient data in suburb to populate population trends.</span>
