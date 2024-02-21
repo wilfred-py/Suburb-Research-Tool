@@ -417,7 +417,7 @@ export default function YoungAdults(props: YoungAdultsProps) {
                         <Label value="year" position="bottom" />
                     </XAxis>
                     <YAxis tickCount={6} domain={[dataMin - 2, dataMax + 2]} padding={{ bottom: 30 }}>
-                        <Label value="%" position="insideLeft" />
+                        <Label value="%" position="insideLeft" offset={-5} />
                     </YAxis>
                     <Tooltip offset={50} cursor={false} />
                     <Legend
@@ -445,7 +445,7 @@ export default function YoungAdults(props: YoungAdultsProps) {
                         <Label value="year" position="bottom" />
                     </XAxis>
                     <YAxis tickCount={6} domain={[dataMin - 2, dataMax + 2]} padding={{ bottom: 30 }}>
-                        <Label value="%" position="insideLeft" />
+                        <Label value="%" position="insideLeft" offset={-5} />
                     </YAxis>
                     <Tooltip offset={50} cursor={false} />
                     <Legend
@@ -467,7 +467,7 @@ export default function YoungAdults(props: YoungAdultsProps) {
                 <p className="text-sm text-center font-normal">
                     {"("}20 - 39 years old{")"}
                 </p>
-                <div className="mx-auto -mt-4">
+                <div className="mx-auto mt-1 mobile-s:max-md:-mt-4">
                     {insufficientSuburbData ? (
                         <div className="flex flex-col justify-center">
                             <span className="mt-2 text-center italic">Insufficient data in suburb to populate population trends.</span>
