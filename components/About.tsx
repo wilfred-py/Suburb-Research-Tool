@@ -8,7 +8,7 @@ export default function About() {
                             Visualising demographic trends across Australian suburbs
                         </h1>
                         <h2 className="min-w-min max-w-[85%] mb-6 font-inter text-offWhite font-normal sm:text-lg tracking-normal ">
-                            Providing investors historical socioeconomic data in digestable graphs
+                            Providing investors socioeconomic data in digestable graphs
                         </h2>
                     </div>
                 </div>
