@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 
 import { LineChart, Line, CartesianGrid, XAxis, YAxis, Tooltip, Legend, ResponsiveContainer, Label, CartesianAxis } from "recharts";
+import { RadarTooltip, RadarTooltipContent, RadarTooltipProvider, RadarTooltipTrigger } from "@/components/ui/tooltip-radar";
 
 interface PersonalIncomeProps {
     selectedSuburb: string | null;
@@ -16,7 +17,6 @@ export default function PersonalMedianWeeklyIncome(props: PersonalIncomeProps) {
 
     const [deconstructedSuburb, setDeconstructedSuburb] = useState<string | null>(null);
     const [deconstructedState, setDeconstructedState] = useState<string | null>(null);
-    const [incomeData, setIncomeData] = useState<IncomeDataItem[]>([]);
 
     const [suburbPersonalIncome, setSuburbPersonalIncome] = useState<(number | null)[]>([null, null, null, null, null]);
     const [statePersonalIncome, setStatePersonalIncome] = useState<(number | null)[]>([null, null, null, null, null]);
@@ -385,42 +385,98 @@ export default function PersonalMedianWeeklyIncome(props: PersonalIncomeProps) {
     ];
 
     const renderLineChart = (
-        <LineChart width={600} height={400} data={data} margin={{ top: 30, right: 30, bottom: 30, left: 30 }}>
-            <Line type="natural" dataKey="Suburb" stroke="#219C90" strokeWidth={2.4} />
-            <Line type="natural" dataKey="State" stroke="#068FFF" strokeWidth={1.4} />
-            <Line type="natural" dataKey="Australia" stroke="#A90076" strokeWidth={1.4} />
-            <CartesianGrid stroke="#ccc" strokeDasharray="5 5" />
-            <XAxis dataKey="name">
-                <Label value="year" position="bottom" />
-            </XAxis>
-            <YAxis tickCount={6} domain={[dataMin - 100, dataMax + 100]} padding={{ bottom: 30 }}>
-                <Label value="$" position="insideLeft" />
-            </YAxis>
-            <Tooltip offset={50} cursor={false} />
-            <Legend verticalAlign="top" height={36} align="center" />
-            <CartesianGrid y={40}></CartesianGrid>
-        </LineChart>
+        <div className="mobile-s:max-mobile-l:w-[260px] mobile-s:max-mobile-l:h-[440px] mobile-l:max-md:w-[360px] sm:max-md:h-[420px] md:max-md-l:w-[300px] md-l:h-[440px] md-l:w-[360px] mobile-s:max-sm:mt-10 sm:max-md:mt-12 md:mt-6">
+            <ResponsiveContainer>
+                <LineChart data={data} margin={{ top: 0, right: 30, bottom: 60, left: 5 }}>
+                    <Line type="natural" dataKey="Suburb" stroke="#219C90" strokeWidth={2.8} />
+                    <Line type="natural" dataKey="State" stroke="#068FFF" strokeWidth={1.2} />
+                    <Line type="natural" dataKey="Australia" stroke="#A90076" strokeWidth={1.2} />
+                    <CartesianGrid stroke="#ccc" strokeDasharray="5 5" />
+                    <XAxis dataKey="name">
+                        <Label value="year" position="bottom" />
+                    </XAxis>
+                    <YAxis tickCount={6} domain={[dataMin - 2, dataMax + 2]} padding={{ bottom: 30 }}>
+                        <Label value="$" position="insideLeft" />
+                    </YAxis>
+                    <Tooltip offset={50} cursor={false} />
+                    <Legend
+                        height={70}
+                        layout="horizontal"
+                        verticalAlign="top"
+                        align="center"
+                        margin={{ top: 0, right: 0, bottom: 0, left: 0 }}
+                    />
+                    <CartesianGrid y={40}></CartesianGrid>
+                </LineChart>
+            </ResponsiveContainer>
+        </div>
     );
 
     const insufficientDataLineChart = (
-        <LineChart width={600} height={400} data={data} margin={{ right: 30, bottom: 30, left: 30 }}>
-            <CartesianGrid stroke="#ccc" strokeDasharray="5 5" />
-            <XAxis dataKey="name">
-                <Label value="year" position="bottom" />
-            </XAxis>
-            <YAxis tickCount={10} domain={[35, 75]}>
-                <Label value="$" position="insideLeft" />
-            </YAxis>
-            <Tooltip offset={50} cursor={false} />
-            <Legend verticalAlign="top" height={36} align="center" />
-            <CartesianGrid y={40}></CartesianGrid>
-        </LineChart>
+        <div className="mobile-s:max-mobile-l:w-[260px] mobile-s:max-mobile-l:h-[440px] mobile-l:max-md:w-[360px] sm:max-md:h-[420px] md:max-md-l:w-[300px] md-l:h-[440px] md-l:w-[360px] mobile-s:max-sm:mt-10 sm:max-md:mt-12 md:mt-6">
+            <ResponsiveContainer>
+                <LineChart data={data} margin={{ top: 0, right: 30, bottom: 60, left: 5 }}>
+                    <Line type="natural" dataKey="Suburb" stroke="#219C90" strokeWidth={2.8} />
+                    <Line type="natural" dataKey="State" stroke="#068FFF" strokeWidth={1.2} />
+                    <Line type="natural" dataKey="Australia" stroke="#A90076" strokeWidth={1.2} />
+                    <CartesianGrid stroke="#ccc" strokeDasharray="5 5" />
+                    <XAxis dataKey="name">
+                        <Label value="year" position="bottom" />
+                    </XAxis>
+                    <YAxis tickCount={6} domain={[dataMin - 2, dataMax + 2]} padding={{ bottom: 30 }}>
+                        <Label value="$" position="insideLeft" />
+                    </YAxis>
+                    <Tooltip offset={50} cursor={false} />
+                    <Legend
+                        height={70}
+                        layout="horizontal"
+                        verticalAlign="top"
+                        align="center"
+                        margin={{ top: 0, right: 0, bottom: 0, left: 0 }}
+                    />
+                    <CartesianGrid y={40}></CartesianGrid>
+                </LineChart>
+            </ResponsiveContainer>
+        </div>
     );
 
     return (
-        <div>
+        <>
             <div className="flex flex-col justify-center">
-                <h1 className="mt-4 mb-4 text-lg text-center font-bold">Personal Median Weekly Income</h1>
+                <div className="flex flex-col place-items-center w-full my-4">
+                    <div className="flex flex-row justify-center">
+                        <h1 className="text-lg font-bold mx-auto mr-2">Personal Median Weekly Income</h1>
+
+                        {/* Tooltip with info on chart */}
+                        <RadarTooltipProvider delayDuration={350}>
+                            <RadarTooltip>
+                                <RadarTooltipTrigger>
+                                    <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        fill="none"
+                                        viewBox="0 0 24 24"
+                                        strokeWidth={1.5}
+                                        stroke="currentColor"
+                                        className="w-5 h-5"
+                                    >
+                                        <path
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                            d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z"
+                                        />
+                                    </svg>
+                                </RadarTooltipTrigger>
+                                <RadarTooltipContent
+                                    side="bottom"
+                                    className="mobile-s:max-mobile-l:max-w-[260px] mobile-l:max-md:max-w-[360px] md:max-w-[400px] max-h-30"
+                                >
+                                    <h3 className="break-words">Note: income values are gross</h3>
+                                </RadarTooltipContent>
+                            </RadarTooltip>
+                        </RadarTooltipProvider>
+                    </div>
+                </div>
+
                 <div className="mx-auto -mt-4">
                     {insufficientSuburbData ? (
                         <div className="flex flex-col justify-center">
@@ -431,10 +487,10 @@ export default function PersonalMedianWeeklyIncome(props: PersonalIncomeProps) {
                         </div>
                     ) : (
                         // * <Recharts />
-                        <div>{renderLineChart}</div>
+                        <div className="select-none">{renderLineChart}</div>
                     )}
                 </div>
             </div>
-        </div>
+        </>
     );
 }
