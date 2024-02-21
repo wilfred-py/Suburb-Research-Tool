@@ -49,9 +49,6 @@ export default function ExamplePersonalMedianWeeklyIncome(props: PersonalIncomeP
         // console.log(`suburbName: ${suburbName}`);
         // console.log(`stateName: ${stateName}`);
 
-        setDeconstructedSuburb(suburbName);
-        setDeconstructedState(stateName);
-
         return {
             suburbName,
             stateName,
@@ -392,7 +389,7 @@ export default function ExamplePersonalMedianWeeklyIncome(props: PersonalIncomeP
                         <Label value="year" position="bottom" />
                     </XAxis>
                     <YAxis tickCount={6} domain={[dataMin - 100, dataMax + 100]} padding={{ bottom: 15 }}>
-                        <Label value="$" position="insideTopLeft" />
+                        <Label value="$" position="insideLeft" offset={-2} />
                     </YAxis>
                     <Tooltip offset={50} cursor={false} />
                     <Legend
@@ -417,7 +414,7 @@ export default function ExamplePersonalMedianWeeklyIncome(props: PersonalIncomeP
                 <Label value="year" position="bottom" />
             </XAxis>
             <YAxis tickCount={10} domain={[35, 75]}>
-                <Label value="$" position="left" />
+                <Label value="$" position="insideLeft" offset={-2} />
             </YAxis>
             <Tooltip offset={50} cursor={false} />
             <Legend verticalAlign="top" height={36} align="center" />

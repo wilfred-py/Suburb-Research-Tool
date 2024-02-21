@@ -409,7 +409,7 @@ export default function ExampleFTE(props: FullTimeEmploymentProps) {
                         <Label value="year" position="bottom" />
                     </XAxis>
                     <YAxis tickCount={10} domain={[dataMin - 2, dataMax + 2]} padding={{ bottom: 15 }}>
-                        <Label value="%" position="insideTopLeft" />
+                        <Label value="%" position="insideTopLeft" offset={-1.5} />
                     </YAxis>
                     <Tooltip offset={50} cursor={false} />
                     <Legend
@@ -434,7 +434,7 @@ export default function ExampleFTE(props: FullTimeEmploymentProps) {
                 <Label value="year" position="bottom" />
             </XAxis>
             <YAxis tickCount={10} domain={[35, 75]}>
-                <Label value="%" position="insideLeft" />
+                <Label value="%" position="insideLeft" offset={-1.5} />
             </YAxis>
             <Tooltip offset={50} cursor={false} />
             <Legend verticalAlign="top" height={36} align="center" />
