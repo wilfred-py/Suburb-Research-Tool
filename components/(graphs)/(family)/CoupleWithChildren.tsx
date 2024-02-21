@@ -410,7 +410,7 @@ export default function CoupleWithChildrenLineGraph(props: CoupleWithChildrenPro
                         <Label value="year" position="bottom" />
                     </XAxis>
                     <YAxis tickCount={6} domain={[dataMin - 3, dataMax + 3]} padding={{ bottom: 30 }}>
-                        <Label value="%" position="insideLeft" />
+                        <Label value="%" position="insideLeft" offset={-5} />
                     </YAxis>
                     <Tooltip offset={50} cursor={false} />
                     <Legend
@@ -435,7 +435,7 @@ export default function CoupleWithChildrenLineGraph(props: CoupleWithChildrenPro
                         <Label value="year" position="bottom" />
                     </XAxis>
                     <YAxis tickCount={10} domain={[35, 75]}>
-                        <Label value="$" position="insideLeft" />
+                        <Label value="$" position="insideLeft" offset={-5} />
                     </YAxis>
                     <Tooltip offset={50} cursor={false} />
                     <Legend verticalAlign="top" height={36} align="center" />
