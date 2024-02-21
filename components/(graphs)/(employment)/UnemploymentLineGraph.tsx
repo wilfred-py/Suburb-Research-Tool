@@ -458,7 +458,7 @@ export default function UnemploymentLineGraph(props: UnemploymentProps) {
     return (
         <div>
             <div className="flex flex-col justify-center">
-                <h1 className="mt-4 mb-4 text-lg text-center font-bold">Unemployment (%)</h1>
+                <h1 className="mt-4 mb-4 text-lg text-center font-bold">Unemployment</h1>
                 <div className="mx-auto -mt-4">
                     {insufficientSuburbData ? (
                         <div className="flex flex-col justify-center">
