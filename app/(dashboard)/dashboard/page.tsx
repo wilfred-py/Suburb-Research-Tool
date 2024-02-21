@@ -20,6 +20,8 @@ export default function Dashboard() {
     // Auth Email Verification
     const [isEmailVerified, setIsEmailVerified] = useState<boolean | null>(null);
 
+    const router = useRouter();
+
     const handleViewChange = (newView: string | null) => {
         setSelectedView(newView);
     };
@@ -31,6 +33,7 @@ export default function Dashboard() {
             // Set isEmailVerified state to false if user is not signed in or has not verified their email
             if (event === "SIGNED_OUT" || !session?.user?.user_metadata?.email_verified) {
                 setIsEmailVerified(false);
+                redirectToSignIn();
             } else {
                 setIsEmailVerified(true);
             }
@@ -46,6 +49,10 @@ export default function Dashboard() {
         supabase.auth.onAuthStateChange(checkAuthState);
         fetchSession();
     }, []);
+
+    const redirectToSignIn = () => {
+        router.push("/dashboard/sign-in");
+    };
 
     console.log(`Is Email Verified? ${isEmailVerified}`);
 
