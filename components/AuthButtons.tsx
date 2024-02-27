@@ -55,7 +55,7 @@ export function SignInButton() {
         const supabase = createClientComponentClient();
 
         // Set up an auth state change listener
-        supabase.auth.onAuthStateChange((event, session) => {
+        supabase.auth.onAuthStateChange((event: any, session: any) => {
             if (event === "SIGNED_OUT") {
                 setIsEmailVerified(false);
             } else if (event === "SIGNED_IN" && session?.user?.user_metadata?.email_verified) {
