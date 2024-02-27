@@ -29,7 +29,7 @@ export default function Dashboard() {
     useEffect(() => {
         const supabase = createClientComponentClient();
 
-        const checkAuthState = (event: string, session: any) => {
+        const checkAuthState = async (event: string, session: any) => {
             // Set isEmailVerified state to false if user is not signed in or has not verified their email
             if (event === "SIGNED_OUT" || !session?.user?.user_metadata?.email_verified) {
                 redirectToSignIn();
