@@ -1,6 +1,7 @@
 import Footer from "@/components/Footer";
 import "./globals.css";
 import { Roboto, Inter } from "next/font/google";
+import { Analytics } from "@vercel/analytics/react";
 
 const roboto = Roboto({
     weight: ["100", "300", "500", "700"],
@@ -31,6 +32,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 {}
 
                 {children}
+                <Analytics />
                 <footer>
                     <Footer />
                 </footer>
