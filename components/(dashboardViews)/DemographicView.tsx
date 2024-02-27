@@ -37,10 +37,10 @@ export default function DemographicView(props: DemographicProps) {
     const defaultFilters = ["Family Composition", "Religion", "Marriage", "Ancestry", "Population", "Age", "Employment", "Income"];
 
     // State to manage selected filters
-    const [selectedFilters, setSelectedFilters] = useState<String>(defaultFilters);
+    const [selectedFilters, setSelectedFilters] = useState<String[]>(defaultFilters);
 
     // Use a single handler for checkbox clicks
-    const handleCheckboxClick = (filter) => {
+    const handleCheckboxClick = (filter: any) => {
         setSelectedFilters((prevFilters) => {
             // Toggle selected filters
             if (prevFilters.includes(filter)) {
@@ -198,7 +198,7 @@ export default function DemographicView(props: DemographicProps) {
             </div>
 
             <div className="flex flex-col w-full">
-                {selectedFilters == "" && <div className="flex-1 absolute mt-4 pl-1">Please select data from filter</div>}
+                {selectedFilters.length === 0 && <div className="flex-1 absolute mt-4 pl-1">Please select data from filter</div>}
 
                 {selectedFilters.includes("Family Composition") ? (
                     <div className="flex-1 w-full mt-2 border rounded-md shadow-lg hover:shadow-xl">
