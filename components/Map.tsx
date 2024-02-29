@@ -10,6 +10,7 @@ interface MapProps {
     selectedSuburb: string | null;
 }
 
+type LatLng = { lat: number; lng: number };
 type LatLngLiteral = { lat: number; lng: number };
 
 function deconstructSuburb(suburb: string | null) {
@@ -43,7 +44,7 @@ const Map: NextPage<MapProps> = (props: MapProps) => {
     const libraries = useMemo(() => ["places"], []);
 
     // states
-    const [geocodeData, setGeocodeData] = useState<{ lat: number; lng: number }>();
+    const [geocodeData, setGeocodeData] = useState<LatLng | LatLngLiteral>();
     const [suburbName, setSuburbName] = useState("");
     const [stateName, setStateName] = useState("");
     const [postcode, setPostcode] = useState("");
@@ -90,7 +91,7 @@ const Map: NextPage<MapProps> = (props: MapProps) => {
         geocode();
     }, [suburbName]);
 
-    const mapCenter: LatLngLiteral = useMemo(() => geocodeData, [geocodeData]);
+    const mapCenter = useMemo(() => geocodeData || { lat: 0, lng: 0 }, [geocodeData]);
 
     const mapOptions = useMemo<google.maps.MapOptions>(
         () => ({
