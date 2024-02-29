@@ -1,6 +1,6 @@
 "use client";
 
-import { useLoadScript, GoogleMap, MarkerF, OverlayView } from "@react-google-maps/api";
+import { GoogleMap, useLoadScript, MarkerF, OverlayView } from "@react-google-maps/api";
 import type { NextPage } from "next";
 import { useMemo, useState } from "react";
 import { Loader } from "@googlemaps/js-api-loader";
@@ -9,6 +9,8 @@ import { useEffect } from "react";
 interface MapProps {
     selectedSuburb: string | null;
 }
+
+type LatLngLiteral = { lat: number; lng: number };
 
 function deconstructSuburb(suburb: string | null) {
     // State Regex
@@ -41,7 +43,7 @@ const Map: NextPage<MapProps> = (props: MapProps) => {
     const libraries = useMemo(() => ["places"], []);
 
     // states
-    const [geocodeData, setGeocodeData] = useState<{ lat: number; lng: number } | null>(null);
+    const [geocodeData, setGeocodeData] = useState<{ lat: number; lng: number }>();
     const [suburbName, setSuburbName] = useState("");
     const [stateName, setStateName] = useState("");
     const [postcode, setPostcode] = useState("");
@@ -88,7 +90,7 @@ const Map: NextPage<MapProps> = (props: MapProps) => {
         geocode();
     }, [suburbName]);
 
-    const mapCenter = useMemo(() => geocodeData, [geocodeData]);
+    const mapCenter: LatLngLiteral = useMemo(() => geocodeData, [geocodeData]);
 
     const mapOptions = useMemo<google.maps.MapOptions>(
         () => ({
@@ -117,21 +119,17 @@ const Map: NextPage<MapProps> = (props: MapProps) => {
     return (
         <div className="mobile-s:max-mobile-l:w-[260px] mobile-s:max-mobile-l:h-[440px] mobile-l:max-md:w-[360px] sm:max-md:h-[420px] md:max-md-l:w-[300px] md-l:h-[440px] md-l:w-[360px] mobile-s:max-sm:mt-10 sm:max-md:mt-12 md:mt-6">
             <div className="z-0 flex place-items-center w-full h-full">
-                {isLoaded ? (
-                    geocodeFetched ? (
-                        <GoogleMap
-                            options={mapOptions}
-                            zoom={13}
-                            center={mapCenter}
-                            mapTypeId={google.maps.MapTypeId.ROADMAP}
-                            mapContainerStyle={{ width: "800px", height: "364px" }}
-                            onLoad={() => console.log("Map Component Loaded...")}
-                        >
-                            {geocodeData && <MarkerF position={mapCenter} onLoad={() => console.log("Marker Loaded")} />}
-                        </GoogleMap>
-                    ) : (
-                        <p>Loading...</p>
-                    )
+                {isLoaded && geocodeData ? (
+                    <GoogleMap
+                        options={mapOptions}
+                        zoom={13}
+                        center={mapCenter}
+                        mapTypeId={google.maps.MapTypeId.ROADMAP}
+                        mapContainerStyle={{ width: "800px", height: "364px" }}
+                        onLoad={() => console.log("Map Component Loaded...")}
+                    >
+                        {geocodeData && <MarkerF position={mapCenter} onLoad={() => console.log("Marker Loaded")} />}
+                    </GoogleMap>
                 ) : (
                     <p>Loading...</p>
                 )}
