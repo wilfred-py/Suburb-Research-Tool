@@ -93,14 +93,17 @@ export default function SearchBar(props: SearchBarProps) {
     }, [searchQuery]);
 
     // * Handle mouse clicks outside search bar and hide search results
+    const handleOutsideClick = (event: any) => {
+        if (resultsRef.current && !resultsRef.current.contains(event.target) && inputRef.current !== event.target) {
+            setShowResults(false);
+        }
+    };
+
     useEffect(() => {
-        const handleOutsideClick = (event) => {
-            if (resultsRef.current && !resultsRef.current.contains(event.target) && inputRef.current !== event.target) {
-                setShowResults(false);
-            }
-        };
+        // Register click handler inside useEffect hook to detect global click event when component is mounted
         document.addEventListener("click", handleOutsideClick);
         return () => {
+            // Clean up code when component is unmounted
             document.removeEventListener("click", handleOutsideClick);
         };
     }, []);
