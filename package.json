@@ -42,6 +42,7 @@
         "@types/react": "18.2.7",
         "@types/react-dom": "18.2.4",
         "@vercel/analytics": "^1.2.2",
+        "@vercel/speed-insights": "^1.0.10",
         "apexcharts": "^3.43.0",
         "axios": "^1.4.0",
         "babel-plugin-macros": "^3.1.0",
