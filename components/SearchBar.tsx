@@ -1,7 +1,7 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState, useRef, MouseEvent } from "react";
 import { suburbs } from "@/data/suburbNames";
 import Link from "next/link";
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
@@ -39,7 +39,7 @@ export default function SearchBar(props: SearchBarProps) {
     const [suburbSelected, setSuburbSelected] = useState(false);
 
     const resultsRef = useRef(null);
-    const inputRef = useRef(null);
+    const inputRef = useRef<HTMLInputElement>(null);
 
     const router = useRouter();
 
@@ -93,14 +93,18 @@ export default function SearchBar(props: SearchBarProps) {
     }, [searchQuery]);
 
     // * Handle mouse clicks outside search bar and hide search results
+    const handleOutsideClick = (event: Event) => {
+        if (inputRef.current && !inputRef.current.contains(event.target as Node) && inputRef.current !== event.target) {
+            setShowResults(false);
+        }
+    };
+
+    // * Add and remove listeners to the document object
     useEffect(() => {
-        const handleOutsideClick = (event) => {
-            if (resultsRef.current && !resultsRef.current.contains(event.target) && inputRef.current !== event.target) {
-                setShowResults(false);
-            }
-        };
+        // Register click handler inside useEffect hook to detect global click event when component is mounted
         document.addEventListener("click", handleOutsideClick);
         return () => {
+            // Clean up code when component is unmounted
             document.removeEventListener("click", handleOutsideClick);
         };
     }, []);
