@@ -93,7 +93,7 @@ export default function SearchBar(props: SearchBarProps) {
     }, [searchQuery]);
 
     // * Handle mouse clicks outside search bar and hide search results
-    const handleOutsideClick = (event: MouseEvent) => {
+    const handleOutsideClick = (event: Event) => {
         if (inputRef.current && !inputRef.current.contains(event.target as Node) && inputRef.current !== event.target) {
             setShowResults(false);
         }
