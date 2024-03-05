@@ -16,7 +16,7 @@ export default function AuthForm() {
             theme="light"
             showLinks={false}
             providers={["google", "twitter", "facebook"]}
-            redirectTo="https://www.suburbiq.com/auth/callback"
+            redirectTo="localhost:3000/auth/callback"
         />
     );
 }

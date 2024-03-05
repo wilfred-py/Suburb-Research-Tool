@@ -32,5 +32,5 @@ export async function GET(request: Request) {
 
     // Redirect user back to the same URL they came from after the sign-in process completes
     // return NextResponse.redirect(requestUrl.origin);
-    return NextResponse.redirect("https://www.suburbiq.com/dashboard");
+    return NextResponse.redirect("localhost:3000/dashboard");
 }
