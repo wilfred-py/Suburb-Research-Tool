@@ -20,8 +20,8 @@ export async function GET(request: Request) {
             error,
         } = await supabase.auth.getSession();
 
-        // console.log("Proof Key for Code Exchange successful\nSigned in with oAuth");
-        // console.log(session);
+        console.log("Proof Key for Code Exchange successful\nSigned in with oAuth");
+        console.log(session);
 
         supabase.auth.onAuthStateChange((event, session) => {
             if (event == "SIGNED_IN") console.log("SIGNED_IN", session);
@@ -32,5 +32,5 @@ export async function GET(request: Request) {
 
     // Redirect user back to the same URL they came from after the sign-in process completes
     // return NextResponse.redirect(requestUrl.origin);
-    return NextResponse.redirect("http://localhost:3000/dashboard");
+    return NextResponse.redirect("www.suburbiq.com/dashboard");
 }
