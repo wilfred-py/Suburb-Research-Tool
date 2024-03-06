@@ -54,7 +54,7 @@ export default function Dashboard() {
         router.push("/dashboard/sign-in");
     };
 
-    console.log(`Is Email Verified? ${isEmailVerified}`);
+    // console.log(`Is Email Verified? ${isEmailVerified}`);
 
     return (
         <>
