@@ -22,7 +22,7 @@ export default function FAQs() {
                             </a>
                         </AccordionContent>
                     </AccordionItem>
-                    <AccordionItem value="item-3">
+                    {/* <AccordionItem value="item-3">
                         <AccordionTrigger className="font-semibold text-left">I spotted a bug. How do I report it?</AccordionTrigger>
                         <AccordionContent>
                             Please report any issues{" "}
@@ -32,7 +32,7 @@ export default function FAQs() {
                             </a>{" "}
                             and it will get fixed as soon as possible.
                         </AccordionContent>
-                    </AccordionItem>
+                    </AccordionItem> */}
                     <AccordionItem value="item-4">
                         <AccordionTrigger className="font-semibold text-left">How can I request new features?</AccordionTrigger>
                         <AccordionContent>
