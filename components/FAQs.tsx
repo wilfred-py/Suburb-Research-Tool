@@ -38,7 +38,7 @@ export default function FAQs() {
                         <AccordionContent>
                             We're always looking to implement new features that are useful to the community. If you have a great idea, let
                             us know
-                            <a href={"https://suburb-iq.canny.io/bug-reports-features-requests"} target="_blank">
+                            <a data-canny-link href="https://suburbiq.canny.io" target="_blank">
                                 {" "}
                                 <span className="text-left font-bold underline">here</span>
                             </a>{" "}
