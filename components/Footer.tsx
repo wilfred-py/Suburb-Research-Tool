@@ -20,12 +20,12 @@ export default function Footer() {
 
                 <div className="flex flex-col w-48 mobile-s:max-lg:mt-10 space-y-2">
                     <h1 className="font-inter600">Support</h1>
-                    <a href={"https://suburb-iq.canny.io/bug-reports-features-requests"} target="_blank" className="w-44">
+                    <a data-canny-link href="https://suburbiq.canny.io/feature-requests" target="_blank" className="w-44">
                         Request a new feature
                     </a>
-                    <a href={"https://suburb-iq.canny.io/bug-reports-features-requests"} target="_blank" className="w-28">
+                    {/* <a href={"https://suburb-iq.canny.io/bug-reports-features-requests"} target="_blank" className="w-28">
                         Report a bug
-                    </a>
+                    </a> */}
                     <a
                         href="mailto:suburb.iq.feedback@gmail.com?subject=Feedback&body=Hi Suburb IQ team, "
                         target="_blank"
