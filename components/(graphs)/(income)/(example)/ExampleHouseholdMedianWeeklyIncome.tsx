@@ -411,8 +411,8 @@ export default function ExampleHouseholdMedianWeeklyIncome(props: HouseholdIncom
     );
 
     return (
-        <div>
-            <div className="flex flex-col justify-center">
+        <>
+            <div className="flex flex-col justify-center select-none">
                 <h1 className="mt-4 mb-4 mx-2 text-base text-center font-bold">Household Median Weekly Income</h1>
                 <div className="mx-auto -mt-4">
                     {insufficientSuburbData ? (
@@ -428,6 +428,6 @@ export default function ExampleHouseholdMedianWeeklyIncome(props: HouseholdIncom
                     )}
                 </div>
             </div>
-        </div>
+        </>
     );
 }
