@@ -60,10 +60,10 @@ export default function DemographicView(props: DemographicProps) {
 
     return (
         <div className="w-[99%] flex flex-wrap">
-            <div>
+            <div className="md:hidden">
                 <Drawer>
                     <DrawerTrigger asChild>
-                        <Button variant="outline">Filter</Button>
+                        <Button variant="default">Filter</Button>
                     </DrawerTrigger>
                     <DrawerContent>
                         <DrawerHeader>
