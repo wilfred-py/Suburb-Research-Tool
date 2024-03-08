@@ -71,7 +71,7 @@ const Map: NextPage<MapProps> = (props: MapProps) => {
     useEffect(() => {
         const geocode = async () => {
             try {
-                console.log("initiated geocode");
+                // console.log("initiated geocode");
                 const response = await fetch(
                     `https://maps.googleapis.com/maps/api/geocode/json?address=${suburbName}+${stateName}+${postcode}&region=AU&key=${process.env.NEXT_PUBLIC_GOOGLE_MAPS_KEY}`
                 );
@@ -79,7 +79,7 @@ const Map: NextPage<MapProps> = (props: MapProps) => {
                 const location = geocodeData.results[0]?.geometry.location;
                 // console.log(location);
                 if (location) {
-                    console.log("location geocoded");
+                    // console.log("location geocoded");
                     setGeocodeData({ lat: location.lat, lng: location.lng });
                 }
             } catch (error) {
