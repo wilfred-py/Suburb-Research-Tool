@@ -46,14 +46,14 @@ export default function DashboardSelector(props: DashboardSelectorProps) {
                 )}
                 Demographic
             </button>
-            <button className={getButtonCSS("Lifestyle")} onClick={() => handleViewClick("Lifestyle")}>
+            {/* <button className={getButtonCSS("Lifestyle")} onClick={() => handleViewClick("Lifestyle")}>
                 {props.selectedView == "Lifestyle" ? (
                     <span className="hidden md:block absolute w-[3px] h-full -left-2.5 top-0 bg-buttonBlue"></span>
                 ) : (
                     ""
                 )}
                 Lifestyle
-            </button>
+            </button> */}
         </div>
     );
 }

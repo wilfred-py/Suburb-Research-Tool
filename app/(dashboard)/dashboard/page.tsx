@@ -26,6 +26,11 @@ export default function Dashboard() {
         setSelectedView(newView);
     };
 
+    // Scroll to the top of the page when the component mounts or updates
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
+
     useEffect(() => {
         const supabase = createClientComponentClient();
 
