@@ -13,7 +13,7 @@ export default function AuthLayout({ children }: { children: React.ReactNode }) 
                 </div>
 
                 {/* Auth Form */}
-                <div className="flex-1 flex flex-col justify-center place-items-center">
+                <div className="flex-1 flex flex-col mobile-s:max-lg:pt-24 mobile-s:max-lg:place-items-center lg:justify-center lg:place-items-center">
                     <div className="min-w-[242px]">{children}</div>
                 </div>
             </div>
