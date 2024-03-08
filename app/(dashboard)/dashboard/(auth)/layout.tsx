@@ -6,8 +6,8 @@ export default function AuthLayout({ children }: { children: React.ReactNode }) 
     return (
         <section className="min-h-screen flex-1 flex flex-row overflow-hidden">
             <div id="left-panel" className="flex flex-col relative lg:w-1/3 w-full ">
-                <div id="logo" className="xl:px-auto p-10">
-                    <Link className="text-2xl font-bold" href={"/"}>
+                <div id="logo" className="xl:px-auto p-10 mobile-s:max-lg:bg-navigationBarBlue">
+                    <Link className="text-2xl font-bold mobile-s:max-lg:text-white" href={"/"}>
                         SuburbIQ
                     </Link>
                 </div>
