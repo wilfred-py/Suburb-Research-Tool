@@ -95,7 +95,6 @@ export function SignInButton() {
 
     // *If user is signed in, show their profile picture from the session's user_meta data
     if (isEmailVerified === true) {
-        console.log(userPicture);
         return <Image src={`${userPicture}`} alt="Profile Picture" width={32} height={32} />;
     }
 

@@ -63,7 +63,7 @@ export default function DemographicView(props: DemographicProps) {
             <div className="md:hidden">
                 <Drawer>
                     <DrawerTrigger asChild>
-                        <Button variant="default">Filter</Button>
+                        <Button variant="secondary">Filter</Button>
                     </DrawerTrigger>
                     <DrawerContent>
                         <DrawerHeader>
