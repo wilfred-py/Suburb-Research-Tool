@@ -6,6 +6,8 @@ import { Checkbox } from "./ui/checkbox";
 interface DashboardSelectorProps {
     selectedView: string | null;
     onChangeView: (view: string | null) => void;
+    selectedFilters: string[];
+    handleFilters: any;
 }
 
 export default function DashboardSelector(props: DashboardSelectorProps) {
@@ -22,34 +24,6 @@ export default function DashboardSelector(props: DashboardSelectorProps) {
     const handleViewClick = (newView: string | null) => {
         props.onChangeView(newView);
     };
-
-    // Retrieve previously selected filters from local storage
-    const storedFilters = localStorage.getItem("selectedFilters");
-
-    // Default filters
-    const defaultFilters = ["Family Composition", "Religion", "Marriage", "Ancestry", "Population", "Age", "Employment", "Income"];
-
-    // State to manage selected filters
-    const [selectedFilters, setSelectedFilters] = useState<String[]>(defaultFilters);
-
-    // Use a single handler for checkbox clicks
-    const handleCheckboxClick = (filter: any) => {
-        setSelectedFilters((prevFilters) => {
-            // Toggle selected filters
-            if (prevFilters.includes(filter)) {
-                return prevFilters.filter((f) => f !== filter);
-            } else {
-                return [...prevFilters, filter];
-            }
-        });
-    };
-
-    // Update the selected filters in the local storage whenever it changes
-    useEffect(() => {
-        localStorage.setItem("selectedFilters", JSON.stringify(selectedFilters));
-    }, [selectedFilters]);
-
-    // console.log(`side panel: ${selectedFilters}`);
 
     return (
         <div className="flex flex-row flex-wrap md:flex-col min-w-[10rem] h-1/4 md:py-2.5 md:mx-0 mb-6 md:mb-0 md:top-[4.5rem] md:sticky">
@@ -84,8 +58,8 @@ export default function DashboardSelector(props: DashboardSelectorProps) {
                         <div className="items-top flex space-x-2 md:ml-3">
                             <Checkbox
                                 id="FamilyComposition"
-                                onCheckedChange={() => handleCheckboxClick("Family Composition")}
-                                checked={selectedFilters.includes("Family Composition")}
+                                onCheckedChange={() => props.handleFilters("Family Composition")}
+                                checked={props.selectedFilters.includes("Family Composition")}
                             />
 
                             <div className="grid gap-1.5 leading-none">
@@ -100,8 +74,8 @@ export default function DashboardSelector(props: DashboardSelectorProps) {
                         <div className="items-top flex space-x-2 md:ml-3">
                             <Checkbox
                                 id="Religion"
-                                onClick={() => handleCheckboxClick("Religion")}
-                                checked={selectedFilters.includes("Religion")}
+                                onClick={() => props.handleFilters("Religion")}
+                                checked={props.selectedFilters.includes("Religion")}
                             />
                             <div className="grid gap-1.5 leading-none">
                                 <label
@@ -115,8 +89,8 @@ export default function DashboardSelector(props: DashboardSelectorProps) {
                         <div className="items-top flex space-x-2 md:ml-3">
                             <Checkbox
                                 id="Marriage"
-                                onClick={() => handleCheckboxClick("Marriage")}
-                                checked={selectedFilters.includes("Marriage")}
+                                onClick={() => props.handleFilters("Marriage")}
+                                checked={props.selectedFilters.includes("Marriage")}
                             />
                             <div className="grid gap-1.5 leading-none">
                                 <label
@@ -130,8 +104,8 @@ export default function DashboardSelector(props: DashboardSelectorProps) {
                         <div className="items-top flex space-x-2 md:ml-3">
                             <Checkbox
                                 id="Ancestry"
-                                onClick={() => handleCheckboxClick("Ancestry")}
-                                checked={selectedFilters.includes("Ancestry")}
+                                onClick={() => props.handleFilters("Ancestry")}
+                                checked={props.selectedFilters.includes("Ancestry")}
                             />
                             <div className="grid gap-1.5 leading-none">
                                 <label
@@ -145,8 +119,8 @@ export default function DashboardSelector(props: DashboardSelectorProps) {
                         <div className="items-top flex space-x-2 md:ml-3">
                             <Checkbox
                                 id="Population"
-                                onClick={() => handleCheckboxClick("Population")}
-                                checked={selectedFilters.includes("Population")}
+                                onClick={() => props.handleFilters("Population")}
+                                checked={props.selectedFilters.includes("Population")}
                             />
                             <div className="grid gap-1.5 leading-none">
                                 <label
@@ -158,7 +132,7 @@ export default function DashboardSelector(props: DashboardSelectorProps) {
                             </div>
                         </div>
                         <div className="items-top flex space-x-2 md:ml-3">
-                            <Checkbox id="Age" onClick={() => handleCheckboxClick("Age")} checked={selectedFilters.includes("Age")} />
+                            <Checkbox id="Age" onClick={() => props.handleFilters("Age")} checked={props.selectedFilters.includes("Age")} />
                             <div className="grid gap-1.5 leading-none">
                                 <label
                                     htmlFor="Age"
@@ -171,8 +145,8 @@ export default function DashboardSelector(props: DashboardSelectorProps) {
                         <div className="items-top flex space-x-2 md:ml-3">
                             <Checkbox
                                 id="Employment"
-                                onClick={() => handleCheckboxClick("Employment")}
-                                checked={selectedFilters.includes("Employment")}
+                                onClick={() => props.handleFilters("Employment")}
+                                checked={props.selectedFilters.includes("Employment")}
                             />
                             <div className="grid gap-1.5 leading-none">
                                 <label
@@ -186,8 +160,8 @@ export default function DashboardSelector(props: DashboardSelectorProps) {
                         <div className="items-top flex space-x-2 md:ml-3">
                             <Checkbox
                                 id="Income"
-                                onClick={() => handleCheckboxClick("Income")}
-                                checked={selectedFilters.includes("Income")}
+                                onClick={() => props.handleFilters("Income")}
+                                checked={props.selectedFilters.includes("Income")}
                             />
                             <div className="grid gap-1.5 leading-none">
                                 <label

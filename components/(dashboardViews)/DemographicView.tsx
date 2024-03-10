@@ -1,6 +1,5 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import AncestryChart from "../(graphs)/(ancestry)/AncestryRadar";
 import ReligionChart from "../(graphs)/(religion)/ReligionRadar";
 import Population from "../(graphs)/{population}/Population";
@@ -32,8 +31,6 @@ interface DemographicProps {
 }
 
 export default function DemographicView(props: DemographicProps) {
-    // console.log(selectedFilters);
-
     return (
         <div className="w-[99%] flex flex-wrap">
             <div className="md:hidden">

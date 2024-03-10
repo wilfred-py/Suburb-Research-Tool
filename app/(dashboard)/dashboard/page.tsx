@@ -72,7 +72,7 @@ export default function Dashboard() {
     };
 
     // * Function to handle checkbox click and mutate selectedFilters state
-    const handleCheckboxClick = (filter: any) => {
+    const handleFiltersCheckbox = (filter: any) => {
         setSelectedFilters((prevFilters) => {
             // Toggle selected filters
             if (prevFilters.includes(filter)) {
@@ -103,14 +103,19 @@ export default function Dashboard() {
                                 </div>
                                 <div className="w-full max-w-[2108px] mt-8">
                                     <div className="w-full flex flex-col md:flex-row">
-                                        <DashboardSelector selectedView={selectedView} onChangeView={handleViewChange} />
+                                        <DashboardSelector
+                                            selectedView={selectedView}
+                                            onChangeView={handleViewChange}
+                                            selectedFilters={selectedFilters}
+                                            handleFilters={handleFiltersCheckbox}
+                                        />
                                         <div className="w-full flex-1 md:pl-10 py-2">
                                             {selectedView === "Overview" && <OverviewView selectedSuburb={selectedSuburb} />}
                                             {selectedView === "Demographic" && (
                                                 <DemographicView
                                                     selectedSuburb={selectedSuburb}
                                                     selectedFilters={selectedFilters}
-                                                    handleFilters={handleCheckboxClick}
+                                                    handleFilters={handleFiltersCheckbox}
                                                 />
                                             )}
                                             {selectedView === "Housing Details" && <HousingDetailsView selectedSuburb={selectedSuburb} />}
