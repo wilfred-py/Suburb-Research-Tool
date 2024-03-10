@@ -43,7 +43,7 @@ export default function DemographicView(props: DemographicProps) {
                             <DrawerTitle>Filter</DrawerTitle>
                             <DrawerDescription>Select data to be shown/hidden</DrawerDescription>
                         </DrawerHeader>
-                        <div className="items-top flex space-x-2">
+                        <div className="ml-4 items-top flex space-x-2 my-0.5">
                             <Checkbox
                                 id="FamilyComposition"
                                 onCheckedChange={() => props.handleFilters("Family Composition")}
@@ -59,7 +59,7 @@ export default function DemographicView(props: DemographicProps) {
                                 </label>
                             </div>
                         </div>
-                        <div className="items-top flex space-x-2">
+                        <div className="ml-4 items-top flex space-x-2 my-0.5">
                             <Checkbox
                                 id="Religion"
                                 onClick={() => props.handleFilters("Religion")}
@@ -74,7 +74,7 @@ export default function DemographicView(props: DemographicProps) {
                                 </label>
                             </div>
                         </div>
-                        <div className="items-top flex space-x-2">
+                        <div className="ml-4 items-top flex space-x-2 my-0.5">
                             <Checkbox
                                 id="Marriage"
                                 onClick={() => props.handleFilters("Marriage")}
@@ -89,7 +89,7 @@ export default function DemographicView(props: DemographicProps) {
                                 </label>
                             </div>
                         </div>
-                        <div className="items-top flex space-x-2">
+                        <div className="ml-4 items-top flex space-x-2 my-0.5">
                             <Checkbox
                                 id="Ancestry"
                                 onClick={() => props.handleFilters("Ancestry")}
@@ -104,7 +104,7 @@ export default function DemographicView(props: DemographicProps) {
                                 </label>
                             </div>
                         </div>
-                        <div className="items-top flex space-x-2">
+                        <div className="ml-4 items-top flex space-x-2 my-0.5">
                             <Checkbox
                                 id="Population"
                                 onClick={() => props.handleFilters("Population")}
@@ -119,7 +119,7 @@ export default function DemographicView(props: DemographicProps) {
                                 </label>
                             </div>
                         </div>
-                        <div className="items-top flex space-x-2">
+                        <div className="ml-4 items-top flex space-x-2 my-0.5">
                             <Checkbox id="Age" onClick={() => props.handleFilters("Age")} checked={props.selectedFilters.includes("Age")} />
                             <div className="grid gap-1.5 leading-none">
                                 <label
@@ -130,7 +130,7 @@ export default function DemographicView(props: DemographicProps) {
                                 </label>
                             </div>
                         </div>
-                        <div className="items-top flex space-x-2">
+                        <div className="ml-4 items-top flex space-x-2 my-0.5">
                             <Checkbox
                                 id="Employment"
                                 onClick={() => props.handleFilters("Employment")}
@@ -145,7 +145,7 @@ export default function DemographicView(props: DemographicProps) {
                                 </label>
                             </div>
                         </div>
-                        <div className="items-top flex space-x-2">
+                        <div className="ml-4 items-top flex space-x-2 my-0.5">
                             <Checkbox
                                 id="Income"
                                 onClick={() => props.handleFilters("Income")}
