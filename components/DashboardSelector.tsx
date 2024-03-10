@@ -49,7 +49,7 @@ export default function DashboardSelector(props: DashboardSelectorProps) {
         localStorage.setItem("selectedFilters", JSON.stringify(selectedFilters));
     }, [selectedFilters]);
 
-    console.log(selectedFilters);
+    // console.log(`side panel: ${selectedFilters}`);
 
     return (
         <div className="flex flex-row flex-wrap md:flex-col min-w-[10rem] h-1/4 md:py-2.5 md:mx-0 mb-6 md:mb-0 md:top-[4.5rem] md:sticky">

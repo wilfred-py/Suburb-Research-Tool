@@ -27,29 +27,16 @@ import { Checkbox } from "@/components/ui/checkbox";
 
 interface DemographicProps {
     selectedSuburb: string | null;
+    selectedFilters: string[];
+    handleFilters: any;
 }
 
 export default function DemographicView(props: DemographicProps) {
     // Retrieve previously selected filters from local storage
     const storedFilters = localStorage.getItem("selectedFilters");
 
-    // Default filters
-    const defaultFilters = ["Family Composition", "Religion", "Marriage", "Ancestry", "Population", "Age", "Employment", "Income"];
-
     // State to manage selected filters
-    const [selectedFilters, setSelectedFilters] = useState<String[]>(defaultFilters);
-
-    // Use a single handler for checkbox clicks
-    const handleCheckboxClick = (filter: any) => {
-        setSelectedFilters((prevFilters) => {
-            // Toggle selected filters
-            if (prevFilters.includes(filter)) {
-                return prevFilters.filter((f) => f !== filter);
-            } else {
-                return [...prevFilters, filter];
-            }
-        });
-    };
+    const [selectedFilters, setSelectedFilters] = useState<String[]>(props.selectedFilters);
 
     // Update the selected filters in the local storage whenever it changes
     useEffect(() => {
@@ -73,8 +60,8 @@ export default function DemographicView(props: DemographicProps) {
                         <div className="items-top flex space-x-2">
                             <Checkbox
                                 id="FamilyComposition"
-                                onCheckedChange={() => handleCheckboxClick("Family Composition")}
-                                checked={selectedFilters.includes("Family Composition")}
+                                onCheckedChange={() => props.handleFilters("Family Composition")}
+                                checked={props.selectedFilters.includes("Family Composition")}
                             />
 
                             <div className="grid gap-1.5 leading-none">
@@ -89,8 +76,8 @@ export default function DemographicView(props: DemographicProps) {
                         <div className="items-top flex space-x-2">
                             <Checkbox
                                 id="Religion"
-                                onClick={() => handleCheckboxClick("Religion")}
-                                checked={selectedFilters.includes("Religion")}
+                                onClick={() => props.handleFilters("Religion")}
+                                checked={props.selectedFilters.includes("Religion")}
                             />
                             <div className="grid gap-1.5 leading-none">
                                 <label
@@ -104,8 +91,8 @@ export default function DemographicView(props: DemographicProps) {
                         <div className="items-top flex space-x-2">
                             <Checkbox
                                 id="Marriage"
-                                onClick={() => handleCheckboxClick("Marriage")}
-                                checked={selectedFilters.includes("Marriage")}
+                                onClick={() => props.handleFilters("Marriage")}
+                                checked={props.selectedFilters.includes("Marriage")}
                             />
                             <div className="grid gap-1.5 leading-none">
                                 <label
@@ -119,8 +106,8 @@ export default function DemographicView(props: DemographicProps) {
                         <div className="items-top flex space-x-2">
                             <Checkbox
                                 id="Ancestry"
-                                onClick={() => handleCheckboxClick("Ancestry")}
-                                checked={selectedFilters.includes("Ancestry")}
+                                onClick={() => props.handleFilters("Ancestry")}
+                                checked={props.selectedFilters.includes("Ancestry")}
                             />
                             <div className="grid gap-1.5 leading-none">
                                 <label
@@ -134,8 +121,8 @@ export default function DemographicView(props: DemographicProps) {
                         <div className="items-top flex space-x-2">
                             <Checkbox
                                 id="Population"
-                                onClick={() => handleCheckboxClick("Population")}
-                                checked={selectedFilters.includes("Population")}
+                                onClick={() => props.handleFilters("Population")}
+                                checked={props.selectedFilters.includes("Population")}
                             />
                             <div className="grid gap-1.5 leading-none">
                                 <label
@@ -147,7 +134,7 @@ export default function DemographicView(props: DemographicProps) {
                             </div>
                         </div>
                         <div className="items-top flex space-x-2">
-                            <Checkbox id="Age" onClick={() => handleCheckboxClick("Age")} checked={selectedFilters.includes("Age")} />
+                            <Checkbox id="Age" onClick={() => props.handleFilters("Age")} checked={props.selectedFilters.includes("Age")} />
                             <div className="grid gap-1.5 leading-none">
                                 <label
                                     htmlFor="Age"
@@ -160,8 +147,8 @@ export default function DemographicView(props: DemographicProps) {
                         <div className="items-top flex space-x-2">
                             <Checkbox
                                 id="Employment"
-                                onClick={() => handleCheckboxClick("Employment")}
-                                checked={selectedFilters.includes("Employment")}
+                                onClick={() => props.handleFilters("Employment")}
+                                checked={props.selectedFilters.includes("Employment")}
                             />
                             <div className="grid gap-1.5 leading-none">
                                 <label
@@ -175,8 +162,8 @@ export default function DemographicView(props: DemographicProps) {
                         <div className="items-top flex space-x-2">
                             <Checkbox
                                 id="Income"
-                                onClick={() => handleCheckboxClick("Income")}
-                                checked={selectedFilters.includes("Income")}
+                                onClick={() => props.handleFilters("Income")}
+                                checked={props.selectedFilters.includes("Income")}
                             />
                             <div className="grid gap-1.5 leading-none">
                                 <label
@@ -198,58 +185,58 @@ export default function DemographicView(props: DemographicProps) {
             </div>
 
             <div className="flex flex-col w-full">
-                {selectedFilters.length === 0 && <div className="flex-1 absolute mt-4 pl-1">Please select data from filter</div>}
+                {props.selectedFilters.length === 0 && <div className="flex-1 absolute mt-4 pl-1">Please select data from filter</div>}
 
-                {selectedFilters.includes("Family Composition") ? (
+                {props.selectedFilters.includes("Family Composition") ? (
                     <div className="flex-1 w-full mt-2 border rounded-md shadow-lg hover:shadow-xl">
                         <FamilyComposition selectedSuburb={props.selectedSuburb} />
                     </div>
                 ) : (
                     ""
                 )}
-                {selectedFilters.includes("Religion") ? (
+                {props.selectedFilters.includes("Religion") ? (
                     <div className="flex-1 w-full mt-2 border rounded-md shadow-lg hover:shadow-xl">
                         <ReligionChart selectedSuburb={props.selectedSuburb} />
                     </div>
                 ) : (
                     ""
                 )}
-                {selectedFilters.includes("Marriage") ? (
+                {props.selectedFilters.includes("Marriage") ? (
                     <div className="flex-1 w-full mt-2 border rounded-md shadow-lg hover:shadow-xl">
                         <Marital selectedSuburb={props.selectedSuburb} />
                     </div>
                 ) : (
                     ""
                 )}
-                {selectedFilters.includes("Ancestry") ? (
+                {props.selectedFilters.includes("Ancestry") ? (
                     <div className="flex-1 w-full mt-2 border rounded-md shadow-lg hover:shadow-xl">
                         <AncestryChart selectedSuburb={props.selectedSuburb} />
                     </div>
                 ) : (
                     ""
                 )}
-                {selectedFilters.includes("Population") ? (
+                {props.selectedFilters.includes("Population") ? (
                     <div className="flex-1 w-full mt-2 border rounded-md shadow-lg hover:shadow-xl">
                         <Population selectedSuburb={props.selectedSuburb} />
                     </div>
                 ) : (
                     ""
                 )}
-                {selectedFilters.includes("Age") ? (
+                {props.selectedFilters.includes("Age") ? (
                     <div className="flex-1 w-full mt-2 border rounded-md shadow-lg hover:shadow-xl">
                         <Age selectedSuburb={props.selectedSuburb} />
                     </div>
                 ) : (
                     ""
                 )}
-                {selectedFilters.includes("Employment") ? (
+                {props.selectedFilters.includes("Employment") ? (
                     <div className="flex-1 w-full mt-2 border rounded-md shadow-lg hover:shadow-xl">
                         <Employment selectedSuburb={props.selectedSuburb} />
                     </div>
                 ) : (
                     ""
                 )}
-                {selectedFilters.includes("Income") ? (
+                {props.selectedFilters.includes("Income") ? (
                     <div className="flex-1 w-full mt-2 border rounded-md shadow-lg hover:shadow-xl">
                         <Income selectedSuburb={props.selectedSuburb} />
                     </div>

@@ -17,6 +17,17 @@ export default function Dashboard() {
     // Dashboard view
     const [selectedView, setSelectedView] = useState<string | null>("Overview");
 
+    // Retrieve previously selected filters from local storage
+
+    // ?
+    // const storedFilters = localStorage.getItem("selectedFilters");
+
+    // Default filters
+    const defaultFilters = ["Family Composition", "Religion", "Marriage", "Ancestry", "Population", "Age", "Employment", "Income"];
+
+    // State to manage selected filters
+    const [selectedFilters, setSelectedFilters] = useState<string[]>(defaultFilters);
+
     // Auth Email Verification
     const [isEmailVerified, setIsEmailVerified] = useState<boolean | null>(null);
 
@@ -31,6 +42,7 @@ export default function Dashboard() {
         window.scrollTo(0, 0);
     }, []);
 
+    // * Hook that checks user auth session and redirects user to sign in if they are not signed in
     useEffect(() => {
         const supabase = createClientComponentClient();
 
@@ -59,6 +71,19 @@ export default function Dashboard() {
         router.push("/dashboard/sign-in");
     };
 
+    // * Function to handle checkbox click and mutate selectedFilters state
+    const handleCheckboxClick = (filter: any) => {
+        setSelectedFilters((prevFilters) => {
+            // Toggle selected filters
+            if (prevFilters.includes(filter)) {
+                return prevFilters.filter((f) => f !== filter);
+            } else {
+                return [...prevFilters, filter];
+            }
+        });
+    };
+
+    console.log(`selectedFilters: ${selectedFilters}`);
     // console.log(`Is Email Verified? ${isEmailVerified}`);
 
     return (
@@ -81,7 +106,13 @@ export default function Dashboard() {
                                         <DashboardSelector selectedView={selectedView} onChangeView={handleViewChange} />
                                         <div className="w-full flex-1 md:pl-10 py-2">
                                             {selectedView === "Overview" && <OverviewView selectedSuburb={selectedSuburb} />}
-                                            {selectedView === "Demographic" && <DemographicView selectedSuburb={selectedSuburb} />}
+                                            {selectedView === "Demographic" && (
+                                                <DemographicView
+                                                    selectedSuburb={selectedSuburb}
+                                                    selectedFilters={selectedFilters}
+                                                    handleFilters={handleCheckboxClick}
+                                                />
+                                            )}
                                             {selectedView === "Housing Details" && <HousingDetailsView selectedSuburb={selectedSuburb} />}
                                         </div>
                                     </div>
