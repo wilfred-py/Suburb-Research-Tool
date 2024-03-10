@@ -237,7 +237,7 @@ export default function DemographicView(props: DemographicProps) {
                     ""
                 )}
                 {props.selectedFilters.includes("Income") ? (
-                    <div className="flex-1 w-full mt-2 border rounded-md shadow-lg hover:shadow-xl">
+                    <div className="flex-1 w-full mt-2 mb-10 border rounded-md shadow-lg hover:shadow-xl">
                         <Income selectedSuburb={props.selectedSuburb} />
                     </div>
                 ) : (

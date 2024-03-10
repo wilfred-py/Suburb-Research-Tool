@@ -9,7 +9,7 @@ export default function Income(props: IncomeProps) {
     return (
         <div className="flex flex-col my-4 w-[99%]">
             <h1 className="mx-auto my-4 text-center text-2xl font-bold">Income</h1>
-            <div className="flex flex-col lg:flex-row min-h-full ">
+            <div className="flex flex-col lg:flex-row min-h-full">
                 <div className="flex-1 lg:w-1/2">
                     <PersonalMedianWeeklyIncome selectedSuburb={props.selectedSuburb} />
                 </div>
