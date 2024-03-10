@@ -32,17 +32,6 @@ interface DemographicProps {
 }
 
 export default function DemographicView(props: DemographicProps) {
-    // Retrieve previously selected filters from local storage
-    const storedFilters = localStorage.getItem("selectedFilters");
-
-    // State to manage selected filters
-    const [selectedFilters, setSelectedFilters] = useState<String[]>(props.selectedFilters);
-
-    // Update the selected filters in the local storage whenever it changes
-    useEffect(() => {
-        localStorage.setItem("selectedFilters", JSON.stringify(selectedFilters));
-    }, [selectedFilters]);
-
     // console.log(selectedFilters);
 
     return (
@@ -184,7 +173,7 @@ export default function DemographicView(props: DemographicProps) {
                 </Drawer>
             </div>
 
-            <div className="flex flex-col w-full">
+            <div className="flex flex-col w-full pb-10">
                 {props.selectedFilters.length === 0 && <div className="flex-1 absolute mt-4 pl-1">Please select data from filter</div>}
 
                 {props.selectedFilters.includes("Family Composition") ? (
@@ -237,7 +226,7 @@ export default function DemographicView(props: DemographicProps) {
                     ""
                 )}
                 {props.selectedFilters.includes("Income") ? (
-                    <div className="flex-1 w-full mt-2 mb-10 border rounded-md shadow-lg hover:shadow-xl">
+                    <div className="flex-1 w-full mt-2 border rounded-md shadow-lg hover:shadow-xl">
                         <Income selectedSuburb={props.selectedSuburb} />
                     </div>
                 ) : (
