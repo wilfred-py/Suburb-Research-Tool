@@ -226,6 +226,7 @@ export default function Population(props: PopulationProps) {
 
         if (props.selectedSuburb) {
             fetchData();
+            checkIfInsufficientData(suburbPopulation);
         }
     }, [props.selectedSuburb]);
 

@@ -446,7 +446,7 @@ export default function CoupleWithChildrenLineGraph(props: CoupleWithChildrenPro
     );
 
     return (
-        <div>
+        <>
             <div className="flex flex-col justify-center">
                 <h1 className="mt-4 mb-4 text-lg text-center font-bold">Couples With Children</h1>
                 <div className="mx-auto -mt-4">
@@ -461,6 +461,6 @@ export default function CoupleWithChildrenLineGraph(props: CoupleWithChildrenPro
                     )}
                 </div>
             </div>
-        </div>
+        </>
     );
 }
