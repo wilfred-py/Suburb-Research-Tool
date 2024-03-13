@@ -1,3 +1,4 @@
+import Loading from "@/app/(dashboard)/dashboard/loading";
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 import { useEffect, useState } from "react";
 import { CartesianGrid, Label, Legend, Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
@@ -18,6 +19,9 @@ export default function Population(props: PopulationProps) {
     const [deconstructedState, setDeconstructedState] = useState<string | null>(null);
 
     const [insufficientSuburbData, setInsufficientSuburbData] = useState(false);
+
+    // loading state management
+    const [isLoading, setIsLoading] = useState(false);
 
     // State to manage minimum and maximum data points for y-axis
     const [dataMin, setDataMin] = useState(0);
@@ -101,7 +105,9 @@ export default function Population(props: PopulationProps) {
 
     useEffect(() => {
         async function fetchData() {
-            // Clear suburbHouseholdIncome from previous search
+            setIsLoading(true);
+
+            // Clear population from previous search
             setSuburbPopulation([null, null, null, null, null]);
             setStatePopulation([null, null, null, null, null]);
 
@@ -222,6 +228,7 @@ export default function Population(props: PopulationProps) {
                     }
                 }
             });
+            setIsLoading(false);
         }
 
         if (props.selectedSuburb) {
@@ -340,18 +347,31 @@ export default function Population(props: PopulationProps) {
         </div>
     );
 
+    console.log(isLoading)
+
     return (
         <>
             <div className="flex flex-col justify-center">
                 <h1 className="my-4 text-lg text-center font-bold select-none">Population</h1>
                 <div className="mx-auto -mt-4">
-                    {insufficientSuburbData ? (
+                    {/* {insufficientSuburbData ? (
                         <div className="flex flex-col justify-center">
                             <span className="mt-2 text-center italic">Insufficient data in suburb to populate population trends.</span>
                             {insufficientDataLineChart}
                         </div>
                     ) : (
                         // * <Recharts />
+                        <div className="select-none">{renderLineChart}</div>
+                    )}
+ */}
+                    {isLoading ? (
+                        <Loading />
+                    ) : insufficientSuburbData ? (
+                        <div className="flex flex-col justify-center">
+                            <span className="mt-2 text-center italic">Insufficient data in suburb to populate population trends.</span>
+                            {insufficientDataLineChart}
+                        </div>
+                    ) : (
                         <div className="select-none">{renderLineChart}</div>
                     )}
                 </div>
