@@ -183,7 +183,7 @@ export default function NavBar() {
                             </div>
                         )}
                         {isEmailVerified && (
-                            <div className="mb-20 mt-auto flex flex-col items-center gap-3 p-5 md:flex-row md:gap-6 md:p-6 md:px-9">
+                            <div className="mb-20 mt-auto flex flex-row justify-center gap-3 p-5 md:gap-6 md:p-6 md:px-9">
                                 <HamburgerSignOutButton />
                             </div>
                         )}
