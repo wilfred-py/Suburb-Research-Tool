@@ -83,7 +83,7 @@ export default function Dashboard() {
         });
     };
 
-    console.log(`selectedFilters: ${selectedFilters}`);
+    // console.log(`selectedFilters: ${selectedFilters}`);
     // console.log(`Is Email Verified? ${isEmailVerified}`);
 
     return (
