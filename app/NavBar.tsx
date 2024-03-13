@@ -97,11 +97,6 @@ export default function NavBar() {
                             <Link className="text-2xl font-bold m-2" href={"/"}>
                                 Suburb IQ
                             </Link>
-                            {/* <li>
-                        <Link href={"/test"} className="text-purple-500 font-bold text-2xl">
-                            Test
-                        </Link>
-                    </li> */}
                         </div>
 
                         <div className="my-auto  mr-2 text-offWhite">
@@ -148,8 +143,8 @@ export default function NavBar() {
 
             {/* Expanded Hamburger menu */}
             {isOpen && (
-                <nav id="mobile-nav" className="lg:hidden fixed inset-x-0 bottom-0 top-16 z-50 overflow-x-hidden bg-white">
-                    <div className="flex flex-col fixed bottom-0 left-0 top-16 w-screen overflow-y-hidden  ">
+                <nav id="mobile-nav" className="lg:hidden max-h-screen fixed inset-x-0 bottom-0 top-16 z-50 overflow-x-hidden bg-white">
+                    <div className="flex flex-col fixed bottom-0 left-0 top-16 w-screen overflow-y-hidden">
                         <ul className="flex flex-col w-full leading-tight ">
                             {isEmailVerified && (
                                 <li className="hover:underline hover:underline-offset-1">
@@ -174,11 +169,16 @@ export default function NavBar() {
                         </ul>
                         {!isEmailVerified && (
                             <div className="mb-20 mt-auto flex flex-col items-center gap-3 p-5 md:flex-row md:gap-6 md:p-6 md:px-9">
-                                <Button className="h-10 w-10/12 mobile-l:w-84  px-4 py-3 bg-gray text-black">
-                                    <Link href="/dashboard/sign-in">Sign in</Link>
+                                <Button className="h-10 mobile-s:max-mobile-l:w-9/12 mobile-l:w-80 md:w-1/2 px-4 py-3 bg-gray text-black">
+                                    <Link href="/dashboard/sign-in" className="w-full">
+                                        Sign in
+                                    </Link>
                                 </Button>
-                                <Button className="h-10 w-10/12 mobile-l:w-84  px-4 py-3 bg-navigationBarBlue">
-                                    <Link href="/dashboard/sign-up"> Get started</Link>
+                                <Button className="h-10 mobile-s:max-mobile-l:w-9/12 mobile-l:w-80 md:w-1/2 px-4 py-3 bg-navigationBarBlue">
+                                    <Link href="/dashboard/sign-up" className="w-full">
+                                        {" "}
+                                        Get started
+                                    </Link>
                                 </Button>
                             </div>
                         )}
