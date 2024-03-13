@@ -1,7 +1,6 @@
 "use client";
 
 import Link from "next/link";
-import AuthCheck from "@/components/AuthCheck";
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 import { SignInButton, HamburgerSignOutButton, NavSignOutButton } from "@/components/AuthButtons";
 import { Twirl as Hamburger } from "hamburger-react";
