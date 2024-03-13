@@ -10,8 +10,8 @@ export default function Population(props: PopulationProps) {
     const [selectedSuburb, setSelectedSuburb] = useState<string | null>("");
     const [selectedState, setSelectedState] = useState<string | null>("");
 
-    const [suburbPopulation, setSuburbPopulation] = useState<(number | null)[]>([null, null, null, null, null]);
-    const [statePopulation, setStatePopulation] = useState<(number | null)[]>([null, null, null, null, null]);
+    const [suburbPopulation, setSuburbPopulation] = useState<(number | null)[]>([]);
+    const [statePopulation, setStatePopulation] = useState<(number | null)[]>([]);
     const [australiaPopulation, setAustraliaPopulation] = useState([18769249, 19855288, 21507717, 23401892, 26473055]);
 
     const [deconstructedSuburb, setDeconstructedSuburb] = useState<string | null>(null);
@@ -278,7 +278,7 @@ export default function Population(props: PopulationProps) {
     // console.log(dataMin);
     // console.log(dataMax);
 
-    // console.log(suburbPopulation);
+    console.log(suburbPopulation);
 
     // * <Recharts />
     const data = [
