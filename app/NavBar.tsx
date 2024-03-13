@@ -148,23 +148,34 @@ export default function NavBar() {
                         <ul className="flex flex-col w-full leading-tight ">
                             {isEmailVerified && (
                                 <li className="hover:underline hover:underline-offset-1">
-                                    <button className="flex items-center justify-between h-16 w-full py-3 pl-7 pr-10 sm:pl-12 sm:pr-14 border-b hover:bg-hoverBlue">
-                                        <Link href="/dashboard/">Dashboard</Link>
+                                    <Link
+                                        href="/dashboard/"
+                                        className="flex items-center justify-between h-16 w-full py-3 pl-7 pr-10 sm:pl-12 sm:pr-14 border-b hover:bg-hoverBlue"
+                                    >
+                                        Dashboard
                                         <ArrowRight strokeWidth={1} />
-                                    </button>
+                                    </Link>
                                 </li>
                             )}
                             <li className="m-0 bg-none p-0 inset-x-0 w-full">
-                                <button className="flex items-center justify-between h-16 w-full py-3 pl-7 pr-10 sm:pl-12 sm:pr-14 border-b hover:bg-hoverBlue">
+                                <Link
+                                    href="/"
+                                    className="flex items-center justify-between h-16 w-full py-3 pl-7 pr-10 sm:pl-12 sm:pr-14 border-b hover:bg-hoverBlue"
+                                >
                                     About
                                     <ArrowRight strokeWidth={1} />
-                                </button>
+                                </Link>
                             </li>
                             <li className="m-0 bg-none p-0 inset-x-0 w-full">
-                                <button className="flex items-center justify-between h-16 w-full py-3 pl-7 pr-10 sm:pl-12 sm:pr-14 border-b hover:bg-hoverBlue">
-                                    Contact Us
+                                <a
+                                    href="mailto:suburb.iq.feedback@gmail.com?subject=Feedback&body=Hi Suburb IQ team, "
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="flex items-center justify-between h-16 w-full py-3 pl-7 pr-10 sm:pl-12 sm:pr-14 border-b hover:bg-hoverBlue"
+                                >
+                                    Contact us
                                     <ArrowRight strokeWidth={1} />
-                                </button>
+                                </a>
                             </li>
                         </ul>
                         {!isEmailVerified && (
