@@ -133,7 +133,10 @@ export function HamburgerSignOutButton() {
     }
 
     return (
-        <Button onClick={LogOut} className="h-10 w-9/12 bg-black hover:underline hover:underline-offset-1 shadow-lg">
+        <Button
+            onClick={LogOut}
+            className="h-10 mobile-s:max-mobile-l:w-9/12 mobile-l:w-80  bg-black hover:underline hover:underline-offset-1 shadow-lg"
+        >
             Sign Out{" "}
         </Button>
     );
