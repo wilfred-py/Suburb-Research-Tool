@@ -105,6 +105,8 @@ export default function Population(props: PopulationProps) {
 
     useEffect(() => {
         async function fetchData() {
+            setIsLoading(true);
+
             // Clear population from previous search
             setSuburbPopulation([null, null, null, null, null]);
             setStatePopulation([null, null, null, null, null]);
@@ -127,7 +129,6 @@ export default function Population(props: PopulationProps) {
             // Process the valid data and update state accordingly
             validData.forEach((result) => {
                 const { year, data } = result;
-                setIsLoading(true);
 
                 try {
                     // * 2001
@@ -199,7 +200,6 @@ export default function Population(props: PopulationProps) {
                             setSuburbPopulation(newSuburbPopulation);
                         }
                     }
-                    console.log("test");
                 } catch (error) {
                     console.error(`Error processing data for ${year}`, error);
                     if (year === "2001") {
@@ -227,8 +227,8 @@ export default function Population(props: PopulationProps) {
                         checkIfInsufficientData(suburbPopulation);
                     }
                 }
-                setIsLoading(false);
             });
+            setIsLoading(false);
         }
 
         if (props.selectedSuburb) {
@@ -285,6 +285,8 @@ export default function Population(props: PopulationProps) {
     // console.log(dataMin);
     // console.log(dataMax);
 
+    console.log(suburbPopulation);
+
     // * <Recharts />
     const data = [
         { name: "2001", Suburb: suburbPopulation[0] },
@@ -295,7 +297,7 @@ export default function Population(props: PopulationProps) {
     ];
 
     const renderLineChart = (
-        <div className="w-full mobile-s:max-mobile-l:h-[440px] sm:max-md:h-[420px] md-l:h-[440px] md-l:w-[360px] mobile-s:max-sm:mt-10 sm:max-md:mt-12 md:mt-6">
+        <div className="mobile-s:max-mobile-l:w-[260px] mobile-s:max-mobile-l:h-[440px] mobile-l:max-md:w-[360px] sm:max-md:h-[420px] md:max-md-l:w-[300px] md-l:h-[440px] md-l:w-[360px] mobile-s:max-sm:mt-10 sm:max-md:mt-12 md:mt-6">
             <ResponsiveContainer>
                 <LineChart data={data} margin={{ top: 0, right: 30, bottom: 60, left: 5 }}>
                     <Line type="natural" dataKey="Suburb" stroke="#219C90" strokeWidth={2.4} />
@@ -345,8 +347,7 @@ export default function Population(props: PopulationProps) {
         </div>
     );
 
-    // console.log(`isLoading: ${isLoading}`);
-    // console.log(suburbPopulation);
+    console.log(isLoading)
 
     return (
         <>
