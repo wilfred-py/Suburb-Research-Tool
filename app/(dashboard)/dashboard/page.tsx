@@ -111,6 +111,7 @@ export default function Dashboard() {
                                         />
                                         <div className="w-full flex-1 md:pl-10 py-2">
                                             {selectedView === "Overview" && <OverviewView selectedSuburb={selectedSuburb} />}
+                                            {selectedView === "Housing Details" && <HousingDetailsView selectedSuburb={selectedSuburb} />}
                                             {selectedView === "Demographic" && (
                                                 <DemographicView
                                                     selectedSuburb={selectedSuburb}
@@ -118,7 +119,6 @@ export default function Dashboard() {
                                                     handleFilters={handleFiltersCheckbox}
                                                 />
                                             )}
-                                            {selectedView === "Housing Details" && <HousingDetailsView selectedSuburb={selectedSuburb} />}
                                         </div>
                                     </div>
                                 </div>
