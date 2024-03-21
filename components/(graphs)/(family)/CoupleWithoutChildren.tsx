@@ -422,7 +422,7 @@ export default function CoupleWithoutChildrenLineGraph(props: CoupleWithoutChild
     ];
 
     const renderLineChart = (
-        <div className="mobile-s:max-mobile-l:w-[260px] mobile-s:max-mobile-l:h-[440px] mobile-l:max-md:w-[360px] sm:max-md:h-[420px] md:max-md-l:w-[300px] md-l:h-[440px] md-l:w-[360px] sm:mt-2 mb-6">
+        <div className="w-96 mobile-s:max-mobile-m:w-[240px] mobile-m:max-mobile-l:w-[260px] mobile-s:h-[440px] mobile-s:max-sm:mt-10 sm:max-md:mt-12 md:mt-6">
             <ResponsiveContainer>
                 <LineChart data={data} margin={{ top: 30, right: 30, bottom: 30, left: 30 }}>
                     <Line type="natural" dataKey="Suburb" stroke="#219C90" strokeWidth={2.4} />
@@ -450,7 +450,7 @@ export default function CoupleWithoutChildrenLineGraph(props: CoupleWithoutChild
     );
 
     const insufficientDataLineChart = (
-        <div className="mobile-s:max-mobile-l:w-[260px] mobile-s:max-mobile-l:h-[440px] mobile-l:max-md:w-[360px] sm:max-md:h-[420px] md:max-md-l:w-[300px] md-l:h-[440px] md-l:w-[360px] sm:mt-2 mb-6">
+        <div className="w-96 mobile-s:max-mobile-m:w-[240px] mobile-m:max-mobile-l:w-[260px] mobile-s:h-[440px] mobile-s:max-sm:mt-10 sm:max-md:mt-12 md:mt-6">
             <ResponsiveContainer>
                 <LineChart data={data} margin={{ right: 30, bottom: 30, left: 30 }}>
                     <CartesianGrid stroke="#ccc" strokeDasharray="5 5" />
