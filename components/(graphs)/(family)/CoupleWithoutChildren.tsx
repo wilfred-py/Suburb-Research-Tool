@@ -475,10 +475,10 @@ export default function CoupleWithoutChildrenLineGraph(props: CoupleWithoutChild
     );
 
     return (
-        <div>
+        <>
             <div className="flex flex-col justify-center">
-                <h1 className="mt-4 mb-4 text-lg text-center font-bold">Couples Without Children</h1>
-                <div className="mx-auto -mt-4">
+                <h1 className="mt-4 text-lg text-center font-bold">Couples Without Children</h1>
+                <div className="mx-auto -mt-4 mb-10">
                     {insufficientSuburbData ? (
                         <div className="flex flex-col justify-center">
                             <span className="mt-2 text-center italic">Insufficient data in suburb to populate trends.</span>
@@ -490,6 +490,6 @@ export default function CoupleWithoutChildrenLineGraph(props: CoupleWithoutChild
                     )}
                 </div>
             </div>
-        </div>
+        </>
     );
 }

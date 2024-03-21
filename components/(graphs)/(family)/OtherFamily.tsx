@@ -491,38 +491,40 @@ export default function OtherFamilyLineGraph(props: OtherFamilyProps) {
         <>
             <div className="flex flex-col justify-center">
                 <div className="flex flex-row justify-center">
-                    <h1 className="mt-4 mb-4 text-lg text-center font-bold mr-2">Other Family</h1>
-                    <TooltipProvider delayDuration={350}>
-                        <Tooltip>
-                            <TooltipTrigger>
-                                <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    fill="none"
-                                    viewBox="0 0 24 24"
-                                    strokeWidth={1.5}
-                                    stroke="currentColor"
-                                    className="w-5 h-5"
+                    <h1 className="mt-4 text-lg text-center font-bold mr-2">Other Family</h1>
+                    <div className="mt-5">
+                        <TooltipProvider delayDuration={350}>
+                            <Tooltip>
+                                <TooltipTrigger>
+                                    <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        fill="none"
+                                        viewBox="0 0 24 24"
+                                        strokeWidth={1.5}
+                                        stroke="currentColor"
+                                        className="w-5 h-5"
+                                    >
+                                        <path
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                            d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z"
+                                        />
+                                    </svg>
+                                </TooltipTrigger>
+                                <TooltipContent
+                                    side="bottom"
+                                    className="mobile-s:max-mobile-l:max-w-[260px] mobile-l:max-md:max-w-[360px] md:max-w-[400px] max-h-30"
                                 >
-                                    <path
-                                        strokeLinecap="round"
-                                        strokeLinejoin="round"
-                                        d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z"
-                                    />
-                                </svg>
-                            </TooltipTrigger>
-                            <TooltipContent
-                                side="bottom"
-                                className="mobile-s:max-mobile-l:max-w-[260px] mobile-l:max-md:max-w-[360px] md:max-w-[400px] max-h-30"
-                            >
-                                <h3 className="break-words">
-                                    Other family is defined as a group of related individuals residing in the same household who cannot be
-                                    categorised as belonging to a couple or one parent family.
-                                </h3>
-                            </TooltipContent>
-                        </Tooltip>
-                    </TooltipProvider>
+                                    <h3 className="break-words">
+                                        Other family is defined as a group of related individuals residing in the same household who cannot
+                                        be categorised as belonging to a couple or one parent family.
+                                    </h3>
+                                </TooltipContent>
+                            </Tooltip>
+                        </TooltipProvider>
+                    </div>
                 </div>
-                <div className="mx-auto -mt-4">
+                <div className="mx-auto -mt-4 mb-10">
                     {insufficientSuburbData ? (
                         <div className="flex flex-col justify-center">
                             <span className="mt-2 text-center italic">Insufficient data in suburb to populate trends.</span>
