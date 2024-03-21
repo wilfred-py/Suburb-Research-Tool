@@ -398,7 +398,7 @@ export default function FullTimeEmploymentLineGraph(props: FullTimeEmploymentPro
     ];
 
     const renderLineChart = (
-        <div className="w-96 mobile-s:max-mobile-l:w-[260px] mobile-s:h-[440px] mobile-s:max-sm:mt-10 sm:max-md:mt-12 md:mt-6">
+        <div className="w-96 mobile-s:max-mobile-m:w-[240px] mobile-m:max-mobile-l:w-[260px] mobile-s:h-[440px] mobile-s:max-sm:mt-10 sm:max-md:mt-12 md:mt-6">
             <ResponsiveContainer>
                 <LineChart data={data} margin={{ top: 0, right: 30, bottom: 60, left: 5 }}>
                     <Line type="natural" dataKey="Suburb" stroke="#219C90" strokeWidth={2.8} />
@@ -426,7 +426,7 @@ export default function FullTimeEmploymentLineGraph(props: FullTimeEmploymentPro
     );
 
     const insufficientDataLineChart = (
-        <div className="w-96 mobile-s:max-mobile-l:w-[260px] mobile-s:h-[440px] mobile-s:max-sm:mt-10 sm:max-md:mt-12 md:mt-6">
+        <div className="w-96 mobile-s:max-mobile-m:w-[240px] mobile-m:max-mobile-l:w-[260px] mobile-s:h-[440px] mobile-s:max-sm:mt-10 sm:max-md:mt-12 md:mt-6">
             <ResponsiveContainer>
                 <LineChart data={data} margin={{ top: 0, right: 30, bottom: 60, left: 5 }}>
                     <Line type="natural" dataKey="Suburb" stroke="#219C90" strokeWidth={2.8} />
