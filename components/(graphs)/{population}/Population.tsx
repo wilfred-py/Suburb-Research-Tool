@@ -105,6 +105,8 @@ export default function Population(props: PopulationProps) {
 
     useEffect(() => {
         async function fetchData() {
+            setIsLoading(true);
+
             // Clear population from previous search
             setSuburbPopulation([null, null, null, null, null]);
             setStatePopulation([null, null, null, null, null]);
@@ -127,7 +129,6 @@ export default function Population(props: PopulationProps) {
             // Process the valid data and update state accordingly
             validData.forEach((result) => {
                 const { year, data } = result;
-                setIsLoading(true);
 
                 try {
                     // * 2001
@@ -199,7 +200,6 @@ export default function Population(props: PopulationProps) {
                             setSuburbPopulation(newSuburbPopulation);
                         }
                     }
-                    console.log("test");
                 } catch (error) {
                     console.error(`Error processing data for ${year}`, error);
                     if (year === "2001") {
@@ -227,8 +227,8 @@ export default function Population(props: PopulationProps) {
                         checkIfInsufficientData(suburbPopulation);
                     }
                 }
-                setIsLoading(false);
             });
+            setIsLoading(false);
         }
 
         if (props.selectedSuburb) {
@@ -284,6 +284,8 @@ export default function Population(props: PopulationProps) {
 
     // console.log(dataMin);
     // console.log(dataMax);
+
+    console.log(suburbPopulation);
 
     // * <Recharts />
     const data = [
@@ -345,8 +347,7 @@ export default function Population(props: PopulationProps) {
         </div>
     );
 
-    // console.log(`isLoading: ${isLoading}`);
-    // console.log(suburbPopulation);
+    console.log(isLoading);
 
     return (
         <>
