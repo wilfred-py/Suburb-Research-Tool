@@ -397,7 +397,7 @@ export default function BedroomsStackedAreaChart(props: BedroomsStackedAreaChart
                 </ResponsiveContainer>
             </div>
 
-            <div className="flex flex-col mobile-s:max-mobile-l:w-[260px] mobile-s:h-[440px] md-l:w-[384px] mobile-s:max-mobile-l:mt-4 mt-2 mobile-s:max-mobile-l:mb-20 sm:mb-10">
+            <div className="flex flex-col mobile-s:max-mobile-l:w-[260px] mobile-s:h-[440px] md-l:w-[384px] mobile-s:max-mobile-l:mt-4 mt-2 mobile-s:max-mobile-l:mb-20 mobile-l:mb-10">
                 <h1 className="mt-4 mb-4 text-lg text-center font-bold">Number of Bedrooms in {selectedState} dwellings</h1>
                 {/* State Chart */}
                 <ResponsiveContainer>
