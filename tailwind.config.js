@@ -121,5 +121,5 @@ module.exports = {
             "8xl": "3200px",
         },
     },
-    plugins: [require("tailwindcss-animate")],
+    plugins: [require("tailwindcss-animate"), require("daisyui")],
 };
