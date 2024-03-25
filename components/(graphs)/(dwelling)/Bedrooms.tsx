@@ -361,7 +361,7 @@ export default function BedroomsStackedAreaChart(props: BedroomsStackedAreaChart
 
     return (
         <div className="flex flex-col place-items-center">
-            <div className="flex flex-col mobile-s:max-mobile-l:w-[260px] mobile-s:h-[440px] md-l:w-[384px] mobile-s:max-mobile-l:mb-6 mb-2">
+            <div className="flex flex-col mobile-s:max-mobile-l:w-[260px] h-[440px] w-[384px] mobile-s:max-mobile-l:mb-4 mb-2">
                 <h1 className="mt-10 mb-4 text-lg text-center font-bold">Number of Bedrooms in {selectedSuburb} dwellings</h1>
                 {/* Suburb Chart */}
                 <ResponsiveContainer>
