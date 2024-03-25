@@ -432,7 +432,7 @@ export default function DwellingStackedAreaChart(props: DwellingStackedAreaChart
                             margin={{
                                 top: 20,
                                 right: 25,
-                                left: -1,
+                                left: 1,
                                 bottom: 20,
                             }}
                         >
