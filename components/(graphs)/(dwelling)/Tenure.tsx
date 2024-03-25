@@ -467,7 +467,7 @@ export default function TenureStackedAreaChart(props: TenureStackedAreaChartProp
                             align="center"
                             margin={{ top: 0, right: 0, bottom: 0, left: 0 }}
                         />
-                        <Tooltip offset={60} cursor={false} allowEscapeViewBox={{ x: true, y: true }} />
+                        <Tooltip offset={20} cursor={false} allowEscapeViewBox={{ x: true, y: true }} />
                         <Area type="monotone" dataKey="Owned Outright" stackId="1" stroke="#186F65" fill="#186F65" />
                         <Area type="monotone" dataKey="Owned with a mortgage" stackId="1" stroke="#8884d8" fill="#8884d8" />
                         <Area type="monotone" dataKey="Rented" stackId="1" stroke="#E4C666" fill="#E4C666" />
