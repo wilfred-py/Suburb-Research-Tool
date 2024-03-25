@@ -109,14 +109,6 @@ const Map: NextPage<MapProps> = (props: MapProps) => {
         region: "AU",
     });
 
-    if (!isLoaded) {
-        return <p>Loading...</p>;
-    }
-
-    if (!geocodeData) {
-        return <p>Loading...</p>;
-    }
-
     return (
         <div className="w-full h-full">
             <div className="z-0 flex place-items-center w-full h-full">
@@ -132,7 +124,7 @@ const Map: NextPage<MapProps> = (props: MapProps) => {
                         {geocodeData && <MarkerF position={mapCenter} onLoad={() => console.log("Marker Loaded")} />}
                     </GoogleMap>
                 ) : (
-                    <p>Loading...</p>
+                    <span className="loading loading-spinner loading-md"></span>
                 )}
             </div>
         </div>
