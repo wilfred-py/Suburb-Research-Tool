@@ -130,7 +130,7 @@ export default function BedroomsStackedAreaChart(props: BedroomsStackedAreaChart
                                 "2 BR": twoBedroomsInSuburb,
                                 "3 BR": threeBedroomsInSuburb,
                                 "4+ BR": fourPlusBedroomsInSuburb,
-                                "Number of BR not stated": bedroomsNotStatedInSuburb,
+                                "Not stated": bedroomsNotStatedInSuburb,
                             };
 
                             // console.log(twentyElevenSuburbObject);
@@ -156,7 +156,7 @@ export default function BedroomsStackedAreaChart(props: BedroomsStackedAreaChart
                                 "2 BR": twoBedroomsInState,
                                 "3 BR": threeBedroomsInState,
                                 "4+ BR": fourPlusBedroomsInState,
-                                "Number of BR not stated": bedroomsNotStatedInState,
+                                "Not stated": bedroomsNotStatedInState,
                             };
 
                             // console.log(twentyElevenStateObject);
@@ -205,7 +205,7 @@ export default function BedroomsStackedAreaChart(props: BedroomsStackedAreaChart
                                     "2 BR": twoBedroomsInSuburb,
                                     "3 BR": threeBedroomsInSuburb,
                                     "4+ BR": fourPlusBedroomsInSuburb,
-                                    "Number of BR not stated": bedroomsNotStatedInSuburb,
+                                    "Not stated": bedroomsNotStatedInSuburb,
                                 };
 
                                 // console.log(twentySixteenSuburbObject);
@@ -233,7 +233,7 @@ export default function BedroomsStackedAreaChart(props: BedroomsStackedAreaChart
                                     "2 BR": twoBedroomsInState,
                                     "3 BR": threeBedroomsInState,
                                     "4+ BR": fourPlusBedroomsInState,
-                                    "Number of BR not stated": bedroomsNotStatedInState,
+                                    "Not stated": bedroomsNotStatedInState,
                                 };
 
                                 // console.log(twentySixteenStateObject);
@@ -284,7 +284,7 @@ export default function BedroomsStackedAreaChart(props: BedroomsStackedAreaChart
                                     "2 BR": twoBedroomsInSuburb,
                                     "3 BR": threeBedroomsInSuburb,
                                     "4+ BR": fourPlusBedroomsInSuburb,
-                                    "Number of BR not stated": bedroomsNotStatedInSuburb,
+                                    "Not stated": bedroomsNotStatedInSuburb,
                                 };
 
                                 // console.log(twentyTwentyOneSuburbObject);
@@ -312,7 +312,7 @@ export default function BedroomsStackedAreaChart(props: BedroomsStackedAreaChart
                                     "2 BR": twoBedroomsInState,
                                     "3 BR": threeBedroomsInState,
                                     "4+ BR": fourPlusBedroomsInState,
-                                    "Number of BR not stated": bedroomsNotStatedInState,
+                                    "Not stated": bedroomsNotStatedInState,
                                 };
 
                                 // console.log(twentyTwentyOneStateObject);
@@ -355,13 +355,13 @@ export default function BedroomsStackedAreaChart(props: BedroomsStackedAreaChart
     }, [props.selectedSuburb]);
 
     // ! CONSOLE LOGS
-    // console.log(suburbBedrooms);
+    console.log(suburbBedrooms);
     // console.log(stateBedrooms);
     // ! CONSOLE LOGS
 
     return (
         <div className="flex flex-col place-items-center">
-            <div className="flex flex-col mobile-s:max-mobile-l:w-[260px] mobile-s:h-[440px] md-l:w-[426px] mobile-s:max-mobile-l:mb-6 mb-2">
+            <div className="flex flex-col mobile-s:max-mobile-l:w-[260px] mobile-s:h-[440px] md-l:w-[384px] mobile-s:max-mobile-l:mb-6 mb-2">
                 <h1 className="mt-10 mb-4 text-lg text-center font-bold">Number of Bedrooms in {selectedSuburb} dwellings</h1>
                 {/* Suburb Chart */}
                 <ResponsiveContainer>
@@ -370,65 +370,65 @@ export default function BedroomsStackedAreaChart(props: BedroomsStackedAreaChart
                         margin={{
                             top: 20,
                             right: 25,
-                            left: 20,
+                            left: 1,
                             bottom: 20,
                         }}
                     >
                         <CartesianGrid strokeDasharray="3 3" />
                         <XAxis dataKey="year" />
-                        <YAxis domain={[0, 100]} tickCount={10} allowDecimals={true}>
+                        <YAxis domain={[0, 100]} tickCount={10} allowDecimals={false}>
                             <Label value="%" position="insideLeft"></Label>
                         </YAxis>
                         <Legend
-                            height={80}
+                            height={100}
                             layout="horizontal"
                             verticalAlign="bottom"
                             align="center"
                             margin={{ top: 0, right: 0, bottom: 0, left: 0 }}
                         />
-                        <Tooltip offset={60} cursor={false} allowEscapeViewBox={{ x: true, y: true }} />
-                        <Area type="monotone" dataKey="No BR" stackId="1" stroke="#186F65" fill="#186F65" />
+                        <Tooltip offset={20} cursor={false} allowEscapeViewBox={{ x: false, y: true }} />
+                        <Area type="monotone" dataKey="No BR" stackId="1" stroke="#8884d8" fill="#8884d8" />
                         <Area type="monotone" dataKey="1 BR" stackId="1" stroke="#B5CB99" fill="#B5CB99" />
                         <Area type="monotone" dataKey="2 BR" stackId="1" stroke="#2A528A" fill="#2A528A" />
                         <Area type="monotone" dataKey="3 BR" stackId="1" stroke="#B2533E" fill="#B2533E" />
                         <Area type="monotone" dataKey="4+ BR" stackId="1" stroke="#A27B5C" fill="#A27B5C" />
-                        <Area type="monotone" dataKey="Number of BR not stated" stackId="1" stroke="#2C3639" fill="#2C3639" />
+                        <Area type="monotone" dataKey="Not stated" stackId="1" stroke="#2C3639" fill="#2C3639" />
                     </AreaChart>
                 </ResponsiveContainer>
             </div>
 
-            <div className="flex flex-col mobile-s:max-mobile-l:w-[260px] mobile-s:h-[440px] md-l:w-[384px] mobile-s:max-mobile-l:mt-4 mt-2 mobile-s:max-mobile-l:mb-20 mobile-l:mb-10">
+            <div className="flex flex-col mobile-s:max-mobile-l:w-[260px] mobile-s:h-[440px] md-l:w-[384px] mobile-s:max-mobile-l:mt-4 mt-2 mobile-s:max-mobile-l:mb-14 mobile-l:mb-4">
                 <h1 className="mt-4 mb-4 text-lg text-center font-bold">Number of Bedrooms in {selectedState} dwellings</h1>
-                {/* State Chart */}
+                {/* Suburb Chart */}
                 <ResponsiveContainer>
                     <AreaChart
-                        width={500}
-                        height={500}
                         data={stateBedrooms}
                         margin={{
                             top: 20,
                             right: 25,
-                            left: -15,
+                            left: 1,
                             bottom: 20,
                         }}
                     >
                         <CartesianGrid strokeDasharray="3 3" />
                         <XAxis dataKey="year" />
-                        <YAxis label="%" domain={[0, 100]} tickCount={10} allowDecimals={false} />
+                        <YAxis domain={[0, 100]} tickCount={10} allowDecimals={false}>
+                            <Label value="%" position="insideLeft"></Label>
+                        </YAxis>
                         <Legend
-                            height={80}
+                            height={100}
                             layout="horizontal"
                             verticalAlign="bottom"
                             align="center"
                             margin={{ top: 0, right: 0, bottom: 0, left: 0 }}
                         />
-                        <Tooltip offset={60} cursor={false} allowEscapeViewBox={{ x: true, y: true }} />
-                        <Area type="monotone" dataKey="No BR" stackId="1" stroke="#186F65" fill="#186F65" />
+                        <Tooltip offset={20} cursor={false} allowEscapeViewBox={{ x: false, y: true }} />
+                        <Area type="monotone" dataKey="No BR" stackId="1" stroke="#8884d8" fill="#8884d8" />
                         <Area type="monotone" dataKey="1 BR" stackId="1" stroke="#B5CB99" fill="#B5CB99" />
                         <Area type="monotone" dataKey="2 BR" stackId="1" stroke="#2A528A" fill="#2A528A" />
                         <Area type="monotone" dataKey="3 BR" stackId="1" stroke="#B2533E" fill="#B2533E" />
                         <Area type="monotone" dataKey="4+ BR" stackId="1" stroke="#A27B5C" fill="#A27B5C" />
-                        <Area type="monotone" dataKey="Number of BR not stated" stackId="1" stroke="#2C3639" fill="#2C3639" />
+                        <Area type="monotone" dataKey="Not stated" stackId="1" stroke="#2C3639" fill="#2C3639" />
                     </AreaChart>
                 </ResponsiveContainer>
             </div>
