@@ -1,6 +1,6 @@
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 import React, { PureComponent, useEffect, useState } from "react";
-import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Legend } from "recharts";
+import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Legend, Label } from "recharts";
 
 interface TenureStackedAreaChartProps {
     selectedSuburb: string | null;
@@ -407,24 +407,24 @@ export default function TenureStackedAreaChart(props: TenureStackedAreaChartProp
 
     return (
         <div className="flex flex-col place-items-center">
-            <div className="flex flex-col mobile-s:max-mobile-l:w-[260px] mobile-s:h-[440px] md-l:w-[384px] mobile-s:max-mobile-l:mb-6 mb-2">
+            <div className="flex flex-col mobile-s:max-mobile-l:w-[260px] h-[440px] w-[384px] mobile-s:max-mobile-l:mb-4 mb-2">
                 <h1 className="mt-10 mb-4 text-lg text-center font-bold">Tenure in {selectedSuburb}</h1>
                 {/* Suburb Chart */}
                 <ResponsiveContainer>
                     <AreaChart
-                        width={500}
-                        height={500}
                         data={suburbTenure}
                         margin={{
                             top: 20,
                             right: 25,
-                            left: -15,
+                            left: 1,
                             bottom: 20,
                         }}
                     >
                         <CartesianGrid strokeDasharray="3 3" />
                         <XAxis dataKey="year" />
-                        <YAxis label="%" domain={[0, 100]} tickCount={10} allowDecimals={false} />
+                        <YAxis domain={[0, 100]} tickCount={10} allowDecimals={false}>
+                            <Label value="%" position="insideLeft"></Label>
+                        </YAxis>
                         <Legend
                             height={80}
                             layout="horizontal"
@@ -432,34 +432,34 @@ export default function TenureStackedAreaChart(props: TenureStackedAreaChartProp
                             align="center"
                             margin={{ top: 0, right: 0, bottom: 0, left: 0 }}
                         />
-                        <Tooltip offset={60} cursor={false} allowEscapeViewBox={{ x: true, y: true }} />
+                        <Tooltip offset={20} cursor={false} allowEscapeViewBox={{ x: false, y: true }} />
                         <Area type="monotone" dataKey="Owned Outright" stackId="1" stroke="#186F65" fill="#186F65" />
-                        <Area type="monotone" dataKey="Owned with a mortgage" stackId="1" stroke="#B5CB99" fill="#B5CB99" />
-                        <Area type="monotone" dataKey="Rented" stackId="1" stroke="#FCE09B" fill="#FCE09B" />
+                        <Area type="monotone" dataKey="Owned with a mortgage" stackId="1" stroke="#8884d8" fill="#8884d8" />
+                        <Area type="monotone" dataKey="Rented" stackId="1" stroke="#E4C666" fill="#E4C666" />
                         <Area type="monotone" dataKey="Other tenure type" stackId="1" stroke="#B2533E" fill="#B2533E" />
                         <Area type="monotone" dataKey="Tenure type not stated" stackId="1" stroke="#A27B5C" fill="#A27B5C" />
                     </AreaChart>
                 </ResponsiveContainer>
             </div>
 
-            <div className="flex flex-col mobile-s:max-mobile-l:w-[260px] mobile-s:h-[440px] md-l:w-[384px] mobile-s:max-mobile-l:mt-4 mt-2 mobile-s:max-mobile-l:mb-20 sm:mb-10">
+            <div className="flex flex-col mobile-s:max-mobile-l:w-[260px] mobile-s:h-[440px] mobile-l:w-[384px] mobile-s:max-mobile-l:mt-4 mt-2 mobile-s:max-mobile-l:mb-16 mb-10">
                 <h1 className="mt-4 mb-4 text-lg text-center font-bold">Tenure in {selectedState}</h1>
                 {/* State Chart */}
                 <ResponsiveContainer>
                     <AreaChart
-                        width={500}
-                        height={500}
                         data={stateTenure}
                         margin={{
                             top: 20,
                             right: 25,
-                            left: -15,
+                            left: 1,
                             bottom: 20,
                         }}
                     >
                         <CartesianGrid strokeDasharray="3 3" />
                         <XAxis dataKey="year" />
-                        <YAxis label="%" domain={[0, 100]} tickCount={10} allowDecimals={false} />
+                        <YAxis domain={[0, 100]} tickCount={10} allowDecimals={false}>
+                            <Label value="%" position="insideLeft"></Label>
+                        </YAxis>
                         <Legend
                             height={80}
                             layout="horizontal"
@@ -469,8 +469,8 @@ export default function TenureStackedAreaChart(props: TenureStackedAreaChartProp
                         />
                         <Tooltip offset={60} cursor={false} allowEscapeViewBox={{ x: true, y: true }} />
                         <Area type="monotone" dataKey="Owned Outright" stackId="1" stroke="#186F65" fill="#186F65" />
-                        <Area type="monotone" dataKey="Owned with a mortgage" stackId="1" stroke="#B5CB99" fill="#B5CB99" />
-                        <Area type="monotone" dataKey="Rented" stackId="1" stroke="#FCE09B" fill="#FCE09B" />
+                        <Area type="monotone" dataKey="Owned with a mortgage" stackId="1" stroke="#8884d8" fill="#8884d8" />
+                        <Area type="monotone" dataKey="Rented" stackId="1" stroke="#E4C666" fill="#E4C666" />
                         <Area type="monotone" dataKey="Other tenure type" stackId="1" stroke="#B2533E" fill="#B2533E" />
                         <Area type="monotone" dataKey="Tenure type not stated" stackId="1" stroke="#A27B5C" fill="#A27B5C" />
                     </AreaChart>
