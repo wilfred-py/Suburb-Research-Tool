@@ -15,7 +15,6 @@ export default function OverviewView(props: OverviewProps) {
                     <div className="mobile-s:max-mobile-l:hidden w-full h-[520px] border border-gray-200 rounded-md shadow-lg hover:shadow-xl">
                         <Map selectedSuburb={props.selectedSuburb} />
                     </div>
-                    <button className="btn">Button</button>
 
                     <div className="w-full h-[520px] mt-2 border border-gray-200 rounded-md shadow-lg hover:shadow-xl">
                         <Population selectedSuburb={props.selectedSuburb} />
