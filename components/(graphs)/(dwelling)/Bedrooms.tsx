@@ -361,7 +361,7 @@ export default function BedroomsStackedAreaChart(props: BedroomsStackedAreaChart
 
     return (
         <div className="flex flex-col place-items-center">
-            <div className="flex flex-col mobile-s:max-mobile-l:w-[260px] mobile-s:h-[440px] md-l:w-[426px] mobile-s:max-mobile-l:mb-6 mb-2">
+            <div className="flex flex-col mobile-s:max-mobile-l:w-[260px] mobile-s:h-[440px] md-l:w-[384px] mobile-s:max-mobile-l:mb-6 mb-2">
                 <h1 className="mt-10 mb-4 text-lg text-center font-bold">Number of Bedrooms in {selectedSuburb} dwellings</h1>
                 {/* Suburb Chart */}
                 <ResponsiveContainer>
@@ -370,23 +370,23 @@ export default function BedroomsStackedAreaChart(props: BedroomsStackedAreaChart
                         margin={{
                             top: 20,
                             right: 25,
-                            left: 20,
+                            left: 1,
                             bottom: 20,
                         }}
                     >
                         <CartesianGrid strokeDasharray="3 3" />
                         <XAxis dataKey="year" />
-                        <YAxis domain={[0, 100]} tickCount={10} allowDecimals={true}>
+                        <YAxis domain={[0, 100]} tickCount={10}>
                             <Label value="%" position="insideLeft"></Label>
                         </YAxis>
                         <Legend
-                            height={80}
+                            height={100}
                             layout="horizontal"
                             verticalAlign="bottom"
                             align="center"
                             margin={{ top: 0, right: 0, bottom: 0, left: 0 }}
                         />
-                        <Tooltip offset={60} cursor={false} allowEscapeViewBox={{ x: true, y: true }} />
+                        <Tooltip offset={20} cursor={false} allowEscapeViewBox={{ x: false, y: true }} />
                         <Area type="monotone" dataKey="No BR" stackId="1" stroke="#186F65" fill="#186F65" />
                         <Area type="monotone" dataKey="1 BR" stackId="1" stroke="#B5CB99" fill="#B5CB99" />
                         <Area type="monotone" dataKey="2 BR" stackId="1" stroke="#2A528A" fill="#2A528A" />

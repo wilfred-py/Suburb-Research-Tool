@@ -448,7 +448,7 @@ export default function DwellingStackedAreaChart(props: DwellingStackedAreaChart
                                 align="center"
                                 margin={{ top: 0, right: 0, bottom: 0, left: 0 }}
                             />
-                            <Tooltip />
+                            <Tooltip offset={20} allowEscapeViewBox={{ x: true, y: true }} />
                             <Area type="monotone" dataKey="Separate House" stackId="1" stroke="#8884d8" fill="#8884d8" />
                             <Area type="monotone" dataKey="Semi-detached / Townhouse" stackId="1" stroke="#B8621B" fill="#B8621B" />
                             <Area type="monotone" dataKey="Flat, unit or apartment" stackId="1" stroke="#ffc658" fill="#ffc658" />
