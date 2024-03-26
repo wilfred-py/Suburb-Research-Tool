@@ -20,6 +20,9 @@ export default function Dashboard() {
     // Default filters
     const defaultFilters = ["Family Composition", "Religion", "Marriage", "Ancestry", "Population", "Age", "Employment", "Income"];
 
+    // All selections checked
+    const [allSelected, setAllSelected] = useState(true);
+
     // State to manage selected filters
     const [selectedFilters, setSelectedFilters] = useState<string[]>(defaultFilters);
 
@@ -71,15 +74,25 @@ export default function Dashboard() {
         setSelectedFilters((prevFilters) => {
             // Toggle selected filters
             if (prevFilters.includes(filter)) {
+                // Remove selection from list
                 return prevFilters.filter((f) => f !== filter);
             } else {
+                // Add selection to list
                 return [...prevFilters, filter];
             }
         });
     };
 
-    // console.log(`selectedFilters: ${selectedFilters}`);
-    // console.log(`Is Email Verified? ${isEmailVerified}`);
+    // * Function to handle (de)select all filters
+    const handleAllFilters = () => {
+        setAllSelected((prevAllSelected) => !prevAllSelected);
+
+        if (!allSelected) {
+            setSelectedFilters([]);
+        } else {
+            setSelectedFilters(defaultFilters);
+        }
+    };
 
     return (
         <>
@@ -112,6 +125,8 @@ export default function Dashboard() {
                                                     selectedSuburb={selectedSuburb}
                                                     selectedFilters={selectedFilters}
                                                     handleFilters={handleFiltersCheckbox}
+                                                    allSelected={allSelected}
+                                                    handleAllFilters={handleAllFilters}
                                                 />
                                             )}
                                         </div>

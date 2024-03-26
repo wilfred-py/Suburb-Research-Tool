@@ -8,7 +8,6 @@ import Employment from "../Employment";
 import FamilyComposition from "../FamilyComposition";
 import Income from "../Income";
 import Marital from "../MaritalStatus";
-import { useState, useEffect } from "react";
 
 import {
     Drawer,
@@ -28,6 +27,8 @@ interface DemographicProps {
     selectedSuburb: string | null;
     selectedFilters: string[];
     handleFilters: any;
+    allSelected: boolean;
+    handleAllFilters: any;
 }
 
 export default function DemographicView(props: DemographicProps) {
@@ -160,6 +161,13 @@ export default function DemographicView(props: DemographicProps) {
                                 </label>
                             </div>
                         </div>
+
+                        <div className="ml-4 items-top flex space-x-2 my-0.5">
+                            <Button onClick={props.handleAllFilters} className="mt-4">
+                                Select / Deselect All
+                            </Button>
+                        </div>
+
                         <DrawerFooter>
                             <DrawerClose className="flex flex-col items-center"></DrawerClose>
                         </DrawerFooter>
