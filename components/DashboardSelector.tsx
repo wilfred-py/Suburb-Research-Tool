@@ -2,12 +2,14 @@
 
 import { useEffect, useState } from "react";
 import { Checkbox } from "./ui/checkbox";
+import { Button } from "./ui/button";
 
 interface DashboardSelectorProps {
     selectedView: string | null;
     onChangeView: (view: string | null) => void;
     selectedFilters: string[];
     handleFilters: any;
+    handleAllFilters: any;
 }
 
 export default function DashboardSelector(props: DashboardSelectorProps) {
@@ -171,6 +173,11 @@ export default function DashboardSelector(props: DashboardSelectorProps) {
                                     Income
                                 </label>
                             </div>
+                        </div>
+                        <div className="ml-3 items-top flex space-x-2 my-0.5">
+                            <Button onClick={props.handleAllFilters} variant={"secondary"} className="mt-4 font-semibold">
+                                Select / Deselect All
+                            </Button>
                         </div>
                     </div>
                 ) : (

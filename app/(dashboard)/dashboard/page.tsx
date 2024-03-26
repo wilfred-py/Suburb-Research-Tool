@@ -116,6 +116,7 @@ export default function Dashboard() {
                                             onChangeView={handleViewChange}
                                             selectedFilters={selectedFilters}
                                             handleFilters={handleFiltersCheckbox}
+                                            handleAllFilters={handleAllFilters}
                                         />
                                         <div className="w-full flex-1 md:pl-10 py-2">
                                             {selectedView === "Overview" && <OverviewView selectedSuburb={selectedSuburb} />}
