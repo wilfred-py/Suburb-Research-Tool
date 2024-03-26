@@ -17,11 +17,6 @@ export default function Dashboard() {
     // Dashboard view
     const [selectedView, setSelectedView] = useState<string | null>("Overview");
 
-    // Retrieve previously selected filters from local storage
-
-    // ?
-    // const storedFilters = localStorage.getItem("selectedFilters");
-
     // Default filters
     const defaultFilters = ["Family Composition", "Religion", "Marriage", "Ancestry", "Population", "Age", "Employment", "Income"];
 

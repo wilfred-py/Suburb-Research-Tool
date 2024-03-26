@@ -8,7 +8,7 @@ import Employment from "../Employment";
 import FamilyComposition from "../FamilyComposition";
 import Income from "../Income";
 import Marital from "../MaritalStatus";
-import * as React from "react";
+import { useState, useEffect } from "react";
 
 import {
     Drawer,
@@ -161,10 +161,7 @@ export default function DemographicView(props: DemographicProps) {
                             </div>
                         </div>
                         <DrawerFooter>
-                            <Button>Confirm</Button>
-                            <DrawerClose>
-                                <Button variant="outline">Cancel</Button>
-                            </DrawerClose>
+                            <DrawerClose className="flex flex-col items-center"></DrawerClose>
                         </DrawerFooter>
                     </DrawerContent>
                 </Drawer>
