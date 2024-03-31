@@ -8,7 +8,7 @@ import ExamplePartTimeEmploymentLineGraph from "./(graphs)/(employment)/(example
 import ExampleUnemploymentLineGraph from "./(graphs)/(employment)/(examples)/ExampleUnemploymentLineGraph";
 import ExampleHouseholdMedianWeeklyIncome from "./(graphs)/(income)/(example)/ExampleHouseholdMedianWeeklyIncome";
 import ExamplePersonalMedianWeeklyIncome from "./(graphs)/(income)/(example)/ExamplePersonalMedianWeeklyIncome";
-import SkeletonCard from "@/app/SkeletonCard";
+import SkeletonCard from "@/components/ui/SkeletonCard";
 
 export default function Highlights() {
     return (
