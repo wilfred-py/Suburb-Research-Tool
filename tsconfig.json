@@ -24,6 +24,6 @@
         },
         "downlevelIteration": true
     },
-    "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "data/suburbNames.js"],
+    "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "data/suburbNames.js", "app/layout.tsx"],
     "exclude": ["node_modules"]
 }

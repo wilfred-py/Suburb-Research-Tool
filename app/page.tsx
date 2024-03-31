@@ -9,17 +9,13 @@ import dynamic from "next/dynamic";
 // import NavBar from "./NavBar";
 // import FAQs from "@/components/FAQs";
 
-const Highlights = dynamic(() => import('../components/Highlights'))
-const NavBar = dynamic(() => import('../app/NavBar'))
-const FAQs = dynamic(() => import('../components/FAQs'))
+const Highlights = dynamic(() => import("../components/Highlights"));
 
+const FAQs = dynamic(() => import("../components/FAQs"));
 
 export default async function Home() {
     return (
         <div>
-            <header className="relative z-[999]">
-                <NavBar />
-            </header>
             <main>
                 <section id="About" className="relative">
                     <About />

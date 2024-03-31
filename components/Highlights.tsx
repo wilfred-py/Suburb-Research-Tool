@@ -1,5 +1,6 @@
 "use client";
 
+import { Suspense } from "react";
 import ExampleStateDwellingStackedAreaChart from "./(graphs)/(dwelling)/(examples)/ExampleStateDwellingStackedAreaChart";
 import ExampleSuburbDwellingStackedAreaChart from "./(graphs)/(dwelling)/(examples)/ExampleSuburbDwellingStackedAreaChart";
 import ExampleFTE from "./(graphs)/(employment)/(examples)/ExampleFTE";
@@ -7,6 +8,7 @@ import ExamplePartTimeEmploymentLineGraph from "./(graphs)/(employment)/(example
 import ExampleUnemploymentLineGraph from "./(graphs)/(employment)/(examples)/ExampleUnemploymentLineGraph";
 import ExampleHouseholdMedianWeeklyIncome from "./(graphs)/(income)/(example)/ExampleHouseholdMedianWeeklyIncome";
 import ExamplePersonalMedianWeeklyIncome from "./(graphs)/(income)/(example)/ExamplePersonalMedianWeeklyIncome";
+import SkeletonCard from "@/app/SkeletonCard";
 
 export default function Highlights() {
     return (
@@ -40,13 +42,19 @@ export default function Highlights() {
 
             <div className="flex lg:flex-row flex-col my-2 lg:space-x-4 mx-auto px-5 sm:px-9 md:px-10 lg:px-12 xl:px-24 2xl:px-40 3xl:px-52 4xl:px-72 5xl:px-96 6xl:px-[440px] 7xl:px-[500px] 8xl:px-[600px]">
                 <div className="lg:w-1/3 border border-gray-200 rounded-md shadow-lg hover:shadow-xl mb-4">
-                    <ExampleFTE selectedSuburb={""}></ExampleFTE>
+                    <Suspense fallback={<SkeletonCard />}>
+                        <ExampleFTE selectedSuburb={""} />
+                    </Suspense>
                 </div>
                 <div className="lg:w-1/3 border border-gray-200 rounded-md shadow-lg hover:shadow-xl mb-4">
-                    <ExamplePartTimeEmploymentLineGraph selectedSuburb={""}></ExamplePartTimeEmploymentLineGraph>
+                    <Suspense fallback={<SkeletonCard />}>
+                        <ExamplePartTimeEmploymentLineGraph selectedSuburb={""} />
+                    </Suspense>
                 </div>
                 <div className="lg:w-1/3 border border-gray-200 rounded-md shadow-lg hover:shadow-xl mb-4">
-                    <ExampleUnemploymentLineGraph selectedSuburb={""}></ExampleUnemploymentLineGraph>
+                    <Suspense fallback={<SkeletonCard />}>
+                        <ExampleUnemploymentLineGraph selectedSuburb={""} />
+                    </Suspense>
                 </div>
             </div>
 
@@ -114,10 +122,10 @@ export default function Highlights() {
 
             <div className="flex lg:flex-row flex-col my-2 lg:space-x-4 mx-auto px-5 sm:px-9 md:px-10 lg:px-12 xl:px-24 2xl:px-40 3xl:px-52 4xl:px-72 5xl:px-96 6xl:px-[440px] 7xl:px-[500px] 8xl:px-[600px]">
                 <div className="lg:w-1/2 sm:h-[350px] md:h-[380px] border border-gray-200 rounded-md shadow-lg hover:shadow-xl mb-4">
-                    <ExamplePersonalMedianWeeklyIncome selectedSuburb={""}></ExamplePersonalMedianWeeklyIncome>
+                    <ExamplePersonalMedianWeeklyIncome selectedSuburb={""} />
                 </div>
                 <div className="lg:w-1/2 sm:h-[350px] md:h-[380px] border border-gray-200 rounded-md shadow-lg hover:shadow-xl mb-4">
-                    <ExampleHouseholdMedianWeeklyIncome selectedSuburb={""}></ExampleHouseholdMedianWeeklyIncome>
+                    <ExampleHouseholdMedianWeeklyIncome selectedSuburb={""} />
                 </div>
             </div>
         </>
