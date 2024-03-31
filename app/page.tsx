@@ -1,10 +1,18 @@
 import "@fortawesome/fontawesome-svg-core/styles.css";
 import About from "@/components/About";
 import Footer from "@/components/Footer";
+import dynamic from "next/dynamic";
 
-import Highlights from "@/components/Highlights";
-import NavBar from "./NavBar";
-import FAQs from "@/components/FAQs";
+// Import client components with Lazy Loading
+
+// import Highlights from "@/components/Highlights";
+// import NavBar from "./NavBar";
+// import FAQs from "@/components/FAQs";
+
+const Highlights = dynamic(() => import('../components/Highlights'))
+const NavBar = dynamic(() => import('../app/NavBar'))
+const FAQs = dynamic(() => import('../components/FAQs'))
+
 
 export default async function Home() {
     return (
