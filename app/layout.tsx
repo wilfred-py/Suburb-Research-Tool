@@ -3,10 +3,6 @@ import "./globals.css";
 import { Roboto, Inter } from "next/font/google";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
-import dynamic from "next/dynamic";
-
-// import Navbar with Lazy Loading
-const NavBar = dynamic(() => import("./NavBar"));
 
 const roboto = Roboto({
     weight: ["100", "300", "500", "700"],
@@ -34,12 +30,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             </head>
 
             <body>
-                <header className="relative z-[999]">
-                    <NavBar />
-                </header>
+                {}
 
                 {children}
-
                 <Analytics />
                 <SpeedInsights />
                 <footer>
