@@ -1,8 +1,6 @@
 "use client";
 
-import * as React from "react";
 import { useEffect, useState } from "react";
-// import { LineChart } from "@mui/x-charts/LineChart";
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 
 import { LineChart, Line, CartesianGrid, XAxis, YAxis, Tooltip, Legend, ResponsiveContainer, Label, CartesianAxis } from "recharts";
@@ -427,41 +425,14 @@ export default function ExampleFTE(props: FullTimeEmploymentProps) {
         </div>
     );
 
-    const insufficientDataLineChart = (
-        <LineChart width={600} height={400} data={data} margin={{ right: 30, bottom: 30, left: 30 }}>
-            <CartesianGrid stroke="#ccc" strokeDasharray="5 5" />
-            <XAxis dataKey="name">
-                <Label value="year" position="bottom" />
-            </XAxis>
-            <YAxis tickCount={10} domain={[35, 75]}>
-                <Label value="%" position="insideLeft" offset={-1.5} />
-            </YAxis>
-            <Tooltip offset={50} cursor={false} />
-            <Legend verticalAlign="top" height={36} align="center" />
-            <CartesianGrid y={40}></CartesianGrid>
-        </LineChart>
-    );
-
     return (
-        <div>
+        <>
             <div className="flex flex-col select-none">
                 <h1 className="mx-auto mt-4 text-base select-none text-center">
                     Full-time employment in <p className="text-base italic font-medium">Abbotsford, VIC, 3067</p>
                 </h1>
-                <div className="mx-auto -mt-4">
-                    {insufficientSuburbData ? (
-                        <div className="flex flex-col justify-center">
-                            <span className="mt-2 text-center italic">
-                                Insufficient data in suburb to populate full-time employment trends.
-                            </span>
-                            {insufficientDataLineChart}
-                        </div>
-                    ) : (
-                        // * <Recharts />
-                        <div className="select-none">{renderLineChart}</div>
-                    )}
-                </div>
+                <div className="mx-auto -mt-4 select-none">{renderLineChart}</div>
             </div>
-        </div>
+        </>
     );
 }
