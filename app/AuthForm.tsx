@@ -15,7 +15,7 @@ export default function AuthForm() {
             appearance={{ theme: ThemeSupa }}
             theme="light"
             showLinks={false}
-            providers={["google", "twitter"]}
+            providers={["google"]}
             redirectTo="http://www.suburbiq.com/auth/callback"
         />
     );
